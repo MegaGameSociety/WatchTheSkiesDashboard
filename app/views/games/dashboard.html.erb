@@ -1,8 +1,8 @@
-<html>
-  <head>
-    <title>Watch the Skies</title>
-  </head>
-  <body>
-    <h1>Watch the Skies Dashboard</h1>
-  </body>
-</html>
+<h1>Watch the Skies Dashboard</h1>
+<h3><%= @game.name %></h3>
+<h2>Current Round: <%= @game.round%></h2>
+<h2>Next Round <%= @game.next_round%></h2>
+<% @data.each_pair do |key, value|%>
+  <h4><%= key.capitalize %>: <%= value %>
+  </h4>
+<% end %>

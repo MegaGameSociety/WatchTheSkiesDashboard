@@ -1,7 +1,10 @@
 class GamesController < ApplicationController
 
   def dashboard
+    @game = Game.first()
+    @data = JSON.parse(@game.data)
   end
+
 
 private
   # method to make all internal checks to the game status

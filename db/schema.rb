@@ -13,7 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20150425012039) do
 
-  create_table "games", force: true do |t|
+  create_table "games", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "round"
+    t.string   "data"
+    t.datetime "next_round"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

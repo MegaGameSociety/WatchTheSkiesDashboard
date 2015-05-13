@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+g = Game.create(
+  name: "Watch the Skies Test",
+  round: 0,
+  next_round: (Time.now() + 30*60),
+  data: {
+    rioters: 0,
+    terror: 0,
+    paused: false
+    }.to_json
+)
+
+g.save()
