@@ -1,3 +1,21 @@
 Watch the Skies Dashboard
 
 For crappy old code see: https://github.com/FifthSurprise/WatchTheSkiesDashboard
+
+This application uses Rails.
+
+Dependencies are managed using Bundler.
+If you do not have Bundler:
+  gem install bundler
+
+Then run the following to start the application:
+
+bundle install
+rake db:setup
+rails s
+
+This will start the server.
+
+If you need to reset to seed after creating the database, run rake db:reset
+
+Other rake commands available via rake -T
