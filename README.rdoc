@@ -10,9 +10,9 @@ If you do not have Bundler:
 
 Then run the following to start the application:
 
-bundle install
-rake db:setup
-rails s
+- bundle install
+- rake db:setup
+- rails s
 
 This will start the server.
 
