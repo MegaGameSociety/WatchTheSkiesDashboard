@@ -18,3 +18,14 @@ g = Game.create(
 )
 
 g.save()
+
+#An example message for the database. Probably doesn't need to exist in the final version.
+m = Message.create(
+	sender: "UK",
+	recipient: "France",
+	content: "This is an example message",
+	round_number: 0,
+	game_id: g.id
+)
+
+m.save();

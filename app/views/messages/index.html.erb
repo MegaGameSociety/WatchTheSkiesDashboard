@@ -1,0 +1,14 @@
+<div class="messages">
+  <div class="container">
+  
+	<% @messages.each do |message| %> 
+  	<div> 
+  	  <p>From <%= message.sender %> to <%= message.recipient %>:</p>
+      <p><%= message.content %></p>
+      <p>Sent <%= message.created_at %>, round <%= message.round_number %>
+  	</div> 
+	<% end %>
+  </div>
+
+  <%= link_to "New Message", new_message_path %>
+</div>

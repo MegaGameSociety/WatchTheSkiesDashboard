@@ -1,0 +1,13 @@
+<%= form_for @message, url: messages_path do |f| %>
+	<div class="field">
+		<%= label(:recipient, "Sender") %>: <%= f.select(:sender, 
+			options_for_select([['UK'], ['France'], ['India'], ['US'], ['China'], ['Japan'], ['Brazil'], ['Aliens']])) %><br>
+		<%= label(:recipient, "Recipient") %>: <%= f.select(:recipient, 
+			options_for_select([['UK'], ['France'], ['India'], ['US'], ['China'], ['Japan'], ['Brazil'], ['Aliens']])) %><br>
+		<%= label(:content, "Message") %><br>
+		<%= f.text_area :content %>
+	</div>
+	<div class="actions">
+		<%= f.submit "Create" %>
+	</div>
+<% end %>
