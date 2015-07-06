@@ -3,22 +3,12 @@ class MessagesController < ApplicationController
 	#Displays all messages, newest ones first
 	def index
 		@messages = Message.all.order('created_at DESC')
-		respond_to do |format|
-			format.html
-			format.json { render json: @messages }
-		end
 	end
 
 	#Displays all messages for a specific country
 	def show
 		@messages = Message.where(recipient: params[:id]).order('created_at DESC')
-		
-		respond_to do |format|
-			format.html
-			format.json { render json: @messages }
-		end
 	end
-
 
 	def new
 		@message = Message.new
