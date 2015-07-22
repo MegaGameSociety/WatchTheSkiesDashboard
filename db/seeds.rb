@@ -17,8 +17,6 @@ g = Game.create(
     }.to_json
 )
 
-g.save()
-
 #An example message for the database. Probably doesn't need to exist in the final version.
 m = Message.create(
 	sender: "UK",
@@ -27,5 +25,3 @@ m = Message.create(
 	round_number: 0,
 	game_id: g.id
 )
-
-m.save();
