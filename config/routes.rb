@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
-
+  
   root 'games#dashboard'
+
+  resources :terror_trackers
+
+  resources :public_relations
+
+  resources :messages
+
+  post 'messages/new' => 'messages#create'
+
+  # Api related routing
+  namespace :api do
+
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -56,8 +69,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  resources :messages
-
-  post 'messages/new' => 'messages#create'
 end

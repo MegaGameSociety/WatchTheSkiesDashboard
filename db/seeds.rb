@@ -12,12 +12,9 @@ g = Game.create(
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,
-    terror: 0,
     paused: false
     }.to_json
 )
-
-g.save()
 
 #An example message for the database. Probably doesn't need to exist in the final version.
 m = Message.create(
@@ -28,4 +25,9 @@ m = Message.create(
 	game_id: g.id
 )
 
-m.save();
+# create initial Terror Item
+t = TerrorTracker.create(
+  description: "Initial Terror",
+  amount: 50,
+  round: g.round
+  )

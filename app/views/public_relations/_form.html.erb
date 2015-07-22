@@ -1,0 +1,17 @@
+<%= form_for(@public_relation) do |f| %>
+  <% if @public_relation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@public_relation.errors.count, "error") %> prohibited this public_relation from being saved:</h2>
+
+      <ul>
+      <% @public_relation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

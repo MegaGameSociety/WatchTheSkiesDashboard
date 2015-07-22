@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Terror Trackers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @terror_trackers.each do |terror_tracker| %>
+      <tr>
+        <td><%= link_to 'Show', terror_tracker %></td>
+        <td><%= link_to 'Edit', edit_terror_tracker_path(terror_tracker) %></td>
+        <td><%= link_to 'Destroy', terror_tracker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Terror tracker', new_terror_tracker_path %>
