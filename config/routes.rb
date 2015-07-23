@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   root 'games#dashboard'
 
   resources :terror_trackers
-
   resources :public_relations
-
   resources :messages
 
   post 'messages/new' => 'messages#create'
