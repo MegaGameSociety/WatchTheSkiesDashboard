@@ -29,4 +29,10 @@ class Game < ActiveRecord::Base
     return self
   end
 
+  # this should be moved into a module
+  def countries()
+    return ['Brazil', 'China', 'France', 'Japan', 'Russian Federation','United Kingdom', 'USA']
+  end
+
+
 end

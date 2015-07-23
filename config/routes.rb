@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   post 'messages/new' => 'messages#create'
 
   # Api related routing
-  namespace :api do
-
+  namespace :api, :defaults => {:format => :json} do
+    get 'dashboard_data' => 'api#dashboard'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
