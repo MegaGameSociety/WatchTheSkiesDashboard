@@ -1,0 +1,2 @@
+module TerrorTrackersHelper
+end

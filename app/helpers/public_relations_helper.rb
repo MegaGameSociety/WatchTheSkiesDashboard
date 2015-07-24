@@ -1,0 +1,2 @@
+module PublicRelationsHelper
+end

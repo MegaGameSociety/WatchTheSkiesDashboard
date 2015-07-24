@@ -12,7 +12,6 @@ g = Game.create(
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,
-    terror: 0,
     paused: false
     }.to_json
 )
@@ -25,3 +24,10 @@ m = Message.create(
 	round_number: 0,
 	game_id: g.id
 )
+
+# create initial Terror Item
+t = TerrorTracker.create(
+  description: "Initial Terror",
+  amount: 50,
+  round: g.round
+  )
