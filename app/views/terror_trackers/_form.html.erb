@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :description %> </br>
+    <%= f.text_area :description, :size => "60x5"%></br>
+    <%= f.label :round %> </br>
+    <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round%></br>
+    <%= f.label :amount %> </br>
+    <%= f.number_field :amount, :in => -100..100, :step => '1' %>
     <%= f.submit %>
   </div>
 <% end %>

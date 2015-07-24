@@ -4,7 +4,13 @@ class TerrorTrackersController < ApplicationController
   # GET /terror_trackers
   # GET /terror_trackers.json
   def index
-    @terror_trackers = TerrorTracker.all
+    @terror_trackers = TerrorTracker.all.order(created_at: :desc)
+    @tcount = TerrorTracker.sum(:amount)
+
+    # Requirements for a new terror tracker event
+    @terror_tracker = TerrorTracker.new
+    @current_round = Game.last.round
+
   end
 
   # GET /terror_trackers/1
@@ -15,10 +21,13 @@ class TerrorTrackersController < ApplicationController
   # GET /terror_trackers/new
   def new
     @terror_tracker = TerrorTracker.new
+    @current_round = Game.last.round
+
   end
 
   # GET /terror_trackers/1/edit
   def edit
+    @current_round = @terror_tracker.round
   end
 
   # POST /terror_trackers
@@ -69,6 +78,6 @@ class TerrorTrackersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def terror_tracker_params
-      params[:terror_tracker]
+      params[:terror_tracker].permit(:description, :amount, :round)
     end
 end

@@ -1,6 +1,6 @@
 class Api::ApiController < ApplicationController
   def dashboard
-    @game = Game.first().update
+    @game = Game.last().update
     @data = JSON.parse(@game.data)
 
     begin
