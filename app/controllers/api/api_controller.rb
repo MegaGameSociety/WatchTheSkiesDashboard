@@ -5,6 +5,7 @@ class Api::ApiController < ApplicationController
 
     begin
       @global_terror = {
+        'total'=> TerrorTracker.totalTerror(),
         'rioters'=> @data['rioters']
       }
     rescue
