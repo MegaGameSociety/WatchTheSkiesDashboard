@@ -1,8 +1,117 @@
-<h1>Watch the Skies Dashboard</h1>
-<h3><%= @game.name %></h3>
-<h2>Current Round: <%= @game.round%></h2>
-<h2>Next Round <%= @game.next_round%></h2>
-<% @data.each_pair do |key, value|%>
-  <h4><%= key.capitalize %>: <%= value %>
-  </h4>
-<% end %>
+<div class="messages">
+  <p>Example message</p>
+</div>
+
+<div class="columns">
+  <div class="left-column">
+    <img src="/assets/mgs-logo.png" class="mgs-logo">
+
+    <div class="countries-container">
+      <h3 class="center">Country Status</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Country</td>
+            <td>PR</td>
+            <td>Income</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Each Country -->
+          <tr>
+            <td>Brazil</td>
+            <td>8<span class="arrow up"></span></td>
+            <td>5</td>
+          </tr>
+          <!-- /Country -->
+          <tr>
+            <td>China</td>
+            <td>4<span class="arrow down"></span></td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>Japan</td>
+            <td>5<span class="arrow down"></span></td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>Russia</td>
+            <td>2<span class="arrow up"></span></td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>UK</td>
+            <td>6<span class="arrow up"></span></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>USA</td>
+            <td>4<span class="arrow down"></span></td>
+            <td>7</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="terror-container center">
+        <h3>Terror</h3>
+        <%= @data["terror"] %> / 250
+      </div>
+    </div>
+  </div>
+
+  <div class="centre-column">
+    <div class="round-container">
+      <h2 class="counter">00:40</h2>
+
+      <!-- This needs to be formatted for use -->
+      <%#= @game.next_round %>
+
+      <h3>Round <%= @game.round %></h3>
+      <% if @data["paused"] %>
+        <h3 class="paused">(Paused)</h3>
+      <% end %>
+    </div>
+
+    <h3>News</h3>
+    <!-- Each News -->
+    <div class="news-container">
+      <h4>News Title Here</h4>
+      <p>News text goes here. Lorem ipsum and all that jazz.</p>
+      <a class="news" href="#">1:14PM - Global Technology Journal</a>
+    </div>
+    <!-- End News -->
+
+    <!-- Each News -->
+    <div class="news-container">
+      <h4>News Title Here</h4>
+      <p>News text goes here. Lorem ipsum and all that jazz.</p>
+      <a class="news" href="#">1:14PM - Earthly Times</a>
+    </div>
+    <!-- End News -->
+
+    <!-- Each News -->
+    <div class="news-container">
+      <h4>News Title Here</h4>
+      <p>News text goes here. Lorem ipsum and all that jazz.</p>
+      <a class="news" href="#">1:14PM - Earthly Times</a>
+    </div>
+    <!-- End News -->
+  </div>
+
+  <div class="right-column">
+    <div class="riot-top"></div>
+    <img class="riot-image" src="/assets/riot.png" />
+
+    <div class="rioters-container">
+      <h3>Rioters</h3>
+      <%= @data["rioters"] %>
+
+      <div class="activity-container">
+        <img class="activity-image" src="/assets/activity.png" />
+        <h3>Activity</h3>
+        No recent activity
+      </div>
+    </div>
+  </div>
+</div>
