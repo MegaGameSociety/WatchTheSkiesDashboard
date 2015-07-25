@@ -14,3 +14,7 @@
  *= require_self
  *= require bootstrap
  */
+
+div.adminControl{
+  margin:10px;
+}

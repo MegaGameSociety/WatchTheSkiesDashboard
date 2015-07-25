@@ -7,8 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<%= render "layouts/header_navbar" %>
+<% unless current_page?('/')%>
+  <div class="adminControl">
+  <%= yield %>
+  </div>
+<% else %>
+  <%= yield %>
+<% end %>
 </body>
 </html>

@@ -1,41 +1,46 @@
-<h1>UN Dashboard Controls</h1>
-
-<%= form_for :un_public_relations do |form| %>
-  <%= form.label :round_label, "Round: " %> 
-  <%= form.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %><span>  [Default is current round]</span>
-  <%= form.label :main_modifier_bale, "Main PR Modifier: " %>
-  <%= form.number_field :main_pr_amount, :in => -10..10, :step => '1' %></br>
-  <%= form.label :main_description_label, "Main Description of PR: " %>
-  <%= form.text_field :main_description, size: 50, :placeholder => "ex. Held World Trade Conference" %>
-  <p>If Main Description is filled in, all blank descriptions will use Main Description unless they have a non-blank description filled in.  Likewise for the Modifier.
-  </p>
-  <p>
-    If neither Main Description and Main Modifier are entered in, then individual countries with a blank PR Modifier and Description will be ignored.
-  </p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Country</th>
-          <th>PR Modifier</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-    <% @countries.each do |country| %>
-      <%= form.fields_for ('countries['+country+']') do |country_form| %>
-          <%= country_form.hidden_field :name, :value => country %>
-        <tr>
-            <td><%= country_form.label country, country %> </td>
-            <td><%= country_form.number_field :pr_amount, :in => -10..10, :step => '1' %></td>
-            <td><%= country_form.text_area :description, :size => "60x2", :placeholder => "ex. 'Mouthed off to the UN Secretary General' or 'Bribed the UN with candy'" %></td>
-        </tr>
+<h1>UN Controls</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Bulk UN PR Creation</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for :un_public_relations do |form| %>
+      <%= form.label :round_label, "Round: " %> 
+      <%= form.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %><span>  [Default is current round]</span>
+      <%= form.label :main_modifier_bale, "Main PR Modifier: " %>
+      <%= form.number_field :main_pr_amount, :in => -10..10, :step => '1' %></br>
+      <%= form.label :main_description_label, "Main Description of PR: " %>
+      <%= form.text_field :main_description, size: 50, :placeholder => "ex. Held World Trade Conference" %>
+      <p>If Main Description is filled in, all blank descriptions will use Main Description unless they have a non-blank description filled in.  Likewise for the Modifier.
+      </p>
+      <p>
+        If neither Main Description and Main Modifier are entered in, then individual countries with a blank PR Modifier and Description will be ignored.
+      </p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>PR Modifier</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+        <% @countries.each do |country| %>
+          <%= form.fields_for ('countries['+country+']') do |country_form| %>
+              <%= country_form.hidden_field :name, :value => country %>
+            <tr>
+                <td><%= country_form.label country, country %> </td>
+                <td><%= country_form.number_field :pr_amount, :in => -10..10, :step => '1' %></td>
+                <td><%= country_form.text_area :description, :size => "60x2", :placeholder => "ex. 'Mouthed off to the UN Secretary General' or 'Bribed the UN with candy'" %></td>
+            </tr>
+            <% end %>
         <% end %>
+        </tbody>
+        </table>
+      <%= form.submit "Save UN Public Relations" %>
     <% end %>
-    </tbody>
-    </table>
-  <%= form.submit "Save UN Public Relations" %>
-<% end %>
-
+  </div>
+</div>
 <h2>Total PR Changes</h2>
 <table class="table">
   <thead>
