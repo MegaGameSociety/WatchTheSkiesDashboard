@@ -18,7 +18,7 @@ class Game < ActiveRecord::Base
     # Can't have more than 12 rounds.
     if self.round > 13
       self.data['paused'] = True
-      self.saved
+      self.save()
     end
     # Update round # and next round time if necessary
     unless self.data['paused']
@@ -30,7 +30,5 @@ class Game < ActiveRecord::Base
     end
     return self
   end
-
-
 
 end

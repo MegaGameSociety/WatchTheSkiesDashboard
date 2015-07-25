@@ -1,0 +1,38 @@
+<h1>Administrative Controls</h1>
+
+<h2> Update Control's message to players: </h2>
+
+<%= form_tag("/", method: "post") do %>
+ <div class="actions">
+    <%= label_tag "Update Message" %> </br>
+    <%= text_area_tag :control_message, nil, size:"60x3", placeholder: "Welcome Everyone!"%></br>
+    <%= submit_tag %>
+  </div>
+<% end %>
+</br>
+
+<h2>Pause/Unpause Game:
+<%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
+  <% if @game.data['paused'] %>
+    <i class="glyphicon glyphicon-play"></i>
+  <% else %>
+    <i class="glyphicon glyphicon-pause"></i>
+  <% end %>
+<% end %>
+</h2>
+<h2>Game is currently 
+    <% if @game.data['paused'] %>
+    paused.
+  <% else %>
+    unpaused.
+  <% end %>
+</h2>
+<p>If you pause the game. 5 minutes automatically is added to the clock.  Please manually update the clock if you need more time otherwise the round will switch to the next one if you unpause 5 minutes later.</p>
+
+<div class="light well">
+   <h2>Warning: The following button wipes <em>all</em> the game data.</h2>
+   <h3>It will also may take a little bit of time to run. (Several seconds)</h3>
+    <%= form_tag reset_game_path, :method => 'post' do %>
+      <%= submit_tag "Reset Game" %>
+    <% end %>
+</div>

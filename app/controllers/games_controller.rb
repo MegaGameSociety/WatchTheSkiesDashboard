@@ -15,6 +15,31 @@ class GamesController < ApplicationController
     @countries = Game::COUNTRIES
   end
 
+  # Administrative stuff for Kevin
+  def admin_control
+    @game = Game.last
+    render 'admin'
+  end
+
+  # Post
+  def reset
+    Game.last.reset
+  end
+
+  # Post
+  def toggle_game_status
+    @game = Game.last
+    
+    #Game was paused
+    unless @game.data['paused']
+      @game.next_round = @game.next_round + 5 * 60
+    end
+    @game.data['paused'] = !@game.data['paused']
+    @game.save
+    redirect_to admin_controls_path
+  end
+
+
 private
 
 end

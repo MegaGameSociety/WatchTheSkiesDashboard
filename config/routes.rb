@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status
   get 'human_control' => 'games#human_control', as: :human_control
   post 'messages/new' => 'messages#create'
+  
+  # Administrative Controls
+  get 'admin' =>'games#admin_control', :as =>'admin_control'
+  post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
+  post 'reset_game', to: 'games#reset_game', :as => 'reset_game'
 
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
