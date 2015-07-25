@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :messages
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
-
+  get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status
+  get 'human_control' => 'games#human_control', as: :human_control
   post 'messages/new' => 'messages#create'
 
   # Api related routing

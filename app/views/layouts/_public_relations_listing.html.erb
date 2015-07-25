@@ -1,9 +1,8 @@
-<h1>Listing Public Relations</h1>
-
-<%= link_to 'New PR Entry', new_public_relation_path %>
-<%= render 'layouts/country_pr_menu' %>
-
-<h2>Total PR Changes</h2>
+<div class="panel panel-default" style="margin: 10px">
+  <div class="panel-heading">
+    <h2 class="panel-title">Total PR Changes</h2>
+  </div>
+  <div class="panel-body">
 <table class="table">
   <thead>
     <tr>
@@ -32,6 +31,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+</div>

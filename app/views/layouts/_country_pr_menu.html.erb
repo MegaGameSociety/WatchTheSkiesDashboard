@@ -1,0 +1,7 @@
+<h2>PR by Country</h2>
+<div class="btn-group" role="group">
+  <p>PR by Country</p>
+  <% @countries.each do |country|%>
+  <%= link_to country, country_pr_status_path(country), class: "btn btn-default" %>
+  <% end %>
+</div>

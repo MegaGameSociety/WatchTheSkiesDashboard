@@ -1,13 +1,14 @@
 class PublicRelationsController < ApplicationController
   before_action :set_public_relation, only: [:show, :edit, :update, :destroy]
 
+  # Get
   def un_dashboard
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
-    @countries = Game.countries()
+    @countries = Game::COUNTRIES
     @current_round = Game.last.round
-
   end
 
+  # Post
   def create_un_dashboard
     data = params['un_public_relations']
     round = data['round']
@@ -30,18 +31,36 @@ class PublicRelationsController < ApplicationController
       else
         pr.pr_amount = country_data['pr_amount']
       end
-      pr.source = "UN"
+      if pr.pr_amount >0
+        pr.source = "UN Bonus"
+      else
+        pr.source = "UN Crisis"
+      end
       pr.save
       results.push(pr)
     end
     redirect_to un_dashboard_path
   end
 
+  # Get
+  def country_status
+    @country = params[:country]
+    @countries = Game::COUNTRIES
+    if Game::COUNTRIES.any?{|x| x ==@country}
+      @public_relations = PublicRelation.order(round: :desc, created_at: :desc).where country: @country
+      # UN control needs to know amount of PR per group by type
+
+      @pr_amounts = PublicRelation.country_status(@country)
+    else
+      raise ActionController::RoutingError.new('Country Not Found')
+    end    
+  end
+
   # GET /public_relations
   # GET /public_relations.json
   def index
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
-    @countries = Game.countries()
+    @countries = Game::COUNTRIES
   end
 
   # GET /public_relations/1
@@ -52,14 +71,14 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations/new
   def new
     @public_relation = PublicRelation.new
-    @countries = Game.countries()
+    @countries = Game::COUNTRIES
     @current_round = Game.last.round
   end
 
   # GET /public_relations/1/edit
   def edit
     @current_round = @public_relation.round
-    @countries = Game.countries()
+    @countries = Game::COUNTRIES
   end
 
   # POST /public_relations

@@ -1,4 +1,6 @@
 class Game < ActiveRecord::Base
+  
+  COUNTRIES = ['Brazil', 'China', 'France', 'Japan', 'Russian Federation','United Kingdom', 'USA']
 
   def reset()
     self.name = ""
@@ -29,10 +31,6 @@ class Game < ActiveRecord::Base
     return self
   end
 
-  # this should be moved into a module
-  def self.countries()
-    return ['Brazil', 'China', 'France', 'Japan', 'Russian Federation','United Kingdom', 'USA']
-  end
 
 
 end
