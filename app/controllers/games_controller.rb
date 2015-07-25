@@ -6,6 +6,11 @@ class GamesController < ApplicationController
 
   end
 
+  def human_control
+    @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
+    @countries = Game.countries()
+  end
+
 private
 
 end

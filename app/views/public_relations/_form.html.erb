@@ -20,6 +20,8 @@
     <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> [Default is current round]</br>
     <%= f.label :pr_amount %> </br>
     <%= f.number_field :pr_amount, :in => -5..5, :step => '1' %>
+    <%= f.label :source %> </br>
+    <%= f.text_field :source, :size => "30", :placeholder => "UN or Terror" %>
     <%= f.submit %>
   </div>
 <% end %>

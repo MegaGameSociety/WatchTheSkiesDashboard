@@ -30,6 +30,7 @@ class PublicRelationsController < ApplicationController
       else
         pr.pr_amount = country_data['pr_amount']
       end
+      pr.source = "UN"
       pr.save
       results.push(pr)
     end
@@ -109,7 +110,7 @@ class PublicRelationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def public_relation_params
-      params[:public_relation].permit(:country, :description, :round, :pr_amount)
+      params[:public_relation].permit(:source, :country, :description, :round, :pr_amount)
     end
 
 end
