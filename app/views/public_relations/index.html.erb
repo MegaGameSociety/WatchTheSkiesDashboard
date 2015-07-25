@@ -1,20 +1,35 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Public Relations</h1>
 
-<table>
+<%= link_to 'New PR Entry', new_public_relation_path %>
+<h2>PR by Country</h2>
+<div class="btn-group" role="group">
+  Tmp
+</div>
+
+<h2>Total PR Changes</h2>
+<table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th >Round</th>
+      <th >Details</th>
+      <th >Edit</th>
+      <th >Destroy</th>
+      <th >Country</th>
+      <th >Amount</th>
+      <th >Description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @public_relations.each do |public_relation| %>
       <tr>
-        <td><%= link_to 'Show', public_relation %></td>
+        <td><%= public_relation.round %></td>
+        <td><%= link_to 'Details', public_relation %></td>
         <td><%= link_to 'Edit', edit_public_relation_path(public_relation) %></td>
         <td><%= link_to 'Destroy', public_relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= public_relation.country%></td>
+        <td><%= public_relation.pr_amount %></td>
+        <td><%= public_relation.description %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +37,3 @@
 
 <br>
 
-<%= link_to 'New Public relation', new_public_relation_path %>

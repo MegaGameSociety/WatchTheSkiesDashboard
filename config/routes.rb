@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :terror_trackers
   resources :public_relations
   resources :messages
+  get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
+  post 'un_dashboard' => 'public_relations#create_un_dashboard'
 
   post 'messages/new' => 'messages#create'
 
