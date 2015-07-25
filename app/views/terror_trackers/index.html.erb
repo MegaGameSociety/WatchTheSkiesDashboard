@@ -1,32 +1,36 @@
 <h1>Listing Terror Tracker Entry</h1>
-<%= link_to 'New Terror Tracker Entry', new_terror_tracker_path %>
-
-<%= form_for(@terror_tracker) do |f| %>
-  <% if @terror_tracker.errors.any? %>
-    <div id="">
-      <h2><%= pluralize(@terror_tracker.errors.count, "error") %> prohibited this terror_tracker from being saved:</h2>
-
-      <ul>
-      <% @terror_tracker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.label :description %> </br>
-    <%= f.text_area :description, :size => "100x2"%></br>
-    <%= f.label :values do %>
-      <%= f.label :round%>
-      <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round%>
-      <%= f.label :amount %>
-      <%= f.number_field :amount, :in => -100..100, :step => '1' %>
-    <% end %></br>
-    <%= f.submit %>
+<div class="well-sml panel panel-default" style="margin: 10px">
+  <div class="panel-heading">
+    <h3 class="panel-title">Enter new Terror Tracker Event</h3>
   </div>
-<% end %>
+  <div class="panel-body">
+    <%= form_for(@terror_tracker) do |f| %>
+      <% if @terror_tracker.errors.any? %>
+        <div id="">
+          <h2><%= pluralize(@terror_tracker.errors.count, "error") %> prohibited this terror_tracker from being saved:</h2>
 
+          <ul>
+          <% @terror_tracker.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.label :description %> </br>
+        <%= f.text_area :description, :size => "100x2"%></br>
+        <%= f.label :values do %>
+          <%= f.label :round%>
+          <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round%>
+          <%= f.label :amount %>
+          <%= f.number_field :amount, :in => -100..100, :step => '1' %>
+        <% end %></br>
+        <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <h2>Total Terror: <%= @tcount %></h2>
  <div class="table-responsive"> 

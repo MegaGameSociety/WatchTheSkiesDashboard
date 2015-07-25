@@ -27,16 +27,14 @@
         <tr>
             <td><%= country_form.label country, country %> </td>
             <td><%= country_form.number_field :pr_amount, :in => -10..10, :step => '1' %></td>
-            <td><%= country_form.text_area :description, :size => "60x2"%></td>
+            <td><%= country_form.text_area :description, :size => "60x2", :placeholder => "ex. 'Mouthed off to the UN Secretary General' or 'Bribed the UN with candy'" %></td>
         </tr>
         <% end %>
     <% end %>
-
     </tbody>
     </table>
   <%= form.submit "Save UN Public Relations" %>
 <% end %>
-
 
 <h2>Total PR Changes</h2>
 <table class="table">
