@@ -18,3 +18,12 @@
 div.adminControl{
   margin:10px;
 }
+
+.navbar-inverse {
+  background-color: #f0f5db;
+}
+
+.navbar-inverse .nav-pills>li>a:hover{
+  background-color: #dbe8db;
+  color: black;
+}

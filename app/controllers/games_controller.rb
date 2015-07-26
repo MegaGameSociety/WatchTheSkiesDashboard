@@ -3,7 +3,7 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Main Dashboard for All Players
   def dashboard
-    @game = Game.last().update
+    @game = Game.last.update
     @data = @game.getData
 
   end

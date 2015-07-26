@@ -54,6 +54,11 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       t = $scope.news.shift();
       $scope.news.push(t);
     }
+    $scope.getColor = function(value){
+    //value from 0 to 1
+    var hue=((1-value)*120).toString(10);
+    return ["hsl(",hue,",75%,50%)"].join("");
+}
     $interval(function(){$scope.updateNews()}, 10000);
     $interval(function() {
       $scope.getStatus()

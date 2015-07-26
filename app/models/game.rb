@@ -21,7 +21,7 @@ class Game < ActiveRecord::Base
     if self.round > 13
       data = self.getData
       data['paused'] = true
-      self.data = data
+      self.data = data.to_json
       self.save()
     end
     # Update round # and next round time if necessary
