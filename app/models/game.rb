@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
   serialize :game_data, JSON
-  COUNTRIES = ['Brazil', 'China', 'Japan', 'Russian Federation','United Kingdom', 'USA']
+  COUNTRIES = ['Brazil', 'China', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA']
 
   def reset()
     self.name = ""
