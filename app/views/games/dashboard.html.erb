@@ -8,49 +8,24 @@
     <div class="left-column">
       <img src="/assets/mgs-logo.png" class="mgs-logo">
       <div class="countries-container">
-        <h3 class="center">Country Status</h3>
+        <h3 class="center">Global Economy</h3>
 
         <table>
           <thead>
             <tr>
               <td>Country</td>
-              <td>PR</td>
-              <td>Income</td>
+              <td>GDP</td>
             </tr>
           </thead>
           <tbody>
+            <tr ng-repeat="(country, data) in countries">
+              <td>{{country}}</td>
+              <td>
+                <span ng-if="data" class="arrow up"></span>
+                <span ng-if="!data" class="arrow down"></span>
+              </td>
+            </tr>
             <!-- Each Country -->
-            <tr>
-              <td>Brazil</td>
-              <td>8<span class="arrow up"></span></td>
-              <td>5</td>
-            </tr>
-            <!-- /Country -->
-            <tr>
-              <td>China</td>
-              <td>4<span class="arrow down"></span></td>
-              <td>8</td>
-            </tr>
-            <tr>
-              <td>Japan</td>
-              <td>5<span class="arrow down"></span></td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>Russia</td>
-              <td>2<span class="arrow up"></span></td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>UK</td>
-              <td>6<span class="arrow up"></span></td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>USA</td>
-              <td>4<span class="arrow down"></span></td>
-              <td>7</td>
-            </tr>
           </tbody>
         </table>
 

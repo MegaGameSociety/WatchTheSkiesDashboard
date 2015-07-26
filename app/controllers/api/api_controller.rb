@@ -11,6 +11,17 @@ class Api::ApiController < ApplicationController
       @status = 500
       @message = "Failure to generate global terror results."
     end
+
+    begin
+      @countries_data = {}
+      Game::COUNTRIES.each do |country|
+        @countries_data[country] = 0<PublicRelation.where(round: @game.round, country: country).sum("pr_amount")
+      end
+    rescue
+      @status = 500
+      @message = "Failure to generate countries"
+    end
+
     begin
       #generate overall embedded result
       @result = {
@@ -19,7 +30,8 @@ class Api::ApiController < ApplicationController
           "next_round" =>  @game.next_round.in_time_zone('America/New_York'),
           "paused" => @data['paused'],
         },
-        "global_terror" => @global_terror
+        "global_terror" => @global_terror,
+        "countries" => @countries_data
       }
     rescue
       @status = 500

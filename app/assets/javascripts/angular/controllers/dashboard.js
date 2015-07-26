@@ -13,7 +13,8 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.terror = result['global_terror']['total'];
         $scope.paused = result['timer']['paused'];
         $scope.round = result['timer']['round'];
-        console.log("Round: " + $scope.round);
+        $scope.countries = result['countries'];
+        // debugger;
         var nextRound = new Date(result['timer']['next_round']);
         // The next round has changed
         if($scope.nextRound.getTime() != nextRound.getTime()){

@@ -22,7 +22,7 @@
 </h2>
 <h2>Set Next Time</h2>
 <%= form_tag("/update_time", method: "post") do%>
-  <%= select_datetime(@game.next_round) %>
+  <%= select_datetime(@game.next_round.in_time_zone('America/New_York')) %>
   <%= submit_tag %>
 
 <% end %>
