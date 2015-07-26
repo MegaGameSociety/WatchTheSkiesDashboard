@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  
+  serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'Japan', 'Russian Federation','United Kingdom', 'USA']
 
   def reset()
@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
     self.next_round = Time.now() + 30*60
     game_data = {}
     game_data['rioters']=0
-    game_data['paused']=false
+    game_data['paused']=true
     self.data = game_data.to_json
     self.save()
   end
@@ -17,18 +17,25 @@ class Game < ActiveRecord::Base
     # If the round isn't paused, check if it is time for the next round
     # Can't have more than 12 rounds.
     if self.round > 13
-      self.data['paused'] = True
+      data = self.getData
+      data['paused'] = true
+      self.data = data
       self.save()
     end
     # Update round # and next round time if necessary
-    unless self.data['paused']
+    unless self.getData['paused']
       if self.next_round < Time.now
+        puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
         self.next_round = self.next_round + (30*60)
-        self.save()
+        self.save
       end
     end
     return self
+  end
+
+  def getData
+    JSON.parse(self.data)
   end
 
 end

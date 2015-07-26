@@ -13,15 +13,21 @@
 
 <h2>Pause/Unpause Game:
 <%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
-  <% if @game.data['paused'] %>
+  <% if @game.getData['paused'] %>
     <i class="glyphicon glyphicon-play"></i>
   <% else %>
     <i class="glyphicon glyphicon-pause"></i>
   <% end %>
 <% end %>
 </h2>
+<h2>Set Next Time</h2>
+<%= form_tag("/update_time", method: "post") do%>
+  <%= select_datetime(@game.next_round) %>
+  <%= submit_tag %>
+
+<% end %>
 <h2>Game is currently 
-    <% if @game.data['paused'] %>
+    <% if @game.getData['paused'] %>
     paused.
   <% else %>
     unpaused.

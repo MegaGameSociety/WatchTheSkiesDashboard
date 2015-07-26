@@ -3,10 +3,9 @@ class GamesController < ApplicationController
   # Main Dashboard for All Players
   def dashboard
     @game = Game.last().update
-    @data = JSON.parse(@game.data)
+    @data = @game.getData
 
   end
-
   # Human Control dashboard to quickly see PR's
   def human_control
     @last_round = Game.last.round
@@ -29,14 +28,15 @@ class GamesController < ApplicationController
   # Post
   def toggle_game_status
     @game = Game.last
-    
+    data = @game.getData
     #Game was paused
-    unless @game.data['paused']
+    unless @game.getData['paused']
       @game.next_round = @game.next_round + 5 * 60
     end
-    @game.data['paused'] = !@game.data['paused']
+    data['paused'] = !data['paused']
+    @game.data = data.to_json
     @game.save
-    redirect_to admin_controls_path
+    redirect_to admin_control_path
   end
 
 

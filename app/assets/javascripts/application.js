@@ -10,7 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular
+//= require angular/angular
+//= require angular-timer
+//= require humanize-duration
+//= require momentjs
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

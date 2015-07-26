@@ -12,7 +12,7 @@ g = Game.create(
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,
-    paused: false
+    paused: true,
     }.to_json
 )
 

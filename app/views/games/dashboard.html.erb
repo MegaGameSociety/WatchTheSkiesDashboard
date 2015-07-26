@@ -3,7 +3,7 @@
   <div class="messages">
     <p>Example message</p>
   </div
-terror>
+
   <div class="columns">
     <div class="left-column">
       <img src="/assets/mgs-logo.png" class="mgs-logo">
@@ -56,22 +56,22 @@ terror>
 
         <div class="terror-container center">
           <h3>Terror</h3>
-          {{250}} / terror
+          {{terror}} / terror
         </div>
       </div>
     </div>
 
     <div class="centre-column">
       <div class="round-container">
-        <h2 class="counter">00:40</h2>
+        <h2 class="counter" ng-if="!paused">
+          <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
+          <timer end-time="roundDuration" interval="1000"><div class="progress progress-striped active {{displayProgressActive}}"style="height: 30px;"> <div class="bar" style="min-width: 2em;width: {{progressBar}}%;"></div> </div></timer>
+        </h2>
 
         <!-- This needs to be formatted for use -->
-        <%#= @game.next_round %>
 
-        <h3>Round <%= @game.round %></h3>
-        <% if @data["paused"] %>
-          <h3 class="paused">(Paused)</h3>
-        <% end %>
+        <h3>Round {{round}}</h3>
+        <h3 class="paused" ng-if="paused">(Paused)</h3>
       </div>
 
       <h3>News</h3>

@@ -1,8 +1,7 @@
 class Api::ApiController < ApplicationController
   def dashboard
     @game = Game.last().update
-    @data = JSON.parse(@game.data)
-
+    @data = @game.getData
     begin
       @global_terror = {
         'total'=> TerrorTracker.totalTerror(),
@@ -12,13 +11,12 @@ class Api::ApiController < ApplicationController
       @status = 500
       @message = "Failure to generate global terror results."
     end
-
     begin
       #generate overall embedded result
       @result = {
         "timer" => {
           "round"=>  @game.round,
-          "next_round" =>  @game.next_round,
+          "next_round" =>  @game.next_round.in_time_zone('America/New_York'),
           "paused" => @data['paused'],
         },
         "global_terror" => @global_terror
