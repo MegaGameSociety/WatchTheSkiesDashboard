@@ -48,10 +48,14 @@
       </div>
 
       <h3>News</h3>
-      <div class="news-container" ng-repeat="news_item in news">
+      <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news">
         <h4>{{news_item.title}}<h4>
           <p>{{news_item.content}}</p>
           <a class="news" href="#">{{news_item.created_at}}</a>
+      </div>
+      <div class="news-container" ng-if="news.length==0">
+        <h4>Nothing has happened yet<h4>
+         
       </div>
       <!-- End News -->
     </div>

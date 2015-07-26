@@ -14,7 +14,10 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @news = NewsMessage.round_news(4)
+      @news = NewsMessage.round_news(@game.round).order(created_at: :desc)
+      if ((@game.round)>0)
+        @news += NewsMessage.round_news((@game.round)-1).order(created_at: :desc)
+      end
     rescue
       @status = 500
       @message = "Failure to generate news results."
