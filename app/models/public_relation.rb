@@ -1,7 +1,7 @@
 class PublicRelation < ActiveRecord::Base
   
   VALID_SOURCES = ['Rioters', 'UN Crisis', 'Alien Agent', 'Terror', 'Human Operative', 'Sabotage', 
-      'UN Bonus', 'News', 'Other', 'Tech']
+      'UN Bonus', 'News', 'Player Spending', 'Other', 'Tech']
 
   # Get all PR via source from countries
   def self.country_status(country)
