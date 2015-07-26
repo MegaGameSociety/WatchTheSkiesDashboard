@@ -33,3 +33,9 @@ t = TerrorTracker.create(
   amount: 50,
   round: g.round
   )
+
+u = User.create()
+u.email = "wts@wts.com"
+u.password='kevin'
+u.password_confirmation='kevin'
+u.save
