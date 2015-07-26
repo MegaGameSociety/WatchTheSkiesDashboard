@@ -46,11 +46,14 @@ class PublicRelationsController < ApplicationController
   def country_status
     @country = params[:country]
     @countries = Game::COUNTRIES
+    @game = Game.last
     if Game::COUNTRIES.any?{|x| x ==@country}
       @public_relations = PublicRelation.order(round: :desc, created_at: :desc).where country: @country
       # UN control needs to know amount of PR per group by type
 
       @pr_amounts = PublicRelation.country_status(@country)
+      @roundNum = (@game.round) -1
+      @roundTotal = PublicRelation.order(round: :desc, created_at: :desc).where(country: @country, round: @roundNum).sum(:pr_amount)
     else
       raise ActionController::RoutingError.new('Country Not Found')
     end    

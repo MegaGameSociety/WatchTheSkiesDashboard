@@ -5,7 +5,6 @@ before_action :authenticate_user!, except:[:dashboard]
   def dashboard
     @game = Game.last.update
     @data = @game.getData
-
   end
 
   # Human Control dashboard to quickly see PR's
