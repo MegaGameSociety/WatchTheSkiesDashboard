@@ -6,6 +6,7 @@ class GamesController < ApplicationController
     @data = @game.getData
 
   end
+
   # Human Control dashboard to quickly see PR's
   def human_control
     @last_round = Game.last.round
@@ -18,6 +19,14 @@ class GamesController < ApplicationController
   def admin_control
     @game = Game.last
     render 'admin'
+  end
+
+  def update_control_message
+    binding.pry
+    @game = Game.last
+    @game.control_message = params[:game][:control_message]
+    @game.save
+    redirect_to admin_control_path
   end
 
   # Post
@@ -51,6 +60,7 @@ class GamesController < ApplicationController
     redirect_to admin_control_path
   end
 
+  # Patch
   def update
     @game.paused = false
     respond_to do |format|

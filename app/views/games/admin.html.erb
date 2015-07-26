@@ -1,13 +1,11 @@
 <h1>Administrative Controls</h1>
 
 <h2> Update Control's message to players: </h2>
-
-<%= form_tag("/", method: "post") do %>
- <div class="actions">
-    <%= label_tag "Update Message" %> </br>
-    <%= text_area_tag :control_message, nil, size:"60x3", placeholder: "Welcome Everyone!"%></br>
-    <%= submit_tag %>
-  </div>
+<%= form_for(@game, url: alert_update_path) do |f|%>
+  Next Round:
+    <%= f.label "Update Message" %> </br>
+    <%= f.text_field :control_message, value: @game.control_message, :size => "60x5"%></br>
+  <%= f.submit %>
 <% end %>
 </br>
 
@@ -24,7 +22,6 @@
 <%= form_for(@game, url: update_time_path(@game)) do |f|%>
   <%= f.datetime_select(:next_round, :ampm => true) %>
   <%= f.submit %>
-
 <% end %>
 <h2>Game is currently 
     <% if @game.getData['paused'] %>

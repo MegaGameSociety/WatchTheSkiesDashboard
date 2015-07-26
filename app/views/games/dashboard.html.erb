@@ -1,7 +1,7 @@
 <div ng-app='dashboardApp' ng-controller="DashboardCtrl">
 
   <div class="messages">
-    <p>Example message</p>
+    <p>{{controlMessage}}</p>
   </div
 
   <div class="columns">
@@ -39,7 +39,6 @@
       <div class="round-container">
         <h2 class="counter" ng-if="!paused">
           <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
-          <timer end-time="roundDuration" interval="1000"><div class="progress progress-striped active {{displayProgressActive}}"style="height: 30px;"> <div class="bar" style="min-width: 2em;width: {{progressBar}}%;"></div> </div></timer>
         </h2>
 
         <!-- This needs to be formatted for use -->

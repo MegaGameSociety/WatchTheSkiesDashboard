@@ -14,6 +14,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.paused = result['timer']['paused'];
         $scope.round = result['timer']['round'];
         $scope.countries = result['countries'];
+        $scope.controlMessage = result['timer']['control_message'];
         // debugger;
         var nextRound = new Date(result['timer']['next_round']);
         // The next round has changed

@@ -29,6 +29,7 @@ class Api::ApiController < ApplicationController
           "round"=>  @game.round,
           "next_round" =>  @game.next_round.in_time_zone('America/New_York'),
           "paused" => @data['paused'],
+          "control_message" => @game.control_message
         },
         "global_terror" => @global_terror,
         "countries" => @countries_data

@@ -6,6 +6,7 @@ class Game < ActiveRecord::Base
     self.name = ""
     self.round = 0
     self.next_round = Time.now() + 30*60
+    self.control_message = "Welcome to Watch the Skies"
     game_data = {}
     game_data['rioters']=0
     game_data['paused']=true
