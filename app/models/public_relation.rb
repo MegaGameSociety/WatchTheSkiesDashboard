@@ -10,6 +10,6 @@ class PublicRelation < ActiveRecord::Base
 
   # Get all PR amounts for a given round
   def self.round_pr(round)
-    P
+    PublicRelation.where(round: round).group(:country).group(:source).sum(:pr_amount)
   end
 end

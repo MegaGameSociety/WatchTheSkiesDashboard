@@ -9,11 +9,46 @@ class GamesController < ApplicationController
 
   # Human Control dashboard to quickly see PR's
   def human_control
-    @last_round = Game.last.round
-    @pr_amounts = PublicRelation.round_pr(@last_round)
+    @last_round = (Game.last.round) -1
+    @pr_amounts = PublicRelation.round_pr(@last_round-1)
+    @current_round = Game.last.round
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
   end
+
+  def create_human_pr
+    data = params['human_bulk_pr']
+    round = data['round']
+    main_values_exist = (data['main_description'] != '' or data['main_pr_amount'] != '')
+    results = []
+    data['countries'].each do|country_name, country_data|
+      if (!main_values_exist and country_data['description'] == '' and country_data['pr_amount'] == '')
+        next
+      end
+      pr = PublicRelation.new
+      pr.country = country_name
+      pr.round = round
+      if country_data['description'] == ''
+        pr.description = data['main_description']
+      else
+        pr.description = country_data['description']
+      end
+      if country_data['description'] == ''
+        pr.pr_amount = data['main_pr_amount']
+      else
+        pr.pr_amount = country_data['pr_amount']
+      end
+      if country_data['source'] == ''
+        pr.source = data['main_source']
+      else
+        pr.source = country_data['source']
+      end
+      pr.save
+      results.push(pr)
+    end
+    redirect_to human_control_path
+  end
+
 
   # Administrative stuff for Kevin
   def admin_control
@@ -22,7 +57,6 @@ class GamesController < ApplicationController
   end
 
   def update_control_message
-    binding.pry
     @game = Game.last
     @game.control_message = params[:game][:control_message]
     @game.save

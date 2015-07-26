@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
   get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status
   get 'human_control' => 'games#human_control', as: :human_control
+  post 'human_control' => 'games#create_human_pr'
   post 'messages/new' => 'messages#create'
   
   # Administrative Controls
