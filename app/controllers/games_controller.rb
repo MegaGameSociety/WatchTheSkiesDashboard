@@ -54,6 +54,7 @@ before_action :authenticate_user!, except:[:dashboard]
   # Administrative stuff for Kevin
   def admin_control
     @game = Game.last
+    @time = @game.next_round.in_time_zone('America/New_York')
     render 'admin'
   end
 
