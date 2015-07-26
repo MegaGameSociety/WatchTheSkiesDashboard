@@ -21,6 +21,7 @@ before_action :authenticate_user!
 
   # GET /news_messages/1/edit
   def edit
+    @current_round = @news_message.round
   end
 
   # POST /news_messages
