@@ -32,6 +32,21 @@
   </div>
 </div>
 
+<div class="well-sml panel panel-default" style="margin: 10px">
+  <div class="panel-heading">
+    <h3 class="panel-title">Enter Current War Activity</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for(@game, url: activity_update_path) do |f|%>
+      Next Round:
+        <%= f.label "Activity Message" %> </br>
+        <p>Denotes activity in the Military Room</p>
+        <%= f.text_field :activity, value: @game.activity, placeholder:"Saucers shot down over Norway. Heavy casualties.", :size => "60x5"%></br>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
 <h2>Total Terror: <%= @tcount %></h2>
  <div class="table-responsive"> 
     <table class="table table-striped table-bordered">

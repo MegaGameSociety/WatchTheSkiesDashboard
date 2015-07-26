@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% unless current_page?('/')%>
+    <p id="notice"><%= notice %></p>
+  <% end %>
+  <div class="adminControl">
 <%= render "layouts/footer_navbar" %>
 <% unless current_page?('/')%>
   <div class="adminControl">
@@ -17,3 +21,4 @@
 <% end %>
 </body>
 </html>
+

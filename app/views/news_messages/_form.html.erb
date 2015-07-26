@@ -1,0 +1,23 @@
+<%= form_for(@news_message) do |f| %>
+  <% if @news_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@news_message.errors.count, "error") %> prohibited this news_message from being saved:</h2>
+
+      <ul>
+      <% @news_message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.label :title %> </br>
+    <%= f.text_field :title %>
+    <%= f.label :content %> </br>
+    <%= f.text_area :content, :size => "60x5"%></br>
+    <%= f.label :round %> </br>
+    <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> [Default is current round]</br>
+    <%= f.submit %>
+  </div>
+<% end %>

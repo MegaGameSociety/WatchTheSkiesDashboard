@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
+  resources :news_messages
+
   root 'games#dashboard'
 
   resources :terror_trackers
   resources :public_relations
   resources :messages
   resources :games
+  resources :news_messages
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
   get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status
@@ -13,6 +16,8 @@ Rails.application.routes.draw do
   post 'human_control' => 'games#create_human_pr'
   post 'messages/new' => 'messages#create'
   
+  patch '/activity_update' => 'terror_trackers#update_activity', as: :activity_update
+
   # Administrative Controls
   get 'admin' =>'games#admin_control', :as =>'admin_control'
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status

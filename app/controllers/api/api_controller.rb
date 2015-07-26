@@ -4,12 +4,20 @@ class Api::ApiController < ApplicationController
     @data = @game.getData
     begin
       @global_terror = {
+        'activity' => Game.last().activity,
         'total'=> TerrorTracker.totalTerror(),
         'rioters'=> @data['rioters']
       }
     rescue
       @status = 500
       @message = "Failure to generate global terror results."
+    end
+
+    begin
+      @news = NewsMessage.round_news(4)
+    rescue
+      @status = 500
+      @message = "Failure to generate news results."
     end
 
     begin
@@ -31,6 +39,7 @@ class Api::ApiController < ApplicationController
           "paused" => @data['paused'],
           "control_message" => @game.control_message
         },
+        "news" =>  @news,
         "global_terror" => @global_terror,
         "countries" => @countries_data
       }

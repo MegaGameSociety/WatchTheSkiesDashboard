@@ -1,9 +1,19 @@
 class TerrorTrackersController < ApplicationController
   before_action :set_terror_tracker, only: [:show, :edit, :update, :destroy]
 
+  # Patch
+  def update_activity
+    @game = Game.last
+    @game.activity = params[:game][:activity]
+    @game.save
+    redirect_to terror_trackers_path
+  end
+
+
   # GET /terror_trackers
   # GET /terror_trackers.json
   def index
+    @game = Game.last
     @terror_trackers = TerrorTracker.all.order(created_at: :desc)
     @tcount = TerrorTracker.sum(:amount)
 
@@ -22,7 +32,6 @@ class TerrorTrackersController < ApplicationController
   def new
     @terror_tracker = TerrorTracker.new
     @current_round = Game.last.round
-
   end
 
   # GET /terror_trackers/1/edit

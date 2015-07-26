@@ -10,6 +10,7 @@ g = Game.create(
   name: "Watch the Skies Test",
   round: 0,
   control_message: "Welcome",
+  activity: "All is quiet around the world.",
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,

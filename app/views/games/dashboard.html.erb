@@ -48,27 +48,10 @@
       </div>
 
       <h3>News</h3>
-      <!-- Each News -->
-      <div class="news-container">
-        <h4>News Title Here</h4>
-        <p>News text goes here. Lorem ipsum and all that jazz.</p>
-        <a class="news" href="#">1:14PM - Global Technology Journal</a>
-      </div>
-      <!-- End News -->
-
-      <!-- Each News -->
-      <div class="news-container">
-        <h4>News Title Here</h4>
-        <p>News text goes here. Lorem ipsum and all that jazz.</p>
-        <a class="news" href="#">1:14PM - Earthly Times</a>
-      </div>
-      <!-- End News -->
-
-      <!-- Each News -->
-      <div class="news-container">
-        <h4>News Title Here</h4>
-        <p>News text goes here. Lorem ipsum and all that jazz.</p>
-        <a class="news" href="#">1:14PM - Earthly Times</a>
+      <div class="news-container" ng-repeat="news_item in news">
+        <h4>{{news_item.title}}<h4>
+          <p>{{news_item.content}}</p>
+          <a class="news" href="#">{{news_item.created_at}}</a>
       </div>
       <!-- End News -->
     </div>
@@ -84,7 +67,7 @@
         <div class="activity-container">
           <img class="activity-image" src="/assets/activity.png" />
           <h3>Activity</h3>
-          No recent activity
+          {{activity}}
         </div>
       </div>
     </div>

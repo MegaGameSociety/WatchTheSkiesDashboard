@@ -1,0 +1,31 @@
+<h1>Listing News Messages</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th >Show</th>
+      <th >Edit</th>
+      <th >Destroy</th>
+      <th >Round</th>
+      <th >Title</th>
+      <th >Content</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @news_messages.each do |news_message| %>
+      <tr>
+        <td><%= link_to 'Show', news_message %></td>
+        <td><%= link_to 'Edit', edit_news_message_path(news_message) %></td>
+        <td><%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th ><%= news_message.round %></th>
+        <th ><%= news_message.title %></th>
+        <th ><%= news_message.content %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New News message', new_news_message_path %>

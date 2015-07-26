@@ -11,11 +11,12 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       success(function(data, status, headers, config) {
         var result = data['result'];
         $scope.terror = result['global_terror']['total'];
+        $scope.activity = result['global_terror']['activity'];
         $scope.paused = result['timer']['paused'];
         $scope.round = result['timer']['round'];
         $scope.countries = result['countries'];
         $scope.controlMessage = result['timer']['control_message'];
-        // debugger;
+        $scope.news = result['news']
         var nextRound = new Date(result['timer']['next_round']);
         // The next round has changed
         if($scope.nextRound.getTime() != nextRound.getTime()){
