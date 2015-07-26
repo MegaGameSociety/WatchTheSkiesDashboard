@@ -60,7 +60,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     var hue=((1-value)*120).toString(10);
     return ["hsl(",hue,",75%,50%)"].join("");
 }
-    $interval(function(){$scope.updateNews()}, 10000);
+    $interval(function(){$scope.updateNews()}, 15000);
     $interval(function() {
       $scope.getStatus()
     }, 3000);
