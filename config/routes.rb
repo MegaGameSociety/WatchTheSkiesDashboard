@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :terror_trackers
   resources :public_relations
   resources :messages
+  resources :games
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
   get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   get 'admin' =>'games#admin_control', :as =>'admin_control'
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
   post 'reset_game', to: 'games#reset_game', :as => 'reset_game'
-
+  patch 'update_time:id', to: 'games#update_time', as: :update_time
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
     get 'dashboard_data' => 'api#dashboard'

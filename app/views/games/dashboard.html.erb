@@ -9,7 +9,6 @@
       <img src="/assets/mgs-logo.png" class="mgs-logo">
       <div class="countries-container">
         <h3 class="center">Global Economy</h3>
-
         <table>
           <thead>
             <tr>
@@ -18,6 +17,7 @@
             </tr>
           </thead>
           <tbody>
+            <!-- Each Country -->
             <tr ng-repeat="(country, data) in countries">
               <td>{{country}}</td>
               <td>
@@ -25,13 +25,12 @@
                 <span ng-if="!data" class="arrow down"></span>
               </td>
             </tr>
-            <!-- Each Country -->
           </tbody>
         </table>
 
         <div class="terror-container center">
           <h3>Terror</h3>
-          {{terror}} / terror
+          {{terror}} / 250
         </div>
       </div>
     </div>

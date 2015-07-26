@@ -49,6 +49,7 @@ class TerrorTrackersController < ApplicationController
   # PATCH/PUT /terror_trackers/1
   # PATCH/PUT /terror_trackers/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @terror_tracker.update(terror_tracker_params)
         format.html { redirect_to terror_trackers_path, notice: 'Terror tracker was successfully updated.' }
