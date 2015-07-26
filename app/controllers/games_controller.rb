@@ -65,6 +65,15 @@ before_action :authenticate_user!, except:[:dashboard]
     redirect_to admin_control_path
   end
 
+  def update_rioters
+    @game = Game.last
+    data = @game.getData
+    data['rioters'] = params[:game][:rioters]
+    @game.data = data.to_json
+    @game.save
+    redirect_to terror_trackers_path
+  end
+
   # Post
   def reset
     Game.last.reset

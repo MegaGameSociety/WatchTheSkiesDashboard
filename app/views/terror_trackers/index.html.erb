@@ -32,6 +32,13 @@
   </div>
 </div>
 
+<h2> Updating Rioters: </h2>
+<%= form_for(@game, url: rioters_update_path) do |f|%>
+    <%= f.label "Rioters:" %> </br>
+    <%= f.number_field :rioters, value: @game.getData['rioters'], :size => "60x5"%></br>
+  <%= f.submit %>
+<% end %>
+
 <div class="well-sml panel panel-default" style="margin: 10px">
   <div class="panel-heading">
     <h3 class="panel-title">Enter Current War Activity</h3>

@@ -16,6 +16,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.countries = result['countries'];
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
+        $scope.rioters = result['global_terror']['rioters']
         if (result['news'].length > 0){
           var newDate = (new Date(result['news'][0]['created_at']));
             if($scope.news.length == 0){
