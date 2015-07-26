@@ -26,7 +26,7 @@ class PublicRelationsController < ApplicationController
       else
         pr.description = country_data['description']
       end
-      if country_data['description'] == ''
+      if country_data['pr_amount'] == ''
         pr.pr_amount = data['main_pr_amount']
       else
         pr.pr_amount = country_data['pr_amount']
