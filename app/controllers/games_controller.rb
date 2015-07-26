@@ -73,8 +73,8 @@ before_action :authenticate_user!, except:[:dashboard]
   def toggle_game_status
     @game = Game.last
     data = @game.getData
-    #Game was paused
-    unless @game.getData['paused']
+    # if game is not paused, then add 5 to clock
+    unless data['paused']
       @game.next_round = @game.next_round + 5 * 60
     end
     data['paused'] = !data['paused']

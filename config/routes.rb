@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, path_names: {
     sign_up: '/'
   }
+  get '/users' => 'games#dashboard'
   resources :news_messages
 
   root 'games#dashboard'
