@@ -33,6 +33,14 @@
 </h2>
 <p>If you pause the game. 5 minutes automatically is added to the clock.  Please manually update the clock if you need more time otherwise the round will switch to the next one if you unpause 5 minutes later.</p>
 
+<h2>Set Round</h2>
+<p>Current round is <%= @game.round %></p>
+<%= form_for(@game, url: round_update_path) do |f|%>
+    <%= f.label "Update Round" %> </br>
+    <%= f.number_field :round, value: @game.round, :in => 0..15, :step => '1'%></br>
+  <%= f.submit %>
+<% end %>
+
 <div class="light well">
    <h2>Warning: The following button wipes <em>all</em> the game data.</h2>
    <h3>It will also may take a little bit of time to run. (Several seconds)</h3>

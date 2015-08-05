@@ -73,6 +73,13 @@ before_action :authenticate_user!, except:[:dashboard]
     redirect_to terror_trackers_path
   end
 
+  def update_round
+    @game = Game.last
+    @game.round = params[:game][:round]
+    @game.save
+    redirect_to admin_control_path
+  end
+
   # Post
   def reset
     Game.last.reset

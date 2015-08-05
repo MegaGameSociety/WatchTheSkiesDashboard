@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   patch 'update_time:id', to: 'games#update_time', as: :update_time
   patch 'alert_update', to: 'games#update_control_message', as: :alert_update
   patch 'rioters_update', to: 'games#update_rioters', as: :rioters_update
+  patch 'round_update', to: 'games#update_round', as: :round_update
+
 
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
