@@ -53,7 +53,7 @@ before_action :authenticate_user!, except:[:dashboard]
   # Administrative stuff for Kevin
   def admin_control
     @game = Game.last
-    @time = @game.next_round.in_time_zone('America/New_York')
+    @time = @game.next_round
     render 'admin'
   end
 
@@ -105,8 +105,8 @@ before_action :authenticate_user!, except:[:dashboard]
     dateObj = params["game"]
     datetime = Time.new(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i, 
                         dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
-                        dateObj["next_round(5i)"].to_i)
-    @game.next_round = datetime.in_time_zone('Eastern Time (US & Canada)')
+                        dateObj["next_round(5i)"].to_i,0, '-07:00')
+    @game.next_round = datetime
     @game.save
     redirect_to admin_control_path
   end

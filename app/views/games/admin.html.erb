@@ -21,7 +21,10 @@
 <h2>Set Next Time</h2>
 <p>Current time is: <%= @time %></p>
 <%= form_for(@game, url: update_time_path(@game)) do |f|%>
+  <%= Time.use_zone("Pacific Time (US & Canada)") do %>
   <%= f.datetime_select(:next_round, :ampm => true) %>
+  <% end %>
+
   <%= f.submit %>
 <% end %>
 <h2>Game is currently 
