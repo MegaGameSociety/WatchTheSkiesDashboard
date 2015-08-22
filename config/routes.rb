@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   devise_for :users, path_names: {
     sign_up: '/'
   }
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
 
   root 'games#dashboard'
 
+  resources :tweets
   resources :terror_trackers
   resources :public_relations
   resources :messages

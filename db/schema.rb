@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726053146) do
+ActiveRecord::Schema.define(version: 20150820021747) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 20150726053146) do
     t.integer  "round"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string   "twitter_name"
+    t.decimal  "tweet_id"
+    t.string   "text"
+    t.string   "media_url"
+    t.boolean  "is_public"
+    t.boolean  "is_published"
+    t.datetime "tweet_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
