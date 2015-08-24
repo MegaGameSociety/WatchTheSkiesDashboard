@@ -2,24 +2,41 @@
 
 <h1>Listing Tweets</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Show</th>
+      <th>Edit</th>
+      <th>Destroy</th>
+      <th>Twitter Name</th>
+      <th>ID</th>
+      <th>Text</th>
+      <th>Media URL</th>
+      <th>Is Public?</th>
+      <th>Is Published?</th>
+      <th>Tweet Time</th>
     </tr>
   </thead>
-
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th ><%= tweet.twitter_name %></th>
+        <th ><%= tweet.tweet_id %></th>
+        <th ><%= tweet.text %></th>
+        <th >
+            <% if tweet.media_url %>
+          <%= link_to 'image', tweet.media_url %>
+          <% end %>
+        </th>
+        <th ><%= tweet.is_public %></th>
+        <th ><%= tweet.is_published %></th>
+        <th ><%= tweet.tweet_time %></th>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
 
 <%= link_to 'New Tweet', new_tweet_path %>

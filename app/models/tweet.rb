@@ -1,5 +1,18 @@
+
 class Tweet < ActiveRecord::Base
   # https://github.com/sferik/twitter
+
+  def publish(client)
+    if self.is_public && !self.is_published
+      # Need to add source + char, limit.
+      # GNN:
+      # DEN:
+      # SFT: 
+      client.update(self.text)
+    end
+  end
+
+
   def self.import()
   
   # Generate client
@@ -26,14 +39,14 @@ class Tweet < ActiveRecord::Base
       t = Tweet.new
         t.twitter_name = tweet.user.screen_name
         t.tweet_id = tweet.id
-        t.text = tweet.text
+        t.text = tweet.text.gsub(/http:\/\/[\w\.:\/]+/, '')
         t.is_public = false
         t.is_published = false
         t.tweet_time = tweet.created_at
 
         #check if tweet has image
         if tweet.media?
-          t.media_url = tweet.media[0].url.to_s
+          t.media_url = tweet.media[0].media_url
         end
         t.save
     end
@@ -48,5 +61,22 @@ class Tweet < ActiveRecord::Base
       config.access_token_secret = ENV['twitter_access_token_secret']
     end
     return client
+  end
+
+  def self.export
+    require 'open-uri'
+    export_tweets = Tweet.where(is_public: true, is_published: false)
+    client = Tweet.generate_client
+    export_tweets.each do |tweet|
+      if tweet.media_url.length > 0
+        url = URI.parse(tweet.media_url)
+        image = open(url)
+        client.update_with_media(tweet.text, image)
+      else
+        client.update(tweet.text)
+      end
+      tweet.is_published = true
+      tweet.save
+    end
   end
 end

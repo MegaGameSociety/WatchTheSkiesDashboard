@@ -12,6 +12,15 @@
   <% end %>
 
   <div class="actions">
+    <%= f.label :text %> </br>
+    <%= f.text_area :text, :size => "60x5"%></br>
+    <%= f.label :media_url %> </br>
+    <%= f.text_field :media_url, :size => "60"%></br>
+
+    <%= f.label "Public?" %> <br />
+    <%= f.check_box :is_public %> <br />
+    <%= f.label "Published?" %> <br />
+    <%= f.check_box :is_published %> <br />
     <%= f.submit %>
   </div>
 <% end %>
