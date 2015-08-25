@@ -28,7 +28,7 @@
         <th ><%= tweet.text %></th>
         <th >
             <% if tweet.media_url %>
-          <%= link_to 'image', tweet.media_url %>
+          <%= image_tag tweet.media_url, size: '150' %>
           <% end %>
         </th>
         <th ><%= tweet.is_public %></th>

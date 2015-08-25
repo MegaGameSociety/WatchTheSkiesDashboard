@@ -9,6 +9,8 @@
       <th >Round</th>
       <th >Title</th>
       <th >Content</th>
+      <th >Media_url</th>
+
     </tr>
   </thead>
 
@@ -21,6 +23,8 @@
         <th ><%= news_message.round %></th>
         <th ><%= news_message.title %></th>
         <th ><%= news_message.content %></th>
+        <th ><img src'=<%= news_message.media_url %>'/></th>
+
       </tr>
     <% end %>
   </tbody>

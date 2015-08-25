@@ -8,8 +8,32 @@ class Tweet < ActiveRecord::Base
       # GNN:
       # DEN:
       # SFT: 
-      client.update(self.text)
+
+      if self.media_url.length > 0
+        url = URI.parse(self.media_url)
+        image = open(url)
+        client.update_with_media(self.text, image)
+      else
+        client.update(self.text)
+      end
+
+      self.is_published = true
+      self.save
+      self.convert_to_article
+
     end
+  end
+
+  def convert_to_article
+      a = Article.new
+      if self.media_url.length > 0
+        a.media_url = self.media_url
+      end
+      a.title = "#{self.twitter_name} reports:"
+      a.content = self.text
+      a.round = Game.last.round
+      a.save
+
   end
 
 
@@ -65,18 +89,10 @@ class Tweet < ActiveRecord::Base
 
   def self.export
     require 'open-uri'
-    export_tweets = Tweet.where(is_public: true, is_published: false)
+    export_tweets = Tweet.where(is_public: true, is_published: false).order(tweet_time: :asc)
     client = Tweet.generate_client
     export_tweets.each do |tweet|
-      if tweet.media_url.length > 0
-        url = URI.parse(tweet.media_url)
-        image = open(url)
-        client.update_with_media(tweet.text, image)
-      else
-        client.update(tweet.text)
-      end
-      tweet.is_published = true
-      tweet.save
+     tweet.publis(client)
     end
   end
 end

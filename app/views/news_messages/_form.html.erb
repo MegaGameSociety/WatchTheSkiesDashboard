@@ -18,6 +18,9 @@
     <%= f.text_area :content, :size => "60x5"%></br>
     <%= f.label :round %> </br>
     <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> [Default is current round]</br>
+    <%= f.label :media_url %> </br>
+    <%= f.text_field :media_url %> </br>
+
     <%= f.submit %>
   </div>
 <% end %>

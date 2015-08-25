@@ -23,4 +23,9 @@
     <%= f.check_box :is_published %> <br />
     <%= f.submit %>
   </div>
+
+
+  <% if @tweet.media_url %>
+  <%= image_tag @tweet.media_url, size: '150' %>
+  <% end %>
 <% end %>
