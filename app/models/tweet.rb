@@ -10,9 +10,9 @@ class Tweet < ActiveRecord::Base
       # DEN:
       # SFT: 
       short_name = ""
-      if self.twitter_name = "DailyEarthWTS"
+      if self.twitter_name == "DailyEarthWTS"
         short_name = "DEN:"
-      elsif self.twitter_name = "GNNWTS"
+      elsif self.twitter_name == "GNNWTS"
         short_name = "GNN:"
       else
         short_name = "SFT:"
