@@ -3,16 +3,26 @@ class Tweet < ActiveRecord::Base
   # https://github.com/sferik/twitter
 
   def publish(client)
+    require 'open-uri'
     if self.is_public && !self.is_published
       # Need to add source + char, limit.
       # GNN:
       # DEN:
       # SFT: 
+      short_name = ""
+      if self.twitter_name = "DailyEarthWTS"
+        short_name = "DEN:"
+      elsif self.twitter_name = "GNNWTS"
+        short_name = "GNN:"
+      else
+        short_name = "SFT:"
+      end
+
 
       if self.media_url.length > 0
         url = URI.parse(self.media_url)
         image = open(url)
-        client.update_with_media(self.text, image)
+        client.update_with_media("#{short_name} #{self.text}", image)
       else
         client.update(self.text)
       end
@@ -25,7 +35,7 @@ class Tweet < ActiveRecord::Base
   end
 
   def convert_to_article
-      a = Article.new
+      a = NewsMessage.new
       if self.media_url.length > 0
         a.media_url = self.media_url
       end
@@ -53,7 +63,7 @@ class Tweet < ActiveRecord::Base
       # get the last timestamp of a tweet and create tweets
       # imported since then
       tweets = client.list_timeline('WatchSkies', 'wts-list', {
-        since_id: Tweet.objects.last.tweet_id
+        since_id: Tweet.order(tweet_time: :asc).last.tweet_id
         })
     end
 
@@ -74,6 +84,7 @@ class Tweet < ActiveRecord::Base
         end
         t.save
     end
+    return tweets.length
   end
 
   def self.generate_client
@@ -88,11 +99,11 @@ class Tweet < ActiveRecord::Base
   end
 
   def self.export
-    require 'open-uri'
     export_tweets = Tweet.where(is_public: true, is_published: false).order(tweet_time: :asc)
     client = Tweet.generate_client
     export_tweets.each do |tweet|
-     tweet.publis(client)
+    tweet.publish(client)
     end
+    return export_tweets.count
   end
 end

@@ -4,7 +4,8 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    @private_tweets = Tweet.where(is_public: false).order(tweet_time: :asc)
+    @public_tweets = Tweet.where(is_public: true).order(tweet_time: :asc)
   end
 
   # GET /tweets/1
@@ -61,6 +62,30 @@ class TweetsController < ApplicationController
     end
   end
 
+  # Import new tweets
+  def import_tweets
+    count = Tweet.import
+    respond_to do |format|
+      format.html { redirect_to tweets_path, notice: "Imported #{count} tweets." }
+    end
+  end
+
+  # Publish tweets
+  def export_tweets  
+    count = Tweet.export
+    respond_to do |format|
+      format.html { redirect_to tweets_path, notice: "Published #{count} tweets." }
+    end
+  end
+
+  #post 
+  def toggle_public
+    @tweet = Tweet.find(params[:tweet_id])
+    @tweet.is_public = !@tweet.is_public
+    @tweet.save
+    redirect_to tweets_path, notice: "Made #{@tweet.text} #{@tweet.is_public}."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
@@ -69,6 +94,6 @@ class TweetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
-      params[:tweet].permit(:twitter_name, :text, :media_url, :is_public, :is_published)
+      params[:tweet].permit(:id, :twitter_name, :text, :media_url, :is_public, :is_published)
     end
 end

@@ -1,11 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Tweets</h1>
+<%= link_to import_tweets_path, method: :post, class: "btn btn-default" do %>
+      <%= submit_tag "Import Tweets" %>
+    <% end %>
+<%= link_to export_tweets_path, method: :post, class: "btn btn-default" do %>
+      <%= submit_tag "Export Tweets" %>
+    <% end %>
+
+<h2>Listing Unpublished Tweets</h2>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Show</th>
       <th>Edit</th>
       <th>Destroy</th>
       <th>Twitter Name</th>
@@ -18,20 +23,25 @@
     </tr>
   </thead>
   <tbody>
-    <% @tweets.each do |tweet| %>
+    <% @private_tweets.each do |tweet| %>
       <tr>
-        <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <th ><%= tweet.twitter_name %></th>
         <th ><%= tweet.tweet_id %></th>
         <th ><%= tweet.text %></th>
         <th >
-            <% if tweet.media_url %>
-          <%= image_tag tweet.media_url, size: '150' %>
+          <% if !tweet.media_url.nil? %>
+            <% if tweet.media_url.length > 0 %>
+              <%= image_tag tweet.media_url, size: '150' %>
+            <% end %>
           <% end %>
         </th>
-        <th ><%= tweet.is_public %></th>
+        <th ><%= tweet.is_public %> </br>
+        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %>
+            <%= submit_tag "Toggle Public" %>
+          <% end %>
+        </th>
         <th ><%= tweet.is_published %></th>
         <th ><%= tweet.tweet_time %></th>
       </tr>
@@ -40,3 +50,46 @@
 </table>
 
 <%= link_to 'New Tweet', new_tweet_path %>
+
+<h2>Listing Unpublished Tweets</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Destroy</th>
+      <th>Twitter Name</th>
+      <th>ID</th>
+      <th>Text</th>
+      <th>Media URL</th>
+      <th>Is Public?</th>
+      <th>Is Published?</th>
+      <th>Tweet Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @public_tweets.each do |tweet| %>
+      <tr>
+        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th ><%= tweet.twitter_name %></th>
+        <th ><%= tweet.tweet_id %></th>
+        <th ><%= tweet.text %></th>
+        <th >
+          <% if !tweet.media_url.nil? %>
+            <% if tweet.media_url.length > 0 %>
+              <%= image_tag tweet.media_url, size: '150' %>
+            <% end %>
+          <% end %>
+        </th>
+        <th ><%= tweet.is_public %> </br>
+        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %>
+            <%= submit_tag "Toggle Public" %>
+          <% end %>
+        </th>
+        <th ><%= tweet.is_published %></th>
+        <th ><%= tweet.tweet_time %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

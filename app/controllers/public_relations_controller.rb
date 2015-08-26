@@ -9,6 +9,7 @@ class PublicRelationsController < ApplicationController
   end
 
   # Post
+  # Adds PR for un dashboard
   def create_un_dashboard
     data = params['un_public_relations']
     round = data['round']

@@ -31,6 +31,7 @@ class Game < ActiveRecord::Base
         self.round +=1
         self.next_round = self.next_round + (30*60)
         self.save
+        Tweet.import
       end
     end
     return self

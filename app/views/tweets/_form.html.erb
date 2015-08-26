@@ -25,7 +25,9 @@
   </div>
 
 
-  <% if @tweet.media_url %>
-  <%= image_tag @tweet.media_url, size: '150' %>
+  <% if !@tweet.media_url.nil? %>
+    <% if @tweet.media_url.length > 0 %>
+      <%= image_tag @tweet.media_url, size: '150' %>
+    <% end %>
   <% end %>
 <% end %>

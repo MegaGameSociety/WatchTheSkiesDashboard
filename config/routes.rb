@@ -9,7 +9,13 @@ Rails.application.routes.draw do
 
   root 'games#dashboard'
 
-  resources :tweets
+  resources :tweets do 
+    patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public
+  end
+  post 'import_tweets', to: 'tweets#import_tweets', as: :import_tweets
+  post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
+
+
   resources :terror_trackers
   resources :public_relations
   resources :messages
@@ -28,7 +34,7 @@ Rails.application.routes.draw do
   get 'admin' =>'games#admin_control', :as =>'admin_control'
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
   post 'reset_game', to: 'games#reset_game', :as => 'reset_game'
-  patch 'update_time:id', to: 'games#update_time', as: :update_time
+  patch 'update_time/:id', to: 'games#update_time', as: :update_time
   patch 'alert_update', to: 'games#update_control_message', as: :alert_update
   patch 'rioters_update', to: 'games#update_rioters', as: :rioters_update
   patch 'round_update', to: 'games#update_round', as: :round_update
