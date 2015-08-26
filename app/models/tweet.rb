@@ -18,7 +18,6 @@ class Tweet < ActiveRecord::Base
         short_name = "SFT:"
       end
 
-
       if self.media_url.length > 0
         url = URI.parse(self.media_url)
         image = open(url)
@@ -30,7 +29,6 @@ class Tweet < ActiveRecord::Base
       self.is_published = true
       self.save
       self.convert_to_article
-
     end
   end
 
@@ -102,7 +100,7 @@ class Tweet < ActiveRecord::Base
     export_tweets = Tweet.where(is_public: true, is_published: false).order(tweet_time: :asc)
     client = Tweet.generate_client
     export_tweets.each do |tweet|
-    tweet.publish(client)
+      tweet.publish(client)
     end
     return export_tweets.count
   end
