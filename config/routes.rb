@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   resources :messages
   resources :games
   resources :news_messages
+
+  get 'paper/:round' => 'news_messages#paper', as: :paper
+
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
   get '/country_status/:country', to: 'public_relations#country_status', as: :country_pr_status

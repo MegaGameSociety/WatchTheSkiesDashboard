@@ -1,0 +1,22 @@
+<h2>Turn <%= @round %></h2>
+
+<div class="row">
+  <% @news.each do |name, news_group| %> 
+  <div class="col-xs-4">
+    <%= image_tag("#{name}.png", width: '80%') %>
+    <ul>
+    <% news_group.each do |article|%>
+    <li>
+     <div><%= article.content %></br>
+      <% if !article.media_url.nil? %>
+        <% if article.media_url.length > 0 %>
+          <%= image_tag article.media_url, size: '150' %>
+        <% end %>
+      <% end %>
+    </div>
+    </li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>

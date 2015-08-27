@@ -82,7 +82,16 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Post
   def reset
-    Game.last.reset
+    g = Game.last.reset
+    Tweet.delete_all
+    NewsMessage.delete_all
+    PublicRelation.delete_all
+    TerrorTracker.delete_all
+    t = TerrorTracker.create(
+      description: "Initial Terror",
+      amount: 50,
+      round: g.round
+    )
   end
 
   # Post

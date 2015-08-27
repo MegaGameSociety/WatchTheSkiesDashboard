@@ -14,14 +14,18 @@ class Tweet < ActiveRecord::Base
         short_name = "DEN:"
       elsif self.twitter_name == "GNNWTS"
         short_name = "GNN:"
-      else
+      elsif self.twitter_name == "SFTNews"
         short_name = "SFT:"
+      else
+        short_name = "AP:"
       end
 
-      if self.media_url.length > 0
-        url = URI.parse(self.media_url)
-        image = open(url)
-        client.update_with_media("#{short_name} #{self.text}", image)
+      if !self.media_url.nil?
+        if self.media_url.length > 0
+          url = URI.parse(self.media_url)
+          image = open(url)
+          client.update_with_media("#{short_name} #{self.text}", image)
+        end
       else
         client.update(self.text)
       end
@@ -34,10 +38,22 @@ class Tweet < ActiveRecord::Base
 
   def convert_to_article
       a = NewsMessage.new
-      if self.media_url.length > 0
-        a.media_url = self.media_url
+      if !self.media_url.nil?
+        if self.media_url.length > 0
+          a.media_url = self.media_url
+        end
       end
-      a.title = "#{self.twitter_name} reports:"
+
+      full_name = "AP"
+      if self.twitter_name == "DailyEarthWTS"
+        full_name = "Daily Earth News"
+      elsif self.twitter_name == "GNNWTS"
+        full_name = "Global News Network"
+      elsif self.twitter_name == "SFTNews"
+        full_name = "Science & Financial Times"
+      end
+
+      a.title = "#{full_name} reports:"
       a.content = self.text
       a.round = Game.last.round
       a.save

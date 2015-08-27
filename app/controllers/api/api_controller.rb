@@ -26,7 +26,8 @@ class Api::ApiController < ApplicationController
     begin
       @countries_data = {}
       Game::COUNTRIES.each do |country|
-        @countries_data[country] = 0<=PublicRelation.where(round: @game.round, country: country).sum("pr_amount")
+        @countries_data[country] = 0<=(PublicRelation.where(round: @game.round, country: country).sum("pr_amount") +
+          PublicRelation.where(round: @game.round-1, country: "Brazil").sum("pr_amount"))
       end
     rescue
       @status = 500

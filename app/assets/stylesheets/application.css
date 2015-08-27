@@ -27,3 +27,9 @@ div.adminControl{
   background-color: #dbe8db;
   color: black;
 }
+
+@media print {
+.noPrint {
+    display:none;
+  }
+}

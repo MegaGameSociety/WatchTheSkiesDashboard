@@ -65,6 +65,18 @@ before_action :authenticate_user!
     end
   end
 
+  def paper
+    @round = params[:round]    
+    den = NewsMessage.where(round: @round).where(title: "Daily Earth News reports:")
+    gnn = NewsMessage.where(round: @round).where(title: "Global News Network reports:")
+    sft = NewsMessage.where(round: @round).where(title: "Science & Financial Times reports:")
+    @news = {
+      :DEN => den,
+      :GNN => gnn,
+      :SFT => sft
+    }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_news_message
@@ -73,6 +85,6 @@ before_action :authenticate_user!
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_message_params
-      params[:news_message].permit(:title, :content, :round)
+      params[:news_message].permit(:title, :content, :round, :media_url)
     end
 end
