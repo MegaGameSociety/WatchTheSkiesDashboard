@@ -52,14 +52,12 @@
       <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news">
         <h4>{{news_item.title}}</h4>
           <p>{{news_item.content}}</p>
-          </br>
-          <img ng-src="{{news_item.media_url}}" 
-            style="max-width: 500px; max-height:500px" /></br>
-          <a class="news">{{news_item.created_at| date:'h:mma'}}</a>
+          <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" 
+            style="max-width: 500px; max-height:500px" />
+          <p class="news">{{news_item.created_at| date:'h:mma'}}</p>
       </div>
       <div class="news-container" ng-if="news.length==0">
         <h4>Nothing has happened yet<h4>
-         
       </div>
       <!-- End News -->
     </div>

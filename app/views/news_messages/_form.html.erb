@@ -20,13 +20,23 @@
     <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> [Default is current round]</br>
     <%= f.label :media_url %> </br>
     <%= f.text_field :media_url %> </br>
-
-    <%= label_tag "Post to Twitter?" %> <br />
-    <%= check_box_tag :post_online %> <br />
-    <%= f.label "Publish Content?" %> <br />
-    <%= f.check_box :visible_content %> <br />
-    <%= f.label "Publish Image?" %> <br />
-    <%= f.check_box :visible_image %> <br />
+    <p>
+    <table class="table-condensed table-striped table-bordered">
+      <% if @news_message.id.nil? %>
+      <tr>
+        <td><%= label_tag "Post to Twitter?" %></td>
+        <td><%= check_box_tag :post_online %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td><%= f.label "Publish Content?" %></td>
+        <td><%= f.check_box :visible_content %></td>
+      </tr>
+      <tr>
+        <td><%= f.label "Publish Image?" %></td>
+        <td><%= f.check_box :visible_image %></td>
+      </tr>
+    </table></p>
     <%= f.submit %>
   </div>
 <% end %>
