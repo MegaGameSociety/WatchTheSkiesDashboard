@@ -56,6 +56,8 @@ class Tweet < ActiveRecord::Base
       a.title = "#{full_name} reports:"
       a.content = self.text
       a.round = Game.last.round
+      a.visible_content = true
+      a.visible_media = true
       a.save
 
   end

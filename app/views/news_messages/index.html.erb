@@ -10,7 +10,7 @@
       <th >Title</th>
       <th >Content</th>
       <th >Media</th>
-
+      <th >Paper Publicity</th>
     </tr>
   </thead>
 
@@ -23,8 +23,17 @@
         <th ><%= news_message.round %></th>
         <th ><%= news_message.title %></th>
         <th ><%= news_message.content %></th>
-        <th ><img src='<%= news_message.media_url %>'/></th>
-
+        <th >
+          <% if !news_message.media_url.nil? %>
+            <% if news_message.media_url.length > 0 %>
+              <%= image_tag news_message.media_url, size: '150' %>
+            <% end %>
+          <% end %>
+        </th>
+        <th>
+          Context: <%= news_message.visible_content %> </br>
+          Media: <%= news_message.visible_image %>
+        </th>
       </tr>
     <% end %>
   </tbody>

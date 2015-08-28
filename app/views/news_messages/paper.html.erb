@@ -7,8 +7,10 @@
     <ul>
     <% news_group.each do |article|%>
     <li>
-     <div><%= article.content %></br>
-      <% if !article.media_url.nil? %>
+     <div>
+      <%= article.content %>
+      </br>
+      <% if !article.media_url.nil? && article.visible_image %>
         <% if article.media_url.length > 0 %>
           <%= image_tag article.media_url, size: '150' %>
         <% end %>

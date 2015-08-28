@@ -67,9 +67,15 @@ before_action :authenticate_user!
 
   def paper
     @round = params[:round]    
-    den = NewsMessage.where(round: @round).where(title: "Daily Earth News reports:")
-    gnn = NewsMessage.where(round: @round).where(title: "Global News Network reports:")
-    sft = NewsMessage.where(round: @round).where(title: "Science & Financial Times reports:")
+    den = NewsMessage.where(round: @round).
+            where(title: "Daily Earth News reports:").
+            where(visible_content: true)
+    gnn = NewsMessage.where(round: @round).
+            where(title: "Global News Network reports:").
+            where(visible_content: true)
+    sft = NewsMessage.where(round: @round).
+                      where(title: "Science & Financial Times reports:").
+                      where(visible_content: true)
     @news = {
       :DEN => den,
       :GNN => gnn,
@@ -85,6 +91,6 @@ before_action :authenticate_user!
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_message_params
-      params[:news_message].permit(:title, :content, :round, :media_url)
+      params[:news_message].permit(:title, :content, :round, :media_url, :visible_content, :visible_image)
     end
 end

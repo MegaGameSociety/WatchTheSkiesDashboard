@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825041136) do
+ActiveRecord::Schema.define(version: 20150828024859) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20150825041136) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "media_url"
+    t.boolean  "visible_content"
+    t.boolean  "visible_image"
   end
 
   create_table "public_relations", force: :cascade do |t|
