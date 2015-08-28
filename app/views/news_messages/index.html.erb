@@ -3,6 +3,21 @@
 
 <div class="well-sml panel panel-default" style="margin: 5px 50% 5px 0px">
   <div class="panel-heading">
+    <div class="panel-title">Direct Twitter Posting</div>
+  </div>
+  <div class="panel-body">
+    <div class="btn-group" role="group">
+      TMP: Need to fix
+      <%= form_tag direct_twitter_post_path, :method => 'post' do %>
+      <%= text_field_tag :text, '', size: 50, :placeholder => "ex. Held World Trade Conference" %>
+        <%= submit_tag "Post" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="well-sml panel panel-default" style="margin: 5px 50% 5px 0px">
+  <div class="panel-heading">
     <div class="panel-title">Generated Newspapers</div>
   </div>
   <div class="panel-body">

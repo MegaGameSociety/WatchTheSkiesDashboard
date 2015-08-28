@@ -92,6 +92,12 @@ before_action :authenticate_user!
     }
   end
 
+  def direct_twitter_post
+    client = Tweet.generate_client
+    client.update(params[:text])
+    redirec_to news_messages_path, notice: "Posted '#{params[:text]}' to twitter."
+  end
+
   def toggle_paper_content
     @news = NewsMessage.find(params[:news_id])
     @news.visible_content = !@news.visible_content
