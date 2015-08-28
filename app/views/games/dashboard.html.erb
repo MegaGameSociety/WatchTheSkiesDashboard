@@ -7,6 +7,7 @@
   <div class="columns">
     <div class="left-column">
       <img src="/assets/mgs-logo.png" class="mgs-logo">
+      <p style="margin-top:-18px; font-size: 10px">See @WatchSkies on Twitter for more news.</p>
       <div class="countries-container">
         <h3 class="center">Global Economy</h3>
         <table>
@@ -43,11 +44,11 @@
 
         <!-- This needs to be formatted for use -->
 
-        <h3>Round {{round}}</h3>
+        <h3>Turn {{round}}</h3>
         <h3 class="paused" ng-if="paused">(Paused)</h3>
       </div>
 
-      <h3>News</h3>
+      <h3>News:</h3>
       <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news">
         <h4>{{news_item.title}}</h4>
           <p>{{news_item.content}}</p>

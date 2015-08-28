@@ -3,13 +3,14 @@
 <div class="row">
   <% @news.each do |name, news_group| %> 
   <div class="col-xs-4">
-    <%= image_tag("#{name}.png", width: '80%') %>
+    <center style="align:center"><%= image_tag("#{name}.png", width: '95%') %></center>
     <ul>
     <% news_group.each do |article|%>
     <li>
      <div>
+      <p style="color:black; font-size:16px">
       <%= article.content %>
-      </br>
+      </p>
       <% if !article.media_url.nil? && article.visible_image %>
         <% if article.media_url.length > 0 %>
           <%= image_tag article.media_url, size: '150' %>
