@@ -18,6 +18,15 @@
   <% end %>
 <% end %>
 </h2>
+<h2>Toggle Alien Comms:
+<%= link_to toggle_alien_comms_path, method: :post, class: "btn btn-default" do %>
+  <% if @game.getData['alien_comms'] %>
+    <i class="glyphicon glyphicon-play"></i>
+  <% else %>
+    <i class="glyphicon glyphicon-pause"></i>
+  <% end %>
+<% end %>
+</h2>
 <h2>Set Next Time</h2>
 <p>Current time is: <%= @time %></p>
 <%= form_for(@game, url: update_time_path(@game)) do |f|%>

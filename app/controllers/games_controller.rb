@@ -109,6 +109,16 @@ before_action :authenticate_user!, except:[:dashboard]
   end
 
   # Post
+  def toggle_alien_comms
+    @game = Game.last
+    data = @game.getData
+    data['alien_comms'] = !data['alien_comms']
+    @game.data = data.to_json
+    @game.save
+    redirect_to admin_control_path
+  end
+
+  # Post
   def update_time
     @game = Game.find(params[:id])
     dateObj = params["game"]

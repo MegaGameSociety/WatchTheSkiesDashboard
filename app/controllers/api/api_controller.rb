@@ -45,7 +45,8 @@ class Api::ApiController < ApplicationController
         },
         "news" =>  @news,
         "global_terror" => @global_terror,
-        "countries" => @countries_data
+        "countries" => @countries_data,
+        'alien_comms' => @data['alien_comms']
       }
     rescue
       @status = 500

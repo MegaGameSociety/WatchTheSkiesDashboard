@@ -17,6 +17,17 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
         $scope.rioters = result['global_terror']['rioters']
+
+        if (result['alien_comms'] == true){
+          // $(".alien").css("font-family", 'Vorlon', 'important');
+          $( "body" ).addClass( "alien" );
+          $( "p" ).addClass( "alien" );
+        }else{
+          // $(".alien").css("font-family", '');
+          $( "body" ).removeClass( "alien" );
+          $( "p" ).removeClass( "alien" );
+        }
+
         if (result['news'].length > 0){
           var newDate = (new Date(result['news'][0]['created_at']));
             if($scope.news.length == 0){

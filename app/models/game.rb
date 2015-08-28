@@ -11,6 +11,7 @@ class Game < ActiveRecord::Base
     game_data = {}
     game_data['rioters']=0
     game_data['paused']=true
+    game_data['alien_comms']=false
     self.data = game_data.to_json
     self.save()
   end
