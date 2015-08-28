@@ -1,4 +1,4 @@
-<h2>Do not touch if you are not Kevin</h2>
+<h2 style="color:red">Do not touch if you are not Kevin</h2>
 <%= link_to import_tweets_path, method: :post, class: "btn btn-default" do %>
       <%= submit_tag "Import Tweets" %>
     <% end %>
@@ -50,7 +50,7 @@
 
 <%= link_to 'New Tweet', new_tweet_path %>
 
-<h2>Listing Unpublished Tweets</h2>
+<h2>Listing Published Tweets</h2>
 
 <table class="table">
   <thead>
