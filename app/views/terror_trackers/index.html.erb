@@ -1,7 +1,7 @@
 <h1>Listing Terror Tracker Entry</h1>
-<div class="well-sml panel panel-default" style="margin: 10px">
+<div class="well-sml panel panel-danger" style="margin: 10px">
   <div class="panel-heading">
-    <h3 class="panel-title">Enter new Terror Tracker Event</h3>
+    <div class="panel-title">Enter New Terror Tracker Event</div>
   </div>
   <div class="panel-body">
     <%= form_for(@terror_tracker) do |f| %>
@@ -39,9 +39,9 @@
   <%= f.submit %>
 <% end %>
 
-<div class="well-sml panel panel-default" style="margin: 10px">
+<div class="well-sml panel panel-warning" style="margin: 10px">
   <div class="panel-heading">
-    <h3 class="panel-title">Enter Current War Activity</h3>
+    <div class="panel-title">Enter Current War Activity</div>
   </div>
   <div class="panel-body">
     <%= form_for(@game, url: activity_update_path) do |f|%>

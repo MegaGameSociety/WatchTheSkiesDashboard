@@ -30,7 +30,7 @@
     <% @news_messages.each do |news_message| %>
       <tr>
         <th ><%= news_message.round %></th>
-        <td><%= link_to 'View', news_message, class:"btn btn-default" %></br>
+        <td><%= link_to 'View', news_message, class:"btn btn-default" %>
           <%= link_to 'Edit', edit_news_message_path(news_message), class:"btn btn-default" %></br>
           <%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %></td>
         <th ><%= news_message.title %></th>
