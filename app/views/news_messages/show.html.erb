@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_news_message_path(@news_message) %> |
-<%= link_to 'Back', news_messages_path %>
+<div class="well-sml panel panel-default">
+  <div class="panel-heading">
+    <div class="panel-title"><%= @news_message.title %></div>
+  </div>
+  <div class="panel-body">
+    <p><%= @news_message.content %></p>
+    <%= image_tag (@news_message.media_url) %>
+  </div>
+</div>
+
+<table>
+  <tr>
+    <td>Content Visibility:</td>
+    <td><%= @news_message.visible_content %></td>
+  </tr>
+  <tr>
+    <td>Image Visibility:</td>
+    <td><%= @news_message.visible_image %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_news_message_path(@news_message)%> 
+<%= link_to 'Back', news_messages_path%>

@@ -18,6 +18,7 @@ before_action :authenticate_user!
   def new
     @current_round = Game.last.round
     @news_message = NewsMessage.new
+    @news_message.visible_content = true
   end
 
   # GET /news_messages/1/edit
@@ -29,7 +30,14 @@ before_action :authenticate_user!
   # POST /news_messages.json
   def create
     @news_message = NewsMessage.new(news_message_params)
+    if @news_message.title.nil?
+      @news_message.title = "AP Reports:"
+    end
     @current_round = Game.last.round
+    if params[:post_online]
+      client = Tweet.generate_client
+      client.update("AP: #{@news_message.content}")
+    end
 
     respond_to do |format|
       if @news_message.save
@@ -82,6 +90,20 @@ before_action :authenticate_user!
       :GNN => gnn,
       :SFT => sft
     }
+  end
+
+  def toggle_paper_content
+    @news = NewsMessage.find(params[:news_id])
+    @news.visible_content = !@news.visible_content
+    @news.save
+    redirect_to news_messages_path, notice: "Made #{@news.content} visibility #{@news.visible_content}."
+  end
+
+  def toggle_paper_media
+    @news = NewsMessage.find(params[:news_id])
+    @news.visible_image = !@news.visible_image
+    @news.save
+    redirect_to news_messages_path, notice: "Made #{@news.content} visibility #{@news.visible_image}."
   end
 
   private

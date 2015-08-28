@@ -25,7 +25,7 @@
 
 <%= render 'layouts/country_pr_menu' %>
 </br>
-<%= link_to 'New Public Relation Entry', new_public_relation_path(:country=> @country) %>
+<%= link_to 'New Public Relation Entry', new_public_relation_path(:country=> @country), class:"btn btn-default" %>
 
 <h2>Listing Public Relations for <%= @country %></h2>
 <table class="table">

@@ -13,7 +13,7 @@
       </p>
       <% if !article.media_url.nil? && article.visible_image %>
         <% if article.media_url.length > 0 %>
-          <%= image_tag article.media_url, size: '150' %>
+          <%= image_tag article.media_url, width:'75%' %>
         <% end %>
       <% end %>
     </div>

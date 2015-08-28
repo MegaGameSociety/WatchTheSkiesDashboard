@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :messages
   resources :games
   resources :news_messages
+  patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
+  patch 'toggle_paper_media/:news_id', to: 'news_messages#toggle_paper_media', as: :toggle_paper_media
 
   get 'paper/:round' => 'news_messages#paper', as: :paper
 

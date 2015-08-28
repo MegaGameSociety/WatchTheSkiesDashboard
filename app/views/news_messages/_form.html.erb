@@ -13,7 +13,7 @@
 
   <div class="actions">
     <%= f.label :title %> </br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder:"AP Reports:" %>
     <%= f.label :content %> </br>
     <%= f.text_area :content, :size => "60x5"%></br>
     <%= f.label :round %> </br>
@@ -21,6 +21,8 @@
     <%= f.label :media_url %> </br>
     <%= f.text_field :media_url %> </br>
 
+    <%= label_tag "Post to Twitter?" %> <br />
+    <%= check_box_tag :post_online %> <br />
     <%= f.label "Publish Content?" %> <br />
     <%= f.check_box :visible_content %> <br />
     <%= f.label "Publish Image?" %> <br />

@@ -1,10 +1,12 @@
 <h2 style="color:red">Do not touch if you are not Kevin</h2>
 <%= link_to import_tweets_path, method: :post, class: "btn btn-default" do %>
-      <%= submit_tag "Import Tweets" %>
+  Import Tweets
     <% end %>
 <%= link_to export_tweets_path, method: :post, class: "btn btn-default" do %>
-      <%= submit_tag "Export Tweets" %>
-    <% end %>
+    Export Tweets
+  <% end %>
+
+<%= link_to 'New Tweet Entry', new_tweet_path, class: "btn btn-default" %>
 
 <h2>Listing Unpublished Tweets</h2>
 <table class="table">
@@ -37,8 +39,7 @@
           <% end %>
         </th>
         <th ><%= tweet.is_public %> </br>
-        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %>
-            <%= submit_tag "Toggle Public" %>
+        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %> Toggle Public
           <% end %>
         </th>
         <th ><%= tweet.is_published %></th>
@@ -48,7 +49,6 @@
   </tbody>
 </table>
 
-<%= link_to 'New Tweet', new_tweet_path %>
 
 <h2>Listing Published Tweets</h2>
 

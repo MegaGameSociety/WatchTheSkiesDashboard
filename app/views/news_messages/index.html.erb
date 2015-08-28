@@ -1,18 +1,24 @@
 <h1>Listing News Messages</h1>
-<%= link_to 'New News message', new_news_message_path %>
+<%= link_to 'New News Message', new_news_message_path, class:"btn btn-default" %>
 
-<h3>Papers</h3>
-Turn: 
-<% @papers.each do |paper| %>
-  <%= link_to "#{paper}, ", paper_path(paper) %>
-<% end %>
+<div class="well-sml panel panel-default" style="margin: 5px 50% 5px 0px">
+  <div class="panel-heading">
+    <div class="panel-title">Generated Newspapers</div>
+  </div>
+  <div class="panel-body">
+    <div class="btn-group" role="group">
+    <% @papers.each do |paper| %>
+      <%= link_to "#{paper}", paper_path(paper), class: "btn btn-default" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
 <table class="table">
   <thead>
     <tr>
-      <th >Show</th>
-      <th >Edit</th>
-      <th >Destroy</th>
       <th >Round</th>
+      <th >Controls</th>
       <th >Title</th>
       <th >Content</th>
       <th >Media</th>
@@ -23,10 +29,10 @@ Turn:
   <tbody>
     <% @news_messages.each do |news_message| %>
       <tr>
-        <td><%= link_to 'Show', news_message %></td>
-        <td><%= link_to 'Edit', edit_news_message_path(news_message) %></td>
-        <td><%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <th ><%= news_message.round %></th>
+        <td><%= link_to 'View', news_message, class:"btn btn-default" %></br>
+          <%= link_to 'Edit', edit_news_message_path(news_message), class:"btn btn-default" %></br>
+          <%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %></td>
         <th ><%= news_message.title %></th>
         <th ><%= news_message.content %></th>
         <th >
@@ -37,8 +43,26 @@ Turn:
           <% end %>
         </th>
         <th>
-          Context: <%= news_message.visible_content %> </br>
-          Media: <%= news_message.visible_image %>
+          <table>
+            <tr>
+              <td>Context:
+              </td>
+              <td>                  
+                <%= link_to toggle_paper_content_path(news_message), method: :patch, class: "btn btn-default" do %>
+                  <%= "#{news_message.visible_content}" %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>Media:</td>
+              <td>
+                <%= link_to toggle_paper_media_path(news_message), method: :patch, class: "btn btn-default" do %>
+                  <%= "#{news_message.visible_image}" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+
         </th>
       </tr>
     <% end %>
