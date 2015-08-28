@@ -1,5 +1,11 @@
 <h1>Listing News Messages</h1>
 <%= link_to 'New News message', new_news_message_path %>
+
+<h3>Papers</h3>
+Turn: 
+<% @papers.each do |paper| %>
+  <%= link_to "#{paper}, ", paper_path(paper) %>
+<% end %>
 <table class="table">
   <thead>
     <tr>

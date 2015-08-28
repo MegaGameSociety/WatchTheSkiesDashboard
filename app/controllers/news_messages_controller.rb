@@ -6,6 +6,7 @@ before_action :authenticate_user!
   def index
     @current_round = Game.last.round
     @news_messages = NewsMessage.all.order(round: :desc, created_at: :desc)
+    @papers = NewsMessage.uniq.pluck(:round).sort
   end
 
   # GET /news_messages/1
