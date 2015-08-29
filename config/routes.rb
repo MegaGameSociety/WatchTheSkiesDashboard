@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   post 'import_tweets', to: 'tweets#import_tweets', as: :import_tweets
   post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
 
-
   resources :terror_trackers
   resources :public_relations
   resources :messages
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
   patch 'toggle_paper_media/:news_id', to: 'news_messages#toggle_paper_media', as: :toggle_paper_media
+  post 'direct_twitter_post', to: 'news_messages#direct_twitter_post', as: :direct_twitter_post
 
   get 'paper/:round' => 'news_messages#paper', as: :paper
 
