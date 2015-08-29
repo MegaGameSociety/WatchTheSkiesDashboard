@@ -8,7 +8,7 @@
     <% news_group.each do |article|%>
     <li style="list-style:none">
      <div>
-      <p class="<%= name %>">
+      <p class="<%= name %>" style:"margin-bottom: 5px">
       <%= article.content %>
       </p>
       <% if !article.media_url.nil? && article.visible_image %>
