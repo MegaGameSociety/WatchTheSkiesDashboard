@@ -6,14 +6,14 @@
     <center style="align:center; margin-bottom:10px"><%= image_tag("#{name}.png", width: '95%') %></center>
     <ul>
     <% news_group.each do |article|%>
-    <li style="list-style:none">
+    <li>
      <div>
       <p class="<%= name %>" style:"margin-bottom: 5px">
       <%= article.content %>
       </p>
       <% if !article.media_url.nil? && article.visible_image %>
         <% if article.media_url.length > 0 %>
-          <%= image_tag article.media_url, width:'75%' %>
+          <%= image_tag article.media_url, width:'75%', max-height:'100px' %>
         <% end %>
       <% end %>
     </div>
