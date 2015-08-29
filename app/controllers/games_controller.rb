@@ -38,6 +38,7 @@ before_action :authenticate_user!, except:[:dashboard]
       else
         pr.pr_amount = country_data['pr_amount']
       end
+
       if country_data['source'] == ''
         pr.source = data['main_source']
       else
@@ -46,7 +47,9 @@ before_action :authenticate_user!, except:[:dashboard]
       pr.save
       results.push(pr)
     end
-    redirect_to human_control_path
+    respond _to do |format|
+      format.html{redirect_to human_control_path, notice: "Entered in #{results.length} for Round: #{round}."}
+    end
   end
 
 
