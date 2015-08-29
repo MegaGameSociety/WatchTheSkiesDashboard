@@ -29,7 +29,7 @@ class Tweet < ActiveRecord::Base
           client.update("#{short_name} #{self.text}")
         end
       else
-        client.update(self.text)
+        client.update("#{short_name} #{self.text}")
       end
 
       self.is_published = true
