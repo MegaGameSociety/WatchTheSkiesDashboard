@@ -1,6 +1,6 @@
 <h2>Turn <%= @round %></h2>
 
-<div class="row">
+<div class="row paper">
   <% @news.each do |name, news_group| %> 
   <div class="col-xs-4 <%= name %>">
     <center style="align:center; margin-bottom:10px"><%= image_tag("#{name}.png", width: '95%') %></center>
