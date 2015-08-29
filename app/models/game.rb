@@ -31,7 +31,7 @@ class Game < ActiveRecord::Base
         Tweet.import
         puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
-        self.next_round = self.next_round + (30*60)
+        self.next_round = self.next_round + (25*60)
         self.save
         client = Tweet.generate_client
         client.update("Turn #{self.round} has started!")
