@@ -47,7 +47,7 @@ before_action :authenticate_user!, except:[:dashboard]
       pr.save
       results.push(pr)
     end
-    respond _to do |format|
+    respond_to do |format|
       format.html{redirect_to human_control_path, notice: "Entered in #{results.length} for Round: #{round}."}
     end
   end
