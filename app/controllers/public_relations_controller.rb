@@ -32,6 +32,11 @@ class PublicRelationsController < ApplicationController
       else
         pr.pr_amount = country_data['pr_amount']
       end
+
+      if pr.pr_amount.nil?
+        pr.pr_amount = 0
+      end
+
       if pr.pr_amount >0
         pr.source = "UN Bonus"
       else
