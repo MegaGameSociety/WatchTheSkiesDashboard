@@ -57,7 +57,7 @@ class Tweet < ActiveRecord::Base
       a.content = self.text
       a.round = Game.last.round
       a.visible_content = true
-      a.visible_media = true
+      a.visible_image = true
       a.save
 
   end

@@ -82,7 +82,8 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Post
   def reset
-    g = Game.last.reset
+    Game.last.reset
+    g = Game.last
     Tweet.delete_all
     NewsMessage.delete_all
     PublicRelation.delete_all
