@@ -2,13 +2,13 @@
 
 <div class="row">
   <% @news.each do |name, news_group| %> 
-  <div class="col-xs-4">
-    <center style="align:center"><%= image_tag("#{name}.png", width: '95%') %></center>
+  <div class="col-xs-4 <%= name %>">
+    <center style="align:center; margin-bottom:10px"><%= image_tag("#{name}.png", width: '95%') %></center>
     <ul>
     <% news_group.each do |article|%>
-    <li>
+    <li style="list-style:none">
      <div>
-      <p style="color:black; font-size:16px">
+      <p class="<%= name %>">
       <%= article.content %>
       </p>
       <% if !article.media_url.nil? && article.visible_image %>
