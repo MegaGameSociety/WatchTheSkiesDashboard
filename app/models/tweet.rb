@@ -26,7 +26,7 @@ class Tweet < ActiveRecord::Base
           image = open(url)
           client.update_with_media("#{short_name} #{self.text}", image)
         else
-          client.update(self.text)
+          client.update("#{short_name} #{self.text}")
         end
       else
         client.update(self.text)
@@ -81,7 +81,7 @@ class Tweet < ActiveRecord::Base
       # get the last timestamp of a tweet and create tweets
       # imported since then
       tweets = client.list_timeline('WatchSkies', 'wts-list', {
-        since_id: Tweet.order(tweet_time: :asc).last.tweet_id
+        since_id: a.to_i
         })
     end
 
