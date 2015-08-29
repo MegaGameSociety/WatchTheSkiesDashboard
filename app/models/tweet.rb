@@ -81,7 +81,7 @@ class Tweet < ActiveRecord::Base
       # get the last timestamp of a tweet and create tweets
       # imported since then
       tweets = client.list_timeline('WatchSkies', 'wts-list', {
-        since_id: a.to_i
+        since_id: Tweet.order(tweet_time: :asc).last.tweet_id
         })
     end
 
