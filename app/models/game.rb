@@ -33,8 +33,8 @@ class Game < ActiveRecord::Base
         self.round +=1
         self.next_round = self.next_round + (30*60)
         self.save
-        client = Tweet.generate_client
-        client.update("Turn #{self.round} has started!")
+        # client = Tweet.generate_client
+        # client.update("Turn #{self.round} has started!")
       end
     end
     return self
