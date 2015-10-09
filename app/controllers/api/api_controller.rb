@@ -39,7 +39,7 @@ class Api::ApiController < ApplicationController
       @result = {
         "timer" => {
           "round"=>  @game.round,
-          "next_round" =>  @game.next_round.in_time_zone('Pacific Time (US & Canada)'),
+          "next_round" =>  @game.next_round.in_time_zone('Central Time (US & Canada)'),
           "paused" => @data['paused'],
           "control_message" => @game.control_message
         },

@@ -10,7 +10,8 @@ before_action :authenticate_user!, except:[:dashboard]
   # Human Control dashboard to quickly see PR's
   def human_control
     @last_round = (Game.last.round) -1
-    @pr_amounts = PublicRelation.round_pr(@last_round-1)
+    
+    @pr_amounts = PublicRelation.where(round: @last_round).group(:country).sum(:pr_amount)
     @current_round = Game.last.round
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES

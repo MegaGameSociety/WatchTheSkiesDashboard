@@ -28,7 +28,7 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.getData['paused']
       if self.next_round < Time.now
-        Tweet.import
+        # Tweet.import
         puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
         self.next_round = self.next_round + (30*60)

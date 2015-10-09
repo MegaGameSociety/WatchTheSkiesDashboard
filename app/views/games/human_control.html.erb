@@ -8,16 +8,16 @@
       <thead>
         <tr>
           <th >Country</th>
-          <th >Source</th>
           <th >PR Change</th>
+          <th >Details</th>
         </tr>
       </thead>
       <tbody>
         <% @pr_amounts.each do |data, value| %>
           <tr>
-            <td><%= data[0] %></td>
-            <td><%= data[1] %></td>
+            <td><%= data %></td>
             <td><%= value %></td>
+            <td><%= link_to "Details", country_pr_status_path(data) %></td>
           </tr>
         <% end %>
       </tbody>
