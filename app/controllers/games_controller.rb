@@ -129,7 +129,7 @@ before_action :authenticate_user!, except:[:dashboard]
     dateObj = params["game"]
     datetime = Time.new(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i, 
                         dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
-                        dateObj["next_round(5i)"].to_i,0, '-07:00')
+                        dateObj["next_round(5i)"].to_i,0, '-05:00')
     @game.next_round = datetime
     @game.save
     redirect_to admin_control_path
