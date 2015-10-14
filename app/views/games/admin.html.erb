@@ -11,7 +11,7 @@
 
 <h2>Pause/Unpause Game:
 <%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
-  <% if @game.getData['paused'] %>
+  <% if @game.data['paused'] %>
     <i class="glyphicon glyphicon-play"></i>
   <% else %>
     <i class="glyphicon glyphicon-pause"></i>
@@ -20,7 +20,7 @@
 </h2>
 <h2>Toggle Alien Comms:
 <%= link_to toggle_alien_comms_path, method: :post, class: "btn btn-default" do %>
-  <% if @game.getData['alien_comms'] %>
+  <% if @game.data['alien_comms'] %>
     <i class="glyphicon glyphicon-play"></i>
   <% else %>
     <i class="glyphicon glyphicon-pause"></i>
@@ -37,7 +37,7 @@
   <%= f.submit %>
 <% end %>
 <h2>Game is currently 
-    <% if @game.getData['paused'] %>
+    <% if @game.data['paused'] %>
     paused.
   <% else %>
     unpaused.

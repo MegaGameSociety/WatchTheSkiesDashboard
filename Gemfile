@@ -33,15 +33,12 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 end
 
 # JSON for data
 gem 'json'
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 
 gem 'devise', '~> 3.4.0' 
 gem 'rails_12factor', group: :production

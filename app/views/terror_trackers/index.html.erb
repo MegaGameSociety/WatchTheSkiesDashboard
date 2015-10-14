@@ -35,7 +35,7 @@
 <h2> Updating Rioters: </h2>
 <%= form_for(@game, url: rioters_update_path) do |f|%>
     <%= f.label "Rioters:" %> </br>
-    <%= f.number_field :rioters, value: @game.getData['rioters'], :size => "60x5"%></br>
+    <%= f.number_field :rioters, value: @game.data['rioters'], :size => "60x5"%></br>
   <%= f.submit %>
 <% end %>
 

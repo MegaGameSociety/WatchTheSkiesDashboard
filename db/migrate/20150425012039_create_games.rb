@@ -3,7 +3,8 @@ class CreateGames < ActiveRecord::Migration
     create_table :games do |t|
       t.string :name
       t.integer :round
-      t.string :data
+      t.boolean :alien_comm
+      t.json :data
       t.datetime :next_round
       t.timestamps
     end

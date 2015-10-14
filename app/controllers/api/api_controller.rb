@@ -1,7 +1,7 @@
 class Api::ApiController < ApplicationController
   def dashboard
     @game = Game.last().update
-    @data = @game.getData
+    @data = @game.data
     begin
       @global_terror = {
         'activity' => Game.last().activity,

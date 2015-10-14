@@ -16,7 +16,7 @@ g = Game.create(
   data: {
     rioters: 0,
     paused: true,
-    }.to_json
+    }
 )
 
 #An example message for the database. Probably doesn't need to exist in the final version.
@@ -37,6 +37,6 @@ t = TerrorTracker.create(
 
 u = User.create()
 u.email = "wts@wts.com"
-u.password='kevin'
-u.password_confirmation='kevin'
+u.password='swordfish'
+u.password_confirmation='swordfish'
 u.save

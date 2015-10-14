@@ -4,7 +4,7 @@ before_action :authenticate_user!, except:[:dashboard]
   # Main Dashboard for All Players
   def dashboard
     @game = Game.last.update
-    @data = @game.getData
+    @data = @game.data
   end
 
   # Human Control dashboard to quickly see PR's
@@ -70,9 +70,9 @@ before_action :authenticate_user!, except:[:dashboard]
 
   def update_rioters
     @game = Game.last
-    data = @game.getData
+    data = @game.data
     data['rioters'] = params[:game][:rioters]
-    @game.data = data.to_json
+    @game.data = data
     @game.save
     redirect_to terror_trackers_path
   end
@@ -102,13 +102,13 @@ before_action :authenticate_user!, except:[:dashboard]
   # Post
   def toggle_game_status
     @game = Game.last
-    data = @game.getData
+    data = @game.data
     # if game is not paused, then add 5 to clock
     unless data['paused']
       @game.next_round = @game.next_round + 5 * 60
     end
     data['paused'] = !data['paused']
-    @game.data = data.to_json
+    @game.data = data
     @game.save
     redirect_to admin_control_path
   end
@@ -116,9 +116,9 @@ before_action :authenticate_user!, except:[:dashboard]
   # Post
   def toggle_alien_comms
     @game = Game.last
-    data = @game.getData
+    data = @game.data
     data['alien_comms'] = !data['alien_comms']
-    @game.data = data.to_json
+    @game.data = data
     @game.save
     redirect_to admin_control_path
   end
