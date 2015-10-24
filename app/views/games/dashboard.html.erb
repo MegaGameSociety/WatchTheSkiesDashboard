@@ -7,7 +7,7 @@
   <div class="columns">
     <div class="left-column">
       <img src="/assets/mgs-logo.png" class="mgs-logo">
-      <p style="margin-top:-18px; font-size: 10px">See @WatchSkies on Twitter for more news.</p>
+      <p class="twitter">See @WatchSkies on Twitter for more news.</p>
       <div class="countries-container">
         <h3 class="center">Global Economy</h3>
         <table>
@@ -68,7 +68,7 @@
       <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news">
         <h4>{{news_item.title}}</h4>
           <p>{{news_item.content}}</p>
-          <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" 
+          <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}"
             style="max-height:300px" />
           <p class="news">{{news_item.created_at| date:'h:mma'}}</p>
       </div>
