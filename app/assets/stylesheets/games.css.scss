@@ -47,43 +47,49 @@ th {
 // Default Page
 */
 
+// Using nesting here against my better judgement because Scaffold keeps
+// overwriting all of these changes due to the CSS being loaded in alphabetically.
 body.wts-dash {
   background: $background;
   color: black;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
+  line-height: 3.3rem;
   margin: 0px;
   padding: 0px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  line-height: 1.3em;
-  text-transform: uppercase;
-}
-
-h1 { font-size: 5.6rem; line-height: 6.9rem; }
-h2 { font-size: 3.4rem; line-height: 4.7rem; }
-h3 { font-size: 2.5rem; line-height: 3.8rem; }
-h4 { font-size: 2.0rem; line-height: 3.3rem; }
-h5 { font-size: 2.0rem; line-height: 3.3rem; }
-h6 { font-size: 1.2rem; line-height: 2.5rem; }
 
 
-h2, h3 {
-  color: $green;
-}
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    line-height: 1.3em;
+    text-transform: uppercase;
+  }
 
-h4 {
-  color: black;
-  margin-bottom: 0px;
-}
+  // Let's avoid using less than an h4 - Our fonts will be larger since
+  // we're aking a Tablet-First approach.
+  h1 { font-size: 5.6rem; line-height: 6.4rem; }
+  h2 { font-size: 3.6rem; line-height: 4.4rem; }
+  h3 { font-size: 2.8rem; line-height: 3.6rem; }
+  h4 { font-size: 2.5rem; line-height: 3.3rem; }
 
-.center {
-  text-align: center;
-}
+  h2, h3 {
+    color: $green;
+    margin-bottom: 5px;
+  }
 
-p {
-  margin: 0px;
+  h4 {
+    color: black;
+    margin-bottom: 0px;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  p {
+    font-size: 2.5rem;
+    line-height: 3.3rem;
+    margin: 0px;
+  }
 }
 
 .messages {
@@ -115,7 +121,8 @@ p {
   }
 
   .twitter {
-    font-size: 10px;
+    font-size: 1.2rem;
+    line-height: 2.0rem;
     margin-top: -18px;
     margin-left: 20px;
   }
@@ -132,11 +139,14 @@ p {
       }
 
       td {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        padding-bottom: 5px;
         text-align: center;
-      }
 
-      td:first-child {
-        text-align: left;
+        &:first-child {
+          text-align: left;
+        }
       }
 
       .arrow {
@@ -144,10 +154,10 @@ p {
         display: inline-block;
         height: 20px;
         width: 20px;
-      }
 
-      .up   { background-position: 5px   7px; }
-      .down { background-position: 5px -17px; }
+        &.up   { background-position: 5px   7px; }
+        &.down { background-position: 5px -17px; }
+      }
     }
   }
 
@@ -155,12 +165,6 @@ p {
     background: $background-green;
     margin: 40px -40px -20px 80px;
     padding: 20px 20px 50px 20px;
-    font-size: 25px;
-
-    h3 {
-      font-size: 25px;
-      margin-bottom:5px;
-    }
   }
 
   .progress-wrapper {
@@ -169,9 +173,10 @@ p {
 
     .progress-legend {
       color: $light-red;
-      font-size: 30px;
+      font-size: 3.0rem;
+      line-height: 3.8rem;
       position: absolute;
-      top: Calc(50% - 15px);
+      top: Calc(50% - 30px);
       width: 100%;
       z-index: 10;
     }
@@ -198,7 +203,8 @@ p {
     a.news {
       color: $green;
       display: inline-block;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
       font-weight: bold;
       margin-top: 10px;
       text-decoration: none;
@@ -228,18 +234,16 @@ p {
 
   .rioters-container {
     padding: 20px;
-    font-size:16px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
     text-align: center;
 
-    p {
-      font-size:25px;
-    }
+
 
     .activity-container {
       margin-top: 50px;
       p {
-        margin-top:5px;
-        font-size: 25px;
+        margin-top: 5px;
       }
     }
 
