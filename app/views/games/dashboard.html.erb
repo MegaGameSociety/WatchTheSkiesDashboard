@@ -86,6 +86,13 @@
         <h3>Rioters</h3>
         <p>{{rioters}}</p>
 
+        <div class="rioters-count">
+          <span ng-repeat="a in range(rioters) track by $index">
+            <img ng-if="$index<10" src="/assets/riotcount.png" />
+          </span>
+          <span ng-if="rioters>10" class="additional-rioters">+</span>
+        </div>
+
         <div class="activity-container">
           <img class="activity-image" src="/assets/activity.png" />
           <h3>Military Activity</h3>

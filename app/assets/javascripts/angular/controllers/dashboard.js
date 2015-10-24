@@ -64,6 +64,11 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       t = $scope.news.shift();
       $scope.news.push(t);
     }
+
+    $scope.range = function(n) {
+        return new Array(n);
+    };
+
     $scope.getColor = function(value){
     //value from 0 to 1
     var hue=((1-value)*120).toString(10);
@@ -75,4 +80,3 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     }, 3000);
   }
 ]);
-
