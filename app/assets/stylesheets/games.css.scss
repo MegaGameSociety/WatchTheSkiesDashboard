@@ -10,6 +10,7 @@ $background-green: #dbe8db;
 
 $green: #399499;
 $red: #9f0d33;
+$light-red: #FA3E3B;
 
 /*
 // BASE STYLES
@@ -158,11 +159,24 @@ p {
     margin: 40px -40px -20px 80px;
     padding: 20px 20px 50px 20px;
     font-size: 25px;
-    color: red;
-    h3{
+
+    h3 {
       font-size: 25px;
       margin-bottom:5px;
-      color: red;
+    }
+  }
+
+  .progress-wrapper {
+    margin: 20px auto;
+    position: relative;
+
+    .progress-legend {
+      color: $light-red;
+      font-size: 30px;
+      position: absolute;
+      top: Calc(50% - 15px);
+      width: 100%;
+      z-index: 10;
     }
   }
 

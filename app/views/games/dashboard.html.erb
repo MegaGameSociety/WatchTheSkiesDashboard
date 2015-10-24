@@ -31,7 +31,23 @@
 
         <div class="terror-container center">
           <h3>Terror</h3>
-          {{terror}} / 250
+
+          <div class="progress-wrapper">
+            <div class="progress-legend">{{terror}} / 250</div>
+            <div round-progress
+                max="250"
+                current="terror"
+                color="#9f0d33"
+                bgcolor="#399499"
+                radius="100"
+                stroke="20"
+                semi="false"
+                rounded="false"
+                clockwise="true"
+                responsive="false"
+                duration="800"
+                animation="easeInOutQuart"></div>
+          </div>
         </div>
       </div>
     </div>
