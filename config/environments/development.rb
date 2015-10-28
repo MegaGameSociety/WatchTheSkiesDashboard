@@ -34,5 +34,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.time_zone = 'Central Time (US & Canada)'
+  config.time_zone = 'Eastern Time (US & Canada)'
 end
