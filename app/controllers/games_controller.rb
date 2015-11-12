@@ -58,6 +58,7 @@ before_action :authenticate_user!, except:[:dashboard]
   def admin_control
     @game = Game.last
     @time = @game.next_round
+    @time_zone = Time.zone.name
     render 'admin'
   end
 
@@ -127,10 +128,10 @@ before_action :authenticate_user!, except:[:dashboard]
   def update_time
     @game = Game.find(params[:id])
     dateObj = params["game"]
-    # Offset by -04:00 for 'Eastern Time (US & Canada)'
-    datetime = Time.new(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i, 
+    # Assumes local server time is the time and then converts to utc
+    datetime = Time.zone.local(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i, 
                         dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
-                        dateObj["next_round(5i)"].to_i,0, '-04:00')
+                        dateObj["next_round(5i)"].to_i).utc()
     @game.next_round = datetime
     @game.save
     redirect_to admin_control_path

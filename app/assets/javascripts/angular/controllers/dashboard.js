@@ -4,7 +4,7 @@ var dashboardController = angular.module('dashboardController', ['timer']);
 
 dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http', '$interval',
   function($rootScope, $scope, $http, $interval) {
-      $scope.nextRound = new Date();
+      $scope.nextRound = new moment();
       $scope.news = [];
     var apiCall = function() {
       $http.get('/api/dashboard_data').
@@ -44,12 +44,10 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
             $scope.news = result['news']
           }
         }
-        var nextRound = new Date(result['timer']['next_round']);
-        // The next round has changed
-        if($scope.nextRound.getTime() != nextRound.getTime()){
-          $scope.nextRound = nextRound;
-          now = new Date();
-          $scope.roundDuration = Math.abs($scope.nextRound - now)/1000;
+        var nextRound = moment(result['timer']['next_round']);
+        if ($scope.nextRound.valueOf() != nextRound.valueOf()){
+          $scope.nextRound = moment(nextRound);
+          $scope.roundDuration = $scope.nextRound.diff(moment(), 'seconds')
           $scope.$broadcast('timer-set-countdown',  $scope.roundDuration);
           $scope.$broadcast('timer-start');
           $scope.$broadcast('timer-set-end-time',  $scope.roundDuration);
@@ -71,7 +69,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     var hue=((1-value)*120).toString(10);
     return ["hsl(",hue,",75%,50%)"].join("");
 }
-    $interval(function(){$scope.updateNews()}, 5000);
+    $interval(function(){$scope.updateNews()}, 8000);
     $interval(function() {
       $scope.getStatus()
     }, 3000);

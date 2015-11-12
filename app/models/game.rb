@@ -25,7 +25,7 @@ class Game < ActiveRecord::Base
     end
     # Update round # and next round time if necessary
     unless self.data['paused']
-      if self.next_round < Time.now
+      if self.next_round.utc() < Time.now.utc()
         # Tweet.import
         puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
