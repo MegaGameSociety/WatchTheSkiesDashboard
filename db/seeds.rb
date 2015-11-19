@@ -35,6 +35,20 @@ t = TerrorTracker.create(
   round: g.round
   )
 
+# Create some news message stuff
+NewsMessage.create(
+  title: "Stuff happened",
+  content: "Some details here",
+  round: 0,
+  media_url: "http://megagamesociety.com/images/mainlogo.png"
+  )
+
+NewsMessage.create(
+  title: "More stuff happened",
+  content: "Having more details",
+  round: 0,
+  )
+
 u = User.create()
 u.email = "wts@wts.com"
 u.password='swordfish'
