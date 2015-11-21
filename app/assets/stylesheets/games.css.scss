@@ -74,16 +74,7 @@ $light-red: #FA3E3B;
   padding: 20px;
 
   table {
-    width: 100%;
-
-    thead td {
-      font-weight: bold;
-    }
-
     td {
-      font-size: 1.6rem;
-      line-height: 2.4rem;
-      padding-bottom: 5px;
       text-align: center;
 
       &:first-child {

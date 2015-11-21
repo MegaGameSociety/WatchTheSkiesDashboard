@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="admin-controls">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_public_relation_path(@public_relation) %> |
-<%= link_to 'Back', public_relations_path %>
+  <%= link_to 'Edit', edit_public_relation_path(@public_relation), :class => 'button-input' %>
+  <%= link_to 'Back', public_relations_path, :class => 'button-input' %>
+</div>

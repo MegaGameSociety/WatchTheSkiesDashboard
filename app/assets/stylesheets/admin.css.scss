@@ -23,6 +23,10 @@ $light-red: #FA3E3B;
     margin-bottom: 30px;
   }
 
+  h3 {
+    margin-top: 20px;
+  }
+
   section {
     background-color: $background-darktan;
     padding: 20px;
@@ -66,4 +70,25 @@ nav {
     text-decoration: none;
   }
 }
+
+
+
+table.unpr {
+  margin: 10px 0;
+
+  td {
+    padding: 10px;
+  }
+
+  tr {
+    border-bottom: 1px solid #000;
+  }
+
+  tr:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+
 

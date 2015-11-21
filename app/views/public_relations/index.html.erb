@@ -1,37 +1,40 @@
-<h1>Listing Public Relations</h1>
+<div class="admin-controls">
+  <h1>Listing Public Relations</h1>
+  <section>
+    <%= link_to 'New PR Entry', new_public_relation_path, :class => 'button-input' %>
+  </section>
 
-<%= link_to 'New PR Entry', new_public_relation_path, class:"btn btn-default" %>
-<%= render 'layouts/country_pr_menu' %>
+  <%= render 'layouts/country_pr_menu' %>
 
-<h2>Total PR Changes</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th >Round</th>
-      <th >Details</th>
-      <th >Edit</th>
-      <th >Destroy</th>
-      <th >Country</th>
-      <th >Source</th>
-      <th >Amount</th>
-      <th >Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @public_relations.each do |public_relation| %>
-      <tr>
-        <td><%= public_relation.round %></td>
-        <td><%= link_to 'Details', public_relation %></td>
-        <td><%= link_to 'Edit', edit_public_relation_path(public_relation) %></td>
-        <td><%= link_to 'Destroy', public_relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= public_relation.country%></td>
-        <td><%= public_relation.source %></td>
-        <td><%= public_relation.pr_amount %></td>
-        <td><%= public_relation.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+  <h3>Total PR Changes</h3>
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th >Round</th>
+          <th >Details</th>
+          <th >Edit</th>
+          <th >Destroy</th>
+          <th >Country</th>
+          <th >Source</th>
+          <th >Amount</th>
+          <th >Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @public_relations.each do |public_relation| %>
+          <tr>
+            <td><%= public_relation.round %></td>
+            <td><%= link_to 'Details', public_relation %></td>
+            <td><%= link_to 'Edit', edit_public_relation_path(public_relation) %></td>
+            <td><%= link_to 'Destroy', public_relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= public_relation.country%></td>
+            <td><%= public_relation.source %></td>
+            <td><%= public_relation.pr_amount %></td>
+            <td><%= public_relation.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>
