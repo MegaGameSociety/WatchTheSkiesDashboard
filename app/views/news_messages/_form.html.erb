@@ -13,15 +13,15 @@
 
   <div class="actions">
     <%= f.label :title %> </br>
-    <%= f.text_field :title, placeholder:"AP Reports:" %>
+    <%= f.text_field :title, placeholder:"AP Reports:" %><br />
     <%= f.label :content %> </br>
     <%= f.text_area :content, :size => "60x5"%></br>
     <%= f.label :round %> </br>
-    <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> [Default is current round]</br>
+    <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> <span>(Default is current round)</span></br>
     <%= f.label :media_url %> </br>
     <%= f.text_field :media_url %> </br>
-    <p>
-    <table class="table-condensed table-striped table-bordered">
+
+    <table class="unpr">
       <% if @news_message.id.nil? %>
       <tr>
         <td><%= label_tag "Post to Twitter?" %></td>
@@ -36,7 +36,7 @@
         <td><%= f.label "Publish Image?" %></td>
         <td><%= f.check_box :visible_image %></td>
       </tr>
-    </table></p>
+    </table>
     <%= f.submit %>
   </div>
 <% end %>

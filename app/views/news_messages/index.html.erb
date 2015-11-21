@@ -1,88 +1,83 @@
-<h1>Listing News Messages</h1>
-<%= link_to 'New News Message', new_news_message_path, class:"btn btn-default" %>
+<div class="admin">
+  <h1>Listing News Messages</h1>
 
-<div class="well-sml panel panel-default" style="margin: 5px 50% 5px 0px">
-  <div class="panel-heading">
-    <div class="panel-title">Direct Twitter Posting</div>
-  </div>
-  <div class="panel-body">
-    <div class="btn-group" role="group">
-      Posts directly to twitter (be careful when using this).
-      <%= form_tag direct_twitter_post_path, :method => 'post' do %>
+  <section>
+    <%= link_to 'New News Message', new_news_message_path, :class => "button-input" %>
+  </section>
+
+  <h3>Direct Twitter Posting</h3>
+  <section>
+    <p>Posts directly to twitter (be careful when using this).</p>
+    <%= form_tag direct_twitter_post_path, :method => 'post' do %>
       <%= text_field_tag :text, '', size: 50, :placeholder => "ex. Held World Trade Conference" %>
-        <%= submit_tag "Post" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+      <%= submit_tag "Post" %>
+    <% end %>
+  </section>
 
-<div class="well-sml panel panel-default" style="margin: 5px 50% 5px 0px">
-  <div class="panel-heading">
-    <div class="panel-title">Generated Newspapers</div>
-  </div>
-  <div class="panel-body">
-    <div class="btn-group" role="group">
+  <h3>Generated Newspapers</h3>
+  <section>
     <% @papers.each do |paper| %>
-      <%= link_to "#{paper}", paper_path(paper), class: "btn btn-default" %>
+      <%= link_to "#{paper}", paper_path(paper), :class => "button-input" %>
     <% end %>
-    </div>
-  </div>
+  </section>
+
+
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Controls</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Media</th>
+          <th>Paper Publicity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @news_messages.each do |news_message| %>
+          <tr>
+            <td><%= news_message.round %></td>
+            <td class="controls"><%= link_to 'View', news_message, :class => "button-input" %></br>
+              <%= link_to 'Edit', edit_news_message_path(news_message), :class => "button-input" %></br>
+              <%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button-input" %></td>
+            <td><%= news_message.title %></td>
+            <td><%= news_message.content %></td>
+            <td>
+              <% if !news_message.media_url.nil? %>
+                <% if news_message.media_url.length > 0 %>
+                  <%= image_tag news_message.media_url, size: '150' %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <td>Context:
+                  </td>
+                  <td>
+                    <%= link_to toggle_paper_content_path(news_message), method: :patch, :class => "button-input" do %>
+                      <%= "#{news_message.visible_content}" %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Media:</td>
+                  <td>
+                    <%= link_to toggle_paper_media_path(news_message), method: :patch, :class => "button-input" do %>
+                      <%= "#{news_message.visible_image}" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+
+
+
 </div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th >Round</th>
-      <th >Controls</th>
-      <th >Title</th>
-      <th >Content</th>
-      <th >Media</th>
-      <th >Paper Publicity</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @news_messages.each do |news_message| %>
-      <tr>
-        <th ><%= news_message.round %></th>
-        <td><%= link_to 'View', news_message, class:"btn btn-default" %>
-          <%= link_to 'Edit', edit_news_message_path(news_message), class:"btn btn-default" %></br>
-          <%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %></td>
-        <th ><%= news_message.title %></th>
-        <th ><%= news_message.content %></th>
-        <th >
-          <% if !news_message.media_url.nil? %>
-            <% if news_message.media_url.length > 0 %>
-              <%= image_tag news_message.media_url, size: '150' %>
-            <% end %>
-          <% end %>
-        </th>
-        <th>
-          <table>
-            <tr>
-              <td>Context:
-              </td>
-              <td>                  
-                <%= link_to toggle_paper_content_path(news_message), method: :patch, class: "btn btn-default" do %>
-                  <%= "#{news_message.visible_content}" %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td>Media:</td>
-              <td>
-                <%= link_to toggle_paper_media_path(news_message), method: :patch, class: "btn btn-default" do %>
-                  <%= "#{news_message.visible_image}" %>
-                <% end %>
-              </td>
-            </tr>
-          </table>
-
-        </th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-

@@ -6,15 +6,9 @@
     <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
   </head>
-  <body class="wts-dash">
-    <%= render "layouts/footer_navbar" %>
+  <body>
+    <%= yield %>
 
-    <% unless current_page?('/')%>
-      <div class="adminControl">
-        <%= yield %>
-      </div>
-    <% else %>
-      <%= yield %>
-    <% end %>
+    <%= render "layouts/footer_navbar" %>
   </body>
 </html>

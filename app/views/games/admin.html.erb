@@ -1,4 +1,4 @@
-<div class="admin-controls">
+<div class="admin">
   <h1>Administrative Controls</h1>
 
   <h3>Game Controls</h3>
@@ -15,7 +15,7 @@
       </li>
       <li>
         Pause/Unpause Game
-        <%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
+        <%= link_to toggle_game_status_path, method: :post, :class => "button-input" do %>
           <% if @game.data['paused']==true %>
             <i class="glyphicon glyphicon-play"></i>
           <% else %>
@@ -25,7 +25,7 @@
       </li>
       <li>
         Toggle Alien Comms
-        <%= link_to toggle_alien_comms_path, method: :post, class: "btn btn-default" do %>
+        <%= link_to toggle_alien_comms_path, method: :post, :class => "button-input" do %>
           <% if @game.data['alien_comms'] %>
             <i class="glyphicon glyphicon-play"></i>
           <% else %>
@@ -79,7 +79,6 @@
     <b>Warning:</b>
     <p>The following button wipes <em>all</em> the game data.</p>
     <p>It will also may take a little bit of time to run. (Several seconds)</p>
-    <br />
     <%= form_tag reset_game_path, :method => 'post' do %>
       <%= submit_tag "Reset Game" %>
     <% end %>

@@ -1,12 +1,11 @@
-<h1>Listing Terror Tracker Entry</h1>
-<div class="well-sml panel panel-danger" style="margin: 10px">
-  <div class="panel-heading">
-    <div class="panel-title">Enter New Terror Tracker Event</div>
-  </div>
-  <div class="panel-body">
+<div class="admin">
+  <h1>Listing Terror Tracker Entry</h1>
+
+  <h3>Enter New Terror Tracker Event</h3>
+  <section>
     <%= form_for(@terror_tracker) do |f| %>
       <% if @terror_tracker.errors.any? %>
-        <div id="">
+        <div>
           <h2><%= pluralize(@terror_tracker.errors.count, "error") %> prohibited this terror_tracker from being saved:</h2>
 
           <ul>
@@ -22,65 +21,62 @@
         <%= f.text_area :description, :size => "100x2"%></br>
         <%= f.label :values do %>
           <%= f.label :round%>
-          <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round%>
+          <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @current_round%> <br />
           <%= f.label :amount %>
           <%= f.number_field :amount, :in => -100..100, :step => '1' %>
-        <% end %></br>
+        <% end %>
         <%= f.submit %>
       </div>
+     <% end %>
+  </section>
+
+  <h3>Update Rioters</h3>
+  <section>
+    <%= form_for(@game, url: rioters_update_path) do |f|%>
+      <%= f.label "Rioters:" %> </br>
+      <%= f.number_field :rioters, value: @game.data['rioters'], :size => "60x5"%>
+      <%= f.submit %>
     <% end %>
-  </div>
-</div>
+  </section>
 
-<h2> Updating Rioters: </h2>
-<%= form_for(@game, url: rioters_update_path) do |f|%>
-    <%= f.label "Rioters:" %> </br>
-    <%= f.number_field :rioters, value: @game.data['rioters'], :size => "60x5"%></br>
-  <%= f.submit %>
-<% end %>
-
-<div class="well-sml panel panel-warning" style="margin: 10px">
-  <div class="panel-heading">
-    <div class="panel-title">Enter Current War Activity</div>
-  </div>
-  <div class="panel-body">
-    <%= form_for(@game, url: activity_update_path) do |f|%>
+  <h3>Enter Current War Activity</h3>
+  <section>
+     <%= form_for(@game, url: activity_update_path) do |f|%>
       Next Round:
         <%= f.label "Activity Message" %> </br>
         <p>Denotes activity in the Military Room</p>
         <%= f.text_field :activity, value: @game.activity, placeholder:"Saucers shot down over Norway. Heavy casualties.", :size => "60x5"%></br>
       <%= f.submit %>
     <% end %>
-  </div>
-</div>
+  </section>
 
-<h2>Total Terror: <%= @tcount %></h2>
- <div class="table-responsive"> 
-    <table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th >Round</th>
-      <th >Amount</th>
-      <th >Description</th>
-      <th >Details</th>
-      <th >Edit</th>
-      <th >Destroy</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @terror_trackers.each_with_index do |terror_tracker, index| %>
-      <tr>
-        <td><%= index+1 %></td>
-        <td><%= terror_tracker.round %></td>
-        <td><%= terror_tracker.amount %></td>
-        <td><%= terror_tracker.description %></td>
-        <td><%= link_to 'Details', terror_tracker %></td>
-        <td><%= link_to 'Edit', edit_terror_tracker_path(terror_tracker) %></td>
-        <td><%= link_to 'Destroy', terror_tracker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h3>Total Terror: <%= @count %></h3>
+  <section>
+     <table class="unpr">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th >Round</th>
+          <th >Amount</th>
+          <th >Description</th>
+          <th >Details</th>
+          <th >Edit</th>
+          <th >Destroy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @terror_trackers.each_with_index do |terror_tracker, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= terror_tracker.round %></td>
+            <td><%= terror_tracker.amount %></td>
+            <td><%= terror_tracker.description %></td>
+            <td><%= link_to 'Details', terror_tracker, :class => "button-input" %></td>
+            <td><%= link_to 'Edit', edit_terror_tracker_path(terror_tracker), :class => "button-input" %></td>
+            <td><%= link_to 'Destroy', terror_tracker, method: :delete, :class => "button-input", data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 </div>

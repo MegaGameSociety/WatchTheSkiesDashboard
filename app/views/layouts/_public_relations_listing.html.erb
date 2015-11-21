@@ -17,9 +17,9 @@
       <% @public_relations.each do |public_relation| %>
         <tr>
           <td><%= public_relation.round %></td>
-          <td><%= link_to 'Details', public_relation %></td>
-          <td><%= link_to 'Edit', edit_public_relation_path(public_relation) %></td>
-          <td><%= link_to 'Destroy', public_relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Details', public_relation, :class => "button-input" %></td>
+          <td><%= link_to 'Edit', edit_public_relation_path(public_relation), :class => "button-input" %></td>
+          <td><%= link_to 'Destroy', public_relation, method: :delete, :class => "button-input", data: { confirm: 'Are you sure?' } %></td>
           <td><%= public_relation.country%></td>
           <td><%= public_relation.source %></td>
           <td><%= public_relation.pr_amount %></td>

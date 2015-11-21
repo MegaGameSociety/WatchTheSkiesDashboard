@@ -1,5 +1,8 @@
-<h1>New Terror Tracker</h1>
+<div class="admin">
+  <h1>New Terror Tracker</h1>
+  <section>
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', terror_trackers_path %>
+    <%= link_to 'Back', terror_trackers_path, :class => 'button-input' %>
+  </section>
+</div>

@@ -1,94 +1,99 @@
-<h2 style="color:red">Currently disabled.</h2>
-<%= link_to import_tweets_path, method: :post, class: "btn btn-default" do %>
-  Import Tweets
-    <% end %>
-<%= link_to export_tweets_path, method: :post, class: "btn btn-default" do %>
-    Export Tweets
-  <% end %>
+<div class="admin">
+  <h1>Listing Tweets</h1>
 
-<%= link_to 'New Tweet Entry', new_tweet_path, class: "btn btn-default" %>
+  <h3 class="error">Currently Disabled</h3>
 
-<h2>Listing Unpublished Tweets</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Edit</th>
-      <th>Destroy</th>
-      <th>Twitter Name</th>
-      <th>ID</th>
-      <th>Text</th>
-      <th>Media URL</th>
-      <th>Is Public?</th>
-      <th>Is Published?</th>
-      <th>Tweet Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @private_tweets.each do |tweet| %>
-      <tr>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <th ><%= tweet.twitter_name %></th>
-        <th ><%= tweet.tweet_id %></th>
-        <th ><%= tweet.text %></th>
-        <th >
-          <% if !tweet.media_url.nil? %>
-            <% if tweet.media_url.length > 0 %>
-              <%= image_tag tweet.media_url, size: '150' %>
-            <% end %>
-          <% end %>
-        </th>
-        <th ><%= tweet.is_public %> </br>
-        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %> Toggle Public
-          <% end %>
-        </th>
-        <th ><%= tweet.is_published %></th>
-        <th ><%= tweet.tweet_time %></th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <section>
+    <%= link_to "Import Tweets", import_tweets_path, method: :post, :class => "button-input" %>
+    <%= link_to "Export Tweets", export_tweets_path, method: :post, :class => "button-input" %>
+    <%= link_to 'New Tweet Entry', new_tweet_path, :class => "button-input" %>
+  </section>
+
+  <h3>Listing Unpublished Tweets</h3>
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th>Edit</th>
+          <th>Destroy</th>
+          <th>Twitter Name</th>
+          <th>ID</th>
+          <th>Text</th>
+          <th>Media URL</th>
+          <th>Is Public?</th>
+          <th>Is Published?</th>
+          <th>Tweet Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @private_tweets.each do |tweet| %>
+          <tr>
+            <td><%= link_to 'Edit', edit_tweet_path(tweet), :class => 'button-input' %></td>
+            <td><%= link_to 'Destroy', tweet, method: :delete, :class => 'button-input', data: { confirm: 'Are you sure?' } %></td>
+            <td><%= tweet.twitter_name %></td>
+            <td><%= tweet.tweet_id %></td>
+            <td><%= tweet.text %></td>
+            <td>
+              <% if !tweet.media_url.nil? %>
+                <% if tweet.media_url.length > 0 %>
+                  <%= image_tag tweet.media_url, size: '150' %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= tweet.is_public %> </br>
+              <%= link_to "Toggle Public", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
+            </td>
+            <td><%= tweet.is_published %></td>
+            <td><%= tweet.tweet_time %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <h3>Listing Published Tweets</h3>
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th>Edit</th>
+          <th>Destroy</th>
+          <th>Twitter Name</th>
+          <th>ID</th>
+          <th>Text</th>
+          <th>Media URL</th>
+          <th>Is Public?</th>
+          <th>Is Published?</th>
+          <th>Tweet Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @public_tweets.each do |tweet| %>
+          <tr>
+            <td><%= link_to 'Edit', edit_tweet_path(tweet), :class => 'button-input' %></td>
+            <td><%= link_to 'Destroy', tweet, method: :delete, :class => 'button-input', data: { confirm: 'Are you sure?' } %></td>
+            <td><%= tweet.twitter_name %></td>
+            <td><%= tweet.tweet_id %></td>
+            <td><%= tweet.text %></td>
+            <td>
+              <% if !tweet.media_url.nil? %>
+                <% if tweet.media_url.length > 0 %>
+                  <%= image_tag tweet.media_url, size: '150' %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= tweet.is_public %> </br>
+              <%= link_to "Toggle Public", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
+            </td>
+            <td><%= tweet.is_published %></td>
+            <td><%= tweet.tweet_time %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
 
-<h2>Listing Published Tweets</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Edit</th>
-      <th>Destroy</th>
-      <th>Twitter Name</th>
-      <th>ID</th>
-      <th>Text</th>
-      <th>Media URL</th>
-      <th>Is Public?</th>
-      <th>Is Published?</th>
-      <th>Tweet Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @public_tweets.each do |tweet| %>
-      <tr>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <th ><%= tweet.twitter_name %></th>
-        <th ><%= tweet.tweet_id %></th>
-        <th ><%= tweet.text %></th>
-        <th >
-          <% if !tweet.media_url.nil? %>
-            <% if tweet.media_url.length > 0 %>
-              <%= image_tag tweet.media_url, size: '150' %>
-            <% end %>
-          <% end %>
-        </th>
-        <th ><%= tweet.is_public %> </br>
-        <%= link_to tweet_toggle_public_path(tweet), method: :patch, class: "btn btn-default" do %>
-            <%= submit_tag "Toggle Public" %>
-          <% end %>
-        </th>
-        <th ><%= tweet.is_published %></th>
-        <th ><%= tweet.tweet_time %></th>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  </section>
+</div>
