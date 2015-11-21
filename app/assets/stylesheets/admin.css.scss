@@ -19,7 +19,7 @@ $light-red: #FA3E3B;
          ADMIN CP SPECIFIC OVERRIDES
    ===================================== */
 
-.admin {
+#admin {
   padding: 30px;
 
   h1 {
@@ -67,10 +67,8 @@ nav {
   }
 
   a {
-    display: inline-block;
     font-size: 2.0rem;
     line-height: 2.8rem;
     padding: 5px 8px;
-    text-decoration: none;
   }
 }

@@ -13,6 +13,23 @@ $light-red: #FA3E3B;
 
 
 /* =====================================
+                GENERAL
+   ===================================== */
+
+#control-messages {
+  background: $background-blue;
+  color: white;
+
+  p {
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+}
+
+
+/* =====================================
                 COLUMNS
    ===================================== */
 
@@ -28,7 +45,7 @@ $light-red: #FA3E3B;
   vertical-align: top;
   width: 25%;
 
-  .mgs-logo {
+  #mgs-logo {
     display: block;
     margin: 30px auto 50px;
   }
@@ -47,7 +64,7 @@ $light-red: #FA3E3B;
   vertical-align: top;
   width: 50%;
 
-  .round-container {
+  #round-container {
     text-align: center;
 
     h3.paused {
@@ -68,7 +85,7 @@ $light-red: #FA3E3B;
                 COUNTRIES
    ===================================== */
 
-.countries-container {
+#countries-container {
   background: $background-darktan;
   padding: 20px;
 
@@ -101,10 +118,11 @@ $light-red: #FA3E3B;
               TERROR TRACKER
    ===================================== */
 
-.terror-container {
+#terror-container {
   background: $background-green;
   margin: 40px -40px -20px 80px;
   padding: 20px 20px 50px 20px;
+  text-align: center;
 }
 
 .progress-wrapper {
@@ -162,31 +180,36 @@ $light-red: #FA3E3B;
                   RIOTS
    ===================================== */
 
-.riot-top {
+#riot-top {
   background-color: $background;
   height: 175px;
   width: 100%;
 }
 
-.riot-image {
+#riot-image,
+#activity-image {
   display: block;
-  margin: -150px auto 0px;
+  margin: 0 auto;
 }
 
-.rioters-container {
+#riot-image {
+  margin-top: -150px;
+}
+
+#activity-container {
+  margin-top: 50px;
+  p {
+    margin-top: 5px;
+  }
+}
+
+#rioters-container {
   padding: 20px;
   font-size: 1.6rem;
   line-height: 2.4rem;
   text-align: center;
 
-  .activity-container {
-    margin-top: 50px;
-    p {
-      margin-top: 5px;
-    }
-  }
-
-  .rioters-count {
+  #rioters-count {
     margin: 20px auto;
     text-align: left;
     width: 75%;
@@ -194,10 +217,5 @@ $light-red: #FA3E3B;
     img {
       margin: 3px 0px;
     }
-  }
-
-  .activity-image {
-    display: block;
-    margin: 0 auto;
   }
 }

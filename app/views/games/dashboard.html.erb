@@ -1,13 +1,13 @@
 <div ng-app='dashboardApp' ng-controller="DashboardCtrl">
-  <div class="messages">
+  <div id="control-messages">
     <p>{{controlMessage}}</p>
   </div
 
   <div class="columns">
     <div class="left-column">
-      <img src="/assets/mgs-logo.png" class="mgs-logo">
+      <img src="/assets/mgs-logo.png" id="mgs-logo">
       <p class="twitter">See @WatchSkies on Twitter for more news.</p>
-      <div class="countries-container">
+      <div id="countries-container">
         <h3 class="center">Global Economy</h3>
         <table>
           <thead>
@@ -28,7 +28,7 @@
           </tbody>
         </table>
 
-        <div class="terror-container center">
+        <div id="terror-container">
           <h3>Terror</h3>
 
           <div class="progress-wrapper">
@@ -52,8 +52,8 @@
     </div>
 
     <div class="centre-column">
-      <div class="round-container">
-        <h2 class="counter" ng-if="!paused">
+      <div id="round-container">
+        <h2 ng-if="!paused">
           <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
         </h2>
 
@@ -79,24 +79,24 @@
     </div>
 
     <div class="right-column">
-      <div class="riot-top"></div>
-      <img class="riot-image" src="/assets/riot.png" />
+      <div id="riot-top"></div>
+      <img id="riot-image" src="/assets/riot.png" />
 
-      <div class="rioters-container">
+      <div id="rioters-container">
         <h3>Rioters</h3>
         <p>{{rioters}}</p>
 
-        <div class="rioters-count">
+        <div id="rioters-count">
           <span ng-repeat="a in range(rioters) track by $index">
             <img ng-if="$index<10" src="/assets/riotcount.png" />
           </span>
           <span ng-if="rioters>10" class="additional-rioters">+</span>
         </div>
 
-        <div class="activity-container">
-          <img class="activity-image" src="/assets/activity.png" />
+        <div id="activity-container">
+          <img id="activity-image" src="/assets/activity.png" />
           <h3>Military Activity</h3>
-            <p>{{activity}}</p>
+          <p>{{activity}}</p>
         </div>
       </div>
     </div>

@@ -68,15 +68,20 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  background: $background;
+  color: #000000;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+  margin: 0;
+  padding: 0 0 50px 0;
+}
+
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 .clearfix:before,
@@ -94,17 +99,6 @@ table {
               GENERAL PAGE
    ===================================== */
 
-body {
-  background: $background;
-  color: #000000;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 2.5rem;
-  line-height: 3.3rem;
-  margin: 0;
-  padding: 0 0 50px 0;
-}
-
-
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   margin: 0;
@@ -113,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // Let's avoid using less than an h4 - Our fonts will be larger since
-// we're aking a Tablet-First approach.
+// we're taking a Tablet-First approach.
 h1 { font-size: 5.6rem; line-height: 6.4rem; }
 h2 { font-size: 3.6rem; line-height: 4.4rem; }
 h3 { font-size: 2.8rem; line-height: 3.6rem; }
@@ -145,18 +139,6 @@ p {
 
 .alien {
   font-family: Vorlon;
-}
-
-.messages {
-  background: $background-blue;
-  color: white;
-
-  p {
-    margin-bottom: 20px;
-    margin-top: 0;
-    padding: 10px;
-    text-transform: uppercase;
-  }
 }
 
 /* =====================================
@@ -208,6 +190,7 @@ p {
 
 a, a:visited {
   color: #000;
+  display: inline-block;
   text-decoration: none;
 }
 
@@ -297,6 +280,8 @@ textarea {
    ===================================== */
 
 table {
+  border-collapse: collapse;
+  border-spacing: 0;
   font-size: 1.6rem;
   line-height: 2.4rem;
   margin: 10px 0;
