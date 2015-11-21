@@ -30,6 +30,16 @@
   url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
+@font-face {
+  font-family: "Vorlon";
+  src: url("../assets/VORLON.eot") format("eot");
+  src: url("../assets/VORLON.woff") format("woff"),
+  url("../assets/VORLON.ttf") format("truetype"),
+  font-url("../assets/VORLON.svg#Vorlon") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
 /* =====================================
                 VARIABLES
    ===================================== */
