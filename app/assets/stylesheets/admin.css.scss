@@ -1,8 +1,7 @@
-
-
 /* =====================================
                 VARIABLES
    ===================================== */
+
 $background: #ffffe9;
 $background-blue: #94b3c4;
 $background-seafoam: #d3e3d8;
@@ -16,7 +15,11 @@ $red: #9f0d33;
 $light-red: #FA3E3B;
 
 
-.admin-controls {
+/* =====================================
+         ADMIN CP SPECIFIC OVERRIDES
+   ===================================== */
+
+.admin {
   padding: 30px;
 
   h1 {
@@ -37,6 +40,7 @@ $light-red: #FA3E3B;
     margin-bottom: 20px;
   }
 }
+
 
 /* =====================================
              BOTTOM NAVIGATION
@@ -70,25 +74,3 @@ nav {
     text-decoration: none;
   }
 }
-
-
-
-table.unpr {
-  margin: 10px 0;
-
-  td {
-    padding: 10px;
-  }
-
-  tr {
-    border-bottom: 1px solid #000;
-  }
-
-  tr:last-child {
-    border-bottom: 0;
-  }
-}
-
-
-
-

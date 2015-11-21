@@ -30,11 +30,10 @@
   url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 
-
-
 /* =====================================
                 VARIABLES
    ===================================== */
+
 $background: #ffffe9;
 $background-blue: #94b3c4;
 $background-seafoam: #d3e3d8;
@@ -70,18 +69,25 @@ table {
   border-spacing: 0;
 }
 
-td,
-th {
-  padding: 0;
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
 }
+
+.clearfix:after {
+  clear: both;
+}
+
 
 /* =====================================
               GENERAL PAGE
    ===================================== */
 
-body.wts-dash {
+body {
   background: $background;
-  color: black;
+  color: #000000;
+  font-family: verdana, arial, helvetica, sans-serif;
   font-size: 2.5rem;
   line-height: 3.3rem;
   margin: 0;
@@ -120,7 +126,11 @@ h4 {
 p, ul {
   font-size: 2.5rem;
   line-height: 3.3rem;
-  margin: 0px;
+  margin: 0;
+}
+
+p {
+  margin: 15px 0;
 }
 
 .alien {
@@ -133,8 +143,52 @@ p, ul {
 
   p {
     margin-bottom: 20px;
+    margin-top: 0;
     padding: 10px;
     text-transform: uppercase;
+  }
+}
+
+/* =====================================
+             ERROR HANDLING
+   ===================================== */
+
+.error {
+  color: $red;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: $red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid $red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: $red;
+    color: #ffffff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
   }
 }
 
@@ -142,9 +196,9 @@ p, ul {
           LINKS, BUTTONS, INPUTS
    ===================================== */
 
-
 a, a:visited {
   color: #000;
+  text-decoration: none;
 }
 
 a:hover {
@@ -153,6 +207,12 @@ a:hover {
   text-decoration: none;
 }
 
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
 
 select,
 input {
@@ -164,16 +224,11 @@ input {
   padding: 0 20px;
 }
 
-label {
-  display: inline-block;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 5px;
-}
-
 input[type="submit"] {
   cursor: pointer;
+  display: block;
   font-style: italic;
+  margin-top: 20px;
 }
 
 input[type="submit"]:hover {
@@ -182,6 +237,11 @@ input[type="submit"]:hover {
 }
 
 textarea {
+  background-color: #ffffff;
+  border: 1px solid #ebebeb;
+  color: #000;
+  font-size: 1.6rem;
+  padding: 5px;
   resize: vertical;
   width: 100%;
 }
@@ -195,26 +255,14 @@ textarea {
   font-size: 2rem;
   height: 40px;
   line-height: 3.8rem;
+  margin: 5px 0;
   padding: 0 20px;
 }
 
 
-
-.btn {
-  background: #FFF;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: normal;
-  font-size: 1.4rem;
-  line-height: 2.0rem;
-  margin: 0;
-  padding: 6px 12px;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-}
+/* =====================================
+            PAUSE / PLAY ICONS
+   ===================================== */
 
 .glyphicon {
   position: relative;
@@ -234,25 +282,74 @@ textarea {
 .glyphicon-stop:before  { content: "\e074"; }
 
 
-
-
+/* =====================================
+              TABLE DEFAULTS
+   ===================================== */
 
 table {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin: 10px 0;
   width: 100%;
+
+  th {
+    padding: 0 10px;
+    text-align: left;
+  }
 
   thead td {
     font-weight: bold;
   }
 
+  tr {
+    border-bottom: 1px solid #000;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
   td {
     font-size: 1.6rem;
     line-height: 2.4rem;
-    padding-bottom: 5px;
+    padding: 10px;
     vertical-align: middle;
 
     label {
       margin: 0;
     }
   }
+
+  .controls {
+    .button-input {
+      margin: 5px 0;
+      width: 105px;
+    }
+  }
+
+  .button-input {
+    font-size: 1.6rem;
+    margin: 0;
+  }
 }
 
+
+/* =====================================
+                 COLUMNS
+   ===================================== */
+
+.half-width {
+  display: inline-block;
+  float: left;
+  margin: 0 20px;
+  width: calc(50% - 40px);
+
+  h3 {
+    display: none;
+  }
+}
+
+h3 .half-width {
+  margin: 0;
+  width: 50%;
+}
