@@ -1,62 +1,87 @@
-<h1>Administrative Controls</h1>
+<div class="admin-controls">
+  <h1>Administrative Controls</h1>
 
-<h2> Update Control's message to players: </h2>
-<%= form_for(@game, url: alert_update_path) do |f|%>
-  Next Round:
-    <%= f.label "Update Message" %> </br>
-    <%= f.text_field :control_message, value: @game.control_message, :size => "60x5"%></br>
-  <%= f.submit %>
-<% end %>
-</br>
+  <h3>Game Controls</h3>
+  <section>
+    <ul>
+      <li>
+        <b>Update Control's message to players:</b>
+        <%= form_for(@game, url: alert_update_path) do |f|%>
+          Next Round:
+          <%= f.label "Update Message" %> </br>
+          <%= f.text_field :control_message, value: @game.control_message, :size => "60x5"%>
+          <%= f.submit %>
+        <% end %>
+      </li>
+      <li>
+        Pause/Unpause Game
+        <%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
+          <% if @game.data['paused']==true %>
+            <i class="glyphicon glyphicon-play"></i>
+          <% else %>
+            <i class="glyphicon glyphicon-pause"></i>
+          <% end %>
+        <% end %>
+      </li>
+      <li>
+        Toggle Alien Comms
+        <%= link_to toggle_alien_comms_path, method: :post, class: "btn btn-default" do %>
+          <% if @game.data['alien_comms'] %>
+            <i class="glyphicon glyphicon-play"></i>
+          <% else %>
+            <i class="glyphicon glyphicon-pause"></i>
+          <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </section>
 
-<h2>Pause/Unpause Game:
-<%= link_to toggle_game_status_path, method: :post, class: "btn btn-default" do %>
-  <% if @game.data['paused']==true %>
-    <i class="glyphicon glyphicon-play"></i>
-  <% else %>
-    <i class="glyphicon glyphicon-pause"></i>
-  <% end %>
-<% end %>
-</h2>
-<h2>Toggle Alien Comms:
-<%= link_to toggle_alien_comms_path, method: :post, class: "btn btn-default" do %>
-  <% if @game.data['alien_comms'] %>
-    <i class="glyphicon glyphicon-play"></i>
-  <% else %>
-    <i class="glyphicon glyphicon-pause"></i>
-  <% end %>
-<% end %>
-</h2>
-<h2>Set Next Time</h2>
-<p>Current time is: <%= @time %></p>
-<%= form_for(@game, url: update_time_path(@game)) do |f|%>
-  <%= Time.use_zone(@time_zone) do %>
-  <%= f.datetime_select(:next_round, :ampm => true) %>
-  <% end %>
+  <h3>Advanced Controls</h3>
+  <section>
+    <ul>
+      <li><p>Current time is: <%= @time %></p>
+        <%= form_for(@game, url: update_time_path(@game)) do |f|%>
+          <%= Time.use_zone(@time_zone) do %>
+          <%= f.datetime_select(:next_round, :ampm => true) %>
+          <% end %>
 
-  <%= f.submit %>
-<% end %>
-<h2>Game is currently 
-    <% if @game.data['paused'] %>
-    paused.
-  <% else %>
-    unpaused.
-  <% end %>
-</h2>
-<p>If you pause the game. 5 minutes automatically is added to the clock.  Please manually update the clock if you need more time otherwise the round will switch to the next one if you unpause 5 minutes later.</p>
+          <%= f.submit %>
+        <% end %>
+      </li>
+      <li>
+        Game is currently
+        <% if @game.data['paused'] %>
+          <b>paused.</b>
+        <% else %>
+          <b>unpaused.</b>
+        <% end %>
+        <p>
+          If you pause the game. 5 minutes automatically is added to the
+          clock. Please manually update the clock if you need more time
+          otherwise the round will switch to the next one if you unpause 5
+          minutes later.
+        </p>
+      </li>
+      <li>
+        <b>Set Round</b>
+        <p>Current round is <%= @game.round %></p>
+        <%= form_for(@game, url: round_update_path) do |f|%>
+            <%= f.label "Update Round" %>
+            <%= f.number_field :round, value: @game.round, :in => 0..15, :step => '1'%>
+          <%= f.submit %>
+        <% end %>
+      </li>
+    </ul>
+  </section>
 
-<h2>Set Round</h2>
-<p>Current round is <%= @game.round %></p>
-<%= form_for(@game, url: round_update_path) do |f|%>
-    <%= f.label "Update Round" %> </br>
-    <%= f.number_field :round, value: @game.round, :in => 0..15, :step => '1'%></br>
-  <%= f.submit %>
-<% end %>
-
-<div class="light well">
-   <h2>Warning: The following button wipes <em>all</em> the game data.</h2>
-   <h3>It will also may take a little bit of time to run. (Several seconds)</h3>
+  <h3>Reset</h3>
+  <section>
+    <b>Warning:</b>
+    <p>The following button wipes <em>all</em> the game data.</p>
+    <p>It will also may take a little bit of time to run. (Several seconds)</p>
+    <br />
     <%= form_tag reset_game_path, :method => 'post' do %>
       <%= submit_tag "Reset Game" %>
     <% end %>
+  </section>
 </div>

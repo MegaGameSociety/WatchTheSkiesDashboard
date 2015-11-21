@@ -1,7 +1,7 @@
 
-/*
-// VARIABLES
-*/
+/* =====================================
+                VARIABLES
+   ===================================== */
 $background: #ffffe9;
 $background-blue: #94b3c4;
 $background-seafoam: #d3e3d8;
@@ -12,96 +12,10 @@ $green: #399499;
 $red: #9f0d33;
 $light-red: #FA3E3B;
 
-/*
-// BASE STYLES
-*/
-html {
-  font-size: 62.5%;
-  line-height: 1.4;
-  -webkit-font-smoothing: antialiased;
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.alien{
-  font-family: Vorlon !important;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-td,
-th {
-  padding: 0;
-}
-
-/*
-// Default Page
-*/
-
-// Using nesting here against my better judgement because Scaffold keeps
-// overwriting all of these changes due to the CSS being loaded in alphabetically.
-body.wts-dash {
-  background: $background;
-  color: black;
-  font-size: 2.5rem;
-  line-height: 3.3rem;
-  margin: 0px;
-  padding: 0px;
-
-
-  h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    line-height: 1.3em;
-    text-transform: uppercase;
-  }
-
-  // Let's avoid using less than an h4 - Our fonts will be larger since
-  // we're aking a Tablet-First approach.
-  h1 { font-size: 5.6rem; line-height: 6.4rem; }
-  h2 { font-size: 3.6rem; line-height: 4.4rem; }
-  h3 { font-size: 2.8rem; line-height: 3.6rem; }
-  h4 { font-size: 2.5rem; line-height: 3.3rem; }
-
-  h2, h3 {
-    color: $green;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    color: black;
-    margin-bottom: 0px;
-  }
-
-  .center {
-    text-align: center;
-  }
-
-  p {
-    font-size: 2.5rem;
-    line-height: 3.3rem;
-    margin: 0px;
-  }
-}
-
-.messages {
-  background: $background-blue;
-  color: white;
-
-  p {
-    margin-bottom: 20px;
-    padding: 10px;
-    text-transform: uppercase;
-  }
-}
+/* =====================================
+                COLUMNS
+   ===================================== */
 
 .columns {
   display: table;
@@ -126,66 +40,11 @@ body.wts-dash {
     margin-top: -18px;
     margin-left: 20px;
   }
-
-  .countries-container {
-    background: $background-darktan;
-    padding: 20px;
-
-    table {
-      width: 100%;
-
-      thead td {
-        font-weight: bold;
-      }
-
-      td {
-        font-size: 1.6rem;
-        line-height: 2.4rem;
-        padding-bottom: 5px;
-        text-align: center;
-
-        &:first-child {
-          text-align: left;
-        }
-      }
-
-      .arrow {
-        background: url('/assets/arrows.png') 0px 0px no-repeat;
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-
-        &.up   { background-position: 5px   7px; }
-        &.down { background-position: 5px -17px; }
-      }
-    }
-  }
-
-  .terror-container {
-    background: $background-green;
-    margin: 40px -40px -20px 80px;
-    padding: 20px 20px 50px 20px;
-  }
-
-  .progress-wrapper {
-    margin: 20px auto;
-    position: relative;
-
-    .progress-legend {
-      color: $light-red;
-      font-size: 3.0rem;
-      line-height: 3.8rem;
-      position: absolute;
-      top: Calc(50% - 30px);
-      width: 100%;
-      z-index: 10;
-    }
-  }
-
 }
 
 .centre-column {
   display: table-cell;
+  padding-right: 30px;
   vertical-align: top;
   width: 50%;
 
@@ -196,71 +55,156 @@ body.wts-dash {
       color: $red;
     }
   }
-
-  .news-container {
-    margin-bottom: 40px;
-
-    a.news {
-      color: $green;
-      display: inline-block;
-      font-size: 1.6rem;
-      line-height: 2.4rem;
-      font-weight: bold;
-      margin-top: 10px;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
-  }
 }
-
-
 
 .right-column {
   background-color: $background-seafoam;
   display: table-cell;
   vertical-align: top;
   width: 25%;
+}
 
-  .riot-top {
-    background-color: $background;
-    height: 175px;
+
+/* =====================================
+                COUNTRIES
+   ===================================== */
+
+.countries-container {
+  background: $background-darktan;
+  padding: 20px;
+
+  table {
+    width: 100%;
+
+    thead td {
+      font-weight: bold;
+    }
+
+    td {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      padding-bottom: 5px;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+    }
+
+    .arrow {
+      background: url('/assets/arrows.png') 0px 0px no-repeat;
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+
+      &.up   { background-position: 5px   7px; }
+      &.down { background-position: 5px -17px; }
+    }
+  }
+}
+
+
+/* =====================================
+              TERROR TRACKER
+   ===================================== */
+
+.terror-container {
+  background: $background-green;
+  margin: 40px -40px -20px 80px;
+  padding: 20px 20px 50px 20px;
+}
+
+.progress-wrapper {
+  margin: 20px auto;
+  position: relative;
+
+  .progress-legend {
+    color: $light-red;
+    font-size: 3.0rem;
+    line-height: 3.8rem;
+    position: absolute;
+    top: Calc(50% - 30px);
+    width: 100%;
+    z-index: 10;
+  }
+}
+
+/* =====================================
+                  NEWS
+   ===================================== */
+
+.news-container {
+  display: none;
+  margin-bottom: 40px;
+
+  &.active {
+    display: block;
+  }
+
+  .date {
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 2.4rem;
+  }
+
+  img {
+    display: block;
+    max-height: 300px;
     width: 100%;
   }
 
-  .riot-image {
-    display: block;
-    margin: -150px auto 0px;
-  }
-
-  .rioters-container {
-    padding: 20px;
+  a {
+    color: $green;
+    display: inline-block;
     font-size: 1.6rem;
     line-height: 2.4rem;
-    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}
 
+/* =====================================
+                  RIOTS
+   ===================================== */
 
+.riot-top {
+  background-color: $background;
+  height: 175px;
+  width: 100%;
+}
 
-    .activity-container {
-      margin-top: 50px;
-      p {
-        margin-top: 5px;
-      }
-    }
+.riot-image {
+  display: block;
+  margin: -150px auto 0px;
+}
 
-    .rioters-count {
-      margin: 20px auto;
-      text-align: left;
-      width: 75%;
+.rioters-container {
+  padding: 20px;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  text-align: center;
 
-      img {
-        margin: 3px 0px;
-      }
-    }
-
-    .activity-image {
-      display: block;
-      margin: 0 auto;
+  .activity-container {
+    margin-top: 50px;
+    p {
+      margin-top: 5px;
     }
   }
 
+  .rioters-count {
+    margin: 20px auto;
+    text-align: left;
+    width: 75%;
+
+    img {
+      margin: 3px 0px;
+    }
+  }
+
+  .activity-image {
+    display: block;
+    margin: 0 auto;
+  }
 }

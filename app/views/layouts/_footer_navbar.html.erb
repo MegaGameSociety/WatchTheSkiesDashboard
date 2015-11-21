@@ -1,16 +1,14 @@
 <% unless current_page?('/')%>
-<nav class="navbar-inverse navbar-fixed-bottom noPrint">
-<div class="container-fluid">
-  <ul class="nav nav-pills ">
+<nav>
+  <ul>
     <li><%= link_to 'Dashboard', root_path , method: :get %></li>
     <li><%= link_to 'United Nations', un_dashboard_path %></li>
     <li><%= link_to 'Terror Tracker controls', terror_trackers_path %></li>
     <li><%= link_to 'Human Controls', human_control_path %></li>
-    <li><%= link_to 'PR controls', public_relations_path %></li>   
-    <li><%= link_to 'News controls', news_messages_path %></li>   
-    <li><%= link_to 'Tweets controls', tweets_path %></li>   
-    <li><%= link_to 'Admin controls', admin_control_path %></li>   
+    <li><%= link_to 'PR controls', public_relations_path %></li>
+    <li><%= link_to 'News controls', news_messages_path %></li>
+    <li><%= link_to 'Tweets controls', tweets_path %></li>
+    <li><%= link_to 'Admin controls', admin_control_path %></li>
   </ul>
-</div>
 </nav>
 <% end %>

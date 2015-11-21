@@ -1,5 +1,4 @@
 <div ng-app='dashboardApp' ng-controller="DashboardCtrl">
-
   <div class="messages">
     <p>{{controlMessage}}</p>
   </div
@@ -65,14 +64,15 @@
       </div>
 
       <h3>News:</h3>
-      <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news">
+
+      <div class="news-container" ng-if="news.length>0" ng-repeat="news_item in news" ng-class="{ active: $index == 0 }">
         <h4>{{news_item.title}}</h4>
-          <p>{{news_item.content}}</p>
-          <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}"
-            style="max-height:300px" />
-          <p class="news">{{news_item.created_at| date:'h:mma'}}</p>
+        <p class="date">{{news_item.created_at| date:'h:mma'}}</p>
+        <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" />
+        <p>{{news_item.content}}</p>
       </div>
-      <div class="news-container" ng-if="news.length==0">
+
+      <div class="news-container active" ng-if="news.length==0">
         <h4>Nothing has happened yet<h4>
       </div>
       <!-- End News -->
