@@ -1,15 +1,17 @@
 <div id="admin">
   <h1>Administrative Controls</h1>
 
-  <h3>Game Controls</h3>
   <section>
+    <%= render "layouts/section_borders", :title => 'Game Controls' %>
     <ul>
       <li>
         <b>Update Control's message to players:</b>
         <%= form_for(@game, url: alert_update_path) do |f|%>
           Next Round:
-          <%= f.label "Update Message" %> </br>
-          <%= f.text_field :control_message, value: @game.control_message, :size => "60x5"%>
+          <%= f.label "Update Message" %>
+          <div class="input-container">
+            <%= f.text_field :control_message, value: @game.control_message, :size => "60x5"%>
+          </div>
           <%= f.submit %>
         <% end %>
       </li>
@@ -36,8 +38,8 @@
     </ul>
   </section>
 
-  <h3>Advanced Controls</h3>
   <section>
+    <%= render "layouts/section_borders", :title => 'Advanced Controls' %>
     <ul>
       <li><p>Current time is: <%= @time %></p>
         <%= form_for(@game, url: update_time_path(@game)) do |f|%>
@@ -67,15 +69,17 @@
         <p>Current round is <%= @game.round %></p>
         <%= form_for(@game, url: round_update_path) do |f|%>
             <%= f.label "Update Round" %>
-            <%= f.number_field :round, value: @game.round, :in => 0..15, :step => '1'%>
+            <div class="input-container">
+              <%= f.number_field :round, value: @game.round, :in => 0..15, :step => '1'%>
+            </div>
           <%= f.submit %>
         <% end %>
       </li>
     </ul>
   </section>
 
-  <h3>Reset</h3>
   <section>
+    <%= render "layouts/section_borders", :title => 'Reset' %>
     <b>Warning:</b>
     <p>The following button wipes <em>all</em> the game data.</p>
     <p>It will also may take a little bit of time to run. (Several seconds)</p>
