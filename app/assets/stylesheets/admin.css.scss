@@ -1,18 +1,22 @@
 /* =====================================
                 VARIABLES
    ===================================== */
+$background: #03141c; //#ffffe9;
+$background-darktan: #091f2a;
+$text: #3d5b63;
 
-$background: #ffffe9;
 $background-blue: #94b3c4;
 $background-seafoam: #d3e3d8;
-$background-darktan: #f0f5db;
 $background-green: #dbe8db;
+
 $border-tan: #BEC2AD;
 
 $dark: #333333;
 $green: #399499;
 $red: #9f0d33;
 $light-red: #FA3E3B;
+
+$bright-green: #4bb9ba;
 
 
 /* =====================================
@@ -32,8 +36,10 @@ $light-red: #FA3E3B;
 
   section {
     background-color: $background-darktan;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 0px;
+    margin-bottom: 30px;
+    position: relative;
+    border: 1px solid $green;
   }
 
   ul li {
