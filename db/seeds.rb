@@ -37,16 +37,28 @@ t = TerrorTracker.create(
 
 # Create some news message stuff
 NewsMessage.create(
-  title: "Stuff happened",
-  content: "Some details here",
+  title: "Daily Earth News reports:",
+  content: "DEN reported some things",
   round: 0,
+  visible_content:true,
+  visible_image:true,
   media_url: "http://megagamesociety.com/images/mainlogo.png"
   )
 
 NewsMessage.create(
-  title: "More stuff happened",
-  content: "Having more details",
+  title: "Global News Network reports:",
+  content: "GNN also reported some things.",
   round: 0,
+  visible_content: true,
+  visible_image: true
+  )
+
+NewsMessage.create(
+  title: "Science & Financial Times reports:",
+  content: "Science & Financial Times reported some stuff.",
+  round: 0,
+  visible_content:true,
+  visible_image: true
   )
 
 u = User.create()
