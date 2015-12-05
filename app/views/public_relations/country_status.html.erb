@@ -1,61 +1,69 @@
-<h1><%= @country %> PR View</h1>
-<p style="font-size:18px">Current Round is <%= @roundNum %>.  Total PR for Round <%= @roundNum -1 %> is: <%= @roundTotal %></p>
+<div id="admin">
+  <h1><%= @country %> PR View</h1>
 
-<h3> PR Amounts by Round </h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th >Round</th>
-      <th >Source</th>
-      <th >PR Change</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pr_amounts.each do |data, value| %>
-      <tr>
-        <td><%= data[0] %></td>
-        <td><%= data[1] %></td>
-        <td><%= value %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <p>
+    Current Round is <%= @roundNum %>.<br />
+    Total PR for Round <%= @roundNum -1 %> is: <%= @roundTotal %>
+  </p>
 
-<%= render 'layouts/country_pr_menu' %>
-</br>
-<%= link_to 'New Public Relation Entry', new_public_relation_path(:country=> @country), class:"btn btn-default" %>
+  <h3>PR Amounts by Round</h3>
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th >Round</th>
+          <th >Source</th>
+          <th >PR Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @pr_amounts.each do |data, value| %>
+          <tr>
+            <td><%= data[0] %></td>
+            <td><%= data[1] %></td>
+            <td><%= value %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 
-<h2>Listing Public Relations for <%= @country %></h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Round</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Destroy</th>
-      <th>Country</th>
-      <th>Amount</th>
-      <th>Description</th>
-      <th>Source</th>
-    </tr>
-  </thead>
+  <%= render 'layouts/country_pr_menu' %>
 
-  <tbody>
-    <% @public_relations.each do |public_relation| %>
-      <tr>
-        <td><%= public_relation.round %></td>
-        <td><%= link_to 'Show', public_relation %></td>
-        <td><%= link_to 'Edit', edit_public_relation_path(public_relation) %></td>
-        <td><%= link_to 'Destroy', public_relation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to public_relation.country, country_pr_status_path( public_relation.country) %></td>
-        <td><%= public_relation.pr_amount %></td>
-        <td><%= public_relation.source %></td>
-        <td><%= public_relation.description %></td>
+  <section>
+    <%= link_to 'New Public Relation Entry', new_public_relation_path(:country=> @country), :class => 'button-input' %>
+  </section>
 
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h3>Listing Public Relations for <%= @country %></h3>
+  <section>
+    <table class="unpr">
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Show</th>
+          <th>Edit</th>
+          <th>Destroy</th>
+          <th>Country</th>
+          <th>Amount</th>
+          <th>Description</th>
+          <th>Source</th>
+        </tr>
+      </thead>
 
-<br>
-
+      <tbody>
+        <% @public_relations.each do |public_relation| %>
+          <tr>
+            <td><%= public_relation.round %></td>
+            <td><%= link_to 'Show', public_relation, :class => 'button-input' %></td>
+            <td><%= link_to 'Edit', edit_public_relation_path(public_relation), :class => 'button-input' %></td>
+            <td><%= link_to 'Destroy', public_relation, method: :delete, :class => 'button-input', data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to public_relation.country, country_pr_status_path( public_relation.country) %></td>
+            <td><%= public_relation.pr_amount %></td>
+            <td><%= public_relation.source %></td>
+            <td><%= public_relation.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

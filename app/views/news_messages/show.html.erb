@@ -1,25 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div id="admin">
+  <p id="notice"><%= notice %></p>
 
-<div class="well-sml panel panel-default">
-  <div class="panel-heading">
-    <div class="panel-title"><%= @news_message.title %></div>
-  </div>
-  <div class="panel-body">
+  <h3><%= @news_message.title %></h3>
+  <section>
     <p><%= @news_message.content %></p>
     <%= image_tag (@news_message.media_url) %>
-  </div>
+  </section>
+
+  <section>
+    <table>
+      <tr>
+        <td>Content Visibility:</td>
+        <td><%= @news_message.visible_content %></td>
+      </tr>
+      <tr>
+        <td>Image Visibility:</td>
+        <td><%= @news_message.visible_image %></td>
+      </tr>
+    </table>
+
+    <%= link_to 'Edit', edit_news_message_path(@news_message), :class => 'button-input' %>
+    <%= link_to 'Back', news_messages_path, :class => 'button-input' %>
+  </section>
 </div>
-
-<table>
-  <tr>
-    <td>Content Visibility:</td>
-    <td><%= @news_message.visible_content %></td>
-  </tr>
-  <tr>
-    <td>Image Visibility:</td>
-    <td><%= @news_message.visible_image %></td>
-  </tr>
-</table>
-
-<%= link_to 'Edit', edit_news_message_path(@news_message)%> 
-<%= link_to 'Back', news_messages_path%>

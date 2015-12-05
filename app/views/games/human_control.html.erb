@@ -1,103 +1,118 @@
-<h1>Human Control</h1>
+<div id="admin">
+  <h1>Human Control</h1>
 
-<div class="row  panel panel-default">
-  <div class="col-md-6">
-    <h2>PR Changes for Round: <%= @last_round %></h2>
-    <p><em>PR effects collected on turn 1 will be distributed to teams halfway through turn 2, the credits then usable in turn 3.</em></p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th >Country</th>
-          <th >PR Change</th>
-          <th >Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @pr_amounts.each do |data, value| %>
+  <h3 class="clearfix">
+    <div class="half-width">PR Changes for Round: <%= @last_round %></div>
+    <div class="half-width">PR By Country</div>
+  </h3>
+
+  <section class="clearfix">
+    <div class="half-width">
+      <p>
+        <em>
+          PR effects collected on turn 1 will be distributed to teams halfway
+          through turn 2, the credits then usable in turn 3.
+        </em>
+      </p>
+      <table class="unpr">
+        <thead>
           <tr>
-            <td><%= data %></td>
-            <td><%= value %></td>
-            <td><%= link_to "Details", country_pr_status_path(data) %></td>
+            <th >Country</th>
+            <th >PR Change</th>
+            <th >Details</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-md-6">
-    <%= render 'layouts/country_pr_menu' %>
-    <table class="table-condensed table-bordered">
-      <tr>
-        <th>Total Modifier</th>
-        <th>Income Change</th>
-      </tr>
-      <tr>
-        <td> >= 4</td>
-        <td>+1 </td>
-      </tr>
-      <tr>
-        <td> 0..3 </td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>-1..-3</td>
-        <td>-1</td>
-      </tr>
-      <tr>
-        <td> <= -4</td>
-        <td>-2</td>
-      </tr>
-    </table>
-  </div>
-</div>
+        </thead>
+        <tbody>
+          <% @pr_amounts.each do |data, value| %>
+            <tr>
+              <td><%= data %></td>
+              <td><%= value %></td>
+              <td><%= link_to "Details", country_pr_status_path(data), :class => "button-input" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="half-width">
+      <%= render 'layouts/country_pr_menu' %>
+      <table class="unpr">
+        <tr>
+          <th>Total Modifier</th>
+          <th>Income Change</th>
+        </tr>
+        <tr>
+          <td> >= 4</td>
+          <td>+1 </td>
+        </tr>
+        <tr>
+          <td> 0..3 </td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>-1..-3</td>
+          <td>-1</td>
+        </tr>
+        <tr>
+          <td> <= -4</td>
+          <td>-2</td>
+        </tr>
+      </table>
+    </div>
+  </section>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Bulk Human PR Creation</h3>
-  </div>
-  <div class="panel-body">
-  <%= form_for :human_bulk_pr do |form| %>
-      <%= form.label :round_label, "Round: " %> 
-      <%= form.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %><span>  [Default is current round]</span>
+  <h3>Bulk Human PR Creation</h3>
+  <section>
+    <%= form_for :human_bulk_pr do |form| %>
+      <%= form.label :round_label, "Round: " %>
+      <%= form.number_field :round, :in => 0..12, :step => '1', :value=> @current_round %> <span>(Default is current round)</span><br />
       <%= form.label :main_modifier_bale, "Main PR Modifier: " %>
       <%= form.number_field :main_pr_amount, :in => -10..10, :step => '1' %></br>
       <%= form.label :main_description_label, "Main Description of PR: " %>
       <%= form.text_field :main_description, size: 50, :placeholder => "ex. Held World Trade Conference" %>
       <%= form.select :main_source, options_for_select(PublicRelation::VALID_SOURCES) %>
-      <p>If Main Description is filled in, all blank descriptions will use Main Description unless they have a non-blank description filled in.  Likewise for the Modifier.
+      <p>
+        If Main Description is filled in, all blank descriptions will use
+        Main Description unless they have a non-blank description filled in.
+        Likewise for the Modifier.
       </p>
       <p>
-        If neither Main Description and Main Modifier are entered in, then individual countries with a blank PR Modifier and Description will be ignored.
+        If neither Main Description and Main Modifier are entered in, then
+        individual countries with a blank PR Modifier and Description will be
+        ignored.
       </p>
-      <p>Negative PR is stored as UN Crisis and Positive PR is stored as UN Bonus.
+      <p>
+        Negative PR is stored as UN Crisis and Positive PR is stored as
+        UN Bonus.
       </p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Country</th>
-              <th>PR Modifier</th>
-              <th>Description</th>
-              <th>Source</th>
-            </tr>
-          </thead>
-          <tbody>
-        <% @countries.each do |country| %>
-          <%= form.fields_for ('countries['+country+']') do |country_form| %>
+
+      <table class="unpr">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>PR Modifier</th>
+            <th>Description</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @countries.each do |country| %>
+            <%= form.fields_for ('countries['+country+']') do |country_form| %>
               <%= country_form.hidden_field :name, :value => country %>
-            <tr>
+              <tr>
                 <td><%= country_form.label country, country %> </td>
                 <td><%= country_form.number_field :pr_amount, :in => -10..10, :step => '1' %></td>
                 <td><%= country_form.text_area :description, :size => "60x2", :placeholder => "ex. 'Mouthed off to the UN Secretary General' or 'Bribed the UN with candy'" %></td>
-                <td><%= country_form.select :source, options_for_select(PublicRelation::VALID_SOURCES) %>
-                </td>
-            </tr>
+                <td><%= country_form.select :source, options_for_select(PublicRelation::VALID_SOURCES) %></td>
+              </tr>
             <% end %>
-        <% end %>
+          <% end %>
         </tbody>
-        </table>
+      </table>
       <%= form.submit "Save new PR" %>
+
     <% end %>
+
+    <br />
+    <%= link_to 'New PR Entry', new_public_relation_path, :class => 'button-input' %>
+  </section>
 </div>
-
-<br>
-<%= link_to 'New PR Entry', new_public_relation_path %>
-

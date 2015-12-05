@@ -1,0 +1,355 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap
+ *= require_tree .
+ *= require_self
+ */
+
+@media print {
+.noPrint {
+    display:none;
+  }
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+@font-face {
+  font-family: "Vorlon";
+  src: url("../assets/VORLON.eot") format("eot");
+  src: url("../assets/VORLON.woff") format("woff"),
+  url("../assets/VORLON.ttf") format("truetype"),
+  font-url("../assets/VORLON.svg#Vorlon") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
+/* =====================================
+                VARIABLES
+   ===================================== */
+
+$background: #ffffe9;
+$background-blue: #94b3c4;
+$background-seafoam: #d3e3d8;
+$background-darktan: #f0f5db;
+$background-green: #dbe8db;
+
+$green: #399499;
+$red: #9f0d33;
+$light-red: #FA3E3B;
+
+
+
+//#C4DAF7 #C5DDFF
+//#C29E9A
+// #6D8491
+
+/* =====================================
+                BASE STYLES
+   ===================================== */
+
+html {
+  font-size: 62.5%;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: $background;
+  color: #000000;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+  margin: 0;
+  padding: 0 0 50px 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+
+/* =====================================
+              GENERAL PAGE
+   ===================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3em;
+  text-transform: uppercase;
+}
+
+// Let's avoid using less than an h4 - Our fonts will be larger since
+// we're taking a Tablet-First approach.
+h1 { font-size: 5.6rem; line-height: 6.4rem; }
+h2 { font-size: 3.6rem; line-height: 4.4rem; }
+h3 { font-size: 2.8rem; line-height: 3.6rem; }
+h4 { font-size: 2.5rem; line-height: 3.3rem; }
+
+h2, h3 {
+  color: $green;
+  margin-bottom: 5px;
+}
+
+h4 {
+  color: black;
+  margin-bottom: 0px;
+}
+
+.center {
+  text-align: center;
+}
+
+p, ul {
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+  margin: 0;
+}
+
+p {
+  margin: 15px 0;
+}
+
+.alien {
+  font-family: Vorlon;
+}
+
+/* =====================================
+             ERROR HANDLING
+   ===================================== */
+
+.error {
+  color: $red;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: $red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid $red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: $red;
+    color: #ffffff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+/* =====================================
+          LINKS, BUTTONS, INPUTS
+   ===================================== */
+
+a, a:visited {
+  color: #000;
+  display: inline-block;
+  text-decoration: none;
+}
+
+a:hover {
+  background: #000;
+  color: #FFF;
+  text-decoration: none;
+}
+
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+select,
+input {
+  background-color: #ffffff;
+  border: 1px solid #ebebeb;
+  color: #000;
+  font-size: 2rem;
+  height: 40px;
+  padding: 0 20px;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+  display: block;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background: #000;
+  color: #FFF;
+}
+
+textarea {
+  background-color: #ffffff;
+  border: 1px solid #ebebeb;
+  color: #000;
+  font-size: 1.6rem;
+  padding: 5px;
+  resize: vertical;
+  width: 100%;
+}
+
+.button-input {
+  background: #FFF;
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  display: inline-block;
+  font-style: italic;
+  font-size: 2rem;
+  height: 40px;
+  line-height: 3.8rem;
+  margin: 5px 0;
+  padding: 0 20px;
+}
+
+
+/* =====================================
+            PAUSE / PLAY ICONS
+   ===================================== */
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-play:before  { content: "\e072"; }
+.glyphicon-pause:before { content: "\e073"; }
+.glyphicon-stop:before  { content: "\e074"; }
+
+
+/* =====================================
+              TABLE DEFAULTS
+   ===================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin: 10px 0;
+  width: 100%;
+
+  th {
+    padding: 0 10px;
+    text-align: left;
+  }
+
+  thead td {
+    font-weight: bold;
+  }
+
+  tr {
+    border-bottom: 1px solid #000;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  td {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    padding: 10px;
+    vertical-align: middle;
+
+    label {
+      margin: 0;
+    }
+  }
+
+  .controls {
+    .button-input {
+      margin: 5px 0;
+      width: 105px;
+    }
+  }
+
+  .button-input {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+}
+
+
+/* =====================================
+                 COLUMNS
+   ===================================== */
+
+.half-width {
+  display: inline-block;
+  float: left;
+  margin: 0 20px;
+  width: calc(50% - 40px);
+
+  h3 {
+    display: none;
+  }
+}
+
+h3 .half-width {
+  margin: 0;
+  width: 50%;
+}

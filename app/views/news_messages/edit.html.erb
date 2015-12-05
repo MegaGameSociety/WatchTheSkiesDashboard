@@ -1,6 +1,9 @@
-<h1>Editing News Message</h1>
+<div id="admin">
+  <h1>Editing News Message</h1>
+  <section>
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @news_message %> |
-<%= link_to 'Back', news_messages_path %>
+    <%= link_to 'Show', @news_message, :class => 'button-input' %>
+    <%= link_to 'Back', news_messages_path, :class => 'button-input' %>
+  </section>
+</div>

@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_terror_tracker_path(@terror_tracker) %> |
-<%= link_to 'Back', terror_trackers_path %>
+<div id="admin">
+  <p id="notice"><%= notice %></p>
+  <section>
+    <%= link_to 'Edit', edit_terror_tracker_path(@terror_tracker), :class => 'button-input' %>
+    <%= link_to 'Back', terror_trackers_path, :class => 'button-input' %>
+  </section>
+</div>

@@ -1,6 +1,9 @@
-<h1>Editing Terror Tracker</h1>
+<div id="admin">
+  <h1>Editing Terror Tracker</h1>
+  <section>
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @terror_tracker %> |
-<%= link_to 'Back', terror_trackers_path %>
+    <%= link_to 'Show', @terror_tracker, :class => 'button-input' %>
+    <%= link_to 'Back', terror_trackers_path, :class => 'button-input' %>
+  </section>
+</div>

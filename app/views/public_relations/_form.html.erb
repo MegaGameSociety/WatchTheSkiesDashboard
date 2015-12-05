@@ -13,7 +13,7 @@
 
   <div class="actions">
     <%= f.label :country %> </br>
-    <%= f.select :country, options_for_select(@countries, selected = @public_relation.country) %>
+    <%= f.select :country, options_for_select(@countries, selected = @public_relation.country) %> <br />
     <%= f.label :description %> </br>
     <%= f.text_area :description, :size => "60x5"%></br>
     <%= f.label :round %> </br>
@@ -21,7 +21,7 @@
     <%= f.label :pr_amount %> </br>
     <%= f.number_field :pr_amount, :in => -10..10, :step => '1' %></br>
     <%= f.label :source %>
-    <%= f.select :source, options_for_select(PublicRelation::VALID_SOURCES, selected = @public_relation.source) %></br>
+    <%= f.select :source, options_for_select(PublicRelation::VALID_SOURCES, selected = @public_relation.source) %></br><br />
     <%= f.submit %>
   </div>
 <% end %>

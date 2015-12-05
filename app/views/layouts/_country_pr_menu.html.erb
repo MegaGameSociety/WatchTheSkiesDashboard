@@ -1,12 +1,6 @@
-<div class="well-sml panel panel-success">
-  <div class="panel-heading">
-    <div class="panel-title">PR by Country</div>
-  </div>
-  <div class="panel-body">
-   <div class="btn-group" role="group">
-      <% @countries.each do |country|%>
-      <%= link_to country, country_pr_status_path(country), class: "btn btn-default" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<h3>PR by Country</h3>
+<section>
+  <% @countries.each do |country|%>
+    <%= link_to country, country_pr_status_path(country), :class => "button-input" %>
+  <% end %>
+</section>

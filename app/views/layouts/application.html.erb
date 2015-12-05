@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>WatchTheSkiesDashboard</title>
-  <%= stylesheet_link_tag    'application', media: 'all'%>
-  <%= javascript_include_tag 'application'%>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>WatchTheSkiesDashboard</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application'%>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= yield %>
 
-  <div class="adminControl">
-<%= render "layouts/footer_navbar" %>
-<% unless current_page?('/')%>
-  <div class="adminControl">
-  <%= yield %>
-  </div>
-<% else %>
-  <%= yield %>
-<% end %>
-</body>
+    <%= render "layouts/footer_navbar" %>
+  </body>
 </html>
-
