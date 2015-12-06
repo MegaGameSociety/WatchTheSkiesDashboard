@@ -1,0 +1,66 @@
+@media print {
+
+  @page {size: landscape}
+
+  @import url(https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900,400italic|Droid+Serif);
+
+  html,
+  body {
+    background-color: #f9f7f1;
+    color: #2f2f2f;
+    font-family: 'Droid Serif', serif;
+    padding: 15px;
+  }
+
+  .DEN, .GNN, .SFT {
+    font-family: 'Droid Serif', serif;
+    font-size: 14px;
+  }
+
+
+  #admin {
+    padding: 0;
+
+    section {
+      background-color: #f9f7f1;
+    }
+
+  }
+
+  h1 {
+    color: #2f2f2f;
+    font-size: 40px;
+    line-height: 44px;
+    font-family: 'Playfair Display SC', serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  h3 {
+    color: #2f2f2f;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    margin: 0;
+    line-height: 18px;
+    padding: 12px 0;
+  }
+
+  h4 {
+    font-family: 'Playfair Display SC', serif;
+    font-style: italic;
+    text-align: center;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .column + .column {
+    border-left: 1px solid #2f2f2f;
+  }
+
+}

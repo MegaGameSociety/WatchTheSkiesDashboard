@@ -80,6 +80,23 @@ $light-red: #FA3E3B;
   width: 25%;
 }
 
+.column {
+  display: table-cell;
+  padding: 10px;
+
+  img {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0px;
+  }
+}
+
+
+
 
 /* =====================================
                 COUNTRIES

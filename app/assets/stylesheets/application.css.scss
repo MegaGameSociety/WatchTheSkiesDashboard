@@ -11,15 +11,11 @@
  * file per style scope.
  *
  *= require bootstrap
- *= require_tree .
+ *= require games
  *= require_self
+ *= require admin
+ *= require print
  */
-
-@media print {
-.noPrint {
-    display:none;
-  }
-}
 
 @font-face {
   font-family: 'Glyphicons Halflings';
