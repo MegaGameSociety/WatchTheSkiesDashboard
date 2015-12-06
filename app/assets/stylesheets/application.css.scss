@@ -101,6 +101,32 @@ body {
 
 
 /* =====================================
+                  FONTS
+   ===================================== */
+
+.DEN {
+  color: black;
+  font-family: "Comic Sans MS";
+  font-size: 1.6rem;
+}
+
+.GNN {
+  color: black;
+  font-family: "Arial";
+  font-size: 1.6rem;
+}
+
+.SFT {
+  color: black;
+  font-family: "Times New Roman";
+  font-size: 1.6rem;
+}
+
+.alien {
+  font-family: Vorlon;
+}
+
+/* =====================================
               GENERAL PAGE
    ===================================== */
 
@@ -140,10 +166,6 @@ p, ul {
 
 p {
   margin: 15px 0;
-}
-
-.alien {
-  font-family: Vorlon;
 }
 
 /* =====================================
