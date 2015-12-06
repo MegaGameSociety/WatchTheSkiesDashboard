@@ -1,25 +1,25 @@
-<h2>Turn <%= @round %></h2>
+<div id="admin">
+  <h1>Newspaper</h1>
 
-<div class="row paper">
-  <% @news.each do |name, news_group| %> 
-  <div class="col-xs-4 <%= name %>">
-    <center style="align:center; margin-bottom:10px"><%= image_tag("#{name}.png", width: '95%') %></center>
-    <ul>
-    <% news_group.each do |article|%>
-    <li>
-     <div>
-      <p class="<%= name %>" style:"margin-bottom: 5px">
-      <%= article.content %>
-      </p>
-      <% if !article.media_url.nil? && article.visible_image %>
-        <% if article.media_url.length > 0 %>
-          <%= image_tag article.media_url, width:'75%'%>
-        <% end %>
+  <h3>Turn <%= @round %></h3>
+  <section>
+    <div class="columns">
+      <% @news.each do |name, news_group| %>
+        <div class="column <%= name %>">
+          <%= image_tag("#{name}.png") %>
+          <ul>
+            <% news_group.each do |article|%>
+              <li>
+                <h4><%= article.title %></h4>
+                <% if !article.media_url.nil? && article.visible_image && article.media_url.length > 0 %>
+                  <%= image_tag article.media_url, width:'75%'%>
+                <% end %>
+                <p><%= article.content %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
     </div>
-    </li>
-    <% end %>
-    </ul>
-  </div>
-  <% end %>
+  </section>
 </div>
