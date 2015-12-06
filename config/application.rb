@@ -21,6 +21,6 @@ module WatchTheSkiesDashboard
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :local
-    config.serve_static_assets = true
+    config.serve_static_files = true
   end
 end
