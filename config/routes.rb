@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  root 'games#dashboard'
+
 
   devise_for :users, path_names: {
     sign_up: '/'
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   get '/users' => 'games#dashboard'
   resources :news_messages
 
-  root 'games#dashboard'
+  resources :incomes
 
   resources :tweets do 
     patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public

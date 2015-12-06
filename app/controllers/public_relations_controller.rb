@@ -58,8 +58,9 @@ class PublicRelationsController < ApplicationController
       # UN control needs to know amount of PR per group by type
 
       @pr_amounts = PublicRelation.country_status(@country)
-      @roundNum = (@game.round) -1
-      @roundTotal = PublicRelation.order(round: :desc, created_at: :desc).where(country: @country, round: @roundNum).sum(:pr_amount)
+      @roundNum = (@game.round)
+      @roundTotal = PublicRelation.order(round: :desc, created_at: :desc).where(country: @country, round: @roundNum-1).sum(:pr_amount)
+      @current_income = Income.where(team_name: @country, round: @roundNum)[0].amount
     else
       raise ActionController::RoutingError.new('Country Not Found')
     end    

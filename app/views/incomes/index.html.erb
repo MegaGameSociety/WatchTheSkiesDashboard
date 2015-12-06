@@ -1,0 +1,29 @@
+<h1>Listing Incomes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Round</th>
+      <th>Income Amount</th>
+      <th colspan="3">REST controls</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.team_name %></td>
+        <td><%= income.round %></td>
+        <td><%= income.amount %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Destroy', income, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Income', new_income_path %>

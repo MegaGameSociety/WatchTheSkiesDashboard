@@ -66,3 +66,8 @@ u.email = "wts@wts.com"
 u.password='swordfish'
 u.password_confirmation='swordfish'
 u.save
+
+# Income starts at 6
+Game::COUNTRIES.each do |country|
+  Income.create(round: 0, team_name: country, amount: 6)
+end

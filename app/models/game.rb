@@ -27,14 +27,43 @@ class Game < ActiveRecord::Base
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
         # Tweet.import
+
+        #First update the income levels
+        update_income_levels()
+
+        # Change the round
         puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
         self.next_round = self.next_round + (30*60)
         self.save
+
+        # Send out tweets
         # client = Tweet.generate_client
         # client.update("Turn #{self.round} has started!")
       end
     end
     return self
+  end
+
+  def update_income_levels()
+    round = self.round
+    # PR > 4, change Income +1
+    # PR < -1 and PR < -3, change Income -1
+    # PR < -3, change Income -2
+    Game::COUNTRIES.each do |country|
+      pr = PublicRelation.where(round: round).where(country: country).sum(:pr_amount)
+      next_income = Income.where(round: round, team_name: country)[0].amount
+
+      if pr >= 4
+        next_income += 1
+      elsif pr <=-1 and pr >=-3
+        next_income += -1
+      elsif pr < -3
+        next_income += -2
+      end
+      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country)
+      income.amount = next_income
+      income.save()
+    end
   end
 end

@@ -1,0 +1,23 @@
+<%= form_for(@income) do |f| %>
+  <% if @income.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@income.errors.count, "error") %> prohibited this income from being saved:</h2>
+
+      <ul>
+      <% @income.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.label :team_name %> </br>
+    <%= f.select :team_name, options_for_select(@countries, selected = @income.team_name) %> <br />
+    <%= f.label :round %> </br>
+    <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @round %></br>
+    <%= f.label :amount %>
+    <%= f.number_field :amount, :in => -12..12, :step => '1', :value=> @income.amount %></br>
+    <%= f.submit %>
+  </div>
+<% end %>

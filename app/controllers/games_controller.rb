@@ -15,6 +15,11 @@ before_action :authenticate_user!, except:[:dashboard]
     @current_round = Game.last.round
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
+
+    @income = Income.where(round: @current_round)
+    if @last_round > 0
+      @previous_income = Income.where(round: @last_round)
+    end
   end
 
   def create_human_pr
