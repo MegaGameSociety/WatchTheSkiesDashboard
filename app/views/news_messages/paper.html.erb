@@ -10,7 +10,6 @@
           <ul>
             <% news_group.each do |article|%>
               <li>
-                <h4><%= article.title %></h4>
                 <% if !article.media_url.nil? && article.visible_image && article.media_url.length > 0 %>
                   <%= image_tag article.media_url, width:'75%'%>
                 <% end %>
