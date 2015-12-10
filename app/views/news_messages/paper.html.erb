@@ -1,12 +1,11 @@
 <div id="admin">
   <h1>Newspaper</h1>
-
   <h3>Turn <%= @round %></h3>
   <section>
     <div class="columns">
       <% @news.each do |name, news_group| %>
         <div class="column <%= name %>">
-          <%= image_tag("#{name}.png") %>
+          <%= image_tag("#{name}.png", :class => 'banner') %>
           <ul>
             <% news_group.each do |article|%>
               <li>

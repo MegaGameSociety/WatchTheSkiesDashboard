@@ -4,63 +4,68 @@
 
   @import url(https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900,400italic|Droid+Serif);
 
-  html,
-  body {
-    background-color: #f9f7f1;
-    color: #2f2f2f;
-    font-family: 'Droid Serif', serif;
-    padding: 15px;
-  }
-
-  .DEN, .GNN, .SFT {
-    font-family: 'Droid Serif', serif;
-    font-size: 14px;
-  }
-
-
-  #admin {
-    padding: 0;
-
-    section {
-      background-color: #f9f7f1;
-    }
-
-  }
-
-  h1 {
-    color: #2f2f2f;
-    font-size: 40px;
-    line-height: 44px;
-    font-family: 'Playfair Display SC', serif;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-  }
-
-  h3 {
-    color: #2f2f2f;
-    display: block;
-    font-size: 14px;
-    text-align: center;
-    border-bottom: 2px solid #2f2f2f;
-    border-top: 2px solid #2f2f2f;
-    margin: 0;
-    line-height: 18px;
-    padding: 12px 0;
-  }
-
-  h4 {
-    font-family: 'Playfair Display SC', serif;
-    font-style: italic;
-    text-align: center;
+  html, body {
+    background-color: #fff;
   }
 
   nav {
     display: none;
   }
 
-  .column + .column {
-    border-left: 1px solid #2f2f2f;
+  #admin {
+    background-color: #fff;
+    color: #2f2f2f;
+    font-family: 'Droid Serif', serif;
+    padding: 15px;
+
+    section {
+      background-color: #FFF;
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+
+    h1 {
+      color: #2f2f2f;
+      font-family: 'Playfair Display SC', serif;
+      font-size: 3.2rem;
+      line-height: 3.8rem;
+      margin: 0 0 10px 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h3 {
+      border-bottom: 2px solid #2f2f2f;
+      border-top: 2px solid #2f2f2f;
+      color: #2f2f2f;
+      display: block;
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      margin: 0;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    h4 {
+      font-family: 'Playfair Display SC', serif;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .column + .column {
+      border-left: 1px solid #2f2f2f;
+    }
+
+    .column {
+      padding: 0 20px;
+
+      .banner {
+        width: 75%;
+      }
+    }
   }
 
 }

@@ -83,10 +83,12 @@ $light-red: #FA3E3B;
 .column {
   display: table-cell;
   padding: 10px;
+  vertical-align: top;
   width: calc(100% / 3);
 
   img {
-    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto 10px;
     width: 100%;
   }
 
