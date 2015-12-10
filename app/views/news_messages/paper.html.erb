@@ -12,7 +12,7 @@
                 <% if !article.media_url.nil? && article.visible_image && article.media_url.length > 0 %>
                   <%= image_tag article.media_url, width:'75%'%>
                 <% end %>
-                <p><%= article.content %></p>
+                <p><%= article.content.html_safe %></p>
               </li>
             <% end %>
           </ul>
