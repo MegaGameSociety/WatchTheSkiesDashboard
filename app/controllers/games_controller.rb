@@ -129,6 +129,15 @@ before_action :authenticate_user!, except:[:dashboard]
     redirect_to admin_control_path
   end
 
+  def toggle_vatican_comms
+    @game = Game.last
+    data = @game.data
+    data['vatican_alien_comms'] = !data['vatican_alien_comms']
+    @game.data = data
+    @game.save
+    redirect_to admin_control_path
+  end
+
   # Post
   def update_time
     @game = Game.find(params[:id])

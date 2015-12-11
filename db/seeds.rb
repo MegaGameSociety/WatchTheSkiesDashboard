@@ -12,6 +12,7 @@ g = Game.create(
   control_message: "Welcome",
   activity: "All is quiet around the world.",
   alien_comm: false,
+  vatican_alien_comms: false,
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,

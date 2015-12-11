@@ -1,6 +1,7 @@
 class Api::ApiController < ApplicationController
   def dashboard
     @game = Game.last().update
+    round = @game.round
     @data = @game.data
     begin
       @global_terror = {
@@ -14,9 +15,9 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @news = NewsMessage.round_news(@game.round).order(created_at: :desc)
-      if ((@game.round)>0)
-        @news += NewsMessage.round_news((@game.round)-1).order(created_at: :desc)
+      @news = NewsMessage.round_news(round).order(created_at: :desc)
+      if (round>0)
+        @news += NewsMessage.round_news(round-1).order(created_at: :desc)
       end
     rescue
       @status = 500
@@ -25,10 +26,24 @@ class Api::ApiController < ApplicationController
 
     begin
       @countries_data = {}
-      Game::COUNTRIES.each do |country|
-        @countries_data[country] = 0<=(PublicRelation.where(round: @game.round, country: country).sum("pr_amount") +
-          PublicRelation.where(round: @game.round-1, country: "Brazil").sum("pr_amount"))
+      countries_calculations = {}
+      current_income_list = Income.where(round: round).pluck(:team_name, :amount)
+      previous_income_list = Income.where(round: (round -1)).pluck(:team_name, :amount)
+
+      current_income_list.each do |pair|
+        countries_calculations[pair[0]] = pair[1]
       end
+
+      unless previous_income_list.empty?
+        previous_income_list.each do |pair|
+          countries_calculations[pair[0]] -= pair[1]
+        end
+      end
+
+      countries_calculations.each do |country, amount|
+        @countries_data[country] = (amount >= 0)
+      end
+
     rescue
       @status = 500
       @message = "Failure to generate countries"
@@ -38,7 +53,7 @@ class Api::ApiController < ApplicationController
       #generate overall embedded result
       @result = {
         "timer" => {
-          "round"=>  @game.round,
+          "round"=>  round,
           "next_round" =>  @game.next_round.in_time_zone(Time.zone.name),
           "paused" => @data['paused'],
           "control_message" => @game.control_message
@@ -46,7 +61,8 @@ class Api::ApiController < ApplicationController
         "news" =>  @news,
         "global_terror" => @global_terror,
         "countries" => @countries_data,
-        'alien_comms' => @data['alien_comms']
+        "alien_comms" => @data["alien_comms"],
+        "vatican_alien_comms" => @data["vatican_alien_comms"]
       }
     rescue
       @status = 500

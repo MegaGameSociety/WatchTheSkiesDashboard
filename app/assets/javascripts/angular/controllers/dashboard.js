@@ -18,13 +18,16 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
         $scope.rioters = result['global_terror']['rioters'];
-
         if (result['alien_comms'] == true) {
           $("body").addClass("alien");
         } else {
           $("body").removeClass("alien");
         }
-
+        if (result['vatican_alien_comms'] == true) {
+          $("#Vatican").addClass("alien");
+        } else {
+          $("#Vatican").removeClass("alien");
+        }
         if (result['news'].length > 0){
           var newDate = (new Date(result['news'][0]['created_at']));
           if (($scope.news.length == 0) || newDate.getTime() > $scope.lastUpdatedNews.getTime()) {

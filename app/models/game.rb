@@ -26,7 +26,7 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-        # Tweet.import
+        Tweet.import
 
         #First update the income levels
         update_income_levels()
@@ -38,8 +38,8 @@ class Game < ActiveRecord::Base
         self.save
 
         # Send out tweets
-        # client = Tweet.generate_client
-        # client.update("Turn #{self.round} has started!")
+        client = Tweet.generate_client
+        client.update("Turn #{self.round} has started!")
       end
     end
     return self
