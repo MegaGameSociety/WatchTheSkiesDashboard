@@ -76,7 +76,7 @@ class Tweet < ActiveRecord::Base
     # Check if there aren't any tweets in database
     if Tweet.count()==0
       # Load initial set of tweets
-        tweets = client.list_timeline('WatchSkies', 'wts-list')
+        tweets = client.list_timeline('WatchSkies', 'wts-list').take(3)
     else
       # get the last timestamp of a tweet and create tweets
       # imported since then
