@@ -24,7 +24,7 @@ class Tweet < ActiveRecord::Base
         if self.media_url.length > 0
           url = URI.parse(self.media_url)
           image = open(url)
-          client.update_with_media("#{short_name} #{self.text}".slice(0,139), image)
+          client.update_with_media("#{short_name} #{self.text}".slice(0,138), image)
         else
           client.update("#{short_name} #{self.text}".slice(0,139))
         end
