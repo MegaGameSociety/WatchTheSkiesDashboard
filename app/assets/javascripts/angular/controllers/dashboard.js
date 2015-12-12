@@ -20,8 +20,12 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.rioters = result['global_terror']['rioters'];
         if (result['alien_comms'] == true) {
           $("body").addClass("alien");
+          $("p").addClass("alien");
+          $("td").addClass("alien");
         } else {
           $("body").removeClass("alien");
+          $("p").removeClass("alien");
+          $("td").removeClass("alien");
         }
         if (result['vatican_alien_comms'] == true) {
           $("#Vatican").addClass("alien");
@@ -55,8 +59,11 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     };
 
     $scope.updateNews = function(){
-      t = $scope.news.shift();
-      $scope.news.push(t);
+      news_items = $('.news-container')
+      news_items.first().hide('slow',function(){
+          detach = news_items.first().detach()
+          detach.insertAfter(news_items.last()).fadeIn('slow');
+      });
     }
 
     $scope.range = function(n) {
