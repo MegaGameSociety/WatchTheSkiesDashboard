@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     sign_up: '/'
   }
   get '/users' => 'games#dashboard'
-  resources :news_messages
 
   resources :incomes
 
@@ -21,12 +20,17 @@ Rails.application.routes.draw do
   resources :public_relations
   resources :messages
   resources :games
+
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
   patch 'toggle_paper_media/:news_id', to: 'news_messages#toggle_paper_media', as: :toggle_paper_media
   post 'direct_twitter_post', to: 'news_messages#direct_twitter_post', as: :direct_twitter_post
 
   get 'paper/:round' => 'news_messages#paper', as: :paper
+
+  get 'news_players/index' => 'news_players#index'
+  patch 'public_toggle_paper_content/:news_id', to: 'news_players#toggle_paper_content', as: :public_toggle_paper_content
+  patch 'public_toggle_paper_media/:news_id', to: 'news_players#toggle_paper_media', as: :public_toggle_paper_media
 
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
