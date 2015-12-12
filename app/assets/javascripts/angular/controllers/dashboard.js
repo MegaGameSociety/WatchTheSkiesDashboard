@@ -28,9 +28,9 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
           $("td").removeClass("alien");
         }
         if (result['vatican_alien_comms'] == true) {
-          $("#Vatican").addClass("alien");
+          $(".Vatican").addClass("alien");
         } else {
-          $("#Vatican").removeClass("alien");
+          $(".Vatican").removeClass("alien");
         }
         if (result['news'].length > 0){
           var newDate = (new Date(result['news'][0]['created_at']));
