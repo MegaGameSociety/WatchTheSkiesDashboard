@@ -1,8 +1,6 @@
 <div id="admin">
   <h1>Listing Tweets</h1>
 
-  <h3 class="error">Currently Disabled</h3>
-
   <section>
     <%= link_to "Import Tweets", import_tweets_path, method: :post, :class => "button-input" %>
     <%= link_to "Export Tweets", export_tweets_path, method: :post, :class => "button-input" %>
@@ -14,8 +12,7 @@
     <table class="unpr">
       <thead>
         <tr>
-          <th>Edit</th>
-          <th>Destroy</th>
+          <th colspan=2>Controls</th>
           <th>Twitter Name</th>
           <th>ID</th>
           <th>Text</th>
@@ -41,8 +38,7 @@
               <% end %>
             </td>
             <td>
-              <%= tweet.is_public %> </br>
-              <%= link_to "Toggle Public", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
+              <%= link_to "Publicize", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
             </td>
             <td><%= tweet.is_published %></td>
             <td><%= tweet.tweet_time %></td>
@@ -57,13 +53,12 @@
     <table class="unpr">
       <thead>
         <tr>
-          <th>Edit</th>
-          <th>Destroy</th>
+          <th colspan="2">Controls</th>
           <th>Twitter Name</th>
           <th>ID</th>
           <th>Text</th>
           <th>Media URL</th>
-          <th>Is Public?</th>
+          <th>Redact?</th>
           <th>Is Published?</th>
           <th>Tweet Time</th>
         </tr>
@@ -84,8 +79,7 @@
               <% end %>
             </td>
             <td>
-              <%= tweet.is_public %> </br>
-              <%= link_to "Toggle Public", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
+              <%= link_to "Redact", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
             </td>
             <td><%= tweet.is_published %></td>
             <td><%= tweet.tweet_time %></td>

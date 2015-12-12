@@ -47,7 +47,7 @@ $light-red: #FA3E3B;
 
   #mgs-logo {
     display: block;
-    margin: 30px auto 50px;
+    margin: 0px auto 30px;
   }
 
   .twitter {
@@ -117,7 +117,7 @@ $light-red: #FA3E3B;
 
 #countries-container {
   background: $background-darktan;
-  padding: 20px;
+  padding: 5px 20px;
 
   tr {
     border-bottom: 0;
@@ -150,7 +150,7 @@ $light-red: #FA3E3B;
 
 #terror-container {
   background: $background-green;
-  margin: 40px -40px -20px 80px;
+  margin: 0px -40px -20px 80px;
   padding: 20px 20px 50px 20px;
   text-align: center;
 }
@@ -175,12 +175,9 @@ $light-red: #FA3E3B;
    ===================================== */
 
 .news-container {
-  display: none;
-  margin-bottom: 40px;
-
-  &.active {
-    display: block;
-  }
+  margin-bottom: 30px;
+  border-bottom: thin solid #000000;
+  display: block;
 
   .date {
     font-size: 1.6rem;
@@ -192,6 +189,10 @@ $light-red: #FA3E3B;
     display: block;
     max-height: 300px;
     width: 100%;
+  }
+
+  p{
+    margin: 5px auto
   }
 
   a {

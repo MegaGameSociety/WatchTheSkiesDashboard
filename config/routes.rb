@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   
+  root 'games#dashboard'
+
 
   devise_for :users, path_names: {
     sign_up: '/'
   }
   get '/users' => 'games#dashboard'
-  resources :news_messages
 
-  root 'games#dashboard'
+  resources :incomes
 
   resources :tweets do 
     patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public
@@ -19,12 +20,17 @@ Rails.application.routes.draw do
   resources :public_relations
   resources :messages
   resources :games
+
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
   patch 'toggle_paper_media/:news_id', to: 'news_messages#toggle_paper_media', as: :toggle_paper_media
   post 'direct_twitter_post', to: 'news_messages#direct_twitter_post', as: :direct_twitter_post
 
   get 'paper/:round' => 'news_messages#paper', as: :paper
+
+  get 'news_players/index' => 'news_players#index'
+  patch 'public_toggle_paper_content/:news_id', to: 'news_players#toggle_paper_content', as: :public_toggle_paper_content
+  patch 'public_toggle_paper_media/:news_id', to: 'news_players#toggle_paper_media', as: :public_toggle_paper_media
 
   get 'un_dashboard' => 'public_relations#un_dashboard', as: :un_dashboard
   post 'un_dashboard' => 'public_relations#create_un_dashboard'
@@ -39,6 +45,7 @@ Rails.application.routes.draw do
   get 'admin' =>'games#admin_control', :as =>'admin_control'
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
   post 'toggle_alien_comms', to: 'games#toggle_alien_comms', as: :toggle_alien_comms
+  post 'toggle_vatican_comms', to: 'games#toggle_vatican_comms', as: :toggle_vatican_comms
   post 'reset_game', to: 'games#reset', :as => 'reset_game'
   patch 'update_time/:id', to: 'games#update_time', as: :update_time
   patch 'alert_update', to: 'games#update_control_message', as: :alert_update

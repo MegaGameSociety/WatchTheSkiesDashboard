@@ -1,33 +1,15 @@
 <div id="admin">
-  <h1>Listing News Messages</h1>
-
-  <section>
-    <%= link_to 'New News Message', new_news_message_path, :class => "button-input" %>
-  </section>
-
-  <h3>Direct Twitter Posting</h3>
-  <section>
-    <p>Posts directly to twitter (be careful when using this).</p>
-    <%= form_tag direct_twitter_post_path, :method => 'post' do %>
-      <%= text_field_tag :text, '', size: 50, :placeholder => "ex. Held World Trade Conference" %>
-      <%= submit_tag "Post" %>
-    <% end %>
-  </section>
-
   <h3>Generated Newspapers</h3>
   <section>
     <% @papers.each do |paper| %>
       <%= link_to "#{paper}", paper_path(paper), :class => "button-input" %>
     <% end %>
   </section>
-
-
   <section>
     <table class="unpr">
       <thead>
         <tr>
           <th>Round</th>
-          <th>Controls</th>
           <th>Title</th>
           <th>Content</th>
           <th>Media</th>
@@ -38,9 +20,6 @@
         <% @news_messages.each do |news_message| %>
           <tr>
             <td><%= news_message.round %></td>
-            <td class="controls"><%= link_to 'View', news_message, :class => "button-input" %></br>
-              <%= link_to 'Edit', edit_news_message_path(news_message), :class => "button-input" %></br>
-              <%= link_to 'Destroy', news_message, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button-input" %></td>
             <td><%= news_message.title %></td>
             <td><%= news_message.content %></td>
             <td>
@@ -56,7 +35,7 @@
                   <td>Content:
                   </td>
                   <td>
-                    <%= link_to toggle_paper_content_path(news_message), method: :patch, :class => "button-input" do %>
+                    <%= link_to public_toggle_paper_content_path(news_message), method: :patch, :class => "button-input" do %>
                       <%= "#{news_message.visible_content}" %>
                     <% end %>
                   </td>
@@ -64,7 +43,7 @@
                 <tr>
                   <td>Media:</td>
                   <td>
-                    <%= link_to toggle_paper_media_path(news_message), method: :patch, :class => "button-input" do %>
+                    <%= link_to public_toggle_paper_media_path(news_message), method: :patch, :class => "button-input" do %>
                       <%= "#{news_message.visible_image}" %>
                     <% end %>
                   </td>

@@ -15,6 +15,11 @@ before_action :authenticate_user!, except:[:dashboard]
     @current_round = Game.last.round
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
+
+    @income = Income.where(round: @current_round)
+    if @last_round > 0
+      @previous_income = Income.where(round: @last_round)
+    end
   end
 
   def create_human_pr
@@ -119,6 +124,15 @@ before_action :authenticate_user!, except:[:dashboard]
     @game = Game.last
     data = @game.data
     data['alien_comms'] = !data['alien_comms']
+    @game.data = data
+    @game.save
+    redirect_to admin_control_path
+  end
+
+  def toggle_vatican_comms
+    @game = Game.last
+    data = @game.data
+    data['vatican_alien_comms'] = !data['vatican_alien_comms']
     @game.data = data
     @game.save
     redirect_to admin_control_path

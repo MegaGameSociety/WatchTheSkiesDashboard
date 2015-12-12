@@ -33,6 +33,16 @@
           <% end %>
         <% end %>
       </li>
+      <li>
+        Toggle Vatican Comms
+        <%= link_to toggle_vatican_comms_path, method: :post, :class => "button-input" do %>
+          <% if @game.data['vatican_alien_comms'] %>
+            <i class="glyphicon glyphicon-pause"></i>
+          <% else %>
+            <i class="glyphicon glyphicon-play"></i>
+          <% end %>
+        <% end %>
+      </li>
     </ul>
   </section>
 

@@ -10,8 +10,8 @@
     <div class="half-width">
       <p>
         <em>
-          PR effects collected on turn 1 will be distributed to teams halfway
-          through turn 2, the credits then usable in turn 3.
+          PR effects collected on turn <%= @current_round %> will be distributed to teams halfway
+          through turn <%= @current_round +1 %> along with credts.  These credits will then be usable in turn <%= @current_round +2%>.
         </em>
       </p>
       <table class="unpr">
@@ -37,26 +37,17 @@
       <%= render 'layouts/country_pr_menu' %>
       <table class="unpr">
         <tr>
-          <th>Total Modifier</th>
-          <th>Income Change</th>
+          <th>Country</th>
+          <th>Round <%= @current_round %> Income</th>
         </tr>
-        <tr>
-          <td> >= 4</td>
-          <td>+1 </td>
-        </tr>
-        <tr>
-          <td> 0..3 </td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>-1..-3</td>
-          <td>-1</td>
-        </tr>
-        <tr>
-          <td> <= -4</td>
-          <td>-2</td>
-        </tr>
+        <% @income.each do |income| %>
+          <tr>
+            <td><%= income.team_name %></td>
+            <td><%= income.amount%></td>
+          </tr>
+          <% end %>
       </table>
+      <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
     </div>
   </section>
 

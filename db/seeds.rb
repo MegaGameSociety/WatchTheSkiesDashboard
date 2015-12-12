@@ -12,6 +12,7 @@ g = Game.create(
   control_message: "Welcome",
   activity: "All is quiet around the world.",
   alien_comm: false,
+  vatican_alien_comms: false,
   next_round: (Time.now() + 30*60),
   data: {
     rioters: 0,
@@ -66,3 +67,8 @@ u.email = "wts@wts.com"
 u.password='swordfish'
 u.password_confirmation='swordfish'
 u.save
+
+# Income starts at 6
+Game::COUNTRIES.each do |country|
+  Income.create(round: 0, team_name: country, amount: 6)
+end
