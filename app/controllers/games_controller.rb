@@ -15,8 +15,16 @@ before_action :authenticate_user!, except:[:dashboard]
     @current_round = Game.last.round
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
-
-    @income = Income.where(round: @current_round)
+    @income_values = {}
+    @income_values['Brazil'] =[2,5,6,7,8,9,10,11,12]
+    @income_values['China']= [2,3,5,7,9,10,12,14,16]
+    @income_values['France']= [2,5,6,7,8,9,10,11,12]
+    @income_values['India']= [2,5,6,7,8,9,10,11,12]
+    @income_values['Japan']= [3,5,6,8,9,10,12,13,14]
+    @income_values['Russian Federation'] = [2,4,5,6,7,8,9,10,11]
+    @income_values['United Kingdom'] =[2,4,6,7,8,9,10,11,12]
+    @income_values['USA']= [1,3,5,7,9,11,13,15,17]
+    @incomes = Income.where(round: @current_round)
     if @last_round > 0
       @previous_income = Income.where(round: @last_round)
     end

@@ -39,11 +39,13 @@
         <tr>
           <th>Country</th>
           <th>Round <%= @current_round %> Income</th>
+          <th>Round <%= @current_round %> Credits</th>
         </tr>
-        <% @income.each do |income| %>
+        <% @incomes.each do |income| %>
           <tr>
             <td><%= income.team_name %></td>
             <td><%= income.amount%></td>
+            <td><%= @income_values[income.team_name][income.amount-1]%></td>
           </tr>
           <% end %>
       </table>
