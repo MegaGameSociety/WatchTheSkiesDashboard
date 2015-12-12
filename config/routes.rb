@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public
   end
   post 'import_tweets', to: 'tweets#import_tweets', as: :import_tweets
+  post 'publicize_all_tweets', to: 'tweets#publicize_all_tweets', as: :publicize_all_tweets
+
   post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
 
   resources :terror_trackers

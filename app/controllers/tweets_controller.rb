@@ -86,6 +86,12 @@ class TweetsController < ApplicationController
     redirect_to tweets_path, notice: "Made #{@tweet.text} #{@tweet.is_public}."
   end
 
+  def publicize_all_tweets
+    @tweets = Tweet.where(is_public: false)
+    @tweets.update_all(is_public: true)
+    redirect_to tweets_path, notice: "Publicized #{@tweets.size} Tweet."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

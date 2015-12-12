@@ -3,8 +3,10 @@
 
   <section>
     <%= link_to "Import Tweets", import_tweets_path, method: :post, :class => "button-input" %>
+    <%= link_to "Publicize All", publicize_all_tweets_path, method: :post, :class => "button-input", data: { confirm: 'Have you destroyed all tweets you do not want public?'} %>
     <%= link_to "Export Tweets", export_tweets_path, method: :post, :class => "button-input" %>
-    <%= link_to 'New Tweet Entry', new_tweet_path, :class => "button-input" %>
+
+    <!-- For testing only: <%= link_to 'New Tweet Entry', new_tweet_path, :class => "button-input" %> -->
   </section>
 
   <h3>Listing Unpublished Tweets</h3>
