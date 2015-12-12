@@ -28,8 +28,12 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
           $("td").removeClass("alien");
         }
         if (result['vatican_alien_comms'] == true) {
-          $(".Vatican").addClass("alien");
+          console.log("Adding class");
+          console.log($(".Vatican"));
+          $('.Vatican').addClass('alien');
+
         } else {
+          console.log("Removing class");
           $(".Vatican").removeClass("alien");
         }
         if (result['news'].length > 0){
