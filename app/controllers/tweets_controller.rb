@@ -4,8 +4,8 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @private_tweets = Tweet.where(is_public: false).order(tweet_time: :asc)
-    @public_tweets = Tweet.where(is_public: true).order(tweet_time: :asc)
+    @private_tweets = Tweet.where(is_public: false).order(tweet_time: :desc)
+    @public_tweets = Tweet.where(is_public: true).order(tweet_time: :desc)
   end
 
   # GET /tweets/1
