@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post 'publicize_all_tweets', to: 'tweets#publicize_all_tweets', as: :publicize_all_tweets
 
   post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
+  post 'hide_all_media', to: 'news_messages#hide_all_media', as: :hide_all_media
+
 
   resources :terror_trackers
   resources :public_relations

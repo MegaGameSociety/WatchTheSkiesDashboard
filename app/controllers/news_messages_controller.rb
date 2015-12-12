@@ -112,6 +112,13 @@ class NewsMessagesController < ApplicationController
     redirect_to news_messages_path, notice: "Made #{@news.content} visibility #{@news.visible_image}."
   end
 
+  def hide_all_media
+    @round = Game.last.round - 1
+    @news = NewsMessage.where(round: @round)
+    @news.update_all(visible_image: false)
+    redirect_to news_messages_path, notice: "Made all news invisible."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_news_message
