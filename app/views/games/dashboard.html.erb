@@ -15,25 +15,6 @@
         <div> <%= link_to "Login", new_user_session_path %></div>
       <% end %>
       <div id="countries-container">
-        <h3 class="center">Global Economy</h3>
-        <table>
-          <thead>
-            <tr>
-              <td>Country</td>
-              <td>GDP Trends</td>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Each Country -->
-            <tr ng-repeat="(country, data) in countries">
-              <td>{{country}}</td>
-              <td>
-                <span ng-if="data" class="arrow up"></span>
-                <span ng-if="!data" class="arrow down"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
 
         <div id="terror-container">
           <h3>Terror</h3>
@@ -108,4 +89,12 @@
       </div>
     </div>
   </div>
+
+  <ul id="countries-ticker" class="marquee">
+    <li ng-repeat="(country, data) in countries">
+      <span>{{country}}</span>
+      <span class="arrow" ng-class="{'down': data == undefined, 'up': data !== undefined }">
+    </li>
+  </ul>
+
 </div>
