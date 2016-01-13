@@ -1,6 +1,6 @@
 var dashboardApp = angular.module('dashboardApp', ['dashboardController']);
 
-var dashboardController = angular.module('dashboardController', ['timer', 'angular-svg-round-progress']);
+var dashboardController = angular.module('dashboardController', ['timer']);
 
 dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http', '$interval',
   function($rootScope, $scope, $http, $interval) {
