@@ -5,38 +5,6 @@
 
   <div class="columns">
     <div class="left-column">
-      <img src="/assets/mgs-logo.png" id="mgs-logo">
-      <p class="twitter">See @WatchSkies on Twitter for more news.</p>
-      <% if user_signed_in? %>
-        <div>Signed in as <%= current_user.email %>
-        <%= link_to "Account Info", edit_user_registration_path %>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </div>
-      <% else %>
-        <div> <%= link_to "Login", new_user_session_path %></div>
-      <% end %>
-      <div id="countries-container">
-
-        <div id="terror-container">
-          <h3>Terror</h3>
-
-          <div class="progress-wrapper">
-            <div class="progress-legend">{{terror}} / 250</div>
-            <div round-progress
-                max="250"
-                current="terror"
-                color="#9f0d33"
-                bgcolor="#399499"
-                radius="100"
-                stroke="20"
-                semi="false"
-                rounded="false"
-                clockwise="true"
-                responsive="false"
-                duration="800"
-                animation="easeInOutQuart"></div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="centre-column">
@@ -67,6 +35,11 @@
     </div>
 
     <div class="right-column">
+      <h3>Terror</h3>
+      <div class="progress-legend">{{terror}} / 250</div>
+      <div id="terror-container">
+        <div id="terror-percentage" ng-style="getTerrorAmount()"></div>
+        <img src="/assets/thermometer.png">
       </div>
     </div>
   </div>
