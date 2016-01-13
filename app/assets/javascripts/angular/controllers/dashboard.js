@@ -49,6 +49,51 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       });
     }
 
+    $scope.getTerrorAmount = function() {
+      var terror = $scope.terror;
+      var height;
+
+      // If Terror hasn't been retrieved yet, don't break.
+      if (terror === undefined) {
+        height = 0;
+      } else {
+        height = $scope.terror * 2;
+      }
+
+      // Check to see if the Terror amount is between two numbers.
+      function checkRange(x, n, m) {
+        if (x >= n && x <= m) { return x; }
+        else { return !x; }
+      }
+
+      // Set thermometer colour based on the Terror amount.
+      switch(terror) {
+        case checkRange(terror, 1, 50):
+          color = "#6cc644";
+          break;
+        case checkRange(terror, 51, 100):
+          color = "#44a662";
+          break;
+        case checkRange(terror, 101, 150):
+          color = "#D5D506";
+          break;
+        case checkRange(terror, 151, 200):
+          color = "#CB8F06";
+          break;
+        case checkRange(terror, 201, 250):
+          color = "#bd2c00";
+          break;
+        default:
+          color = "#FFFFFF";
+      }
+
+      // Return height and colour for thermometer.
+      return {
+        'height': height + 'px',
+        'background-color': color
+      };
+    };
+
     $scope.getStatus = function() {
       apiCall();
     };
