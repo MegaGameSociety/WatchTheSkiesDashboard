@@ -4,28 +4,24 @@
   </div>
 
   <div class="columns">
-
-    <!-- News Column -->
     <div class="left-column">
+      <!-- Rounds -->
       <div id="round-container">
         <h2 ng-if="!paused">
           <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
         </h2>
-
-        <!-- This needs to be formatted for use -->
-
         <h3>Turn {{round}}</h3>
         <h3 class="paused" ng-if="paused">(Paused)</h3>
       </div>
 
-      <h3>News:</h3>
+      <!-- News -->
+      <h3>News</h3>
       <div class="news-container" ng-show="news.length>0" ng-repeat="news_item in news" ng-class="{ active: $index == 0 }">
         <h4>{{news_item.title}}</h4>
         <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" />
         <p>{{news_item.content}}</p>
-        <p class="date">{{news_item.created_at| date:'h:mma'}}</p>
+        <p class="date">Reported at {{news_item.created_at| date:'h:mma'}}</p>
       </div>
-
       <div class="news-container active" ng-if="news.length==0">
         <h4>Nothing has happened yet<h4>
       </div>
