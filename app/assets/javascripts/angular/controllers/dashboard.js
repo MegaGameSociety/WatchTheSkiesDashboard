@@ -12,12 +12,11 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       success(function(data, status, headers, config) {
         var result = data['result'];
         $scope.terror = result['global_terror']['total'];
-        $scope.activity = result['global_terror']['activity'];
         $scope.paused = result['timer']['paused'];
         $scope.countries = result['countries'];
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
-        $scope.rioters = result['global_terror']['rioters'];
+
         if (result['alien_comms'] == true) {
           $("body").addClass("alien");
           $("p").addClass("alien");
