@@ -36,7 +36,9 @@
       <h3>Terror</h3>
       <div class="progress-legend">{{terror}} / 250</div>
       <div id="terror-container">
-        <div id="terror-percentage" ng-style="getTerrorAmount()"></div>
+        <div id="terror-percentage" ng-style="getTerrorHeight()" ng-class="getTerrorColour()">
+          <div></div>
+        </div>
         <img src="/assets/thermometer.png">
       </div>
     </div>

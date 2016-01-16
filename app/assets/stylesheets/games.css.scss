@@ -135,18 +135,40 @@ $light-red: #FA3E3B;
   margin: 10px auto;
   position: relative;
   width: 167px;
-}
 
-#terror-container img {
-  position: relative;
+  img {
+    position: relative;
+  }
 }
 
 #terror-percentage {
-  background: #78AFA9;
-  bottom: 0px;
+  bottom: 30px;
   display: block;
+  margin-top: 30px;
   position: absolute;
-  width: 100%;
+  width: calc(100% - 2px);
+
+  div {
+   height: 30px;
+   margin: 0 auto;
+   margin-top: -30px;
+   width: 150px;
+  }
+
+  &.rounded {
+    div {
+      border-radius: 90px 90px 0 0;
+      display: block;
+      width: 35px;
+    }
+  }
+
+  &.none, &.none div { background-color: #FFFFFF; }
+  &.low,  &.low div  { background-color: #6CC644; }
+  &.med,  &.med div  { background-color: #44A662; }
+  &.high, &.high div { background-color: #D5D506; }
+  &.crit, &.crit div { background-color: #CB8F06; }
+  &.doom, &.doom div { background-color: #BD2C00; }
 }
 
 

@@ -49,49 +49,62 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       });
     }
 
+    // Get the height of the Terror Tracker for the Thermometer Display.
     $scope.getTerrorAmount = function() {
       var terror = $scope.terror;
-      var height;
 
       // If Terror hasn't been retrieved yet, don't break.
       if (terror === undefined) {
-        height = 0;
+        $scope.terror_height = 0;
+      } else if (terror > 250) {
+        $scope.terror = 250;
+        $scope.terror_height = 370;
       } else {
-        height = $scope.terror * 2;
+        // 400 max pixels tall, -30 for padding.
+        // Divided by 250, the maximum amount of the terror tracker.
+        $scope.terror_height = (370 / 250) * $scope.terror;
       }
 
+      // Return height thermometer.
+      return {
+        'height': $scope.terror_height + 'px'
+      };
+    };
+
+    // Get the colour of the Terror Tracker for the Thermometer Display.
+    $scope.getTerrorColour = function() {
       // Check to see if the Terror amount is between two numbers.
       function checkRange(x, n, m) {
         if (x >= n && x <= m) { return x; }
         else { return !x; }
       }
 
+      var terror = $scope.terror;
       // Set thermometer colour based on the Terror amount.
+      // Rounded class is whether we include the rounded top for the thermometer,
+      // which it does not make sense to include when the terror is low.
       switch(terror) {
         case checkRange(terror, 1, 50):
-          color = "#6cc644";
+          return'low';
           break;
-        case checkRange(terror, 51, 100):
-          color = "#44a662";
+        case checkRange(terror, 51, 70):
+          return 'med';
+          break;
+        case checkRange(terror, 71, 100):
+          return 'med rounded';
           break;
         case checkRange(terror, 101, 150):
-          color = "#D5D506";
+          return 'high rounded';
           break;
         case checkRange(terror, 151, 200):
-          color = "#CB8F06";
+          return 'crit rounded';
           break;
         case checkRange(terror, 201, 250):
-          color = "#bd2c00";
+          return 'doom rounded';
           break;
         default:
-          color = "#FFFFFF";
+          return 'none';
       }
-
-      // Return height and colour for thermometer.
-      return {
-        'height': height + 'px',
-        'background-color': color
-      };
     };
 
     $scope.getStatus = function() {
