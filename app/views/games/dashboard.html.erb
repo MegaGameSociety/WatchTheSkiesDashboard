@@ -29,11 +29,10 @@
       <div class="news-container active" ng-if="news.length==0">
         <h4>Nothing has happened yet<h4>
       </div>
-      <!-- End News -->
     </div>
 
-
     <div class="right-column">
+      <!-- Terror -->
       <h3>Terror</h3>
       <div class="progress-legend">{{terror}} / 250</div>
       <div id="terror-container">
@@ -46,6 +45,7 @@
   </div>
 
   <div id="countries-ticker">
+    <!-- Countries -->
     <ul>
       <li>
         <div ng-repeat="country in countries" class="country">
@@ -62,7 +62,7 @@
           <i class="glyphicon" ng-class="{'glyphicon-chevron-down': country.change <= 0, 'glyphicon-chevron-up': country.change > 0 }"></i>
         </div>
       </li>
-      <!-- Duplicate because it makes the animation smoother -->
+      <!-- Triplicate because it makes the animation smoother -->
       <li>
         <div ng-repeat="country in countries" class="country">
           <span>{{country.name}}</span>
