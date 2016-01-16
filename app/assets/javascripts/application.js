@@ -18,5 +18,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require roundProgress.min
 //= require_tree .
