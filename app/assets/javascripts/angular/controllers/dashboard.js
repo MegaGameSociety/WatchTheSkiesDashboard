@@ -49,7 +49,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     }
 
     // Get the height of the Terror Tracker for the Thermometer Display.
-    $scope.getTerrorAmount = function() {
+    $scope.getTerrorHeight = function() {
       var terror = $scope.terror;
 
       // If Terror hasn't been retrieved yet, don't break.
