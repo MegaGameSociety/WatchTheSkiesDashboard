@@ -11,6 +11,39 @@ $green: #399499;
 $red: #9f0d33;
 $light-red: #FA3E3B;
 
+/* =====================================
+                MIXINS
+   ===================================== */
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($args...) {
+  -webkit-animation: $args;
+  -moz-animation: $args;
+  -o-animation: $args;
+  animation: $args;
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
 
 /* =====================================
            SIZING FOR PROJECTOR
@@ -114,18 +147,41 @@ $light-red: #FA3E3B;
                 COUNTRIES
    ===================================== */
 
+@include keyframes(loop) {
+  0%   { @include transform( translateX(0) ); }
+  100% { @include transform( translateX(-(33.3% * 2))); }
+}
+
 #countries-ticker {
   background: #000;
   bottom: 0;
-  list-style-type: none;
+  overflow: hidden;
   position: fixed;
   width: 100%;
 
+  ul {
+    height: 50px;
+    left: 0;
+    list-style: none;
+    position: relative;
+    top: 0;
+    width: 300%!important;
+    z-index: 1;
+    @include animation(loop 60s linear infinite);
+  }
+
   li {
+    float: left;
+    height: 50px;
+    overflow: hidden;
+    width: 33.333%;
+  }
+
+  .country {
     color: #FFF;
     display: inline-block;
     font-size: 3.4rem;
-    margin: 5px 25px;
+    margin: 7px 1.6%;
   }
 
   .glyphicon {
