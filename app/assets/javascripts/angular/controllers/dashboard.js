@@ -17,15 +17,9 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
 
-        if (result['alien_comms'] == true) {
-          $("body").addClass("alien");
-          $("p").addClass("alien");
-          $("td").addClass("alien");
-        } else {
-          $("body").removeClass("alien");
-          $("p").removeClass("alien");
-          $("td").removeClass("alien");
-        }
+        $('.body').toggleClass('alien', result['alien_comms']);
+        $('.Vatican').toggleClass('alien', result['vatican_alien_comms']);
+
         if (result['news'].length > 0){
           var newDate = (new Date(result['news'][0]['created_at']));
           if (($scope.news.length == 0) || newDate.getTime() > $scope.lastUpdatedNews.getTime()) {
