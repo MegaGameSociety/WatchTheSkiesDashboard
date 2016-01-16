@@ -127,20 +127,19 @@ $light-red: #FA3E3B;
     font-size: 3.4rem;
     margin: 5px 25px;
   }
+
+  .glyphicon {
+    font-size: 3rem;
+  }
+
+  .glyphicon-chevron-down {
+    color: $red;
+  }
+
+  .glyphicon-chevron-up {
+    color: #6CC644;
+  }
 }
-
-.arrow {
-  background: url('/assets/arrows.png') 0px 0px no-repeat;
-  display: inline-block;
-  height: 20px;
-  margin-top: 5px;
-  vertical-align: top;
-  width: 20px;
-
-  &.up   { background-position: 5px   7px; }
-  &.down { background-position: 5px -17px; }
-}
-
 
 /* =====================================
               TERROR TRACKER

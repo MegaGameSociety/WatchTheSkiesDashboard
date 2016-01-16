@@ -39,23 +39,33 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @countries_data = {}
-      countries_calculations = {}
-      current_income_list = @game.incomes.where(round: round).pluck(:team_name, :amount)
-      previous_income_list = @game.incomes.where(round: (round -1)).pluck(:team_name, :amount)
+      countries_income_change = {}
+      countries_income_amounts = {}
+
+      current_income_list = @games.incomes.where(round: round).pluck(:team_name, :amount)
+      previous_income_list = @games.incomes.where(round: (round -1)).pluck(:team_name, :amount)
 
       current_income_list.each do |pair|
-        countries_calculations[pair[0]] = pair[1]
+        countries_income_amounts[pair[0]] = pair[1]
+        countries_income_change[pair[0]] = pair[1]
       end
 
       unless previous_income_list.empty?
         previous_income_list.each do |pair|
-          countries_calculations[pair[0]] -= pair[1]
+          countries_income_change[pair[0]] -= pair[1]
         end
       end
 
-      countries_calculations.each do |country, amount|
-        @countries_data[country] = (amount >= 0)
+      @countries_data = Array.new
+
+      countries_income_change.each do |country, amount|
+        this_country = {
+          "name" => country,
+          "amount" => countries_income_amounts[country],
+          "change" => countries_income_change[country]
+        }
+
+        @countries_data.push(this_country)
       end
 
     rescue

@@ -32,6 +32,7 @@
       <!-- End News -->
     </div>
 
+
     <div class="right-column">
       <h3>Terror</h3>
       <div class="progress-legend">{{terror}} / 250</div>
@@ -45,10 +46,10 @@
   </div>
 
   <ul id="countries-ticker" class="marquee">
-    <li ng-repeat="(country, data) in countries">
-      <span>{{country}}</span>
-      <span class="arrow" ng-class="{'down': data == undefined, 'up': data !== undefined }">
+    <li ng-repeat="country in countries">
+      <span>{{country.name}}</span>
+      <span>{{country.amount}}</span>
+      <i class="glyphicon" ng-class="{'glyphicon-chevron-down': country.change <= 0, 'glyphicon-chevron-up': country.change > 0 }"></i>
     </li>
   </ul>
-
 </div>

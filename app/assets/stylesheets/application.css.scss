@@ -295,10 +295,11 @@ textarea {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.glyphicon-play:before  { content: "\e072"; }
-.glyphicon-pause:before { content: "\e073"; }
-.glyphicon-stop:before  { content: "\e074"; }
-
+.glyphicon-play:before          { content: "\e072"; }
+.glyphicon-pause:before         { content: "\e073"; }
+.glyphicon-stop:before          { content: "\e074"; }
+.glyphicon-chevron-up:before    { content: "\e113"; }
+.glyphicon-chevron-down:before  { content: "\e114"; }
 
 /* =====================================
               TABLE DEFAULTS
