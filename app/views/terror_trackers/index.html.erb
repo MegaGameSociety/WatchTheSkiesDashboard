@@ -39,13 +39,13 @@
     <% end %>
   </section>
 
-  <h3>Enter Current Vatican Activity</h3>
+  <h3>Enter Current Military Activity</h3>
   <section>
      <%= form_for(@game, url: activity_update_path) do |f|%>
       Next Round:
         <%= f.label "Activity Message" %> </br>
-        <p>Denotes activity for the Vatican</p>
-        <%= f.text_field :activity, value: @game.activity, placeholder:"Saucers shot down over Norway. Heavy casualties. Pope is sad.", :size => "60x5"%></br>
+        <p>Denotes activity in the War Room</p>
+        <%= f.text_field :activity, value: @game.activity, placeholder:"Saucers shot down over Norway. Heavy casualties.", :size => "60x5"%></br>
       <%= f.submit %>
     <% end %>
   </section>

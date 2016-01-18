@@ -49,7 +49,6 @@ Rails.application.routes.draw do
   get 'admin' =>'games#admin_control', :as =>'admin_control'
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
   post 'toggle_alien_comms', to: 'games#toggle_alien_comms', as: :toggle_alien_comms
-  post 'toggle_vatican_comms', to: 'games#toggle_vatican_comms', as: :toggle_vatican_comms
   post 'reset_game', to: 'games#reset', :as => 'reset_game'
   patch 'update_time/:id', to: 'games#update_time', as: :update_time
   patch 'alert_update', to: 'games#update_control_message', as: :alert_update
