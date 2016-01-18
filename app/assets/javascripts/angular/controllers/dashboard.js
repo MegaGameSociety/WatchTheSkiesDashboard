@@ -58,7 +58,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
         $scope.terror_height = (370 / 250) * $scope.terror;
       }
 
-      // Return height thermometer.
+      // Return the height for the thermometer.
       return {
         'height': $scope.terror_height + 'px'
       };
@@ -108,7 +108,7 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
       news_items = $('.news-item');
       news_items.first().slideUp('slow', function(){
           detach = news_items.first().detach();
-          detach.insertAfter(news_items.last().hide())//.fadeIn('slow');
+          detach.insertAfter(news_items.last().hide());
           $('.news-item').first().fadeIn('slow');
       });
     }
