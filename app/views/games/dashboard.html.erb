@@ -49,7 +49,7 @@
         <div ng-repeat="country in countries" class="country">
           <span>{{country.name}}</span>
           <span>{{country.amount || 0}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-chevron-down': country.change < 0, 'glyphicon-chevron-up': country.change > 0, 'glyphicon-minus': country.change == 0}"></i>
+          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
         </div>
       </li>
       <!-- Duplicate because it makes the animation smoother -->
@@ -57,7 +57,7 @@
         <div ng-repeat="country in countries" class="country">
           <span>{{country.name}}</span>
           <span>{{country.amount}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-chevron-down': country.change < 0, 'glyphicon-chevron-up': country.change > 0, 'glyphicon-minus': country.change == 0}"></i>
+          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
         </div>
       </li>
       <!-- Triplicate because it makes the animation smoother -->
@@ -65,7 +65,7 @@
         <div ng-repeat="country in countries" class="country">
           <span>{{country.name}}</span>
           <span>{{country.amount}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-chevron-down': country.change < 0, 'glyphicon-chevron-up': country.change > 0, 'glyphicon-minus': country.change == 0}"></i>
+          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
         </div>
       </li>
     </ul>

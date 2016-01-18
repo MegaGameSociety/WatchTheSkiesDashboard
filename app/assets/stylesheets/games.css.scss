@@ -191,9 +191,9 @@ $terror-red: #BD2C00;
     font-size: 3.4rem;
   }
 
-  .glyphicon-chevron-down { color: $terror-red;         }
-  .glyphicon-chevron-up   { color: $terror-light-green; }
-  .glyphicon-minus        { color: $terror-yellow;      }
+  .glyphicon-decrease { color: $terror-red;         }
+  .glyphicon-increase { color: $terror-light-green; }
+  .glyphicon-stagnate { color: $terror-yellow;      }
 }
 
 /* =====================================
