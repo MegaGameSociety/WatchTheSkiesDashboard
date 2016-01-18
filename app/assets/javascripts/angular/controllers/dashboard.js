@@ -105,10 +105,11 @@ dashboardController.controller('DashboardCtrl', ['$rootScope', '$scope', '$http'
     };
 
     $scope.updateNews = function(){
-      news_items = $('.news-container')
-      news_items.first().hide('slow',function(){
-          detach = news_items.first().detach()
-          detach.insertAfter(news_items.last()).fadeIn('slow');
+      news_items = $('.news-item');
+      news_items.first().slideUp('slow', function(){
+          detach = news_items.first().detach();
+          detach.insertAfter(news_items.last().hide())//.fadeIn('slow');
+          $('.news-item').first().fadeIn('slow');
       });
     }
 

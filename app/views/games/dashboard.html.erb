@@ -16,14 +16,16 @@
 
       <!-- News -->
       <h3>News</h3>
-      <div class="news-container" ng-show="news.length>0" ng-repeat="news_item in news" ng-class="{ active: $index == 0 }">
-        <h4>{{news_item.title}}</h4>
-        <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" />
-        <p>{{news_item.content}}</p>
-        <p class="date">Reported at {{news_item.created_at| date:'h:mma'}}</p>
-      </div>
-      <div class="news-container active" ng-if="news.length==0">
-        <h4>Nothing has happened yet<h4>
+      <div class="news-container">
+        <div class="news-item" ng-if="news.length>0" ng-repeat="news_item in news">
+          <h4>{{news_item.title}}</h4>
+          <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" />
+          <p>{{news_item.content}}</p>
+          <p class="date">Reported at {{news_item.created_at| date:'h:mma'}}</p>
+        </div>
+        <div class="news-item" ng-if="news.length==0">
+          <h4>Nothing has happened yet<h4>
+        </div>
       </div>
     </div>
 

@@ -254,9 +254,12 @@ $light-red: #FA3E3B;
                   NEWS
    ===================================== */
 
-.news-container {
-  margin-bottom: 30px;
-  border-bottom: thin solid #000000;
+.news-item {
+  display: none;
+
+  &:first-child {
+    display: block;
+  }
 
   h4 {
     font-weight: bold;
@@ -270,7 +273,8 @@ $light-red: #FA3E3B;
 
   img {
     display: block;
-    max-height: 300px;
+    max-height: 250px;
+    width: 80%;
   }
 
   p {
