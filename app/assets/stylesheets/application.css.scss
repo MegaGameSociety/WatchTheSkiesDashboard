@@ -41,20 +41,38 @@
    ===================================== */
 
 $background: #ffffe9;
-$background-blue: #94b3c4;
-$background-seafoam: #d3e3d8;
-$background-darktan: #f0f5db;
-$background-green: #dbe8db;
 
 $green: #399499;
-$red: #9f0d33;
-$light-red: #FA3E3B;
+
+$white: #FFFFFF;
+$black: #000000;
+
+$border-grey: #ebebeb;
+
+$terror-light-green: #6CC644;
+$terror-dark-green: #44A662;
+$terror-yellow: #D5D506;
+$terror-orange: #CB8F06;
+$terror-red: #BD2C00;
 
 
+/*
+Some Previously Used Colours / Colour Ideas
 
-//#C4DAF7 #C5DDFF
-//#C29E9A
-// #6D8491
+  $background-blue: #94b3c4;
+  $background-seafoam: #d3e3d8;
+  $background-darktan: #f0f5db;
+  $background-green: #dbe8db;
+
+  $red: #9f0d33;
+  $light-red: #FA3E3B;
+
+  #C4DAF7
+  C5DDFF
+  #C29E9A
+  #6D8491
+
+*/
 
 /* =====================================
                 BASE STYLES
@@ -71,7 +89,7 @@ html {
 
 body {
   background: $background;
-  color: #000000;
+  color: $black;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 2.5rem;
   line-height: 3.3rem;
@@ -170,26 +188,26 @@ p {
    ===================================== */
 
 .error {
-  color: $red;
+  color: $terror-red;
 }
 
 #notice {
-  color: green;
+  color: $terror-light-green;
 }
 
 .field_with_errors {
   padding: 2px;
-  background-color: $red;
+  background-color: $terror-red;
   display: table;
 }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid $red;
+  border: 2px solid $terror-red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: $border-grey;
 
   h2 {
     text-align: left;
@@ -198,8 +216,8 @@ p {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: $red;
-    color: #ffffff;
+    background-color: $terror-red;
+    color: $white;
   }
 
   ul li {
@@ -214,14 +232,14 @@ p {
    ===================================== */
 
 a, a:visited {
-  color: #000;
+  color: $black;
   display: inline-block;
   text-decoration: none;
 }
 
 a:hover {
-  background: #000;
-  color: #FFF;
+  background: $black;
+  color: $white;
   text-decoration: none;
 }
 
@@ -234,9 +252,9 @@ label {
 
 select,
 input {
-  background-color: #ffffff;
-  border: 1px solid #ebebeb;
-  color: #000;
+  background-color: $white;
+  border: 1px solid $border-grey;
+  color: $black;
   font-size: 2rem;
   height: 40px;
   padding: 0 20px;
@@ -250,14 +268,14 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background: #000;
-  color: #FFF;
+  background: $black;
+  color: $white;
 }
 
 textarea {
-  background-color: #ffffff;
-  border: 1px solid #ebebeb;
-  color: #000;
+  background-color: $white;
+  border: 1px solid $border-grey;
+  color: $black;
   font-size: 1.6rem;
   padding: 5px;
   resize: vertical;
@@ -265,8 +283,8 @@ textarea {
 }
 
 .button-input {
-  background: #FFF;
-  border: 1px solid #ebebeb;
+  background: $white;
+  border: 1px solid $border-grey;
   cursor: pointer;
   display: inline-block;
   font-style: italic;
@@ -324,7 +342,7 @@ table {
   }
 
   tr {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $black;
 
     &:last-child {
       border-bottom: 0;

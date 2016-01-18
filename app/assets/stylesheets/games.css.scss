@@ -1,15 +1,15 @@
 /* =====================================
                 VARIABLES
    ===================================== */
-$background: #ffffe9;
-$background-blue: #94b3c4;
-$background-seafoam: #d3e3d8;
-$background-darktan: #f0f5db;
-$background-green: #dbe8db;
 
-$green: #399499;
-$red: #9f0d33;
-$light-red: #FA3E3B;
+$background-blue: #94b3c4;
+
+$white: #FFFFFF;
+$terror-light-green: #6CC644;
+$terror-dark-green: #44A662;
+$terror-yellow: #D5D506;
+$terror-orange: #CB8F06;
+$terror-red: #BD2C00;
 
 /* =====================================
                 MIXINS
@@ -65,9 +65,6 @@ $light-red: #FA3E3B;
 }
 
 
-
-
-
 /* =====================================
                 GENERAL
    ===================================== */
@@ -77,8 +74,9 @@ $light-red: #FA3E3B;
   color: white;
 
   p {
-    margin-bottom: 20px;
-    margin-top: 0;
+    font-size: 3.8rem;
+    line-height: 4.6rem;
+    margin: 0 0 20px 0;
     padding: 10px;
     text-transform: uppercase;
   }
@@ -104,7 +102,7 @@ $light-red: #FA3E3B;
     text-align: center;
 
     h3.paused {
-      color: $red;
+      color: $terror-red;
     }
   }
 }
@@ -193,17 +191,9 @@ $light-red: #FA3E3B;
     font-size: 3.4rem;
   }
 
-  .glyphicon-chevron-down {
-    color: $red;
-  }
-
-  .glyphicon-chevron-up {
-    color: #6CC644;
-  }
-
-  .glyphicon-minus {
-    color: #D5D506;
-  }
+  .glyphicon-chevron-down { color: $terror-red;         }
+  .glyphicon-chevron-up   { color: $terror-light-green; }
+  .glyphicon-minus        { color: $terror-yellow;      }
 }
 
 /* =====================================
@@ -211,7 +201,7 @@ $light-red: #FA3E3B;
    ===================================== */
 
 #terror-container {
-  background-color: #FFF;
+  background-color: $white;
   display: inline-block;
   height: 500px;
   margin: 10px auto;
@@ -245,14 +235,13 @@ $light-red: #FA3E3B;
     }
   }
 
-  &.none, &.none div { background-color: #FFFFFF; }
-  &.low,  &.low div  { background-color: #6CC644; }
-  &.med,  &.med div  { background-color: #44A662; }
-  &.high, &.high div { background-color: #D5D506; }
-  &.crit, &.crit div { background-color: #CB8F06; }
-  &.doom, &.doom div { background-color: #BD2C00; }
+  &.none, &.none div { background-color: $white;              }
+  &.low,  &.low div  { background-color: $terror-light-green; }
+  &.med,  &.med div  { background-color: $terror-dark-green;  }
+  &.high, &.high div { background-color: $terror-yellow;      }
+  &.crit, &.crit div { background-color: $terror-orange;      }
+  &.doom, &.doom div { background-color: $terror-red;         }
 }
-
 
 /* =====================================
                   NEWS
@@ -288,7 +277,7 @@ $light-red: #FA3E3B;
   }
 
   a {
-    color: $green;
+    color: $terror-light-green;
     display: inline-block;
     font-size: 1.6rem;
     line-height: 2.4rem;
