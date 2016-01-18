@@ -39,13 +39,10 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      current_income_list = @games.incomes.where(round: round).pluck(:team_name, :amount)
-      previous_income_list = @games.incomes.where(round: (round -1))
-                                   .select(:team_name, :amount)
-                                   .map{|e| {:country => e.team_name, :amount => e.amount}}
-                                   .group_by{|x| x[:country]}
+      current_income_list = Income.where(round: round).pluck(:team_name, :amount)
+      previous_income_list = Income.where(round: (round -1)).pluck_to_hash(:team_name, :amount).group_by{|x| x[:team_name]}
 
-      @countries_data = current_income_list.map do |country, amount|
+      countries_data = current_income_list.map do |country, amount|
         previous_income = previous_income_list[country]
 
         income_change = if previous_income.empty?
@@ -77,7 +74,7 @@ class Api::ApiController < ApplicationController
         },
         "news" =>  @news,
         "global_terror" => @global_terror,
-        "countries" => @countries_data,
+        "countries" => countries_data,
         "alien_comms" => @data["alien_comms"],
       }
     rescue

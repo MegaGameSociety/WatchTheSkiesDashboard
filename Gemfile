@@ -40,7 +40,9 @@ gem 'json'
 
 gem 'pg'
 
-gem 'devise', '~> 3.4.0' 
+gem 'pluck_to_hash'
+
+gem 'devise', '~> 3.4.0'
 gem 'rails_12factor', group: :production
 gem 'twitter'
 
