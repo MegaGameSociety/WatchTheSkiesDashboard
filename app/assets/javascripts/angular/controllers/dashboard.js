@@ -38,8 +38,6 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
       });
     }
 
-    // Get the height of the Terror Tracker for the Thermometer Display.
-    $scope.getTerrorHeight = function() {
     // Make the News Slideshow work appropriately.
     $scope.newsIndex = 0;
 
@@ -55,25 +53,26 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
         $scope.newsIndex = ($scope.newsIndex < $scope.news.length - 1) ? ++$scope.newsIndex : 0;
     }, 8000);
 
+
+    // Get the width of the Terror Tracker.
+    $scope.getTerrorWidth = function() {
       var terror = $scope.terror;
 
       // If Terror hasn't been retrieved yet, don't break.
       if (terror === undefined) {
-        $scope.terror_height = 0;
+        $scope.terror_width = 0;
       } else if (terror > 250) {
         $scope.terror = 250;
-        $scope.terror_height = 370;
+        $scope.terror_width = 100;
       } else {
-        // 400 max pixels tall, -30 for padding.
-        // Divided by 250, the maximum amount of the terror tracker.
-        $scope.terror_height = (370 / 250) * $scope.terror;
+        $scope.terror_width = (100 / 250) * $scope.terror;
       }
 
-      // Return the height for the thermometer.
       return {
-        'height': $scope.terror_height + 'px'
+        'width': $scope.terror_width + '%'
       };
     };
+
 
     // Get the colour of the Terror Tracker for the Thermometer Display.
     $scope.getTerrorColour = function() {
@@ -84,27 +83,23 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
       }
 
       var terror = $scope.terror;
+
       // Set thermometer colour based on the Terror amount.
-      // Rounded class is whether we include the rounded top for the thermometer,
-      // which it does not make sense to include when the terror is low.
       switch(terror) {
         case checkRange(terror, 1, 50):
           return'low';
           break;
-        case checkRange(terror, 51, 70):
+        case checkRange(terror, 51, 100):
           return 'med';
           break;
-        case checkRange(terror, 71, 100):
-          return 'med rounded';
-          break;
         case checkRange(terror, 101, 150):
-          return 'high rounded';
+          return 'high';
           break;
         case checkRange(terror, 151, 200):
-          return 'crit rounded';
+          return 'crit';
           break;
         case checkRange(terror, 201, 250):
-          return 'doom rounded';
+          return 'doom';
           break;
         default:
           return 'none';

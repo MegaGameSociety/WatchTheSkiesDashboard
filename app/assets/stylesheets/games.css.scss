@@ -200,48 +200,37 @@ $terror-red: #BD2C00;
               TERROR TRACKER
    ===================================== */
 
-#terror-container {
-  background-color: $white;
-  display: inline-block;
-  height: 500px;
-  margin: 10px auto;
-  position: relative;
-  width: 167px;
-
-  img {
-    position: relative;
-  }
-}
-
-#terror-percentage {
-  bottom: 30px;
-  display: block;
-  margin-top: 30px;
+#terror-tracker {
+  background: rgba(8, 37, 51, 0.7);
   position: absolute;
-  width: calc(100% - 2px);
+  top: calc(50% - 130px);
+  width: 100%;
 
-  div {
-   height: 30px;
-   margin: 0 auto;
-   margin-top: -30px;
-   width: 150px;
+  h3 {
+    color: $terror-red;
+    text-shadow: 2px 2px $black;
+    text-align: center;
   }
-
-  &.rounded {
-    div {
-      border-radius: 90px 90px 0 0;
-      display: block;
-      width: 35px;
-    }
-  }
-
-  &.none, &.none div { background-color: $white;              }
-  &.low,  &.low div  { background-color: $terror-light-green; }
-  &.med,  &.med div  { background-color: $terror-dark-green;  }
-  &.high, &.high div { background-color: $terror-yellow;      }
-  &.crit, &.crit div { background-color: $terror-orange;      }
-  &.doom, &.doom div { background-color: $terror-red;         }
 }
+
+.progress-legend {
+  color: $white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.terror-bar {
+  height: 20px;
+  margin: 0 auto;
+
+  &.none { background-color: $white;              }
+  &.low  { background-color: $terror-light-green; }
+  &.med  { background-color: $terror-dark-green;  }
+  &.high { background-color: $terror-yellow;      }
+  &.crit { background-color: $terror-orange;      }
+  &.doom { background-color: $terror-red;         }
+}
+
 
 /* =====================================
                   NEWS

@@ -12,6 +12,12 @@
         </h2>
         <h3>Turn {{round}}</h3>
         <h3 class="paused" ng-if="paused">(Paused)</h3>
+  <!-- Terror Tracker -->
+  <div id="terror-tracker">
+    <h3>Global Terror</h3>
+    <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+    <div class="progress-legend">{{terror}} / 250</div>
+  </div>
 
   <!-- News -->
   <div id="news-block">
@@ -35,22 +41,14 @@
           <p class="date">Reported at {{news_item.created_at| date:'h:mma'}}</p>
         </div>
       </div>
-
-    <div class="right-column">
-      <!-- Terror -->
-      <h3>Terror</h3>
-      <div class="progress-legend">{{terror}} / 250</div>
-      <div id="terror-container">
-        <div id="terror-percentage" ng-style="getTerrorHeight()" ng-class="getTerrorColour()">
-          <div></div>
-        </div>
-        <img src="/assets/thermometer.png">
+      <div class="" ng-if="news.length==0">
+        <h4>Reports are coming in. Stay tuned for more details.</h4>
       </div>
     </div>
   </div>
 
+  <!-- Countries Ticker -->
   <div id="countries-ticker">
-    <!-- Countries -->
     <ul>
       <li>
         <div ng-repeat="country in countries" class="country">
