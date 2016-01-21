@@ -40,6 +40,21 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
 
     // Get the height of the Terror Tracker for the Thermometer Display.
     $scope.getTerrorHeight = function() {
+    // Make the News Slideshow work appropriately.
+    $scope.newsIndex = 0;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.newsIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.newsIndex === index;
+    };
+
+    $interval(function(){
+        $scope.newsIndex = ($scope.newsIndex < $scope.news.length - 1) ? ++$scope.newsIndex : 0;
+    }, 8000);
+
       var terror = $scope.terror;
 
       // If Terror hasn't been retrieved yet, don't break.
@@ -100,27 +115,40 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
       apiCall();
     };
 
-    $scope.updateNews = function(){
-      news_items = $('.news-item');
-      news_items.first().slideUp('slow', function(){
-          detach = news_items.first().detach();
-          detach.insertAfter(news_items.last().hide());
-          $('.news-item').first().fadeIn('slow');
-      });
-    }
-
     $scope.range = function(n) {
       return new Array(n);
     };
 
     $scope.getStatus();
 
-    $interval(function(){
-      $scope.updateNews();
-    }, 8000);
-
     $interval(function() {
       $scope.getStatus();
     }, 3000);
   }
-]);
+]).animation('.slide-animation', function () {
+  return {
+    beforeAddClass: function (element, className, done) {
+      var scope = element.scope();
+
+      if (className == 'ng-hide') {
+        var finishPoint = $(element).parent().height();
+        TweenMax.to(element, 0.5, {top: -finishPoint, onComplete: done });
+      }
+      else {
+        done();
+      }
+    },
+    removeClass: function (element, className, done) {
+      var scope = element.scope();
+
+      if (className == 'ng-hide') {
+        $(element).removeClass('ng-hide');
+        var startPoint = $(element).parent().height();
+        TweenMax.fromTo(element, 0.5, { top: startPoint }, {top: 0, onComplete: done });
+      }
+      else {
+        done();
+      }
+    }
+  };
+});

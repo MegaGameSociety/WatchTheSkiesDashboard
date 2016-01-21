@@ -12,10 +12,12 @@
 //
 //= require angular/angular
 //= require angular-timer
+//= require angular-animate
 //= require humanize-duration
 //= require momentjs
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
+//= require greensock
 //= require_tree .
