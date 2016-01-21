@@ -4,6 +4,7 @@
 
 $background-blue: #94b3c4;
 
+$black: #000000;
 $white: #FFFFFF;
 $terror-light-green: #6CC644;
 $terror-dark-green: #44A662;
@@ -44,12 +45,25 @@ $terror-red: #BD2C00;
   transform: $args;
 }
 
+@mixin topBottomGradient($color1, $color2, $color3) {
+  background: $color1;
+  background: -moz-linear-gradient(top,    $color1 0%, $color2 50%, $color3 100%);
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 50%, $color3 100%);
+  background: linear-gradient(to bottom,   $color1 0%, $color2 50%, $color3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$color3,GradientType=0 );
+}
+
 
 /* =====================================
            SIZING FOR PROJECTOR
    ===================================== */
 
-#dashboard {
+.dashboard {
+  background-color: #0c3e50;
+  background-image: url('/assets/map.png');
+  background-position: top center;
+  background-repeat: repeat-x;
+  background-size: cover;
   font-size: 3rem;
   line-height: 3.8rem;
 
@@ -64,84 +78,46 @@ $terror-red: #BD2C00;
   }
 }
 
-
 /* =====================================
-                GENERAL
+             TOP MESSAGES AREA
    ===================================== */
 
+#round-container {
+  @include topBottomGradient(#1e5799, #2989d8, #7db9e8);
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
+  width: 250px;
+
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+
+  #timer {
+    @include topBottomGradient(#e2e2e2, #dbdbdb, #fefefe);
+    padding-bottom: 5px;
+    margin: 0;
+  }
+
+  h2 {
+    color: $white;
+  }
+
+  h3 {
+    color: $terror-red;
+  }
+}
+
 #control-messages {
-  background: $background-blue;
-  color: white;
+  display: inline-block;
+  margin: 20px;
+  vertical-align: top;
+  width: calc(100% - 350px);
 
   p {
     font-size: 3.8rem;
     line-height: 4.6rem;
-    margin: 0 0 20px 0;
+    margin: 0;
     padding: 10px;
     text-transform: uppercase;
-  }
-}
-
-
-/* =====================================
-                COLUMNS
-   ===================================== */
-
-.columns {
-  display: table;
-  position: relative;
-  width: 100%;
-}
-
-.left-column {
-  display: table-cell;
-  padding: 0px 50px;
-  vertical-align: top;
-
-  #round-container {
-    text-align: center;
-
-    h3.paused {
-      color: $terror-red;
-    }
-  }
-}
-
-.right-column {
-  display: table-cell;
-  text-align: center;
-  vertical-align: top;
-  width: 250px;
-}
-
-.column {
-  display: table-cell;
-  padding: 10px;
-  vertical-align: top;
-  width: calc(100% / 3);
-
-  img {
-    display: block;
-    margin: 0 auto 10px;
-    width: 100%;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0px;
-  }
-
-  li:after {
-    border-bottom: 1px solid #2f2f2f;
-    content: '';
-    display: block;
-    height: 4px;
-    margin: 0 auto;
-    width: 100px;
-  }
-
-  li:last-child:after {
-    border-bottom: 0;
   }
 }
 

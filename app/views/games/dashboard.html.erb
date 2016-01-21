@@ -1,17 +1,22 @@
 <div ng-app='dashboardApp' ng-controller="dashboardCtrl" id="dashboard">
+
+  <!-- Round Information -->
+  <div id="round-container">
+    <h2>Turn {{round}}</h2>
+
+    <div id="timer">
+      <h3 ng-if="!paused">
+        <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
+      </h3>
+      <h3 ng-if="paused">(Paused)</h3>
+    </div>
+  </div>
+
+  <!-- Control Messages -->
   <div id="control-messages">
     <p>{{controlMessage}}</p>
   </div>
 
-  <div class="columns">
-    <div class="left-column">
-      <!-- Rounds -->
-      <div id="round-container">
-        <h2 ng-if="!paused">
-          <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
-        </h2>
-        <h3>Turn {{round}}</h3>
-        <h3 class="paused" ng-if="paused">(Paused)</h3>
   <!-- Terror Tracker -->
   <div id="terror-tracker">
     <h3>Global Terror</h3>

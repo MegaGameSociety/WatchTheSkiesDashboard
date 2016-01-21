@@ -81,6 +81,8 @@ Some Previously Used Colours / Colour Ideas
 html {
   font-size: 62.5%;
   line-height: 1.4;
+  height: 100%;
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -92,6 +94,8 @@ body {
   color: $black;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 2.5rem;
+  height: 100%;
+  min-height: 100%;
   line-height: 3.3rem;
   margin: 0;
   padding: 0 0 50px 0;
@@ -320,6 +324,7 @@ textarea {
 .glyphicon-decrease:before  { content: "\e134"; }
 .glyphicon-stagnate:before  { content: "\e082"; }
 
+
 /* =====================================
               TABLE DEFAULTS
    ===================================== */
@@ -377,6 +382,43 @@ table {
 /* =====================================
                  COLUMNS
    ===================================== */
+
+.columns {
+  display: table;
+  position: relative;
+  width: 100%;
+}
+
+.column {
+  display: table-cell;
+  padding: 10px;
+  vertical-align: top;
+  width: calc(100% / 3);
+
+  img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 100%;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0px;
+  }
+
+  li:after {
+    border-bottom: 1px solid #2f2f2f;
+    content: '';
+    display: block;
+    height: 4px;
+    margin: 0 auto;
+    width: 100px;
+  }
+
+  li:last-child:after {
+    border-bottom: 0;
+  }
+}
 
 .half-width {
   display: inline-block;
