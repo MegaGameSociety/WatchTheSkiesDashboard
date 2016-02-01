@@ -61,7 +61,7 @@ NewsMessage.create(
   visible_image: true
   )
 
-u = User.create()
+u = User.create(role: "SuperAdmin")
 u.email = "wts@wts.com"
 u.password='swordfish'
 u.password_confirmation='swordfish'

@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
 before_action :authenticate_user!, except:[:dashboard]
+before_action :authenticate_role!, except:[:dashboard]
 
   # Main Dashboard for All Players
   def dashboard
@@ -163,6 +164,7 @@ before_action :authenticate_user!, except:[:dashboard]
       end
     end
   end
+
 private
   def game_params
       params[:game].permit(:next_round)

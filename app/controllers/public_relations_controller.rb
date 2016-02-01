@@ -1,6 +1,7 @@
 class PublicRelationsController < ApplicationController
   before_action :set_public_relation, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :authenticate_role!
   # Get
   def un_dashboard
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)

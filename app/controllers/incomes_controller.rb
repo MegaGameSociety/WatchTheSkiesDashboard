@@ -1,6 +1,7 @@
 class IncomesController < ApplicationController
   before_action :set_income, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :authenticate_role!
 
   # GET /incomes
   # GET /incomes.json
