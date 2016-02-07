@@ -60,21 +60,24 @@ $terror-red: #BD2C00;
 
 .dashboard {
   background-color: #0c3e50;
-  background-image: url('/assets/map.png');
+ // background-image: url('/assets/banner.jpg');
+  background-image: url('/assets/empire.png');
   background-position: top center;
   background-repeat: repeat-x;
-  background-size: cover;
-  font-size: 3rem;
-  line-height: 3.8rem;
+//  background-size: cover;
+  font-size: 5rem;
+  line-height: 5.8rem;
+  padding-bottom: 0px;
+  padding-top: 20px;
 
   h3 {
-    font-size: 4rem;
-    line-height: 4.8rem;
+    font-size: 6rem;
+    line-height: 6.8rem;
   }
 
   h4 {
-    font-size: 3.2rem;
-    line-height: 4rem;
+    font-size: 5.2rem;
+    line-height: 6rem;
   }
 }
 
@@ -82,19 +85,25 @@ $terror-red: #BD2C00;
              TOP MESSAGES AREA
    ===================================== */
 
+#top-container {
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+  height: 130px;
+  margin: 0 20px;
+}
+
 #round-container {
   @include topBottomGradient(#1e5799, #2989d8, #7db9e8);
   display: inline-block;
-  margin: 20px;
+  height: 130px;
+  float: left;
   text-align: center;
-  width: 250px;
-
-  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+  width: 320px;
 
   #timer {
     @include topBottomGradient(#e2e2e2, #dbdbdb, #fefefe);
-    padding-bottom: 5px;
+    height: 80px;
     margin: 0;
+    padding-top: 5px;
   }
 
   h2 {
@@ -106,15 +115,49 @@ $terror-red: #BD2C00;
   }
 }
 
-#control-messages {
+
+/* =====================================
+              TERROR TRACKER
+   ===================================== */
+
+#terror-tracker {
+  background: rgba(255, 255, 255, 0.4);
   display: inline-block;
+  height: 130px;
+  width: Calc(100% - 320px);
+
+  h3 {
+    color: $black;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
+
+.terror-bar {
+  height: 30px;
+  margin: 0 auto;
+
+  &.none { background-color: $white;              }
+  &.low  { background-color: $terror-light-green; }
+  &.med  { background-color: $terror-dark-green;  }
+  &.high { background-color: $terror-yellow;      }
+  &.crit { background-color: $terror-orange;      }
+  &.doom { background-color: $terror-red;         }
+}
+
+
+/* =====================================
+              CONTROL MESSAGES
+   ===================================== */
+
+#control-messages {
+  display: block;
   margin: 20px;
   vertical-align: top;
-  width: calc(100% - 350px);
 
   p {
-    font-size: 3.8rem;
-    line-height: 4.6rem;
+    font-size: 5.8rem;
+    line-height: 6.6rem;
     margin: 0;
     padding: 10px;
     text-transform: uppercase;
@@ -139,19 +182,19 @@ $terror-red: #BD2C00;
   width: 100%;
 
   ul {
-    height: 50px;
+    height: 70px;
     left: 0;
     list-style: none;
     position: relative;
     top: 0;
-    width: 300%!important;
+    width: 350%!important;
     z-index: 1;
     @include animation(loop 60s linear infinite);
   }
 
   li {
     float: left;
-    height: 50px;
+    height: 70px;
     overflow: hidden;
     width: 33.333%;
   }
@@ -159,12 +202,13 @@ $terror-red: #BD2C00;
   .country {
     color: #FFF;
     display: inline-block;
-    font-size: 4rem;
-    margin: 7px 1.6%;
+    font-size: 6rem;
+    margin: 0px 30px;
   }
 
   .glyphicon {
-    font-size: 3.4rem;
+    font-size: 6rem;
+    top: 7px;
   }
 
   .glyphicon-decrease { color: $terror-red;         }
@@ -172,80 +216,62 @@ $terror-red: #BD2C00;
   .glyphicon-stagnate { color: $terror-yellow;      }
 }
 
-/* =====================================
-              TERROR TRACKER
-   ===================================== */
-
-#terror-tracker {
-  background: rgba(8, 37, 51, 0.7);
-  position: absolute;
-  top: calc(50% - 130px);
-  width: 100%;
-
-  h3 {
-    color: $terror-red;
-    text-shadow: 2px 2px $black;
-    text-align: center;
-  }
-}
-
-.progress-legend {
-  color: $white;
-  font-weight: bold;
-  text-align: center;
-}
-
-.terror-bar {
-  height: 20px;
-  margin: 0 auto;
-
-  &.none { background-color: $white;              }
-  &.low  { background-color: $terror-light-green; }
-  &.med  { background-color: $terror-dark-green;  }
-  &.high { background-color: $terror-yellow;      }
-  &.crit { background-color: $terror-orange;      }
-  &.doom { background-color: $terror-red;         }
-}
-
 
 /* =====================================
                   NEWS
    ===================================== */
 
-
 #news-block {
-  bottom: 50px;
+  @include topBottomGradient(rgba(30, 88, 153, 0.7), rgba(150, 200, 255, 0.7), rgba(150, 200, 255, 0.7));
+  bottom: 70px;
+  box-shadow: 3px -3px 15px -5px rgba(0,0,0,0.75);
   position: fixed;
   width: 100%;
 }
 
-h3.news {
-  background: $terror-red;
-  color: $white;
-  display: inline-block;
-  font-weight: bold;
-  margin: 0;
-  padding: 5px 10px;
+#breaking-block {
+  height: 70px;
 
-  box-shadow: 3px -3px 15px -5px rgba(0,0,0,0.75);
-}
-
-#news-container {
-  @include topBottomGradient(#1e5799, #2989d8, #7db9e8);
-  color: white;
-  min-height: 140px;
-  padding: 10px;
-
-  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
-
-  h4 {
+  h3 {
+    background: $terror-red;
+    color: $white;
+    display: inline-block;
+    float: left;
     font-weight: bold;
+    padding: 0 10px;
+    width: 605px;
   }
 
-  .date {
-    font-size: 2.4rem;
+  .triangle {
+    border-style: solid;
+    border-width: 68px 90px 0 0;
+    border-color: $terror-red transparent transparent transparent;
+    display: inline-block;
+    float: left;
+    height: 0;
+    width: 0;
+  }
+
+  .news-time {
+    display: inline-block;
+    float: left;
+    font-size: 5.2rem;
     font-style: italic;
-    line-height: 3.2rem;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    width: calc(100% - 700px);
+  }
+}
+
+
+#news-container {
+  min-height: 175px;
+  padding: 10px;
+
+  h4 {
+    font-size: 4.8rem;
+    line-height: 5.6rem;
+    font-weight: bold;
   }
 
   img {
@@ -255,16 +281,16 @@ h3.news {
   }
 
   p {
-    font-size: 2.8rem;
-    line-height: 3.6rem;
+    font-size: 4.8rem;
+    line-height: 5.6rem;
     margin: 5px auto
   }
 
   a {
     color: $terror-light-green;
     display: inline-block;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: 3.6rem;
+    line-height: 4.4rem;
     font-weight: bold;
     margin-top: 10px;
     text-decoration: none;
@@ -272,10 +298,10 @@ h3.news {
   }
 
   .slider {
-    height: 150px;
+    height: 175px;
     overflow: hidden;
     position: relative;
-    width: calc(100% - 300px);
+    width: calc(100% - 380px);
   }
 
   .slide {
@@ -289,10 +315,10 @@ h3.news {
   background: $black;
   border: 20px solid #1e5799;
   bottom: 0px;
-  height: 300px;
+  height: 380px;
   position: absolute;
   right: 0px;
-  width: 300px;
+  width: 380px;
 
   box-shadow: -3px -3px 15px -5px rgba(0,0,0,0.75);
 
@@ -300,19 +326,19 @@ h3.news {
     background-color: $black;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 260px;
-    width: 260px;
+    height: 340px;
+    width: 340px;
   }
 
   .image {
     background-color: $black;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 260px;
+    height: 340px;
     left: 0px;
     position: absolute;
     top: 0px;
-    width: 260px;
+    width: 340px;
   }
 }
 

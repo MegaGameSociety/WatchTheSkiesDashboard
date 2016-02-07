@@ -21,6 +21,6 @@
     "greensock": "~1.18.2"
   },
   "resolutions": {
-    "angular": "~1.4.3"
+    "angular": "~1.4.7"
   }
 }

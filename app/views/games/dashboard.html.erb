@@ -1,5 +1,7 @@
 <div ng-app='dashboardApp' ng-controller="dashboardCtrl" id="dashboard">
 
+
+<div id="top-container">
   <!-- Round Information -->
   <div id="round-container">
     <h2>Turn {{round}}</h2>
@@ -12,21 +14,27 @@
     </div>
   </div>
 
+  <!-- Terror Tracker -->
+  <div id="terror-tracker">
+    <h3>Global Terror: {{terror}} / 250</h3>
+    <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+  </div>
+</div>
+
   <!-- Control Messages -->
   <div id="control-messages">
     <p>{{controlMessage}}</p>
   </div>
 
-  <!-- Terror Tracker -->
-  <div id="terror-tracker">
-    <h3>Global Terror</h3>
-    <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
-    <div class="progress-legend">{{terror}} / 250</div>
-  </div>
 
   <!-- News -->
   <div id="news-block">
-    <h3 class="news">Breaking News</h3>
+
+    <div id="breaking-block">
+      <h3>Breaking News</h3>
+      <div class="triangle"></div>
+      <div class="news-time">Reported at {{news[newsIndex].created_at| date:'h:mma'}}</div>
+    </div>
 
     <div id="news-image">
       <div class="placeholder" style="background-image: url('/assets/empire.png')"></div>
@@ -43,7 +51,6 @@
              ng-hide="!isCurrentSlideIndex($index)">
           <h4>{{news_item.title}}</h4>
           <p>{{news_item.content}}</p>
-          <p class="date">Reported at {{news_item.created_at| date:'h:mma'}}</p>
         </div>
       </div>
       <div class="" ng-if="news.length==0">
