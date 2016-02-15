@@ -1,7 +1,7 @@
 class TerrorTrackersController < ApplicationController
   before_action :set_terror_tracker, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_role!
+  before_action :authenticate_control!
   # Patch
   def update_activity
     @game = Game.last

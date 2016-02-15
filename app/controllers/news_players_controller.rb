@@ -1,5 +1,5 @@
 class NewsPlayersController < ApplicationController
-  before_action :authenticate_role!
+  before_action :authenticate_control!
   # GET /news_messages
   # GET /news_messages.json
   def index

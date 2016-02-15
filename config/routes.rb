@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   root 'games#dashboard'
 
 
-  devise_for :users, path_names: {
-    sign_up: '/'
-  }
-  get '/users' => 'games#dashboard'
+  devise_for :users
+  # get '/users' => 'games#dashboard'
 
   resources :incomes
 
@@ -24,6 +22,7 @@ Rails.application.routes.draw do
   resources :public_relations
   resources :messages
   resources :games
+  resources :users
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -54,7 +53,6 @@ Rails.application.routes.draw do
   patch 'alert_update', to: 'games#update_control_message', as: :alert_update
   patch 'rioters_update', to: 'games#update_rioters', as: :rioters_update
   patch 'round_update', to: 'games#update_round', as: :round_update
-
 
   # Api related routing
   namespace :api, :defaults => {:format => :json} do

@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_role!
+	before_action :authenticate_control!
 	#Displays all messages, newest ones first
 	def index
 		@messages = Message.all.order('created_at DESC')
