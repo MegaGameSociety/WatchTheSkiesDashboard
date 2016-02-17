@@ -71,8 +71,7 @@ before_action :authenticate_control!, except:[:dashboard]
   # Administrative stuff for Kevin
   def admin_control
     @game = Game.last
-    @time = @game.next_round
-    @time_zone = Time.zone.name
+    @time = @game.next_round.in_time_zone(@game.time_zone)
     render 'admin'
   end
 
@@ -147,6 +146,7 @@ before_action :authenticate_control!, except:[:dashboard]
                         dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
                         dateObj["next_round(5i)"].to_i).utc()
     @game.next_round = datetime
+    @game.time_zone = dateObj["time_zone"]
     @game.save
     redirect_to admin_control_path
   end
