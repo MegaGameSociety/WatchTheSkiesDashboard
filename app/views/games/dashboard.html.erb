@@ -1,12 +1,19 @@
 <div ng-app='dashboardApp' ng-controller="DashboardCtrl">
   <div id="control-messages">
     <p>{{controlMessage}}</p>
-  </div
+  </div>
 
   <div class="columns">
     <div class="left-column">
       <img src="/assets/mgs-logo.png" id="mgs-logo">
       <p class="twitter">See @WatchSkies on Twitter for more news.</p>
+      <% if user_signed_in? %>
+        <div>Signed in as <%= current_user.email %>
+        <%= link_to "Account Info", edit_user_registration_path %>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </div>
+      <% else %>
+        <div> <%= link_to "Login", new_user_session_path %></div>
+      <% end %>
       <div id="countries-container">
         <h3 class="center">Global Economy</h3>
         <table>
