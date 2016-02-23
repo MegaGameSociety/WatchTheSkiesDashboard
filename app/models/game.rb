@@ -41,15 +41,11 @@ class Game < ActiveRecord::Base
         self.round +=1
         self.next_round = self.next_round + (30*60)
         self.save
-        #Group Twitter activities together and dump cleanly into the error bucket on fail
-        begin 
-            Tweet.import
-            # Send out tweets
-            client = Tweet.generate_client
-            client.update("Turn #{self.round} has started!")
-        rescue => ex
-            logger.error ex.message
-        end
+
+        # Send out tweets
+        # Disabling tweets
+        # client = Tweet.generate_client
+        # client.update("Turn #{self.round} has started!")
       end
     end
     return self

@@ -5,7 +5,9 @@ class Tweet < ActiveRecord::Base
 
   def publish(client)
     require 'open-uri'
-    if self.is_public && !self.is_published
+    # if self.is_public && !self.is_published
+    # Disble tweeting
+    if false
       # Need to add source + char, limit.
       # GNN:
       # DEN:
