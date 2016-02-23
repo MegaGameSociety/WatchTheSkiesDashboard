@@ -37,8 +37,9 @@ class Game < ActiveRecord::Base
         self.save
 
         # Send out tweets
-        client = Tweet.generate_client
-        client.update("Turn #{self.round} has started!")
+        # Disabling tweets
+        # client = Tweet.generate_client
+        # client.update("Turn #{self.round} has started!")
       end
     end
     return self
