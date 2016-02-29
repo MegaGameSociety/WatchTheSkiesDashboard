@@ -59,12 +59,11 @@ $terror-red: #BD2C00;
    ===================================== */
 
 .dashboard {
-  background-color: #0c3e50;
- // background-image: url('/assets/banner.jpg');
-  background-image: url('/assets/empire.png');
+  background-color: #382b08;
+  background-image: url('/assets/empire.jpeg');
   background-position: top center;
   background-repeat: repeat-x;
-//  background-size: cover;
+  background-size: contain;
   font-size: 5rem;
   line-height: 5.8rem;
   padding-bottom: 0px;
