@@ -17,7 +17,9 @@
   <!-- Terror Tracker -->
   <div id="terror-tracker">
     <h3>Global Terror: {{terror}} / 250</h3>
-    <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+    <div class="terror-border">
+      <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+    </div>
   </div>
 </div>
 
@@ -33,7 +35,6 @@
     <div id="breaking-block">
       <h3>Breaking News</h3>
       <div class="triangle"></div>
-      <div class="news-time">Reported at {{news[newsIndex].created_at| date:'h:mma'}}</div>
     </div>
 
     <div id="news-image">
@@ -51,6 +52,7 @@
              ng-hide="!isCurrentSlideIndex($index)">
           <h4>{{news_item.title}}</h4>
           <p>{{news_item.content}}</p>
+          <p class="news-time">Reported at {{news[newsIndex].created_at| date:'h:mma'}}</p>
         </div>
       </div>
       <div class="" ng-if="news.length==0">
