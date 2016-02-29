@@ -1,9 +1,10 @@
 {
   "name": "WatchTheSkiesDashboard",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/MegaGameSociety/WatchTheSkiesDashboard",
   "authors": [
-    "Kevin Chang <kevin.w.chang@gmail.com>"
+    "Kevin Chang <kevin.w.chang@gmail.com>",
+    "Michael Pelletier <michael@mpelletier.net>"
   ],
   "license": "MIT",
   "ignore": [
