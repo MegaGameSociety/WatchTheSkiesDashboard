@@ -54,6 +54,15 @@ $terror-red: #BD2C00;
 }
 
 
+@mixin aspect-ratio($width, $height) {
+  &:before{
+    display: block;
+    content: " ";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+}
+
 /* =====================================
            SIZING FOR PROJECTOR
    ===================================== */
@@ -338,21 +347,37 @@ $terror-red: #BD2C00;
     background-color: $black;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 340px;
-    width: 340px;
   }
 
   .image {
     background-color: $black;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 340px;
     left: 0px;
     position: absolute;
     top: 0px;
-    width: 340px;
+  }
+
+  &.portrait {
+    max-height: 600px;
+    width: 380px;
+
+    .placeholder,
+    .image {
+      @include aspect-ratio(2,3);
+      position: relative;
+    }
+  }
+
+  &.landscape {
+    bottom: 200px;
+    max-height: 400px;
+    width: calc(100% - 720px);
+
+    .placeholder,
+    .image {
+      @include aspect-ratio(3,2);
+      position: relative;
+    }
   }
 }
-
-
-

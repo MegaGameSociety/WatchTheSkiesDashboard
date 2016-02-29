@@ -37,7 +37,7 @@
       <div class="triangle"></div>
     </div>
 
-    <div id="news-image">
+    <div id="news-image" ng-class="news[newsIndex].media_landscape == true ? 'landscape' : 'portrait'">
       <div class="placeholder" style="background-image: url('/assets/empire.png')"></div>
       <div class="image"
            ng-show="news[newsIndex].media_url"
@@ -46,7 +46,7 @@
     </div>
 
     <div id="news-container">
-      <div class="slider" ng-if="news.length>0">
+      <div class="slider" ng-if="news.length>0" ng-class="news[newsIndex].media_landscape == true ? 'landscape' : 'portrait'">
         <div ng-repeat="news_item in news"
              class="slide slide-animation nonDraggableImage"
              ng-hide="!isCurrentSlideIndex($index)">
