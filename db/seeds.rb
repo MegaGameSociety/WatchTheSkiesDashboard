@@ -54,7 +54,8 @@ game.news_messages.push(NewsMessage.create(
   round: game.round,
   visible_content:true,
   visible_image:true,
-  media_url: "http://megagamesociety.com/images/mainlogo.png"
+  media_url: "http://megagamesociety.com/images/mainlogo.png",
+  media_landscape: false
   ))
 
 game.news_messages.push(NewsMessage.create(
