@@ -50,9 +50,8 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
     };
 
     $interval(function(){
-        $scope.newsIndex = ($scope.newsIndex < $scope.news.length - 1) ? ++$scope.newsIndex : 0;
+      $scope.newsIndex = ($scope.newsIndex < $scope.news.length - 1) ? ++$scope.newsIndex : 0;
     }, 8000);
-
 
     // Get the width of the Terror Tracker.
     $scope.getTerrorWidth = function() {
@@ -72,7 +71,6 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
         'width': $scope.terror_width + '%'
       };
     };
-
 
     // Get the colour of the Terror Tracker for the Thermometer Display.
     $scope.getTerrorColour = function() {
