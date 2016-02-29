@@ -343,12 +343,6 @@ $terror-red: #BD2C00;
   position: absolute;
   right: 0px;
 
-  .placeholder {
-    background-color: $black;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-
   .image {
     background-color: $black;
     background-repeat: no-repeat;
@@ -362,7 +356,6 @@ $terror-red: #BD2C00;
     max-height: 600px;
     width: 380px;
 
-    .placeholder,
     .image {
       @include aspect-ratio(2,3);
       position: relative;
@@ -374,7 +367,6 @@ $terror-red: #BD2C00;
     max-height: 400px;
     width: calc(100% - 720px);
 
-    .placeholder,
     .image {
       @include aspect-ratio(3,2);
       position: relative;

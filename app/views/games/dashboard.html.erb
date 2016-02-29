@@ -38,7 +38,6 @@
     </div>
 
     <div id="news-image" ng-class="news[newsIndex].media_landscape == true ? 'landscape' : 'portrait'">
-      <div class="placeholder" style="background-image: url('/assets/empire.png')"></div>
       <div class="image"
            ng-show="news[newsIndex].media_url"
            style="background-image: url({{news[newsIndex].media_url}})">
