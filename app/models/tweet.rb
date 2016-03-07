@@ -1,6 +1,7 @@
 
 class Tweet < ActiveRecord::Base
   # https://github.com/sferik/twitter
+  belongs_to :game
 
   def publish(client)
     require 'open-uri'

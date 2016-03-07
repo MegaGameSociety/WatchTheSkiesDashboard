@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218012937) do
+ActiveRecord::Schema.define(version: 20160307043720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160218012937) do
     t.datetime "updated_at"
     t.string   "control_message"
     t.string   "activity"
-    t.string   "time_zone",       limit: 255, default: "UTC"
+    t.string   "time_zone",       limit: 255, default: "Pacific Time (US & Canada)"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20160218012937) do
     t.integer  "round"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "game_id"
   end
+
+  add_index "incomes", ["game_id"], name: "index_incomes_on_game_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.string   "sender"
@@ -68,7 +71,10 @@ ActiveRecord::Schema.define(version: 20160218012937) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source"
+    t.integer  "game_id"
   end
+
+  add_index "public_relations", ["game_id"], name: "index_public_relations_on_game_id", using: :btree
 
   create_table "terror_trackers", force: :cascade do |t|
     t.string   "description"
@@ -76,7 +82,10 @@ ActiveRecord::Schema.define(version: 20160218012937) do
     t.integer  "round"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "game_id"
   end
+
+  add_index "terror_trackers", ["game_id"], name: "index_terror_trackers_on_game_id", using: :btree
 
   create_table "tweets", force: :cascade do |t|
     t.string   "twitter_name"
@@ -88,7 +97,10 @@ ActiveRecord::Schema.define(version: 20160218012937) do
     t.datetime "tweet_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "game_id"
   end
+
+  add_index "tweets", ["game_id"], name: "index_tweets_on_game_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                              default: "",                           null: false
@@ -110,4 +122,8 @@ ActiveRecord::Schema.define(version: 20160218012937) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "incomes", "games"
+  add_foreign_key "public_relations", "games"
+  add_foreign_key "terror_trackers", "games"
+  add_foreign_key "tweets", "games"
 end

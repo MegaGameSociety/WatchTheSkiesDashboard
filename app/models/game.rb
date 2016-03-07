@@ -1,4 +1,11 @@
 class Game < ActiveRecord::Base
+  has_many :incomes
+  has_many :messages
+  has_many :news_messages
+  has_many :public_relations
+  has_many :terror_trackers
+  has_many :tweets
+
   serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA']
   def reset()
