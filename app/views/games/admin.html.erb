@@ -39,7 +39,7 @@
   <h3>Advanced Controls</h3>
   <section>
     <ul>
-      <li><p>Current time is: <%= @time %></p>
+      <li><p>Time until next round is: <%= @time %></p>
         <%= form_for(@game, url: update_time_path(@game)) do |f|%>
           <%= Time.use_zone(@time_zone) do %>
           <%= f.datetime_select(:next_round, :ampm => true) %>
