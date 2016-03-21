@@ -6,7 +6,7 @@ class PublicRelationsController < ApplicationController
   def un_dashboard
     @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
-    @current_round = Game.last.round
+    @current_round = current_game.round
   end
 
   # Post
@@ -46,6 +46,7 @@ class PublicRelationsController < ApplicationController
       pr.save
       results.push(pr)
     end
+    current_game.public_relations.push(results)
     redirect_to un_dashboard_path
   end
 
@@ -53,7 +54,7 @@ class PublicRelationsController < ApplicationController
   def country_status
     @country = params[:country]
     @countries = Game::COUNTRIES
-    @game = Game.last
+    @game = current_game
     if Game::COUNTRIES.any?{|x| x ==@country}
       @public_relations = PublicRelation.order(round: :desc, created_at: :desc).where country: @country
       # UN control needs to know amount of PR per group by type
@@ -83,7 +84,7 @@ class PublicRelationsController < ApplicationController
   def new
     @public_relation = PublicRelation.new
     @countries = Game::COUNTRIES
-    @current_round = Game.last.round
+    @current_round = current_game.round
   end
 
   # GET /public_relations/1/edit
@@ -99,6 +100,7 @@ class PublicRelationsController < ApplicationController
 
     respond_to do |format|
       if @public_relation.save
+        current_game.public_relations.push(@public_relation)
         format.html { redirect_to @public_relation, notice: 'Public relation was successfully created.' }
         format.json { render :show, status: :created, location: @public_relation }
       else

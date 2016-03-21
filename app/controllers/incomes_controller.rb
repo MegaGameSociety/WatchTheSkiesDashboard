@@ -16,7 +16,7 @@ class IncomesController < ApplicationController
 
   # GET /incomes/new
   def new
-    @round = Game.last.round
+    @round = current_game.round
     @countries = Game::COUNTRIES
     @income = Income.new
   end
@@ -34,6 +34,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
+        current_game.push(@income)
         format.html { redirect_to @income, notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else

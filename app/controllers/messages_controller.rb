@@ -28,9 +28,9 @@ class MessagesController < ApplicationController
 
 	def create
 		@message = Message.new(message_params)
-		#Is asking for the first element in Game is the best/correct way to get the current game?
-		@message.round_number = Game.last.round
-		@message.game_id = Game.last.id
+		@game = current_game
+		@message.round_number = @game.round
+		@message.game_id = @game.id
 
 		if @message.save
 			redirect_to '/messages'

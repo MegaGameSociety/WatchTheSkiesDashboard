@@ -4,7 +4,7 @@ class TerrorTrackersController < ApplicationController
   before_action :authenticate_control!
   # Patch
   def update_activity
-    @game = Game.last
+    @game = current_game
     @game.activity = params[:game][:activity]
     @game.save
     redirect_to terror_trackers_path
@@ -14,13 +14,13 @@ class TerrorTrackersController < ApplicationController
   # GET /terror_trackers
   # GET /terror_trackers.json
   def index
-    @game = Game.last
+    @game = current_game
     @terror_trackers = TerrorTracker.all.order(created_at: :desc)
     @tcount = TerrorTracker.sum(:amount)
 
     # Requirements for a new terror tracker event
     @terror_tracker = TerrorTracker.new
-    @current_round = Game.last.round
+    @current_round = current_game.round
 
   end
 
@@ -32,7 +32,7 @@ class TerrorTrackersController < ApplicationController
   # GET /terror_trackers/new
   def new
     @terror_tracker = TerrorTracker.new
-    @current_round = Game.last.round
+    @current_round = current_game.round
   end
 
   # GET /terror_trackers/1/edit
@@ -47,6 +47,7 @@ class TerrorTrackersController < ApplicationController
 
     respond_to do |format|
       if @terror_tracker.save
+        current_game.terror_trackers.push(@terror_tracker)
         format.html { redirect_to terror_trackers_path, notice: 'Terror tracker was successfully created.' }
         format.json { render :show, status: :created, location: @terror_tracker }
       else
