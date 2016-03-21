@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307043720) do
+ActiveRecord::Schema.define(version: 20160320220659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,13 +117,16 @@ ActiveRecord::Schema.define(version: 20160307043720) do
     t.datetime "updated_at"
     t.string   "role"
     t.string   "time_zone",              limit: 255, default: "Pacific Time (US & Canada)"
+    t.integer  "game_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["game_id"], name: "index_users_on_game_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "incomes", "games"
   add_foreign_key "public_relations", "games"
   add_foreign_key "terror_trackers", "games"
   add_foreign_key "tweets", "games"
+  add_foreign_key "users", "games"
 end

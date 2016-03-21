@@ -24,4 +24,14 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  # This needs to be fixed if user is not logged in
+  def current_game
+    if current_user.nil?
+      #Show the last game being run?
+      @game = Game.last
+    else
+      @game = current_user.game
+    end
+  end
 end
