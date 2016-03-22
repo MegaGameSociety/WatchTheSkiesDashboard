@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
   has_many :public_relations
   has_many :terror_trackers
   has_many :tweets
+  has_many :users
 
   serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA']

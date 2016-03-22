@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, except:[:dashboard]
-  before_action :authenticate_control!, except:[:dashboard]
+ before_action :authenticate_user!, except:[:dashboard]
+ before_action :authenticate_control!, except:[:dashboard]
 
   # Main Dashboard for All Players
   def dashboard
