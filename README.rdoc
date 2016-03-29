@@ -20,4 +20,4 @@ If you need to reset to seed after creating the database, run rake db:reset
 
 Other rake commands available via rake -T
 
-An important note:  This application is currently set to run off of one Game model instatiation.  It is set that way because eventually we will branch into multiple games running off the site for different users (ie. different Watch the Skies events in differing locations on the same day).  However, until the gameplay is a bit more stable (and we approach that volume), there's no immediate need to link up all the models under the Game structure until we tie a user to the game.  At that point, we will use a User to Game relationship and a Game to Other_Game_Models relationship to hook everything up.
+An important note: Game data is all linked up under the Game model.  Also, users can only belong to one game currently.

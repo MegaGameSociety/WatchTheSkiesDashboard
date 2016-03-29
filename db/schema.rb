@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160320220659) do
     t.datetime "updated_at"
     t.string   "control_message"
     t.string   "activity"
-    t.string   "time_zone",       limit: 255, default: "Pacific Time (US & Canada)"
+    t.string   "time_zone",       limit: 255, default: "UTC"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160320220659) do
     t.string   "media_url"
     t.boolean  "visible_content"
     t.boolean  "visible_image"
+    t.boolean  "media_landscape", default: false
   end
 
   create_table "public_relations", force: :cascade do |t|
