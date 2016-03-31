@@ -39,13 +39,13 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      current_income_list = Income.where(round: round).pluck(:team_name, :amount)
-      previous_income_list = Income.where(round: (round -1)).pluck_to_hash(:team_name, :amount).group_by{|x| x[:team_name]}
+      current_income_list = @games.incomes.where(round: round).pluck(:team_name, :amount)
+      previous_income_list = @games.incomes.where(round: (round -1)).pluck_to_hash(:team_name, :amount).group_by{|x| x[:team_name]}
 
       countries_data = current_income_list.map do |country, amount|
         previous_income = previous_income_list[country]
 
-        income_change = if previous_income.empty?
+        income_change = if previous_income.nil? or previous_income.empty?
           amount
         else
           amount - previous_income[0][:amount]

@@ -87,6 +87,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.time_zone =  "Pacific Time (US & Canada)"
+  config.time_zone = 'Eastern Time (US & Canada)'
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
 end
