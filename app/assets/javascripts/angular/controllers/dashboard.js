@@ -119,6 +119,9 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
     }, 3000);
   }
 ]).animation('.slide-animation', function () {
+  // Animation for the news articles where each one slides up after a timer
+  // and the next one takes its place. Calculate's "finished" position based
+  // on the height of the news articles.
   return {
     beforeAddClass: function (element, className, done) {
       var scope = element.scope();
