@@ -51,28 +51,35 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
     }
 
     // Make the News Slideshow work appropriately.
+    // We use "index" here to refer to the position within the News array
+    // that represents the current article. It starts with the first, and
+    // adjusts on a timer.
     $scope.newsIndex = 0;
 
     $scope.setCurrentSlideIndex = function (index) {
-        $scope.newsIndex = index;
+      $scope.newsIndex = index;
     };
 
     $scope.isCurrentSlideIndex = function (index) {
-        return $scope.newsIndex === index;
+      return $scope.newsIndex === index;
     };
 
+    // Update the news index every 8 seconds.
     $interval(function(){
       $scope.newsIndex = ($scope.newsIndex < $scope.news.length - 1) ? ++$scope.newsIndex : 0;
     }, 8000);
 
-    // Get the width of the Terror Tracker.
+    // Calculate the width of the Terror Tracker.
+    // Based on a calculation of the Terror Tracker itself going up to 250.
+    // But represented as a percentage out of 100%.
     $scope.getTerrorWidth = function() {
       var terror = $scope.terror;
 
-      // If Terror hasn't been retrieved yet, don't break.
       if (terror === undefined) {
+        // If Terror hasn't been retrieved yet, don't break.
         $scope.terror_width = 0;
       } else if (terror > 250) {
+        // Just in case.
         $scope.terror = 250;
         $scope.terror_width = 100;
       } else {
@@ -84,7 +91,10 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
       };
     };
 
-    // Get the colour of the Terror Tracker for the Thermometer Display.
+    // Get the colour of the Terror Tracker for the Display.
+    // We simply return this as a class rather than having a colour set within
+    // the JS, to ensure that our styling matches consistently.
+    // (ie: if we want our red to be more red, it can be changed in one place.)
     $scope.getTerrorColour = function() {
       // Check to see if the Terror amount is between two numbers.
       function checkRange(x, n, m) {
@@ -92,9 +102,10 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
         else { return !x; }
       }
 
+      // Store this simply so we don't have to keep calling it.
       var terror = $scope.terror;
 
-      // Set thermometer colour based on the Terror amount.
+      // Set colour based on the Terror amount.
       switch(terror) {
         case checkRange(terror, 1, 50):
           return'low';
@@ -116,12 +127,10 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
       }
     };
 
+    // This is what calls our "refresh" method to make sure we are displaying
+    // the most recently set data. It currently calls an update every 3 seconds.
     $scope.getStatus = function() {
       apiCall();
-    };
-
-    $scope.range = function(n) {
-      return new Array(n);
     };
 
     $scope.getStatus();
