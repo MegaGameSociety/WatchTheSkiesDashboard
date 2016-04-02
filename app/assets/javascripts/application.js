@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require lib/angular.min.js
+//= require lib/angular-animate.min.js
+//= require lib/angular-timer.min.js
 //= require jquery
 //= require jquery_ujs
-//= require lib/angular-animate.min.js
-//= require lib/angular-timer
 //= require lib/humanize-duration
 //= require momentjs
 //= require turbolinks
