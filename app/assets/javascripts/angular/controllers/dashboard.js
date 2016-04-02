@@ -4,38 +4,50 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
     $scope.news = [];
 
     var apiCall = function() {
-      $http.get('/api/dashboard_data').
-      success(function(data, status, headers, config) {
-        var result = data['result'];
-        $scope.terror = result['global_terror']['total'];
-        $scope.paused = result['timer']['paused'];
-        $scope.countries = result['countries'];
-        $scope.controlMessage = result['timer']['control_message'];
-        $scope.round = result['timer']['round'];
+      $http.get('/api/dashboard_data').then(
+        function successCallback(response) {
+          // Hide the connection error if it begins working again.
+          // See the Error callback for more information.
+          $('#connection-error').hide();
 
-        $('.body').toggleClass('alien', result['alien_comms']);
-        $('.Vatican').toggleClass('alien', result['vatican_alien_comms']);
+          var result = response['data']['result'];
+          $scope.terror = result['global_terror']['total'];
+          $scope.paused = result['timer']['paused'];
+          $scope.countries = result['countries'];
+          $scope.controlMessage = result['timer']['control_message'];
+          $scope.round = result['timer']['round'];
 
-        if (result['news'].length > 0){
-          var newDate = (new Date(result['news'][0]['created_at']));
-          if (($scope.news.length == 0) || newDate.getTime() > $scope.lastUpdatedNews.getTime()) {
-            $scope.lastUpdatedNews = newDate;
-            $scope.news = result['news'];
+          // Note: The "Vatican" class does not actually exist anywhere yet.
+          $('.body').toggleClass('alien', result['alien_comms']);
+          $('.Vatican').toggleClass('alien', result['vatican_alien_comms']);
+
+          // Set the News
+          if (result['news'].length > 0){
+            var newDate = (new Date(result['news'][0]['created_at']));
+            if (($scope.news.length == 0) || newDate.getTime() > $scope.lastUpdatedNews.getTime()) {
+              $scope.lastUpdatedNews = newDate;
+              $scope.news = result['news'];
+            }
+          } else {
+            if ($scope.news.length == 0) {
+              $scope.news = result['news'];
+            }
           }
-        } else {
-          if ($scope.news.length == 0) {
-            $scope.news = result['news'];
+          var nextRound = moment(result['timer']['next_round']);
+          if ($scope.nextRound.valueOf() != nextRound.valueOf()) {
+            $scope.nextRound = moment(nextRound);
+            $scope.roundDuration = $scope.nextRound.diff(moment(), 'seconds');
+            $scope.$broadcast('timer-set-countdown',  $scope.roundDuration);
+            $scope.$broadcast('timer-start');
+            $scope.$broadcast('timer-set-end-time',  $scope.roundDuration);
           }
-        }
-        var nextRound = moment(result['timer']['next_round']);
-        if ($scope.nextRound.valueOf() != nextRound.valueOf()) {
-          $scope.nextRound = moment(nextRound);
-          $scope.roundDuration = $scope.nextRound.diff(moment(), 'seconds');
-          $scope.$broadcast('timer-set-countdown',  $scope.roundDuration);
-          $scope.$broadcast('timer-start');
-          $scope.$broadcast('timer-set-end-time',  $scope.roundDuration);
-        }
-      });
+        },
+        function errorCallback(response) {
+          // If we are having trouble with the API call, this will display a
+          // small icon in the top right corner of the screen to signify that
+          // there is a connection issue.
+          $('#connection-error').show();
+        });
     }
 
     // Make the News Slideshow work appropriately.
