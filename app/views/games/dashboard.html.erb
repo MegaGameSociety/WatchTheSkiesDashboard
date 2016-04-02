@@ -62,29 +62,13 @@
 
   <!-- Countries Ticker -->
   <div id="countries-ticker">
-    <ul>
-      <li>
-        <div ng-repeat="country in countries" class="country">
-          <span>{{country.name}}</span>
-          <span>{{country.amount || 0}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
-        </div>
-      </li>
-      <!-- Duplicate because it makes the animation smoother -->
-      <li>
-        <div ng-repeat="country in countries" class="country">
-          <span>{{country.name}}</span>
-          <span>{{country.amount}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
-        </div>
-      </li>
-      <!-- Triplicate because it makes the animation smoother -->
-      <li>
-        <div ng-repeat="country in countries" class="country">
-          <span>{{country.name}}</span>
-          <span>{{country.amount}}</span>
-          <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
-        </div>
-      </li>
-    </ul>
+    <marquee behavior="scroll" scrollamount="8">
+      <div ng-repeat="country in countries" class="country">
+        <span>{{country.name}}</span>
+        <span>{{country.amount || 0}}</span>
+        <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
+        <span class="break"> | </span>
+      </div>
+    </marquee>
   </div>
+</div>

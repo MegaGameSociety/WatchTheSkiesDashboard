@@ -182,11 +182,6 @@ $terror-red: #BD2C00;
                 COUNTRIES
    ===================================== */
 
-@include keyframes(loop) {
-  0%   { @include transform( translateX(0) ); }
-  100% { @include transform( translateX(-(33.3% * 2))); }
-}
-
 #countries-ticker {
   background: #000;
   bottom: 0;
@@ -194,29 +189,29 @@ $terror-red: #BD2C00;
   position: fixed;
   width: 100%;
 
-  ul {
-    height: 70px;
-    left: 0;
-    list-style: none;
-    position: relative;
-    top: 0;
-    width: 350%!important;
-    z-index: 1;
-    @include animation(loop 60s linear infinite);
-  }
-
-  li {
-    float: left;
-    height: 70px;
-    overflow: hidden;
-    width: 33.333%;
-  }
-
   .country {
+    border-right: 15px;
     color: #FFF;
     display: inline-block;
     font-size: 6rem;
-    margin: 0px 30px;
+    margin: 0;
+    padding: 0 15px;
+
+    span {
+      display: inline-block;
+      padding-top: 5px;
+      vertical-align: top;
+    }
+
+    .break {
+      display: inline-block;
+      padding-left: 15px;
+    }
+
+    &:last-child {
+      .break { display: none; }
+    }
+
   }
 
   .glyphicon {
