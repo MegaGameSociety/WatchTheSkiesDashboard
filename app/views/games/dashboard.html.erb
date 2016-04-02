@@ -1,33 +1,30 @@
 <div ng-app='dashboardApp' ng-controller="dashboardCtrl" id="dashboard">
+  <div id="top-container">
+    <!-- Round Information -->
+    <div id="round-container">
+      <h2>Turn {{round}}</h2>
 
+      <div id="timer">
+        <h3 ng-if="!paused">
+          <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
+        </h3>
+        <h3 ng-if="paused">(Paused)</h3>
+      </div>
+    </div>
 
-<div id="top-container">
-  <!-- Round Information -->
-  <div id="round-container">
-    <h2>Turn {{round}}</h2>
-
-    <div id="timer">
-      <h3 ng-if="!paused">
-        <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
-      </h3>
-      <h3 ng-if="paused">(Paused)</h3>
+    <!-- Terror Tracker -->
+    <div id="terror-tracker">
+      <h3>Global Terror: {{terror}} / 250</h3>
+      <div class="terror-border">
+        <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+      </div>
     </div>
   </div>
-
-  <!-- Terror Tracker -->
-  <div id="terror-tracker">
-    <h3>Global Terror: {{terror}} / 250</h3>
-    <div class="terror-border">
-      <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
-    </div>
-  </div>
-</div>
 
   <!-- Control Messages -->
   <div id="control-messages">
     <p>{{controlMessage}}</p>
   </div>
-
 
   <!-- News -->
   <div id="news-block">
