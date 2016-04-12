@@ -11,7 +11,7 @@
       <p>
         <em>
           PR effects collected on turn <%= @current_round %> will be distributed to teams halfway
-          through turn <%= @current_round +1 %> along with credts.  These credits will then be usable in turn <%= @current_round +2%>.
+          through turn <%= @current_round + 1 %> along with credits.  These credits will then be usable in turn <%= @current_round + 2%>.
         </em>
       </p>
       <table class="unpr">
@@ -40,16 +40,22 @@
           <th>Country</th>
           <th>Round <%= @current_round %> Income</th>
           <th>Round <%= @current_round %> Credits</th>
+          <th>Bonus Credits for Round <%= @current_round %></th>
+          <th>Recurring Credits</th>
         </tr>
         <% @incomes.each do |income| %>
           <tr>
             <td><%= income.team_name %></td>
             <td><%= income.amount%></td>
             <td><%= @income_values[income.team_name][income.amount-1]%></td>
+            <td><%= BonusCredit.where(team_name: income.team_name, round: @current_round, recurring: false).sum(:amount) %></td>
+            <td><%= BonusCredit.where('team_name = ? AND round <= ? AND recurring = TRUE', income.team_name, @current_round).sum(:amount) %></td>
           </tr>
           <% end %>
       </table>
       <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
+      <%= link_to "Bonus Credits Index", bonus_credits_path, :class => "button-input" %>
+      <%= link_to "Add Bonus Credits", new_bonus_credit_path, :class => 'button-input' %>
     </div>
   </section>
 

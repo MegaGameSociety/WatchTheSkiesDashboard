@@ -73,7 +73,7 @@ class GamesController < ApplicationController
       pr.save
       results.push(pr)
     end
-    current_game.incomes.push(results)
+    current_game.public_relations.push(results)
     respond_to do |format|
       format.html{redirect_to human_control_path, notice: "Entered in #{results.length} for Round: #{round}."}
     end

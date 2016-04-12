@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  has_many :bonus_credits
   has_many :incomes
   has_many :messages
   has_many :news_messages

@@ -24,7 +24,7 @@ u.game= Game.create(
   data: {
     rioters: 0,
     paused: true,
-    }
+  }
 )
 u.save
 

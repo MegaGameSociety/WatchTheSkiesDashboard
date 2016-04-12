@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
   post 'hide_all_media', to: 'news_messages#hide_all_media', as: :hide_all_media
 
-
+  resources :bonus_credits, except: [:show, :edit, :update]
   resources :terror_trackers
   resources :public_relations
   resources :messages
