@@ -1,7 +1,7 @@
 desc "Import tweets"
 task :import_tweets => :environment do
   puts "Importing tweets"
-  Tweet.import
+  # Tweet.import
   puts "done."
 end
 

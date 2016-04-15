@@ -44,10 +44,10 @@ class Game < ActiveRecord::Base
         self.save
         #Group Twitter activities together and dump cleanly into the error bucket on fail
         begin
-            Tweet.import
+            Tweet.import(self)
             # Send out tweets
-            client = Tweet.generate_client
-            client.update("Turn #{self.round} has started!")
+            # client = Tweet.generate_client
+            # client.update("Turn #{self.round} has started!")
         rescue => ex
             logger.error ex.message
         end

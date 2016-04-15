@@ -25,12 +25,12 @@ class Tweet < ActiveRecord::Base
         if self.media_url.length > 0
           url = URI.parse(self.media_url)
           image = open(url)
-          client.update_with_media("#{short_name} #{self.text}".slice(0,140-self.media_url.length), image)
+          # client.update_with_media("#{short_name} #{self.text}".slice(0,140-self.media_url.length), image)
         else
-          client.update("#{short_name} #{self.text}".slice(0,139))
+          # client.update("#{short_name} #{self.text}".slice(0,139))
         end
       else
-        client.update("#{short_name} #{self.text}".slice(0,139))
+        # client.update("#{short_name} #{self.text}".slice(0,139))
       end
 
       self.is_published = true
@@ -58,7 +58,8 @@ class Tweet < ActiveRecord::Base
 
       a.title = "#{full_name} reports:"
       a.content = self.text
-      a.round = Game.last.round
+      a.round = self.game.round
+      a.game = self.game
       a.visible_content = true
       a.visible_image = true
       a.save
@@ -66,7 +67,7 @@ class Tweet < ActiveRecord::Base
   end
 
 
-  def self.import()
+  def self.import(game)
   
   # Generate client
   client = Tweet.generate_client
@@ -75,7 +76,7 @@ class Tweet < ActiveRecord::Base
     # Science & Financial Times = SFTNews
 
     # Check if there aren't any tweets in database
-    if Tweet.count()==0
+    if game.tweets.count()==0
         tweets = client.list_timeline('WatchSkies', 'wts-list').take(3)
     else
       # get the last timestamp of a tweet and create tweets
@@ -95,6 +96,7 @@ class Tweet < ActiveRecord::Base
         t.is_public = false
         t.is_published = false
         t.tweet_time = tweet.created_at
+        t.game = game
 
         #check if tweet has image
         if tweet.media?
@@ -116,8 +118,8 @@ class Tweet < ActiveRecord::Base
     return client
   end
 
-  def self.export
-    export_tweets = Tweet.where(is_public: true, is_published: false).order(tweet_time: :asc)
+  def self.export(current_game)
+    export_tweets = Tweet.where(game: current_game, is_public: true, is_published: false).order(tweet_time: :asc)
     client = Tweet.generate_client
     export_tweets.each do |tweet|
       tweet.publish(client)
