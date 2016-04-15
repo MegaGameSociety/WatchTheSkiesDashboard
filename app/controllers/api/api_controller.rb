@@ -14,6 +14,7 @@ class Api::ApiController < ApplicationController
     else
       @game = Game.find_by_id(params[:game_id])
     end
+    @game.update
 
     round = @game.round
     @data = @game.data

@@ -72,7 +72,7 @@ class Game < ActiveRecord::Base
       elsif pr < -3
         next_income += -2
       end
-      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country)
+      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country, game: self)
       income.amount = next_income
       income.save()
     end

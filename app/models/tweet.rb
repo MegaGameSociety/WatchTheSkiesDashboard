@@ -73,7 +73,7 @@ class Tweet < ActiveRecord::Base
     # Daily Earth News: @DailyEarthWTS
     # GNN: @GNNWTS
     # Science & Financial Times = SFTNews
-    
+
     # Check if there aren't any tweets in database
     if Tweet.count()==0
         tweets = client.list_timeline('WatchSkies', 'wts-list').take(3)
