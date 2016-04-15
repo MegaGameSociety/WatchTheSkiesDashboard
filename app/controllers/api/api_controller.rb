@@ -39,23 +39,23 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @countries_data = {}
-      countries_calculations = {}
       current_income_list = @game.incomes.where(round: round).pluck(:team_name, :amount)
-      previous_income_list = @game.incomes.where(round: (round -1)).pluck(:team_name, :amount)
+      previous_income_list = @game.incomes.where(round: (round -1)).pluck_to_hash(:team_name, :amount).group_by{|x| x[:team_name]}
 
-      current_income_list.each do |pair|
-        countries_calculations[pair[0]] = pair[1]
-      end
+      countries_data = current_income_list.map do |country, amount|
+        previous_income = previous_income_list[country]
 
-      unless previous_income_list.empty?
-        previous_income_list.each do |pair|
-          countries_calculations[pair[0]] -= pair[1]
+        income_change = if previous_income.nil? or previous_income.empty?
+          amount
+        else
+          amount - previous_income[0][:amount]
         end
-      end
 
-      countries_calculations.each do |country, amount|
-        @countries_data[country] = (amount >= 0)
+        this_country = {
+          :name => country,
+          :amount => amount,
+          :change => income_change
+        }
       end
 
     rescue
@@ -74,7 +74,7 @@ class Api::ApiController < ApplicationController
         },
         "news" =>  @news,
         "global_terror" => @global_terror,
-        "countries" => @countries_data,
+        "countries" => countries_data,
         "alien_comms" => @data["alien_comms"],
       }
     rescue

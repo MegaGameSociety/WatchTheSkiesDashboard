@@ -10,13 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular/angular
-//= require angular-timer
-//= require humanize-duration
-//= require momentjs
+//= require lib/angular.min.js
+//= require lib/angular-animate.min.js
+//= require lib/angular-timer.min.js
 //= require jquery
 //= require jquery_ujs
+//= require lib/humanize-duration
+//= require momentjs
 //= require turbolinks
-//= require bootstrap
-//= require roundProgress.min
-//= require_tree .
+//= require lib/bootstrap.min
+//= require greensock
+//= require angular/controllers/dashboard.js
