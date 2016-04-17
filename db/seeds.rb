@@ -16,6 +16,7 @@ u.save
 # Create the user's game
 u.game= Game.create(
   name: "Watch the Skies Test",
+  role: "SuperAdmin",
   round: 0,
   control_message: "Welcome",
   activity: "All is quiet around the world.",
