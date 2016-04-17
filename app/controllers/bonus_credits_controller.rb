@@ -3,7 +3,7 @@ class BonusCreditsController < ApplicationController
   before_action :authenticate_control!
 
   def index
-    @bonus_credits = BonusCredit.all.order(:round, :team_name, :amount)
+    @bonus_credits = BonusCredit.where(game: current_game).order(:round, :team_name, :amount)
   end
 
   def new
@@ -14,6 +14,7 @@ class BonusCreditsController < ApplicationController
 
   def create
     @bonus_credits = BonusCredit.new(bonus_credit_params)
+    @bonus_credits.game = current_game
 
     respond_to do |format|
       if @bonus_credits.save
