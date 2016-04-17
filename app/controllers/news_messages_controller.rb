@@ -36,8 +36,8 @@ class NewsMessagesController < ApplicationController
     end
     @current_round = current_game.round
     if params[:post_online]
-      client = Tweet.generate_client
-      client.update("AP: #{@news_message.content}")
+      # client = Tweet.generate_client
+      # client.update("AP: #{@news_message.content}")
     end
 
     respond_to do |format|
