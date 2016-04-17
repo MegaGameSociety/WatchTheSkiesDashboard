@@ -1,145 +1,135 @@
 /* =====================================
                 VARIABLES
    ===================================== */
-$background: #ffffe9;
+
 $background-blue: #94b3c4;
-$background-seafoam: #d3e3d8;
-$background-darktan: #f0f5db;
-$background-green: #dbe8db;
 
-$green: #399499;
-$red: #9f0d33;
-$light-red: #FA3E3B;
-
-
-/* =====================================
-                GENERAL
-   ===================================== */
-
-#control-messages {
-  background: $background-blue;
-  color: white;
-
-  p {
-    margin-bottom: 20px;
-    margin-top: 0;
-    padding: 10px;
-    text-transform: uppercase;
-  }
-}
-
+$black: #000000;
+$white: #FFFFFF;
+$terror-light-green: #6CC644;
+$terror-dark-green: #44A662;
+$terror-yellow: #D5D506;
+$terror-orange: #CB8F06;
+$terror-red: #BD2C00;
 
 /* =====================================
-                COLUMNS
+                MIXINS
    ===================================== */
 
-.columns {
-  display: table;
-  position: relative;
-  width: 100%;
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
 }
 
-.left-column {
-  display: table-cell;
-  padding-right: 30px;
-  vertical-align: top;
-  width: 25%;
+@mixin animation($args...) {
+  -webkit-animation: $args;
+  -moz-animation: $args;
+  -o-animation: $args;
+  animation: $args;
+}
 
-  #mgs-logo {
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -o-transform: $args;
+  transform: $args;
+}
+
+@mixin topBottomGradient($color1, $color2, $color3) {
+  background: $color1;
+  background: -moz-linear-gradient(top,    $color1 0%, $color2 50%, $color3 100%);
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 50%, $color3 100%);
+  background: linear-gradient(to bottom,   $color1 0%, $color2 50%, $color3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$color3,GradientType=0 );
+}
+
+
+@mixin aspect-ratio($width, $height) {
+  &:before{
     display: block;
-    margin: 0px auto 30px;
-  }
-
-  .twitter {
-    font-size: 1.2rem;
-    line-height: 2.0rem;
-    margin-top: -18px;
-    margin-left: 20px;
-  }
-}
-
-.centre-column {
-  display: table-cell;
-  padding-right: 30px;
-  vertical-align: top;
-  width: 50%;
-
-  #round-container {
-    text-align: center;
-
-    h3.paused {
-      color: $red;
-    }
-  }
-}
-
-.right-column {
-  background-color: $background-seafoam;
-  display: table-cell;
-  vertical-align: top;
-  width: 25%;
-}
-
-.column {
-  display: table-cell;
-  padding: 10px;
-  vertical-align: top;
-  width: calc(100% / 3);
-
-  img {
-    display: block;
-    margin: 0 auto 10px;
+    content: " ";
     width: 100%;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0px;
-  }
-
-  li:after {
-    border-bottom: 1px solid #2f2f2f;
-    content: '';
-    display: block;
-    height: 4px;
-    margin: 0 auto;
-    width: 100px;
-  }
-
-  li:last-child:after {
-    border-bottom: 0;
+    padding-top: ($height / $width) * 100%;
   }
 }
 
 /* =====================================
-                COUNTRIES
+           SIZING FOR PROJECTOR
    ===================================== */
 
-#countries-container {
-  background: $background-darktan;
-  padding: 5px 20px;
+.dashboard {
+  background-color: #382b08;
+  background-image: url('/assets/empire.jpeg');
+  background-position: top center;
+  background-repeat: repeat-x;
+  background-size: contain;
+  font-size: 5rem;
+  line-height: 5.8rem;
+  padding-bottom: 0px;
+  padding-top: 20px;
 
-  tr {
-    border-bottom: 0;
+  h3 {
+    font-size: 6rem;
+    line-height: 6.8rem;
   }
 
-  td {
-    padding: 5px;
-    text-align: center;
+  h4 {
+    font-size: 5.2rem;
+    line-height: 6rem;
+  }
+}
 
-    &:first-child {
-      text-align: left;
-    }
+/* =====================================
+             TOP MESSAGES AREA
+   ===================================== */
+
+#top-container {
+  height: 130px;
+  margin: 0 20px;
+  position: relative;
+}
+
+#connection-error {
+  background-image: url('/assets/connection-error.png');
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 63px;
+}
+
+#round-container {
+  @include topBottomGradient(#1e5799, #2989d8, #7db9e8);
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.75);
+  display: inline-block;
+  height: 130px;
+  float: left;
+  text-align: center;
+  width: 320px;
+
+  #timer {
+    @include topBottomGradient(#e2e2e2, #dbdbdb, #fefefe);
+    height: 80px;
+    margin: 0;
+    padding-top: 5px;
   }
 
-  .arrow {
-    background: url('/assets/arrows.png') 0px 0px no-repeat;
-    display: inline-block;
-    height: 20px;
-    width: 20px;
+  h2 {
+    color: $white;
+  }
 
-    &.up   { background-position: 5px   7px; }
-    &.down { background-position: 5px -17px; }
+  h3 {
+    color: $terror-red;
   }
 }
 
@@ -148,107 +138,243 @@ $light-red: #FA3E3B;
               TERROR TRACKER
    ===================================== */
 
-#terror-container {
-  background: $background-green;
-  margin: 0px -40px -20px 80px;
-  padding: 20px 20px 50px 20px;
-  text-align: center;
-}
+#terror-tracker {
+  display: inline-block;
+  height: 130px;
+  width: Calc(100% - 320px);
 
-.progress-wrapper {
-  margin: 20px auto;
-  position: relative;
-
-  .progress-legend {
-    color: $red;
-    font-size: 3.0rem;
-    line-height: 3.8rem;
-    position: absolute;
-    top: Calc(50% - 30px);
-    width: 100%;
-    z-index: 10;
+  h3 {
+    color: $black;
+    margin-bottom: 10px;
+    text-align: center;
   }
 }
+
+.terror-border {
+  background: #000;
+  height: 30px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.terror-bar {
+  height: 30px;
+  margin: 0 auto;
+
+  &.none { background-color: $white;              }
+  &.low  { background-color: $terror-light-green; }
+  &.med  { background-color: $terror-dark-green;  }
+  &.high { background-color: $terror-yellow;      }
+  &.crit { background-color: $terror-orange;      }
+  &.doom { background-color: $terror-red;         }
+}
+
+
+/* =====================================
+              CONTROL MESSAGES
+   ===================================== */
+
+#control-messages {
+  display: block;
+  margin: 20px;
+  vertical-align: top;
+
+  p {
+    font-size: 5.8rem;
+    line-height: 6.6rem;
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+
+/* =====================================
+                COUNTRIES
+   ===================================== */
+
+#countries-ticker {
+  background: #000;
+  bottom: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+
+  .country {
+    border-right: 15px;
+    color: #FFF;
+    display: inline-block;
+    font-size: 6rem;
+    margin: 0;
+    padding: 0 15px;
+
+    span {
+      display: inline-block;
+      padding-top: 5px;
+      vertical-align: top;
+    }
+
+    .break {
+      display: inline-block;
+      padding-left: 15px;
+    }
+
+    &:last-child {
+      .break { display: none; }
+    }
+
+  }
+
+  .glyphicon {
+    font-size: 6rem;
+    top: 7px;
+  }
+
+  .glyphicon-decrease { color: $terror-red;         }
+  .glyphicon-increase { color: $terror-light-green; }
+  .glyphicon-stagnate { color: $terror-yellow;      }
+}
+
 
 /* =====================================
                   NEWS
    ===================================== */
 
-.news-container {
-  margin-bottom: 30px;
-  border-bottom: thin solid #000000;
-  display: block;
+#news-block {
+  background: rgba(176, 214, 255, 0.69);
+  bottom: 70px;
+  box-shadow: 3px -3px 15px -5px rgba(0,0,0,0.75);
+  position: fixed;
+  width: 100%;
+}
 
-  .date {
-    font-size: 1.6rem;
+#breaking-block {
+  height: 70px;
+
+  h3 {
+    background: $terror-red;
+    color: $white;
+    display: inline-block;
+    float: left;
     font-weight: bold;
-    line-height: 2.4rem;
+    padding: 0 10px;
+    width: 605px;
+  }
+
+  .triangle {
+    border-style: solid;
+    border-width: 68px 90px 0 0;
+    border-color: $terror-red transparent transparent transparent;
+    display: inline-block;
+    float: left;
+    height: 0;
+    width: 0;
+  }
+
+  .news-time {
+    display: inline-block;
+    float: left;
+    font-size: 5.2rem;
+    font-style: italic;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    width: calc(100% - 700px);
+  }
+}
+
+
+#news-container {
+  min-height: 175px;
+  padding: 10px;
+
+  h4 {
+    display: inline-block;
+    font-size: 4.8rem;
+    line-height: 5.6rem;
+    font-weight: bold;
   }
 
   img {
     display: block;
-    max-height: 300px;
+    max-height: 250px;
+    width: 80%;
   }
 
-  p{
+  p {
+    display: inline;
+    font-size: 4.8rem;
+    line-height: 5.6rem;
     margin: 5px auto
   }
 
+  .news-time {
+    font-style: italic;
+  }
+
   a {
-    color: $green;
+    color: $terror-light-green;
     display: inline-block;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+    font-size: 3.6rem;
+    line-height: 4.4rem;
     font-weight: bold;
     margin-top: 10px;
     text-decoration: none;
     text-transform: uppercase;
   }
-}
 
-/* =====================================
-                  RIOTS
-   ===================================== */
+  .slider {
+    height: 175px;
+    overflow: hidden;
+    position: relative;
+    width: calc(100% - 380px);
 
-#riot-top {
-  background-color: $background;
-  height: 175px;
-  width: 100%;
-}
+    &.landscape {
+      width: 100%;
+    }
+  }
 
-#riot-image,
-#activity-image {
-  display: block;
-  margin: 0 auto;
-}
-
-#riot-image {
-  margin-top: -150px;
-}
-
-#activity-container {
-  margin-top: 30px;
-  p {
-    margin-top: 5px;
+  .slide {
+    left: 0;
+    position: absolute;
+    top: 0;
   }
 }
 
-#rioters-container {
-  padding: 20px;
-  font-size: 1.6rem;
-  line-height: 2.4rem;
-  text-align: center;
+#news-image {
+  background: $black;
+  border: 20px solid #1e5799;
+  bottom: 0px;
+  box-shadow: -3px -3px 15px -5px rgba(0,0,0,0.75);
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
 
-  p {
-    margin:0px auto;
+  .image {
+    background-color: $black;
+    background-repeat: no-repeat;
+    background-size: contain;
+    left: 0px;
+    position: absolute;
+    top: 0px;
   }
-  #rioters-count {
-    margin: 20px auto;
-    text-align: left;
-    width: 75%;
 
-    img {
-      margin: 3px 0px;
+  &.portrait {
+    max-height: 600px;
+    width: 380px;
+
+    .image {
+      @include aspect-ratio(2,3);
+      position: relative;
+    }
+  }
+
+  &.landscape {
+    bottom: 200px;
+    max-height: 400px;
+    width: calc(100% - 720px);
+
+    .image {
+      @include aspect-ratio(3,2);
+      position: relative;
     }
   }
 }

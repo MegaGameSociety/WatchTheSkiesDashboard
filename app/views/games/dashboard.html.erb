@@ -1,104 +1,75 @@
-<div ng-app='dashboardApp' ng-controller="DashboardCtrl">
+<div ng-app='dashboardApp' ng-controller="dashboardCtrl" id="dashboard">
+  <div id="top-container">
+
+    <!-- Connection Error -->
+    <div id="connection-error"></div>
+
+    <!-- Round Information -->
+    <div id="round-container">
+      <h2>Turn {{round}}</h2>
+
+      <div id="timer">
+        <h3 ng-if="!paused">
+          <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
+        </h3>
+        <h3 ng-if="paused">(Paused)</h3>
+      </div>
+    </div>
+
+    <!-- Terror Tracker -->
+    <div id="terror-tracker">
+      <h3>Global Terror: {{terror}} / 250</h3>
+      <div class="terror-border">
+        <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Control Messages -->
   <div id="control-messages">
     <p>{{controlMessage}}</p>
-  </div
+  </div>
 
-  <div class="columns">
-    <div class="left-column">
-      <img src="/assets/mgs-logo.png" id="mgs-logo">
-      <p class="twitter">See @WatchSkies on Twitter for more news.</p>
-      <div id="countries-container">
-        <h3 class="center">Global Economy</h3>
-        <table>
-          <thead>
-            <tr>
-              <td>Country</td>
-              <td>GDP Trends</td>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Each Country -->
-            <tr ng-repeat="(country, data) in countries">
-              <td>{{country}}</td>
-              <td>
-                <span ng-if="data" class="arrow up"></span>
-                <span ng-if="!data" class="arrow down"></span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- News -->
+  <div id="news-block">
 
-        <div id="terror-container">
-          <h3>Terror</h3>
+    <div id="breaking-block">
+      <h3>Breaking News</h3>
+      <div class="triangle"></div>
+    </div>
 
-          <div class="progress-wrapper">
-            <div class="progress-legend">{{terror}} / 250</div>
-            <div round-progress
-                max="250"
-                current="terror"
-                color="#9f0d33"
-                bgcolor="#399499"
-                radius="100"
-                stroke="20"
-                semi="false"
-                rounded="false"
-                clockwise="true"
-                responsive="false"
-                duration="800"
-                animation="easeInOutQuart"></div>
-          </div>
-        </div>
+    <div id="news-image" ng-class="news[newsIndex].media_landscape == true ? 'landscape' : 'portrait'" ng-if="news[newsIndex].media_url">
+      <div class="image"
+           ng-show="news[newsIndex].media_url"
+           style="background-image: url({{news[newsIndex].media_url}})">
       </div>
     </div>
 
-    <div class="centre-column">
-      <div id="round-container">
-        <h2 ng-if="!paused">
-          <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
-        </h2>
-
-        <!-- This needs to be formatted for use -->
-
-        <h3>Turn {{round}}</h3>
-        <h3 class="paused" ng-if="paused">(Paused)</h3>
-      </div>
-
-      <h3>News:</h3>
-
-      <div class="news-container" ng-show="news.length>0" ng-repeat="news_item in news" ng-class="{ active: $index == 0 }">
-        <h4>{{news_item.title}}</h4>
-        <img ng-show="{{news_item.media_url.length>0}}" ng-src="{{news_item.media_url}}" />
-        <p>{{news_item.content}}</p>
-        <p class="date">{{news_item.created_at| date:'h:mma'}}</p>
-      </div>
-
-      <div class="news-container active" ng-if="news.length==0">
-        <h4>Nothing has happened yet<h4>
-      </div>
-      <!-- End News -->
-    </div>
-
-    <div class="right-column">
-      <div id="riot-top"></div>
-      <img id="riot-image" src="/assets/riot.png" />
-
-      <div id="rioters-container">
-        <h3>Rioters</h3>
-        <p>{{rioters}}</p>
-
-        <div id="rioters-count">
-          <span ng-repeat="a in range(rioters) track by $index">
-            <img ng-if="$index<10" src="/assets/riotcount.png" />
-          </span>
-          <span ng-if="rioters>10" class="additional-rioters">+</span>
-        </div>
-
-        <div id="activity-container">
-        <img id="activity-image" src="/assets/activity.png" />
-           <h3>Military Activity</h3>
-          <p>{{activity}}</p>
+    <div id="news-container">
+      <div class="slider" ng-if="news.length>0" ng-class="news[newsIndex].media_landscape == false && news[newsIndex].media_url ? 'portrait' : 'landscape'">
+        <div ng-repeat="news_item in news"
+             class="slide slide-animation nonDraggableImage"
+             ng-hide="!isCurrentSlideIndex($index)">
+          <h4>{{news_item.title}}</h4>
+          <p>{{news_item.content}}</p>
+          <p class="news-time">Reported at {{news[newsIndex].created_at| date:'h:mma'}}</p>
         </div>
       </div>
+      <div class="" ng-if="news.length==0">
+        <h4>Reports are coming in. Stay tuned for more details.</h4>
+      </div>
     </div>
+  </div>
+
+  <!-- Countries Ticker -->
+  <div id="countries-ticker">
+    <marquee behavior="scroll" scrollamount="8">
+      <div ng-repeat="country in countries" class="country">
+        <span>{{country.name}}</span>
+        <span>{{country.amount || 0}}</span>
+        <i class="glyphicon" ng-class="{'glyphicon-decrease': country.change < 0, 'glyphicon-increase': country.change > 0, 'glyphicon-stagnate': country.change == 0}"></i>
+        <span class="break"> | </span>
+      </div>
+    </marquee>
   </div>
 </div>

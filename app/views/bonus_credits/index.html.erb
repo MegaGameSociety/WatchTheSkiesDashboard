@@ -1,0 +1,24 @@
+<h1>Bonus Credits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Round</th>
+      <th>Recurring</th>
+      <th>Amount</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bonus_credits.each do |bc| %>
+      <tr>
+        <td><%= bc.team_name %></td>
+        <td><%= bc.round %></td>
+        <td><%= bc.recurring %></td>
+        <td><%= bc.amount %></td>
+        <td><%= link_to 'Destroy', bc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,12 +1,27 @@
 class Api::ApiController < ApplicationController
-  def dashboard
-    @game = Game.last().update
+
+  # List of all games
+  def games
+    # TODO: Limit this only to currently running games.
+    respond_to do |format|
+      format.json { render :json => Game.select(:id, :name, :round, :next_round, :created_at, :updated_at) }
+    end
+  end
+
+  def dashboard()
+    if params[:game_id].nil?
+      @game = current_game
+    else
+      @game = Game.find_by_id(params[:game_id])
+    end
+    @game.update
+
     round = @game.round
     @data = @game.data
     begin
       @global_terror = {
-        'activity' => Game.last().activity,
-        'total'=> TerrorTracker.totalTerror(),
+        'activity' => @game.activity,
+        'total'=> @game.terror_trackers.totalTerror(),
         'rioters'=> @data['rioters']
       }
     rescue
@@ -15,9 +30,9 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @news = NewsMessage.round_news(round).order(created_at: :desc)
+      @news = @game.news_messages.round_news(round).order(created_at: :desc)
       if (round>0)
-        @news += NewsMessage.round_news(round-1).order(created_at: :desc)
+        @news += @game.news_messages.round_news(round-1).order(created_at: :desc)
       end
     rescue
       @status = 500
@@ -25,23 +40,23 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @countries_data = {}
-      countries_calculations = {}
-      current_income_list = Income.where(round: round).pluck(:team_name, :amount)
-      previous_income_list = Income.where(round: (round -1)).pluck(:team_name, :amount)
+      current_income_list = @game.incomes.where(round: round).pluck(:team_name, :amount)
+      previous_income_list = @game.incomes.where(round: (round -1)).pluck_to_hash(:team_name, :amount).group_by{|x| x[:team_name]}
 
-      current_income_list.each do |pair|
-        countries_calculations[pair[0]] = pair[1]
-      end
+      countries_data = current_income_list.map do |country, amount|
+        previous_income = previous_income_list[country]
 
-      unless previous_income_list.empty?
-        previous_income_list.each do |pair|
-          countries_calculations[pair[0]] -= pair[1]
+        income_change = if previous_income.nil? or previous_income.empty?
+          amount
+        else
+          amount - previous_income[0][:amount]
         end
-      end
 
-      countries_calculations.each do |country, amount|
-        @countries_data[country] = (amount >= 0)
+        this_country = {
+          :name => country,
+          :amount => amount,
+          :change => income_change
+        }
       end
 
     rescue
@@ -60,7 +75,7 @@ class Api::ApiController < ApplicationController
         },
         "news" =>  @news,
         "global_terror" => @global_terror,
-        "countries" => @countries_data,
+        "countries" => countries_data,
         "alien_comms" => @data["alien_comms"],
       }
     rescue

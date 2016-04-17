@@ -1,4 +1,13 @@
 class Game < ActiveRecord::Base
+  has_many :bonus_credits
+  has_many :incomes
+  has_many :messages
+  has_many :news_messages
+  has_many :public_relations
+  has_many :terror_trackers
+  has_many :tweets
+  has_many :users
+
   serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA']
   def reset()
@@ -25,8 +34,6 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-        Tweet.import
-
         #First update the income levels
         update_income_levels()
 
@@ -36,10 +43,16 @@ class Game < ActiveRecord::Base
         self.next_round = self.next_round + (30*60)
         self.save
 
-        # Send out tweets
-        # Disabling tweets
-        # client = Tweet.generate_client
-        # client.update("Turn #{self.round} has started!")
+        #Group Twitter activities together and dump cleanly into the error bucket on fail
+        begin
+            Tweet.import(self)
+            # Send out tweets
+            # Disabling tweets
+            # client = Tweet.generate_client
+            # client.update("Turn #{self.round} has started!")
+        rescue => ex
+            logger.error ex.message
+        end
       end
     end
     return self
@@ -61,7 +74,7 @@ class Game < ActiveRecord::Base
       elsif pr < -3
         next_income += -2
       end
-      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country)
+      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country, game: self)
       income.amount = next_income
       income.save()
     end

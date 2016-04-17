@@ -3,10 +3,8 @@ Rails.application.routes.draw do
   root 'games#dashboard'
 
 
-  devise_for :users, path_names: {
-    sign_up: '/'
-  }
-  get '/users' => 'games#dashboard'
+  devise_for :users, :controllers => { :registrations => "users/registrations" }
+  # get '/users' => 'games#dashboard'
 
   resources :incomes
 
@@ -19,11 +17,12 @@ Rails.application.routes.draw do
   post 'export_tweets', to: 'tweets#export_tweets', as: :export_tweets
   post 'hide_all_media', to: 'news_messages#hide_all_media', as: :hide_all_media
 
-
+  resources :bonus_credits, except: [:show, :edit, :update]
   resources :terror_trackers
   resources :public_relations
   resources :messages
   resources :games
+  resources :users
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -55,10 +54,11 @@ Rails.application.routes.draw do
   patch 'rioters_update', to: 'games#update_rioters', as: :rioters_update
   patch 'round_update', to: 'games#update_round', as: :round_update
 
-
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
+    get 'games' => 'api#games'
     get 'dashboard_data' => 'api#dashboard'
+    get 'dashboard_data/:game_id' => 'api#dashboard'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

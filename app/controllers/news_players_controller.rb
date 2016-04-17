@@ -1,8 +1,9 @@
 class NewsPlayersController < ApplicationController
+  before_action :authenticate_control!
   # GET /news_messages
   # GET /news_messages.json
   def index
-    @current_round = Game.last.round
+    @current_round = current_game.round
     @news_messages = NewsMessage.all.order(round: :desc, created_at: :desc)
     @papers = NewsMessage.uniq.pluck(:round).sort
   end

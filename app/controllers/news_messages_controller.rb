@@ -1,10 +1,11 @@
 class NewsMessagesController < ApplicationController
   before_action :set_news_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:paper]
+  before_action :authenticate_control!
   # GET /news_messages
   # GET /news_messages.json
   def index
-    @current_round = Game.last.round
+    @current_round = current_game.round
     @news_messages = NewsMessage.all.order(round: :desc, created_at: :desc)
     @papers = NewsMessage.uniq.pluck(:round).sort
   end
@@ -16,7 +17,7 @@ class NewsMessagesController < ApplicationController
 
   # GET /news_messages/new
   def new
-    @current_round = Game.last.round
+    @current_round = current_game.round
     @news_message = NewsMessage.new
     @news_message.visible_content = true
   end
@@ -33,7 +34,7 @@ class NewsMessagesController < ApplicationController
     if @news_message.title.nil?
       @news_message.title = "AP Reports:"
     end
-    @current_round = Game.last.round
+    @current_round = current_game.round
     if params[:post_online]
       client = Tweet.generate_client
       client.update("AP: #{@news_message.content}")
@@ -41,6 +42,7 @@ class NewsMessagesController < ApplicationController
 
     respond_to do |format|
       if @news_message.save
+        current_game.news_messages.push(@news_message)
         format.html { redirect_to @news_message, notice: 'News message was successfully created.' }
         format.json { render :show, status: :created, location: @news_message }
       else
@@ -113,7 +115,7 @@ class NewsMessagesController < ApplicationController
   end
 
   def hide_all_media
-    @round = Game.last.round - 1
+    @round = current_game.round - 1
     @news = NewsMessage.where(round: @round)
     @news.update_all(visible_image: false)
     redirect_to news_messages_path, notice: "Made all news invisible."

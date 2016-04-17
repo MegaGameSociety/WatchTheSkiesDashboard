@@ -1,5 +1,6 @@
 class PublicRelation < ActiveRecord::Base
-  
+  belongs_to :game
+
   VALID_SOURCES = ['','Rioters', 'UN Crisis', 'Alien Agent', 'Terror', 'Human Operative', 'Sabotage', 
       'UN Bonus', 'News', 'Player Spending', 'Other', 'Tech']
 

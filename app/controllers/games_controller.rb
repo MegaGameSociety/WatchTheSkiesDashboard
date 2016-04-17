@@ -1,20 +1,31 @@
 class GamesController < ApplicationController
-before_action :authenticate_user!, except:[:dashboard]
+ before_action :authenticate_user!, except:[:dashboard]
+ before_action :authenticate_control!, except:[:dashboard]
 
   # Main Dashboard for All Players
   def dashboard
-    @game = Game.last.update
+    @game = current_game
     @data = @game.data
   end
 
   # Human Control dashboard to quickly see PR's
   def human_control
-    @last_round = (Game.last.round) -1
-    
-    @pr_amounts = PublicRelation.where(round: @last_round).group(:country).sum(:pr_amount)
-    @current_round = Game.last.round
-    @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
+    @game = current_game
+    @last_round = (@game.round) -1
+
+    @pr_amounts = @game.public_relations
+      .where(round: @last_round)
+      .group(:country)
+      .sum(:pr_amount)
+
+    @current_round = @game.round
+    @public_relations = @game.public_relations.order(
+                                                  round: :desc,
+                                                  created_at: :desc
+                                                )
     @countries = Game::COUNTRIES
+
+    #To Do: Move income values into stored structure somewhere
     @income_values = {}
     @income_values['Brazil'] =[2,5,6,7,8,9,10,11,12]
     @income_values['China']= [2,3,5,7,9,10,12,14,16]
@@ -24,9 +35,10 @@ before_action :authenticate_user!, except:[:dashboard]
     @income_values['Russian Federation'] = [2,4,5,6,7,8,9,10,11]
     @income_values['United Kingdom'] =[2,4,6,7,8,9,10,11,12]
     @income_values['USA']= [1,3,5,7,9,11,13,15,17]
-    @incomes = Income.where(round: @current_round)
+
+    @incomes = @game.incomes.where(round: @current_round)
     if @last_round > 0
-      @previous_income = Income.where(round: @last_round)
+      @previous_income = @game.incomes.where(round: @last_round)
     end
   end
 
@@ -61,6 +73,7 @@ before_action :authenticate_user!, except:[:dashboard]
       pr.save
       results.push(pr)
     end
+    current_game.public_relations.push(results)
     respond_to do |format|
       format.html{redirect_to human_control_path, notice: "Entered in #{results.length} for Round: #{round}."}
     end
@@ -69,21 +82,20 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Administrative stuff for Kevin
   def admin_control
-    @game = Game.last
-    @time = @game.next_round
-    @time_zone = Time.zone.name
+    @game = current_game
+    @time = @game.next_round.in_time_zone(@game.time_zone)
     render 'admin'
   end
 
   def update_control_message
-    @game = Game.last
+    @game = current_game
     @game.control_message = params[:game][:control_message]
     @game.save
     redirect_to admin_control_path
   end
 
   def update_rioters
-    @game = Game.last
+    @game = current_game
     data = @game.data
     data['rioters'] = params[:game][:rioters]
     @game.data = data
@@ -92,7 +104,7 @@ before_action :authenticate_user!, except:[:dashboard]
   end
 
   def update_round
-    @game = Game.last
+    @game = current_game
     @game.round = params[:game][:round]
     @game.save
     redirect_to admin_control_path
@@ -100,22 +112,29 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Post
   def reset
-    Game.last.reset
-    g = Game.last
-    Tweet.delete_all
-    NewsMessage.delete_all
-    PublicRelation.delete_all
-    TerrorTracker.delete_all
-    t = TerrorTracker.create(
-      description: "Initial Terror",
-      amount: 50,
-      round: g.round
+    current_game.reset
+    g = current_game
+    g.tweets.delete_all
+    g.tweets.news_messages.delete_all
+    g.public_relations.delete_all
+    g.terror_trackers.delete_all
+    g.terror_tracker.push(
+      TerrorTracker.create(
+        description: "Initial Terror",
+        amount: 50,
+        round: g.round
+      )
     )
+
+    g.incomes.delete_all
+    Game::COUNTRIES.each do |country|
+      g.incomes.push(Income.create(round: g.round, team_name: country, amount: 6))
+    end
   end
 
   # Post
   def toggle_game_status
-    @game = Game.last
+    @game = current_game
     data = @game.data
     # if game is not paused, then add 5 to clock
     unless data['paused']
@@ -129,7 +148,7 @@ before_action :authenticate_user!, except:[:dashboard]
 
   # Post
   def toggle_alien_comms
-    @game = Game.last
+    @game = current_game
     data = @game.data
     data['alien_comms'] = !data['alien_comms']
     @game.data = data
@@ -142,10 +161,11 @@ before_action :authenticate_user!, except:[:dashboard]
     @game = Game.find(params[:id])
     dateObj = params["game"]
     # Assumes local server time is the time and then converts to utc
-    datetime = Time.zone.local(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i, 
-                        dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
-                        dateObj["next_round(5i)"].to_i).utc()
+    datetime = Time.zone.local(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i,
+                               dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
+                               dateObj["next_round(5i)"].to_i).utc()
     @game.next_round = datetime
+    @game.time_zone = dateObj["time_zone"]
     @game.save
     redirect_to admin_control_path
   end
@@ -163,8 +183,9 @@ before_action :authenticate_user!, except:[:dashboard]
       end
     end
   end
-private
+
+  private
   def game_params
-      params[:game].permit(:next_round)
+    params[:game].permit(:next_round)
   end
 end

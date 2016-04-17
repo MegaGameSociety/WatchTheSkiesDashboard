@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Angular
-gem 'angularjs-rails'
+gem 'angularjs-rails', '~> 1.4.3'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development, :test do
@@ -40,9 +40,12 @@ gem 'json'
 
 gem 'pg'
 
-gem 'devise', '~> 3.4.0' 
+gem 'pluck_to_hash'
+
+gem 'devise', '~> 3.4.0'
 gem 'rails_12factor', group: :production
 gem 'twitter'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
