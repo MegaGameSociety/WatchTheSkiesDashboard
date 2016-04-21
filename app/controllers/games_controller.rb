@@ -110,6 +110,14 @@ class GamesController < ApplicationController
     redirect_to admin_control_path
   end
 
+  def export_data
+    game = current_game
+    round = params[:round]
+    respond_to do |format|
+      format.json { render :json => game.export_data(round) }
+    end
+  end
+
   # Post
   def reset
     current_game.reset
@@ -186,6 +194,6 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params[:game].permit(:next_round)
+    params[:game].permit([:next_round, :round])
   end
 end

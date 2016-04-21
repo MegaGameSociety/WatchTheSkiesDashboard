@@ -50,11 +50,11 @@ class Tweet < ActiveRecord::Base
 
       full_name = "AP"
       if self.twitter_name == "DailyEarthWTS"
-        full_name = "Daily Earth News"
+        full_name = "DEN"
       elsif self.twitter_name == "GNNWTS"
-        full_name = "Global News Network"
+        full_name = "GNN"
       elsif self.twitter_name == "SFTNews"
-        full_name = "Science & Financial Times"
+        full_name = "S&FT"
       end
 
       a.title = "#{full_name} reports:"
@@ -88,24 +88,27 @@ class Tweet < ActiveRecord::Base
     end
 
     # Save Tweets
+    final_tweets
     tweets.each do |tweet|
       #import tweet into system
       t = Tweet.new
-        t.twitter_name = tweet.user.screen_name
-        t.tweet_id = tweet.id
-        t.text = tweet.text.gsub(/http:\/\/[\w\.:\/]+/, '')
-        t.is_public = false
-        t.is_published = false
-        t.tweet_time = tweet.created_at
-        t.game = game
+      t.twitter_name = tweet.user.screen_name
+      t.tweet_id = tweet.id
+      t.text = tweet.text.gsub(/http:\/\/[\w\.:\/]+/, '')
+      t.is_public = false
+      t.is_published = false
+      t.tweet_time = tweet.created_at
+      t.game = game
 
-        #check if tweet has image
-        if tweet.media?
-          t.media_url = tweet.media[0].media_url
-        end
-        t.save
+      #check if tweet has image
+      if tweet.media?
+        t.media_url = tweet.media[0].media_url
+      end
+      t.save
+      final_tweets << t
     end
-    return tweets.length
+    final_tweets.each{|t|t.convert_to_article}
+    return final_tweets.length
   end
 
   def self.generate_client

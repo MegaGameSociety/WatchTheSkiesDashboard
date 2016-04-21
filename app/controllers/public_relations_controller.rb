@@ -4,7 +4,7 @@ class PublicRelationsController < ApplicationController
   before_action :authenticate_control!
   # Get
   def un_dashboard
-    @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
+    @public_relations = current_game.public_relations.all.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
     @current_round = current_game.round
   end
@@ -56,13 +56,13 @@ class PublicRelationsController < ApplicationController
     @countries = Game::COUNTRIES
     @game = current_game
     if Game::COUNTRIES.any?{|x| x ==@country}
-      @public_relations = PublicRelation.order(round: :desc, created_at: :desc).where country: @country
+      @public_relations = @game.public_relations.order(round: :desc, created_at: :desc).where country: @country
       # UN control needs to know amount of PR per group by type
 
-      @pr_amounts = PublicRelation.country_status(@country)
+      @pr_amounts = PublicRelation.country_status(@country, @game)
       @roundNum = (@game.round)
-      @roundTotal = PublicRelation.order(round: :desc, created_at: :desc).where(country: @country, round: @roundNum-1).sum(:pr_amount)
-      @current_income = Income.where(team_name: @country, round: @roundNum)[0].amount
+      @roundTotal = @game.public_relations.order(round: :desc, created_at: :desc).where(country: @country, round: @roundNum-1).sum(:pr_amount)
+      @current_income = @game.incomes.where(team_name: @country, round: @roundNum)[0].amount
     else
       raise ActionController::RoutingError.new('Country Not Found')
     end    
@@ -71,7 +71,7 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations
   # GET /public_relations.json
   def index
-    @public_relations = PublicRelation.all.order(round: :desc, created_at: :desc)
+    @public_relations = current_game.public_relations.order(round: :desc, created_at: :desc)
     @countries = Game::COUNTRIES
   end
 

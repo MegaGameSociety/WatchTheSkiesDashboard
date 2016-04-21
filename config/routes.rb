@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   patch 'rioters_update', to: 'games#update_rioters', as: :rioters_update
   patch 'round_update', to: 'games#update_round', as: :round_update
 
+  get 'export_data/:round', to: 'games#export_data'
+
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
     get 'games' => 'api#games'

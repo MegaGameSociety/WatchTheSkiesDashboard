@@ -8,7 +8,7 @@ class Api::ApiController < ApplicationController
     end
   end
 
-  def dashboard()
+  def dashboard
     if params[:game_id].nil?
       @game = current_game
     else

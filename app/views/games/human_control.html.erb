@@ -2,7 +2,7 @@
   <h1>Human Control</h1>
 
   <h3 class="clearfix">
-    <div class="half-width">PR Changes for Round: <%= @last_round %></div>
+    <div class="half-width">PR Changes From Round: <%= @last_round %></div>
     <div class="half-width">PR By Country</div>
   </h3>
 
@@ -48,8 +48,8 @@
             <td><%= income.team_name %></td>
             <td><%= income.amount%></td>
             <td><%= @income_values[income.team_name][income.amount-1]%></td>
-            <td><%= BonusCredit.where(team_name: income.team_name, round: @current_round, recurring: false).sum(:amount) %></td>
-            <td><%= BonusCredit.where('team_name = ? AND round <= ? AND recurring = TRUE', income.team_name, @current_round).sum(:amount) %></td>
+            <td><%= @game.bonus_credits.where(team_name: income.team_name, round: @current_round, recurring: false).sum(:amount) %></td>
+            <td><%= @game.bonus_credits.where('team_name = ? AND round <= ? AND recurring = TRUE', income.team_name, @current_round).sum(:amount) %></td>
           </tr>
           <% end %>
       </table>

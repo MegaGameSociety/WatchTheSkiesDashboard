@@ -175,7 +175,9 @@ $terror-red: #BD2C00;
    ===================================== */
 
 #control-messages {
-  display: block;
+  background: rgba(176, 214, 255, 0.4);
+  display: inline-block;
+  padding: 0px 10px;
   margin: 20px;
   vertical-align: top;
 

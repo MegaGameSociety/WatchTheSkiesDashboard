@@ -37,6 +37,9 @@ class Game < ActiveRecord::Base
         #First update the income levels
         update_income_levels()
 
+        # Turn any last second tweets into news.
+        count = Tweet.export(self)
+
         # Change the round
         puts "Round is changing from #{self.round} to #{self.round+1}"
         self.round +=1
@@ -64,19 +67,48 @@ class Game < ActiveRecord::Base
     # PR < -1 and PR < -3, change Income -1
     # PR < -3, change Income -2
     Game::COUNTRIES.each do |country|
-      pr = PublicRelation.where(round: round).where(country: country).sum(:pr_amount)
-      next_income = Income.where(round: round, team_name: country)[0].amount
+      pr = self.public_relations.where(round: round).where(country: country).sum(:pr_amount)
+      current_income = self.incomes.where(round: round, team_name: country).sum(:amount)
 
       if pr >= 4
-        next_income += 1
+        current_income += 1
       elsif pr <=-1 and pr >=-3
-        next_income += -1
+        current_income += -1
       elsif pr < -3
-        next_income += -2
+        current_income += -2
       end
-      income = Income.find_or_create_by(round: Game.last.round + 1, team_name: country, game: self)
-      income.amount = next_income
-      income.save()
+      next_income = Income.find_or_create_by(round: round + 1, team_name: country, game: self)
+      next_income.amount = current_income
+      next_income.save()
     end
+  end
+
+  def export_data(round)
+    round = round.to_i
+    @data = self.data
+
+    income_list = self.incomes.where(round: round).group(:team_name).sum(:amount)
+    bonus_credits = self.bonus_credits.where(round: round, recurring: false).group(:team_name).sum(:amount)
+    recurring_credits = self.bonus_credits.where(recurring: true).group(:team_name).sum(:amount)
+
+    @global_terror = {
+        'activity' => self.activity,
+        'total'=> self.terror_trackers.totalTerror(),
+        'rioters'=> @data['rioters']
+    }
+    main_data = {
+        "timer" => {
+          "round"=>  round,
+          "next_round" =>  self.next_round.in_time_zone(Time.zone.name),
+          "paused" => @data['paused'],
+          "control_message" => self.control_message
+        },
+        "global_terror" => @global_terror,
+        "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
+        "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
+        "incomes" => income_list,
+        "bonus_credits" => bonus_credits,
+        "recurring_credits" => recurring_credits,
+      }
   end
 end
