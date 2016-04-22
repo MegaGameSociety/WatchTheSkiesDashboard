@@ -15,8 +15,8 @@ class TerrorTrackersController < ApplicationController
   # GET /terror_trackers.json
   def index
     @game = current_game
-    @terror_trackers = TerrorTracker.all.order(created_at: :desc)
-    @tcount = TerrorTracker.sum(:amount)
+    @terror_trackers = current_game.terror_trackers.all.order(created_at: :desc)
+    @tcount = current_game.terror_trackers.sum(:amount)
 
     # Requirements for a new terror tracker event
     @terror_tracker = TerrorTracker.new
