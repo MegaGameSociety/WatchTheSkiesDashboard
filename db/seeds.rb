@@ -44,7 +44,7 @@ game = u.game
 # create initial Terror Item
 game.terror_trackers.push(TerrorTracker.create(
   description: "Initial Terror",
-  amount: 50,
+  amount: 0,
   round: game.round
   ))
 

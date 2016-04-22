@@ -120,24 +120,26 @@ class GamesController < ApplicationController
 
   # Post
   def reset
-    current_game.reset
     g = current_game
-    g.tweets.delete_all
-    g.news_messages.delete_all
-    g.public_relations.delete_all
-    g.terror_trackers.delete_all
-    g.terror_tracker.push(
-      TerrorTracker.create(
+    g.reset
+    g.tweets.destroy_all
+    g.news_messages.destroy_all
+    g.public_relations.destroy_all
+    g.terror_trackers.destroy_all
+    g.terror_trackers.create(
         description: "Initial Terror",
-        amount: 50,
+        amount: 0,
         round: g.round
       )
-    )
 
-    g.incomes.delete_all
+    g.incomes.destroy_all
+    g.bonus_credits.destroy_all
     Game::COUNTRIES.each do |country|
       g.incomes.push(Income.create(round: g.round, team_name: country, amount: 6))
     end
+
+    #CleanUp
+    redirect_to admin_control_path
   end
 
   # Post
