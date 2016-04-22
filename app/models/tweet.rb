@@ -88,7 +88,7 @@ class Tweet < ActiveRecord::Base
     end
 
     # Save Tweets
-    final_tweets
+    final_tweets = []
     tweets.each do |tweet|
       #import tweet into system
       t = Tweet.new
