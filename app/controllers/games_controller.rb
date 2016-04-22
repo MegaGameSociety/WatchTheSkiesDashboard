@@ -123,7 +123,7 @@ class GamesController < ApplicationController
     current_game.reset
     g = current_game
     g.tweets.delete_all
-    g.tweets.news_messages.delete_all
+    g.news_messages.delete_all
     g.public_relations.delete_all
     g.terror_trackers.delete_all
     g.terror_tracker.push(
