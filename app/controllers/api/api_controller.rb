@@ -30,9 +30,9 @@ class Api::ApiController < ApplicationController
     end
 
     begin
-      @news = @game.news_messages.round_news(round).order(created_at: :desc)
+      @news = @game.news_messages.round_news(round).order(created_at: :desc).limit(10)
       if (round>0)
-        @news += @game.news_messages.round_news(round-1).order(created_at: :desc)
+        @news += @game.news_messages.round_news(round-1).order(created_at: :desc).limit(10)
       end
     rescue
       @status = 500
