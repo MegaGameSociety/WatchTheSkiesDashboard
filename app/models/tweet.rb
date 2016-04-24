@@ -36,7 +36,7 @@ class Tweet < ActiveRecord::Base
 
       self.is_published = true
       self.save
-      self.convert_to_article
+      # self.convert_to_article
     end
   end
 
