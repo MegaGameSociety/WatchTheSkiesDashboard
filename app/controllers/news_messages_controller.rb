@@ -1,7 +1,7 @@
 class NewsMessagesController < ApplicationController
   before_action :set_news_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:paper]
-  before_action :authenticate_control!
+  before_action :authenticate_control!, except: [:paper]
   # GET /news_messages
   # GET /news_messages.json
   def index
