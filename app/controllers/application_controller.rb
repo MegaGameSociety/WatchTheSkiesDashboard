@@ -5,18 +5,14 @@ class ApplicationController < ActionController::Base
 
   def authenticate_control!
     user = current_user
-    redirect_to root_path if user.nil?
-
-    unless user.control?
+    if user.nil? || !user.control?
       redirect_to root_path
     end
   end
 
   def authenticate_super_admin!
     user = current_user
-    redirect_to root_path if user.nil?
-
-    unless (user.super_admin?)
+    if user.nil? || !user.super_admin?
       redirect_to root_path
     end
   end
@@ -25,11 +21,7 @@ class ApplicationController < ActionController::Base
     user = current_user
     redirect_to root_path if user.nil?
     unless (user.admin?)
-      if user.control?
-        redirect_to admin_control_path
-      else
-        redirect_to root_path
-      end
+      authenticate_control
     end
   end
 
