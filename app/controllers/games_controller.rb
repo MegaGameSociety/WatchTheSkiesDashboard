@@ -147,10 +147,6 @@ class GamesController < ApplicationController
   def toggle_game_status
     @game = current_game
     data = @game.data
-    # if game is not paused, then add 5 to clock
-    unless data['paused']
-      @game.next_round = @game.next_round + 5 * 60
-    end
     data['paused'] = !data['paused']
     @game.data = data
     @game.save
