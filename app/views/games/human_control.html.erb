@@ -40,8 +40,8 @@
           <th>Country</th>
           <th>Distributed Round <%= @current_round %> Income</th>
           <th>Distributed Round <%= @current_round %> Credits</th>
-          <th>Bonus Credits Distributed for Round <%= @current_round %></th>
-          <th>Distributed Recurring Credits</th>
+          <th>Bonus Reserves Distributed for Round <%= @current_round %></th>
+          <th>Distributed Recurring Reserves</th>
         </tr>
         <% @incomes.each do |income| %>
           <tr>
@@ -54,8 +54,8 @@
           <% end %>
       </table>
       <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
-      <%= link_to "Add Bonus Credits", new_bonus_credit_path, :class => 'button-input' %>
-      <%= link_to "Bonus Credits Index", bonus_credits_path, :class => "button-input" %>
+      <%= link_to "Add Bonus Reserves", new_bonus_credit_path, :class => 'button-input' %>
+      <%= link_to "Bonus Reserves Index", bonus_credits_path, :class => "button-input" %>
     </div>
   </section>
 

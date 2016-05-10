@@ -1,7 +1,7 @@
 <%= form_for @bonus_credits do |f| %>
   <% if @bonus_credits.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@bonus_credits.errors.count, "error") %> prohibited these bonus credits from being saved:</h2>
+      <h2><%= pluralize(@bonus_credits.errors.count, "error") %> prohibited these bonus reserves from being saved:</h2>
 
       <ul>
         <% @bonus_credits.errors.full_messages.each do |message| %>
