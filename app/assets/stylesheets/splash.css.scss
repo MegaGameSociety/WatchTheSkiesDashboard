@@ -1,0 +1,107 @@
+body.logged_out {
+  background-color: #000;
+  background-image: url('/assets/banner.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-bottom: 0;
+}
+
+#splash {
+  padding: 20px;
+
+  #logo {
+    max-width: 600px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  #games {
+    color: #FFFFFF;
+    margin: 40px 0 0 15%;
+    max-width: 275px;
+  }
+
+  h2 {
+    color: #FFFFFF;
+    font-size: 2.0rem;
+    line-height: 2.6rem;
+  }
+
+  .form-signin {
+    margin: 0;
+    padding: 0 35px;
+  }
+
+  .form-control {
+    border-radius: 5px;
+    position: relative;
+    height: auto;
+    margin: 10px 0;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+
+    &.button {
+      background: linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+      background: -moz-linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+      background: -webkit-linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+      border: 1px solid #000000;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  }
+
+  .checkbox {
+    line-height: 2.2rem;
+    margin: 0;
+
+    label {
+      font-weight: normal;
+      font-size: 1.6rem;
+      line-height: 2.2rem;
+      margin: 0;
+    }
+
+    input {
+      height: auto;
+      margin: 4px 0;
+      padding: 0;
+      vertical-align: top;
+    }
+  }
+
+  #footer-wrapper {
+    height: 100px;
+    margin-top: 20px;
+    text-align: right;
+  }
+
+  #footer {
+    float: right;
+    text-align: center;
+    width: 325px;
+
+    .social {
+      text-align: center;
+
+      a {
+        background-image: url('/assets/social.png');
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+
+        &.home      { background-position: 0   0;   }
+        &.twitter   { background-position: 0 125px; }
+        &.facebook  { background-position: 0  50px; }
+      }
+    }
+  }
+
+}
