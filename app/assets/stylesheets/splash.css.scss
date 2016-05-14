@@ -44,7 +44,7 @@ body.logged_out {
        -moz-box-sizing: border-box;
             box-sizing: border-box;
     padding: 10px;
-    font-size: 16px;
+    font-size: 1.6rem;
     width: 100%;
 
     &.button {
@@ -74,6 +74,19 @@ body.logged_out {
       margin: 4px 0;
       padding: 0;
       vertical-align: top;
+    }
+  }
+
+  .welcome {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+
+    a {
+      color: #2989d8;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 
