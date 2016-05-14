@@ -32,7 +32,7 @@ body.logged_out {
 
   .form-signin {
     margin: 0;
-    padding: 0 35px;
+    padding: 0 35px 20px;
   }
 
   .form-control {
@@ -77,17 +77,19 @@ body.logged_out {
     }
   }
 
-  .welcome {
+  a {
+    color: #2989d8;
     font-size: 1.6rem;
     line-height: 2.2rem;
 
-    a {
-      color: #2989d8;
-
-      &:hover {
-        background-color: transparent;
-      }
+    &:hover {
+      background-color: transparent;
     }
+  }
+
+  .welcome {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
   }
 
   #footer-wrapper {
