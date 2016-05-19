@@ -37,15 +37,6 @@ class Game < ActiveRecord::Base
         #First update the income levels
         update_income_levels()
 
-        # Turn any last second tweets into news.
-        count = Tweet.export(self)
-
-        # Change the round
-        puts "Round is changing from #{self.round} to #{self.round+1}"
-        self.round +=1
-        self.next_round = self.next_round + (30*60)
-        self.save
-
         #Group Twitter activities together and dump cleanly into the error bucket on fail
         begin
             Tweet.import(self)
@@ -56,6 +47,12 @@ class Game < ActiveRecord::Base
         rescue => ex
             logger.error ex.message
         end
+
+        # Change the round
+        puts "Round is changing from #{self.round} to #{self.round+1}"
+        self.round +=1
+        self.next_round = self.next_round + (30*60)
+        self.save
       end
     end
     return self

@@ -3,43 +3,6 @@ class Tweet < ActiveRecord::Base
   # https://github.com/sferik/twitter
   belongs_to :game
 
-  def publish(client)
-    require 'open-uri'
-    if self.is_public && !self.is_published
-    # Disable tweeting
-      # Need to add source + char, limit.
-      # GNN:
-      # DEN:
-      # SFT: 
-      short_name = ""
-      if self.twitter_name == "DailyEarthWTS"
-        short_name = "DEN:"
-      elsif self.twitter_name == "GNNWTS"
-        short_name = "GNN:"
-      elsif self.twitter_name == "SFTNews"
-        short_name = "SFT:"
-      else
-        short_name = "AP:"
-      end
-
-      if !self.media_url.nil?
-        if self.media_url.length > 0
-          url = URI.parse(self.media_url)
-          image = open(url)
-          # client.update_with_media("#{short_name} #{self.text}".slice(0,140-self.media_url.length), image)
-        else
-          # client.update("#{short_name} #{self.text}".slice(0,139))
-        end
-      else
-        # client.update("#{short_name} #{self.text}".slice(0,139))
-      end
-
-      self.is_published = true
-      self.save
-      # self.convert_to_article
-    end
-  end
-
   def convert_to_article
       a = NewsMessage.new
       if !self.media_url.nil?
@@ -64,12 +27,10 @@ class Tweet < ActiveRecord::Base
       a.visible_content = true
       a.visible_image = true
       a.save
-
   end
 
 
   def self.import(game)
-  
   # Generate client
   client = Tweet.generate_client
     # Daily Earth News: @DailyEarthWTS
@@ -107,6 +68,7 @@ class Tweet < ActiveRecord::Base
       t.save
       final_tweets << t
     end
+    # Create new articles for each tweet
     final_tweets.each{|t|t.convert_to_article}
     return final_tweets.length
   end
@@ -122,12 +84,4 @@ class Tweet < ActiveRecord::Base
     return client
   end
 
-  def self.export(current_game)
-    export_tweets = Tweet.where(game: current_game, is_public: true, is_published: false).order(tweet_time: :asc)
-    client = Tweet.generate_client
-    export_tweets.each do |tweet|
-      tweet.publish(client)
-    end
-    return export_tweets.count
-  end
 end

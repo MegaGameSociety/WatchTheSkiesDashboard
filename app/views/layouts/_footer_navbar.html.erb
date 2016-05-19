@@ -7,7 +7,6 @@
     <li><%= link_to 'Human Controls', human_control_path %></li>
     <li><%= link_to 'PR Controls', public_relations_path %></li>
     <li><%= link_to 'News', news_messages_path %></li>
-    <li><%= link_to 'Tweets', tweets_path %></li>
     <li><%= link_to 'Administration', admin_control_path %></li>
     <% if current_user && current_user.super_admin? %>
     <li><%= link_to 'Super Administration', users_path %></li>
