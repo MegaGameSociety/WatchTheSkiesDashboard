@@ -36,6 +36,25 @@
     </ul>
   </section>
 
+  <h3>Twitter Accounts </h3>
+  <section>
+   <%= form_for(@game, url: den_tweet_update_path) do |f|%>
+        <%= f.label :den_update, "Daily Earth News Account:" %>
+        <%= f.text_field :den, value: @game.den, placeholder:"DailyEarthWTS", :size => "15"%>
+      <%= f.submit "Update Account" %>
+    <% end %>
+   <%= form_for(@game, url: sft_tweet_update_path) do |f|%>
+        <%= f.label :sft_update, "Science & Financial Times Account:" %>
+        <%= f.text_field :sft, value: @game.sft, placeholder:"SFTNews", :size => "15"%>
+      <%= f.submit "Update Account" %>
+    <% end %>
+   <%= form_for(@game, url: gnn_tweet_update_path) do |f|%>
+        <%= f.label :gnn_update, "Global News Network Account:" %>
+        <%= f.text_field :gnn, value: @game.gnn, placeholder:"GNNWTS", :size => "15"%>
+      <%= f.submit "Update Account" %>
+    <% end %>
+  </section>
+
   <h3>Advanced Controls</h3>
   <section>
     <ul>

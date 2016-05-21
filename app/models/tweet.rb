@@ -12,11 +12,11 @@ class Tweet < ActiveRecord::Base
       end
 
       full_name = "AP"
-      if self.twitter_name == "DailyEarthWTS"
+      if self.twitter_name == self.game.den
         full_name = "DEN"
-      elsif self.twitter_name == "GNNWTS"
+      elsif self.twitter_name == self.game.gnn
         full_name = "GNN"
-      elsif self.twitter_name == "SFTNews"
+      elsif self.twitter_name == self.game.sft
         full_name = "S&FT"
       end
 
@@ -36,24 +36,26 @@ class Tweet < ActiveRecord::Base
     # Daily Earth News: @DailyEarthWTS
     # GNN: @GNNWTS
     # Science & Financial Times = SFTNews
-    den = "DailyEarthWTS"
-    gnn = "GNNWTS"
-    sft = "SFTNews"
     # Check if there aren't any tweets in database
     tweets = []
-    if game.tweets.count()==0
-      tweets += (client.user_timeline(den).take(1))
-      tweets += (client.user_timeline(gnn).take(1))
-      tweets += (client.user_timeline(sft).take(1))
+    den = Tweet.where(twitter_name: game.den).order(tweet_time: :asc).last
+    gnn = Tweet.where(twitter_name: game.gnn).order(tweet_time: :asc).last
+    sft = Tweet.where(twitter_name: game.sft).order(tweet_time: :asc).last
+
+    if den.nil?
+      tweets += (client.user_timeline(game.den).take(1))
     else
-      # get the last timestamp of a tweet and create tweets
-      # imported since then
-      den_id = Tweet.where(twitter_name: den).order(tweet_time: :asc).last.tweet_id
-      client.user_timeline(den, options = {since_id: den_id})
-      gnn_id = Tweet.where(twitter_name: gnn).order(tweet_time: :asc).last.tweet_id
-      client.user_timeline(gnn, options = {since_id: gnn_id})
-      sft_id = Tweet.where(twitter_name: sft).order(tweet_time: :asc).last.tweet_id
-      client.user_timeline(sft, options = {since_id: sft_id})
+      tweets += client.user_timeline(game.den, options = {since_id: den.tweet_id})
+    end
+    if gnn.nil?
+      tweets += (client.user_timeline(game.gnn).take(1))
+    else
+      tweets += client.user_timeline(game.gnn, options = {since_id: gnn.tweet_id})
+    end
+    if sft.nil?
+      tweets += (client.user_timeline(game.sft).take(1))
+    else
+      tweets += client.user_timeline(game.sft, options = {since_id: sft.tweet_id})
     end
 
     # Save Tweets

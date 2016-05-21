@@ -43,6 +43,27 @@ class GamesController < ApplicationController
     end
   end
 
+  def update_den
+    @game = current_game
+    @game.den = params[:game][:den]
+    @game.save
+    redirect_to admin_control_path
+  end
+
+  def update_gnn
+    @game = current_game
+    @game.gnn = params[:game][:gnn]
+    @game.save
+    redirect_to admin_control_path
+  end
+
+  def update_sft
+    @game = current_game
+    @game.sft = params[:game][:sft]
+    @game.save
+    redirect_to admin_control_path
+  end
+
   def create_human_pr
     data = params['human_bulk_pr']
     round = data['round']
@@ -193,6 +214,6 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params[:game].permit([:next_round, :round])
+    params[:game].permit([:next_round, :round, :sft, :gnn, :den])
   end
 end

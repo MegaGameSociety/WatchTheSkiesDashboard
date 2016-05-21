@@ -46,6 +46,10 @@ Rails.application.routes.draw do
 
   # Administrative Controls
   get 'admin' =>'games#admin_control', :as =>'admin_control'
+  patch '/update_den' => 'games#update_den', as: :den_tweet_update
+  patch '/update_gnn' => 'games#update_gnn', as: :gnn_tweet_update
+  patch '/update_sft' => 'games#update_sft', as: :sft_tweet_update
+
   post 'toggle_game_status', to: 'games#toggle_game_status', as: :toggle_game_status
   post 'toggle_alien_comms', to: 'games#toggle_alien_comms', as: :toggle_alien_comms
   post 'reset_game', to: 'games#reset', :as => 'reset_game'
