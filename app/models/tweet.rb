@@ -36,16 +36,24 @@ class Tweet < ActiveRecord::Base
     # Daily Earth News: @DailyEarthWTS
     # GNN: @GNNWTS
     # Science & Financial Times = SFTNews
-
+    den = "DailyEarthWTS"
+    gnn = "GNNWTS"
+    sft = "SFTNews"
     # Check if there aren't any tweets in database
+    tweets = []
     if game.tweets.count()==0
-        tweets = client.list_timeline('WatchSkies', 'wts-list').take(3)
+      tweets += (client.user_timeline(den).take(1))
+      tweets += (client.user_timeline(gnn).take(1))
+      tweets += (client.user_timeline(sft).take(1))
     else
       # get the last timestamp of a tweet and create tweets
       # imported since then
-      tweets = client.list_timeline('WatchSkies', 'wts-list', {
-        since_id: Tweet.order(tweet_time: :asc).last.tweet_id
-        })
+      den_id = Tweet.where(twitter_name: den).order(tweet_time: :asc).last.tweet_id
+      client.user_timeline(den, options = {since_id: den_id})
+      gnn_id = Tweet.where(twitter_name: gnn).order(tweet_time: :asc).last.tweet_id
+      client.user_timeline(gnn, options = {since_id: gnn_id})
+      sft_id = Tweet.where(twitter_name: sft).order(tweet_time: :asc).last.tweet_id
+      client.user_timeline(sft, options = {since_id: sft_id})
     end
 
     # Save Tweets
