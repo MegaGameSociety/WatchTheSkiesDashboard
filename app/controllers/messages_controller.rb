@@ -2,6 +2,9 @@ class MessagesController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authenticate_control!
 	#Displays all messages, newest ones first
+
+	layout "mobile"
+
 	def index
 		@messages = Message.all.order('created_at DESC')
 		respond_to do |format|

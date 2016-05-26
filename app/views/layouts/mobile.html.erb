@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WatchTheSkiesDashboard</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+
+    <%= javascript_include_tag 'application'%>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="mobile">
+    <input id="hamburger" type="checkbox" class="hamburger-checkbox">
+    <label for="hamburger" class="hamburger-label" role="button" aria-labelledby="menu"><span></span></label>
+
+    <nav class="sidebar">
+      <ul class="menu">
+        <li><%= link_to 'Dashboard', root_path , method: :get %></li>
+        <li><%= link_to 'Messages', messages_path, method: :get %></li>
+        <li>Tech Tree</li>
+        <li>Log Out</li>
+      </ul>
+    </nav>
+
+    <main role="main" class="page-content">
+      <h1 class="page-title"><%= yield(:title) %></h1>
+      <%= yield %>
+    </main>
+  </body>
+</html>
