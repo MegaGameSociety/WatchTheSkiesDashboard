@@ -7,6 +7,8 @@ class MessagesController < ApplicationController
 
 	def index
 		@messages = Message.all.order('created_at DESC')
+		@newMessage = Message.new
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @messages }
@@ -16,7 +18,7 @@ class MessagesController < ApplicationController
 	#Displays all messages for a specific country
 	def show
 		@messages = Message.where(recipient: params[:id]).order('created_at DESC')
-		
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @messages }
