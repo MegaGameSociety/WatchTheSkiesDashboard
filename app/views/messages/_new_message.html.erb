@@ -1,0 +1,21 @@
+<%= form_for @newMessage, url: messages_path do |f| %>
+  <div class="field">
+    <!-- Sender should be calculated automatically -->
+    <input id="sender" name="message[sender]" type="hidden" value="{{myCountry}}" />
+
+    <!-- If the message is new, the recipient can be chosen. If it's a reply, we auto-calculate it -->
+    <% if reciever == 'set' %>
+      <input id="recipient" name="message[recipient]" type="hidden" value="{{selectedMessage.conversation_partner}}" />
+      <%= label(:content, "Reply") %><br>
+    <% else %>
+      <%= label(:recipient, "Recipient") %>: <%= f.select(:recipient,
+      options_for_select([['UK'], ['France'], ['India'], ['US'], ['China'], ['Japan'], ['Brazil'], ['Aliens']])) %><br>
+      <%= label(:content, "Message") %><br>
+    <% end %>
+
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Send Message", :class => 'button' %>
+  </div>
+<% end %>
