@@ -1,0 +1,74 @@
+.public_relations {
+  background: #FFF;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+
+  .control-message {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .turns {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .tab-selection {
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 20px 10px 0 10px;
+  }
+
+  .tab-choice {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+
+    &.focused {
+      border-bottom: 1px solid #FFF;
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      margin-bottom: -1px;
+    }
+  }
+
+  .tab {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .pr-modifiers {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .income-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    .half {
+      flex: 1 0 50%;
+
+      &.header {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .news-time {
+    font-style: italic;
+    margin-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .footer {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+}
