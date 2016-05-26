@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'splash#index'
 
   get 'dashboard' => 'games#dashboard', as: :dashboard
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :incomes
 
-  resources :tweets do 
+  resources :tweets do
     patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public
   end
   post 'import_tweets', to: 'tweets#import_tweets', as: :import_tweets
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :splash
+  resources :team_incomes
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   get 'human_control' => 'games#human_control', as: :human_control
   post 'human_control' => 'games#create_human_pr'
   post 'messages/new' => 'messages#create'
-  
+
   patch '/activity_update' => 'terror_trackers#update_activity', as: :activity_update
 
   # Administrative Controls
