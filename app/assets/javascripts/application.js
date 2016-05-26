@@ -20,4 +20,6 @@
 //= require turbolinks
 //= require lib/bootstrap.min
 //= require greensock
+//= require angular/modules/truncate.js
 //= require angular/controllers/dashboard.js
+//= require angular/controllers/messages.js

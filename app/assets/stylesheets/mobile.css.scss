@@ -1,0 +1,152 @@
+.mobile {
+  background: #382b08;
+  background-image: url("/assets/empire-mobile.jpg");
+  background-size: contain;
+  background-position: top center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  display: flex;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  min-height: 100%;
+  padding-bottom: 0;
+
+  .page-title {
+    margin-left: 60px;
+    text-align: center;
+  }
+
+  .page-content {
+    color: #444;
+    flex: 1;
+    padding: 0 20px;
+    transition: all .3s;
+  }
+
+  .sidebar {
+    background: #444;
+    color: #eee;
+    height: 100%;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    margin-left: -200px;
+    overflow: hidden;
+    padding-top: 6.5rem;
+    transition: all .3s;
+    width: 200px;
+
+    a {
+      color: #EEE;
+    }
+
+    a:hover {
+      background-color: transparent;
+      color: #EEE;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+
+      li {
+        border-top: 1px solid darken(#444, 10%);
+        padding: 16px 32px;
+
+        &:last-child {
+          border-bottom: 1px solid darken(#444, 10%);
+        }
+      }
+    }
+  }
+
+  .hamburger-checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .hamburger-label {
+    color: white;
+    cursor: pointer;
+    height: 30px;
+    left: 32px;
+    margin: 0;
+    position: absolute;
+    top: 24px;
+    width: 40px;
+  }
+
+  .hamburger-label span,
+  .hamburger-label span:before,
+  .hamburger-label span:after {
+    background: #444;
+    border-radius: 1px;
+    content: '';
+    cursor: pointer;
+    display: block;
+    height: 5px;
+    position: absolute;
+    top: 10px;
+    transition: all 500ms ease-in-out;
+    width: 35px;
+  }
+
+  .hamburger-label span:before {
+    top: -10px;
+  }
+
+  .hamburger-label span:after {
+    bottom: -10px;
+  }
+
+  .hamburger-checkbox:checked ~ .hamburger-label span {
+    background-color: transparent;
+  }
+
+  .hamburger-checkbox:checked ~ .hamburger-label span:before {
+    background-color: #fff;
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .hamburger-checkbox:checked ~ .hamburger-label span:after {
+    background-color: #fff;
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .hamburger-checkbox:checked ~ .sidebar {
+    height: 100%;
+    margin-left: 0px;
+    transition: all 500ms ease-in-out;
+    width: 200px;
+  }
+
+  .button {
+    background: linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #FFF;
+    cursor: pointer;
+    height: auto;
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 2.2rem;
+    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+  }
+}
+
+
+@media (min-device-width: 780px) {
+  .mobile {
+    background-size: cover;
+  }
+}
+
+@media (orientation: portrait) {
+  .mobile {
+    background-size: cover;
+  }
+}

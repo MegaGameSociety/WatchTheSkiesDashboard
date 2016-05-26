@@ -1,0 +1,25 @@
+<ul class="messages-sidebar" ng-class="{'focused': selectedMessage !== null}">
+  <li ng-class="{'active': selectedMessage === 'new'}"
+      ng-click="createNewMessage()"
+      id="message_new">
+      <div>New Message</div>
+  </li>
+
+  <li ng-repeat="conversation in myMessages | orderBy: '-updated_at'"
+      ng-class="{'active': isActive === conversation.id}"
+      ng-click="selectConversation(conversation)"
+      id="message_{{conversation.id}}">
+    <img ng-src="assets/flags/{{conversation.conversation_partner}}.png" class="flag" />
+    <div class="message-info">
+      <div class="message-sender">{{conversation.conversation_partner}}</div>
+      <div class="time">{{conversation.messages[conversation.messages.length - 1].created_at | date:'HH:mm a'}}</div>
+
+      <div class="message-preview-body">
+        <span ng-if="conversation.messages[conversation.messages.length - 1].sender === myCountry" class="preview-sender">You: </span>
+        <span ng-if="conversation.messages[conversation.messages.length - 1].sender !== myCountry" class="preview-sender">{{conversation.conversation_partner}}: </span>
+        <span class="preview-snippet">{{conversation.messages[conversation.messages.length - 1].content | characters: 20}}</span>
+        <span class="preview-full">{{conversation.messages[conversation.messages.length - 1].content}}</span>
+      </div>
+    </div>
+  </li>
+</ul>
