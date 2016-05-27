@@ -23,3 +23,4 @@
 //= require angular/modules/truncate.js
 //= require angular/controllers/dashboard.js
 //= require angular/controllers/messages.js
+//= require angular/controllers/public_relations.js

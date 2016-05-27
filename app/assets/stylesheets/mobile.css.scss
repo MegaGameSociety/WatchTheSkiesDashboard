@@ -10,17 +10,33 @@
   font-size: 1.6rem;
   line-height: 2.2rem;
   min-height: 100%;
-  padding-bottom: 0;
+  padding: 0;
+
+  p {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  label {
+    margin-top: 0px;
+  }
+
+  textarea {
+    min-height: 85px;
+  }
 
   .page-title {
-    margin-left: 60px;
+    background: #FFF;
+    margin-bottom: 30px;
+    padding-left: 60px;
+    padding-bottom: 10px;
     text-align: center;
   }
 
   .page-content {
     color: #444;
     flex: 1;
-    padding: 0 20px;
+    padding: 0;
     transition: all .3s;
   }
 
@@ -135,18 +151,5 @@
     margin: 10px 0;
     padding: 10px;
     position: relative;
-  }
-}
-
-
-@media (min-device-width: 780px) {
-  .mobile {
-    background-size: cover;
-  }
-}
-
-@media (orientation: portrait) {
-  .mobile {
-    background-size: cover;
   }
 }

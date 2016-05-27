@@ -1,0 +1,146 @@
+$darkblue: #003D6F;
+$headblue: #1077C3;
+
+.public_relations {
+  color: #000;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+
+  .country-header, .tab, .footer {
+    background: #FFf;
+  //  background: rgba(255, 255, 255, 0.85);
+  }
+
+  h4 {
+    color: #000;
+    margin-bottom: 15px;
+
+    span {
+      color: $headblue;
+    }
+  }
+
+
+  .country-header {
+    border: 1px solid $darkblue;
+    display: flex;
+    margin-bottom: 50px;
+    padding: 10px;
+  }
+
+  .my-country {
+    display: flex;
+    flex: 1;
+
+    .flag {
+      flex: 0 0 120px;
+    }
+
+    .govt {
+      flex: 1;
+      font-weight: bold;
+      margin-top: 15px;
+
+      h4 {
+        color: $headblue;
+        font-weight: bold;
+        margin-top: 5px;
+      }
+    }
+
+    .flag img {
+      width: 100px;
+    }
+  }
+
+  .messages-container {
+    flex: 1;
+
+    .messages-header {
+      font-weight: bold;
+    }
+  }
+
+
+
+  .turns {
+    padding: 10px 0;
+  }
+
+  .tab-selection {
+    padding: 0 10px;
+  }
+
+  .tab-choice {
+    background: $darkblue;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 10px;
+
+    &.focused {
+      background: #FFF;
+      border: 1px solid $darkblue;
+      border-bottom: 1px solid #FFF;
+      color: #000;
+      margin-bottom: -1px;
+    }
+  }
+
+  .tab {
+    border: 1px solid $darkblue;
+    padding: 10px;
+  }
+
+  .pr-modifiers {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .income-info {
+    display: flex;
+    flex-wrap: wrap;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .amount {
+      flex: 0 0 90px;
+    }
+
+    .reason {
+      flex: 0 0 calc(100% - 100px);
+    }
+
+    .half {
+      flex: 1 0 50%;
+    }
+
+    .header {
+      font-weight: bold;
+    }
+  }
+
+  .news {
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .news-time {
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer {
+    border: 1px solid $darkblue;
+    margin: 50px 0;
+    padding: 10px;
+    text-align: center;
+  }
+}
