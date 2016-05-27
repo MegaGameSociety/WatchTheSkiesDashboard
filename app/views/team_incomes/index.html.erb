@@ -2,10 +2,23 @@
 
 
 <div ng-app='prApp' ng-controller="prCtrl" class="public_relations">
-  <div class="turns">Turn {{round}} (<timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer> Remaining)</div>
 
-  <div class="control-message">
-    {{controlMessage}}
+
+  <div class="country-header">
+    <div class="my-country">
+      <div class="flag"><img ng-src="assets/flags/{{myCountry}}.png" /></div>
+      <div class="govt">Government of {{myCountry}}
+        <h4>{{myRole}}</h4>
+      </div>
+    </div>
+
+    <div class="messages-container">
+        <div class="turns">Turn {{round}} (<timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer> Remaining)</div>
+
+
+      <div class="messages-header">Important Messages</div>
+      <div class="control-message">{{controlMessage}}</div>
+    </div>
   </div>
 
   <div class="tabs">
@@ -16,29 +29,30 @@
 
     <!-- Income Tab -->
     <div class="tab income" ng-show="focusedTab === 'income'">
-      <h4>Income</h4>
-      <label for="incomeTurn">
-        <span class="meta">Income for Turn</span>
-        <select>
-          <!-- Populate with Turns. Default to Current Turn -->
-        </select>
-      </label>
-
       <div class="income-info">
-        <div class="half">Credits: #<br>Income Level: #</div>
-        <div class="half">Reserves: #<br>Total PR: #</div>
+        <div class="half">
+          <h4><span>Country</span> Income</h4>
+          Credits: #<br>Income Level: #</div>
+        <div class="half">
+          <label for="incomeTurn">
+            <span class="meta">Income for Turn</span>
+            <select id="incomeTurn">
+              <!-- Populate with Turns. Default to Current Turn -->
+            </select>
+          </label>
+          Reserves: #<br>Total PR: #</div>
       </div>
 
       <div class="pr-modifiers">
-        <h4>PR Modifiers</h4>
+        <h4><span>PR</span> Modifiers</h4>
 
         <div class="income-info">
-          <div class="half header">Amount</div>
-          <div class="half header">Reason</div>
-          <div class="half">+2</div>
-          <div class="half">Positive News</div>
-          <div class="half">-2</div>
-          <div class="half">UN Crisis Not Handled</div>
+          <div class="amount header">Amount</div>
+          <div class="reason header">Reason</div>
+          <div class="amount">+2</div>
+          <div class="reason">Positive News</div>
+          <div class="amount">-2</div>
+          <div class="reason">UN Crisis Not Handled</div>
         </div>
       </div>
 
@@ -51,14 +65,14 @@
       </div>
       <div ng-repeat="news_item in news">
         <h4>{{news_item.title}}</h4>
-        <p>{{news_item.content}}</p>
         <p class="news-time">Reported at {{news_item.created_at| date:'h:mma'}}</p>
+        <p>{{news_item.content}}</p>
       </div>
     </div>
 
 
   </div>
-  <div class="footer">Global Terror: {{terror}} / 250</div>
+  <h4 class="footer"><span>Global</span> Terror: {{terror}} / 250</h4>
 
 
 </div>
