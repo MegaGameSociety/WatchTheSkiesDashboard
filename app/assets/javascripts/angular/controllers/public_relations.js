@@ -1,6 +1,10 @@
 angular.module('prApp', ['timer'])
   .controller('prCtrl', ['$scope', '$http', '$interval', '$window', function($scope, $http, $interval, $window) {
 
+
+  $scope.myCountry = "Germany";
+  $scope.myRole = "Head of State";
+
   $scope.focusedTab = 'income';
 
   $scope.setTab = function(tab) {
