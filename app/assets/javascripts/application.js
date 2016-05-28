@@ -22,5 +22,4 @@
 //= require greensock
 //= require angular/modules/truncate.js
 //= require angular/controllers/dashboard.js
-//= require angular/controllers/messages.js
 //= require angular/controllers/mobile-dashboard.js
