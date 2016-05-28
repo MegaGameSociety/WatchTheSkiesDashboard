@@ -1,0 +1,17 @@
+<div class="turns-container">
+    <h4 class="turns">Turn {{round}}</h4>
+    <h4>(<timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer> Remaining)</h4>
+</div>
+
+<div class="my-country">
+  <div class="flag"><img ng-src="assets/flags/{{myCountry}}.png" /></div>
+  <div class="govt">Government of {{myCountry}}
+    <h4>{{myRole}}</h4>
+  </div>
+  <div class="role"><img ng-src="assets/flags/{{myCountry}}.png" /></div>
+</div>
+
+<div class="terror-container">
+    <h4><span>Global</span> Terror</h4>
+    <h4>{{terror}} / 250</h4>
+</div>

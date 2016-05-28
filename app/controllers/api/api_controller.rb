@@ -101,6 +101,71 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  def mobile_dashboard()
+    if params[:game_id].nil?
+      @game = current_game
+    else
+      @game = Game.find_by_id(params[:game_id])
+    end
+    @game.update
+
+    round = @game.round
+    @data = @game.data
+
+    begin
+      @news = @game.news_messages.round_news(round).order(created_at: :desc)
+      if (round>0)
+        @news += @game.news_messages.round_news(round-1).order(created_at: :desc)
+      end
+    rescue
+      @status = 500
+      @message = "Failure to generate news results."
+    end
+
+    begin
+      @messages = Message.all.order('created_at DESC')
+      @newMessage = Message.new
+    end
+
+    begin
+      #generate overall embedded result
+      @result = {
+        "timer" => {
+          "round"=>  round,
+          "next_round" =>  @game.next_round.in_time_zone(Time.zone.name),
+          "paused" => @data['paused'],
+          "control_message" => @game.control_message
+        },
+        "news" =>  @news,
+        "messages" => @messages,
+        "new_message" => @newMessage,
+        "global_terror" => @game.terror_trackers.totalTerror(),
+        "alien_comms" => @data["alien_comms"],
+      }
+    rescue
+      @status = 500
+      @message = "Failure to generate overall results."
+    end
+
+    # if we haven't set a message, we sucessfully made stuff
+    unless @message
+      @status = 200
+      @message = "Success!"
+    end
+
+    @response = {
+      status: @status,
+      message: @message,
+      date:  Time.now,
+      result: @result
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+  end
+
+
   private
 
 end

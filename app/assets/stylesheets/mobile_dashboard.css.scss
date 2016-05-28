@@ -1,47 +1,59 @@
 $darkblue: #003D6F;
 $headblue: #1077C3;
 
-.public_relations {
+
+
+.mobile_dashboard {
   color: #000;
   display: block;
   margin: 0 auto;
   padding: 0;
-  width: 80%;
+  width: 100%;
 
-  .country-header, .tab, .footer {
-    background: #FFf;
-  //  background: rgba(255, 255, 255, 0.85);
-  }
-
+  // BASE
   h4 {
     color: #000;
-    margin-bottom: 15px;
+    margin: 10px 0;
 
     span {
       color: $headblue;
     }
   }
 
-
+  /* =====================================
+                HEADER
+  ===================================== */
   .country-header {
-    border: 1px solid $darkblue;
-    display: flex;
+    background: #FFF;
+    border-bottom: 1px solid $darkblue;
+    margin: 0;
     margin-bottom: 50px;
+  }
+
+  .country-items {
+    display: flex;
+  }
+
+  .country-messages {
     padding: 10px;
   }
 
+
   .my-country {
     display: flex;
-    flex: 1;
+    flex: 0 0 500px;
+    justify-content: center;
 
+    .role,
     .flag {
-      flex: 0 0 120px;
+      flex: 0 0 110px;
     }
 
     .govt {
-      flex: 1;
+      flex: 0 0 250px;
       font-weight: bold;
       margin-top: 15px;
+      text-align: center;
 
       h4 {
         color: $headblue;
@@ -50,23 +62,24 @@ $headblue: #1077C3;
       }
     }
 
+    .role img,
     .flag img {
       width: 100px;
     }
   }
 
-  .messages-container {
+  .terror-container,
+  .turns-container {
     flex: 1;
-
-    .messages-header {
-      font-weight: bold;
-    }
+    text-align: center;
   }
 
-
-
-  .turns {
-    padding: 10px 0;
+  /* =====================================
+                TABS
+  ===================================== */
+  .tabs {
+    margin: 0 auto;
+    width: 80%;
   }
 
   .tab-selection {
@@ -90,10 +103,17 @@ $headblue: #1077C3;
   }
 
   .tab {
+    background: #FFF;
     border: 1px solid $darkblue;
     padding: 10px;
   }
+}
 
+
+/* =====================================
+            TAB - INCOME
+===================================== */
+.tab.income {
   .pr-modifiers {
     margin-top: 20px;
     width: 100%;
@@ -124,23 +144,19 @@ $headblue: #1077C3;
       font-weight: bold;
     }
   }
+}
 
-  .news {
-    h4 {
-      margin: 0;
-    }
+/* =====================================
+            TAB - NEWS
+===================================== */
+.tab.news {
+  h4 {
+    margin: 0;
   }
 
   .news-time {
     font-style: italic;
     margin: 0;
     padding: 0;
-  }
-
-  .footer {
-    border: 1px solid $darkblue;
-    margin: 50px 0;
-    padding: 10px;
-    text-align: center;
   }
 }

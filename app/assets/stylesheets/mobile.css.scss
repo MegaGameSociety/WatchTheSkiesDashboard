@@ -1,7 +1,8 @@
 .mobile {
-  background: #382b08;
-  background-image: url("/assets/empire-mobile.jpg");
-  background-size: contain;
+  background: #000;
+  // background-image: url('/assets/empire-mobile.jpg');
+  background-image: url("/assets/World.png");
+  background-size: cover;
   background-position: top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -12,7 +13,7 @@
   min-height: 100%;
   padding: 0;
 
-  p {
+  p, ul {
     font-size: 1.6rem;
     line-height: 2.2rem;
   }

@@ -1,4 +1,4 @@
-class TeamIncomesController < ApplicationController
+class MobileDashboardController < ApplicationController
   #before_action :authenticate_user!
   #before_action :authenticate_control!
 
@@ -9,6 +9,8 @@ class TeamIncomesController < ApplicationController
     @current_round = @game.round
     @next_round = @game.next_round.in_time_zone(Time.zone.name)
     @current_terror = @game.terror_trackers.totalTerror()
+    @messages = Message.all.order('created_at DESC')
+    @newMessage = Message.new
 
     begin
       @news = @game.news_messages.round_news(@game.round).order(created_at: :desc)

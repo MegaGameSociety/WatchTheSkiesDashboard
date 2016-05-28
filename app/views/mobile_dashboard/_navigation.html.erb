@@ -1,0 +1,20 @@
+<div class="tab-selection">
+
+  <!-- Default. Also, role === 'Ambassador' -->
+  <div class="tab-choice" ng-click="setTab('news')" ng-class="{'focused': focusedTab === 'news'}">News</div>
+  <div class="tab-choice" ng-click="setTab('messages')" ng-class="{'focused': focusedTab === 'messages'}">Messages</div>
+
+  <!-- If role === 'Aliens || Military' -->
+  <div class="tab-choice" ng-click="setTab('operatives')" ng-class="{'focused': focusedTab === 'operatives'}">Operatives</div>
+
+  <!-- If role === 'Military || Deputy' -->
+  <div class="tab-choice" ng-click="setTab('espionage')" ng-class="{'focused': focusedTab === 'espionage'}">Espionage</div>
+
+  <!-- If role === 'Head of State' -->
+  <div class="tab-choice" ng-click="setTab('income')" ng-class="{'focused': focusedTab === 'income'}">Income</div>
+
+  <!-- If role === 'Head Scientist' -->
+  <div class="tab-choice" ng-click="setTab('research')" ng-class="{'focused': focusedTab === 'research'}">Research</div>
+  <div class="tab-choice" ng-click="setTab('trades')" ng-class="{'focused': focusedTab === 'trades'}">Trades</div>
+  <div class="tab-choice" ng-click="setTab('rumours')" ng-class="{'focused': focusedTab === 'rumours'}">Rumours</div>
+</div>

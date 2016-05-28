@@ -1,0 +1,8 @@
+<div ng-if="news.length==0">
+  <h4>Reports are coming in. Stay tuned for more details.</h4>
+</div>
+<div ng-repeat="news_item in news">
+  <h4>{{news_item.title}}</h4>
+  <p class="news-time">Reported at {{news_item.created_at| date:'h:mma'}}</p>
+  <p>{{news_item.content}}</p>
+</div>

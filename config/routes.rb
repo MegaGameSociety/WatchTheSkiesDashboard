@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :splash
   resources :team_incomes
+  resources :mobile_dashboard
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -67,6 +68,8 @@ Rails.application.routes.draw do
     get 'games' => 'api#games'
     get 'dashboard_data' => 'api#dashboard'
     get 'dashboard_data/:game_id' => 'api#dashboard'
+    get 'mobile_dashboard_data' => 'api#mobile_dashboard'
+    get 'mobile_dashboard_data/:game_id' => 'api#mobile_dashboard'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,33 @@
+<div ng-app="mobileApp" ng-controller="mobileCtrl" class="mobile_dashboard">
+  <div class="country-header">
+    <div class="country-items">
+      <%= render(:partial => "header", :controller => "mobile_dashboard") %>
+    </div>
+    <div ng-if="controlMessage" class="country-messages">Important Messages: {{controlMessage}}</div>
+  </div>
+
+  <div class="tabs">
+    <%= render(:partial => "navigation", :controller => "mobile_dashboard") %>
+
+    <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'">
+      <%= render(:partial => "news", :controller => "mobile_dashboard") %>
+    </div>
+
+    <div id="tab-messages" class="tab messages" ng-show="focusedTab === 'messages'">
+      <%= render(:partial => "messages", :controller => "mobile_dashboard") %>
+    </div>
+
+
+    <!-- Operatives -->
+
+    <!-- Spying -->
+
+    <div id="tab-income" class="tab income" ng-show="focusedTab === 'income'">
+      <%= render(:partial => "income", :controller => "mobile_dashboard") %>
+    </div>
+
+    <!-- Research -->
+    <!-- Trades -->
+    <!-- Rumours -->
+  </div>
+</div>

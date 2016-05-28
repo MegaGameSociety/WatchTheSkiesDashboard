@@ -140,9 +140,6 @@
 
 .portrait {
   .messages-sidebar {
-    font-size: 34px;
-    line-height: 40px;
-
     li {
       padding: 10px 10px 10px 15px;
     }
@@ -162,17 +159,5 @@
     .message-sender {
       width: calc(100% - 190px);
     }
-  }
-
-  .message-preview-body {
-    font-size: 18px;
-  }
-}
-
-.landscape {
-  .messages-focused,
-  .messages-sidebar {
-    font-size: 16px;
-    line-height: 22px;
   }
 }

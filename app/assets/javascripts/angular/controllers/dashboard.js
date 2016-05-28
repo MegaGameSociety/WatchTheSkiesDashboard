@@ -3,6 +3,7 @@ angular.module('dashboardApp', ['timer', 'ngAnimate'])
     $scope.nextRound = new moment();
     $scope.news = [];
 
+
     var apiCall = function() {
       $http.get('/api/dashboard_data').then(
         function successCallback(response) {
