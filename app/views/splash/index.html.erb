@@ -1,0 +1,35 @@
+<div id="splash">
+  <h1 id="logo"><img src="/assets/logo_wts.png"></h1>
+  <div id="games">
+
+    <!-- If Not Signed In -->
+    <h2>Here for a game?</h2>
+    <form class="form-signin">
+      <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
+      <input type="password" class="form-control" placeholder="Password" required="">
+      <div class="checkbox">
+        <label><input type="checkbox" value="remember-me"> Remember me</label>
+      </div>
+      <button class="form-control button" type="submit">Sign in</button>
+      <a href="">Forgot your password?</a>
+    </form>
+
+    <!-- Else -->
+    <h2>Welcome back!</h2>
+    <div class="welcome">Now that you've signed in you can go to the <%= link_to 'Dashboard', root_path , method: :get %></div>
+
+  </div>
+
+  <div id="footer-wrapper">
+    <div id="footer">
+      <h2>For more Megagames, visit</h2>
+      <a href="http://www.megagamesociety.com" target="_blank"><img src="/assets/logo_mgs.png" /></a>
+      <div class="social">
+        <a href="http://www.megagamesociety.com" target="_blank" class="home"></a>
+        <a href="https://twitter.com/megagamesociety" target="_blank" class="twitter"></a>
+        <a href="https://www.facebook.com/megagamesociety" target="_blank" class="facebook"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
