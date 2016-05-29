@@ -1,9 +1,57 @@
-angular.module('mobileApp', ['timer', 'truncate'])
-  .controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', function($scope, $http, $interval, $window) {
+var App = angular.module('mobileApp', ['timer', 'truncate', 'parseNews'])
 
-  // Initializations
-  $scope.nextRound = new moment();
-  $scope.news = [];
+App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', function($scope, $http, $interval, $window) {
+
+  $scope.initialize = function() {
+    // Some stuff shouldn't change beyond a first query so we don't need to
+    // check it again in the interval.
+    $scope.myCountry = "Germany";
+    $scope.myRole = "head";
+
+    // Roles, Permissions, Colour Theming
+    $scope.roles = {
+      "ambassador": {
+        name: "UN Delegate",
+        colorClass: "role-ambassador",
+        permissions: []
+      },
+      "military": {
+        name: "Chief of Defense",
+        colorClass: "role-military",
+        permissions: ["operatives", "espionage"]
+      },
+      "scientist": {
+        name: "Chief Scientist",
+        colorClass: "role-scientist",
+        permissions: ["research", "trade", "rumors"]
+      },
+      "head": {
+        name: "Head of State",
+        colorClass: "role-head",
+        permissions: ["income"]
+      },
+      "deputy": {
+        name: "Deputy Head of State",
+        colorClass: "role-deputy",
+        permissions: ['espionage']
+      },
+      "alien": {
+        name: "Alien",
+        colorClass: "role-alien",
+        permissions: ["operatives"]
+      }
+    };
+
+    $scope.getRoleName = $scope.roles[$scope.myRole].name;
+
+    $scope.getRoleClass = function() {
+      return $scope.roles[$scope.myRole].colorClass;
+    }
+
+    // Initializations
+    $scope.nextRound = new moment();
+    $scope.news = [];
+  }
 
   // Mock data for Messages to show the intended structure.
   $scope.myMessages = [
@@ -125,56 +173,25 @@ angular.module('mobileApp', ['timer', 'truncate'])
     apiCall();
   };
 
+  $scope.initialize();
   $scope.getStatus();
 
   $interval(function() {
     $scope.getStatus();
   }, 3000);
+}]);
 
-
-  // Roles, Permissions, Colour Theming
-  // Some stuff shouldn't change. Eg: My Role, My Country.
-  $scope.myCountry = "Germany";
-  $scope.myRole = "head";
-
-
-  $scope.roles = {
-    "ambassador": {
-      name: "UN Delegate",
-      colorClass: "role-ambassador",
-      permissions: []
-    },
-    "military": {
-      name: "Chief of Defense",
-      colorClass: "role-military",
-      permissions: ["operatives", "espionage"]
-    },
-    "scientist": {
-      name: "Chief Scientist",
-      colorClass: "role-scientist",
-      permissions: ["research", "trade", "rumors"]
-    },
-    "head": {
-      name: "Head of State",
-      colorClass: "role-head",
-      permissions: ["income"]
-    },
-    "deputy": {
-      name: "Deputy Head of State",
-      colorClass: "role-deputy",
-      permissions: ['espionage']
-    },
-    "alien": {
-      name: "Alien",
-      colorClass: "role-alien",
-      permissions: ["operatives"]
-    }
+App.controller('newsCtrl', ['$scope', function($scope) {
+  $scope.hasPortraitImage = function(news_item) {
+    return news_item.media_landscape == false ? 'portrait' : 'landscape'
   };
+}]);
 
-  $scope.getRoleName = $scope.roles[$scope.myRole].name;
-
-  $scope.getRoleClass = function() {
-    return $scope.roles[$scope.myRole].colorClass;
+// Tab permissions and changing tabs.
+App.controller('tabsCtrl', ['$scope', function($scope) {
+  $scope.initializeTabs = function() {
+    // Set the default Tab
+    $scope.focusedTab = 'news';
   }
 
   $scope.checkPermissions = function(tab) {
@@ -183,39 +200,45 @@ angular.module('mobileApp', ['timer', 'truncate'])
   }
 
   // Tabs
-  $scope.focusedTab = 'news';
-
   $scope.setTab = function(tab) {
     $scope.focusedTab = tab;
   }
 
-  // Messages
-  $scope.messageIsActive = null;
-  $scope.selectedMessage = null;
+  $scope.initializeTabs();
+}]);
+
+// Selecting and Filtering Messages.
+App.controller('messagesCtrl', ['$scope', function($scope) {
+  $scope.initializeMessages = function() {
+    // Default Messages State
+    $scope.messageIsActive = null;
+    $scope.selectedMessage = null;
+
+    // Message Filtering
+    $scope.filterOptions = [
+      {"id": 0, "title": "Show all messsages"},
+      {"id": 1, "title": "Show those waiting on me"},
+      {"id": 2, "title": "Show those I am waiting on"}
+    ];
+    $scope.messageFilter = $scope.filterOptions[0];
+  }
 
   $scope.selectConversation = function(conversation) {
     $scope.messageIsActive = conversation.id;
     $scope.selectedMessage = conversation;
-  }
+  };
 
   $scope.createNewMessage = function() {
     $scope.messageIsActive = null;
     $scope.selectedMessage = 'new';
-  }
+  };
 
   $scope.resetMessages = function() {
     $scope.messageIsActive = null;
     $scope.selectedMessage = null;
-  }
+  };
 
   // Message Filtering
-  $scope.filterOptions = [
-    {"id": 0, "title": "Show all messsages"},
-    {"id": 1, "title": "Show those waiting on me"},
-    {"id": 2, "title": "Show those I am waiting on"}
-  ]
-  $scope.messageFilter = $scope.filterOptions[0];
-
   $scope.filterFn = function(conversation) {
     var filter = $scope.messageFilter.id;
 
@@ -228,6 +251,7 @@ angular.module('mobileApp', ['timer', 'truncate'])
     } else {
       return true;
     }
-  }
+  };
 
+  $scope.initializeMessages();
 }]);

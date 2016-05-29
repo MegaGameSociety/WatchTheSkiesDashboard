@@ -6,14 +6,14 @@
     <div ng-if="controlMessage" class="country-messages">Important Messages: {{controlMessage}}</div>
   </div>
 
-  <div class="tabs">
+  <div class="tabs" ng-controller="tabsCtrl">
     <%= render(:partial => "navigation", :controller => "mobile_dashboard") %>
 
-    <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'">
+    <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'" ng-controller="newsCtrl">
       <%= render(:partial => "news", :controller => "mobile_dashboard") %>
     </div>
 
-    <div id="tab-messages" class="tab messages" ng-show="focusedTab === 'messages'">
+    <div id="tab-messages" class="tab messages" ng-show="focusedTab === 'messages'" ng-controller="messagesCtrl">
       <%= render(:partial => "messages", :controller => "mobile_dashboard") %>
     </div>
 

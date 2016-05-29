@@ -5,6 +5,7 @@
   .tab-choice { background: $color; }
   .tab-choice.focused { border: 1px solid $color; }
   .tab { border: 1px solid $color; }
+  .tab.news .news-time { background: $color; }
   .messages-sidebar li.active { border-left: 6px solid $color; }
   .govt h4 { color: $color; }
   h4 span { color: $color; }
@@ -209,17 +210,66 @@
             TAB - NEWS
 ===================================== */
 .tab.news {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0;
+  justify-content: space-around;
+  padding: 10px 0;
+  width: 100%;
+
   h4 {
+    font-size: 2.0rem;
+    line-height: 2.6rem;
     margin: 0;
   }
 
   .news-time {
+    bottom: 10px;
+    color: #FFF;
     font-style: italic;
+    left: 0px;
     margin: 0;
-    padding: 0;
+    padding: 2px 5px 2px 10px;
+    position: absolute;
+  }
+
+  .news-item {
+    background: #EFEFEF;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin: 10px;
+    max-width: 300px;
+    min-width: 100px;
+
+    .image {
+      position: relative;
+    }
+
+    .news-content {
+      padding: 10px;
+    }
+
+    .news-image {
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 100%;
+    }
+
+    &.landscape {
+      .news-image {
+        background-position: center center;
+        height: 200px;
+      }
+    }
+
+    &.portrait {
+      .news-image {
+        background-position: top center;
+        height: 400px;
+      }
+    }
   }
 }
-
 
 /* =====================================
             MOBILE - PORTRAIT
@@ -259,8 +309,13 @@
     .tab-choice {
       font-size: 2.0rem;
     }
+  }
 
-
+  .tab.news {
+    .news-item {
+      max-width: 250px;
+      min-width: 150px;
+    }
   }
 }
 
