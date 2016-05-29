@@ -16,6 +16,16 @@ angular.module('mobileApp', ['timer', 'truncate'])
   $scope.myCountry = "Germany";
   $scope.myRole = "Head of State";
 
+  // Add classes to the body for colour purposes.
+  $scope.colorClasses = {
+    "UN Delegate": "role-ambassador",
+    "Head of State": "role-head",
+    "Deputy Head of State": "role-deputy",
+    "Chief Scientist": "role-scientist",
+    "Chief of Defense": "role-military",
+    "Editor in Chief": "role-media",
+    "Alien": "role-alien"
+  }
 
 
   // $scope.roleColours = {

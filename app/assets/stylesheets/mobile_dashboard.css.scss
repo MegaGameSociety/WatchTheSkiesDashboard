@@ -1,7 +1,81 @@
-$darkblue: #003D6F;
-$headblue: #1077C3;
+@mixin role-colors($color, $background) {
+  background-image: url('/assets/mobile-backgrounds/world-#{$background}.png');
+  .button { background: $color; }
+  .country-header { border-bottom: 1px solid $color; }
+  .tab-choice { background: $color; }
+  .tab-choice.focused { border: 1px solid $color; }
+  .tab { border: 1px solid $color; }
+  .messages-sidebar li.active { border-left: 6px solid $color; }
+  .govt h4 { color: $color; }
+  h4 span { color: $color; }
+}
+
+.role-head        { @include role-colors(#0C7C33, "green");  }
+.role-deputy      { @include role-colors(#C2B729, "yellow"); }
+.role-scientist   { @include role-colors(#003D6F, "blue");   }
+.role-military    { @include role-colors(#7C100C, "red");    }
+.role-ambassador  { @include role-colors(#541B89, "purple"); }
+.role-media       { @include role-colors(#C87E09, "orange"); }
+.role-aliens      { @include role-colors(#541B89, "purple"); }
+
+.button {
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  height: auto;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 2.2rem;
+  margin: 10px 0;
+  padding: 10px;
+  position: relative;
+}
+
+.mobile {
+  background: #000;
+  display: flex;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  min-height: 100%;
+  padding: 0;
+
+  p, ul {
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  label {
+    margin-top: 0px;
+  }
+
+  textarea {
+    min-height: 85px;
+  }
+
+  .page-title {
+    background: #FFF;
+    margin-bottom: 30px;
+    padding-left: 60px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .page-content {
+    color: #444;
+    flex: 1;
+    padding: 0;
+    transition: all .3s;
+  }
+}
 
 .mobile_dashboard {
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #000;
   display: block;
   margin: 0 auto;
@@ -13,10 +87,6 @@ $headblue: #1077C3;
   h4 {
     color: #000;
     margin: 10px 0;
-
-    span {
-      color: $headblue;
-    }
   }
 
   /* =====================================
@@ -24,7 +94,6 @@ $headblue: #1077C3;
   ===================================== */
   .country-header {
     background: #FFF;
-    border-bottom: 1px solid $darkblue;
     margin: 0;
     margin-bottom: 50px;
   }
@@ -48,7 +117,6 @@ $headblue: #1077C3;
       text-align: center;
 
       h4 {
-        color: $headblue;
         font-weight: bold;
         margin-top: 5px;
       }
@@ -80,7 +148,6 @@ $headblue: #1077C3;
   }
 
   .tab-choice {
-    background: $darkblue;
     color: #FFF;
     cursor: pointer;
     display: inline-block;
@@ -89,7 +156,6 @@ $headblue: #1077C3;
 
     &.focused {
       background: #FFF;
-      border: 1px solid $darkblue;
       border-bottom: 1px solid #FFF;
       color: #000;
       margin-bottom: -1px;
@@ -98,7 +164,6 @@ $headblue: #1077C3;
 
   .tab {
     background: #FFF;
-    border: 1px solid $darkblue;
     padding: 20px;
   }
 }

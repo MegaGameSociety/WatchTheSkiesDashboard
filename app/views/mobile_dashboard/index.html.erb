@@ -1,4 +1,4 @@
-<div ng-app="mobileApp" ng-controller="mobileCtrl" class="mobile_dashboard">
+<div ng-app="mobileApp" ng-controller="mobileCtrl" class="mobile_dashboard" ng-class="colorClasses[myRole]">
   <div class="country-header">
     <div class="country-items">
       <%= render(:partial => "header", :controller => "mobile_dashboard") %>
