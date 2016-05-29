@@ -5,46 +5,6 @@ angular.module('mobileApp', ['timer', 'truncate'])
   $scope.nextRound = new moment();
   $scope.news = [];
 
-  // Tab changing
-  $scope.focusedTab = 'news';
-
-  $scope.setTab = function(tab) {
-    $scope.focusedTab = tab;
-  }
-
-  // Some stuff shouldn't change. Eg: My Role, My Country.
-  $scope.myCountry = "Germany";
-  $scope.myRole = "Head of State";
-
-  // Add classes to the body for colour purposes.
-  $scope.colorClasses = {
-    "UN Delegate": "role-ambassador",
-    "Head of State": "role-head",
-    "Deputy Head of State": "role-deputy",
-    "Chief Scientist": "role-scientist",
-    "Chief of Defense": "role-military",
-    "Editor in Chief": "role-media",
-    "Alien": "role-alien"
-  }
-
-
-  // $scope.roleColours = {
-  //   'Head of State':
-  // }
-
-
-
-  // ROLE                       SCREENS                                    COLOUR
-// Military                   News, Comms, Operatives, Spying            Red
-// Scientist                  News, Comms, Research, Trades, Rumours     Blue
-// Head of State              News, Comms, Income                        Green
-// Deputy Head of State       News, Comms, Spying                        Dark Grey
-// Ambassador                 News, Comms                                Purple
-// Alien                      News, Comms, Operatives                    Black
-
-
-
-
   // Mock data for Messages to show the intended structure.
   $scope.myMessages = [
     {
@@ -118,8 +78,6 @@ angular.module('mobileApp', ['timer', 'truncate'])
     },
   ];
 
-
-
   // API Call and Status Check Intervals.
   var apiCall = function() {
     $http.get('/api/mobile_dashboard_data').then(
@@ -132,9 +90,7 @@ angular.module('mobileApp', ['timer', 'truncate'])
         $scope.terror = result['global_terror'];
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
-
         $scope.messages = result['messages'];
-
 
         // Set the News
         if (result['news'].length > 0){
@@ -175,20 +131,65 @@ angular.module('mobileApp', ['timer', 'truncate'])
     $scope.getStatus();
   }, 3000);
 
-  // Phone Orientation Tracking
-  $scope.getWindowOrientation = function () {
-    return $window.orientation;
+
+  // Roles, Permissions, Colour Theming
+  // Some stuff shouldn't change. Eg: My Role, My Country.
+  $scope.myCountry = "Germany";
+  $scope.myRole = "head";
+
+
+  $scope.roles = {
+    "ambassador": {
+      name: "UN Delegate",
+      colorClass: "role-ambassador",
+      permissions: []
+    },
+    "military": {
+      name: "Chief of Defense",
+      colorClass: "role-military",
+      permissions: ["Operatives", "Espionage"]
+    },
+    "scientist": {
+      name: "Chief Scientist",
+      colorClass: "role-scientist",
+      permissions: ["Research", "Trade", "Rumors"]
+    },
+    "head": {
+      name: "Head of State",
+      colorClass: "role-head",
+      permissions: ["Income"]
+    },
+    "deputy": {
+      name: "Deputy Head of State",
+      colorClass: "role-deputy",
+      permissions: ['Espionage']
+    },
+    "alien": {
+      name: "Alien",
+      colorClass: "role-alien",
+      permissions: ["Operatives"]
+    }
   };
 
-  $scope.$watch($scope.getWindowOrientation, function (newValue, oldValue) {
-    $scope.orientation = newValue === 0 ? 'portrait' : 'landscape';
-  }, true);
+  $scope.getRoleName = $scope.roles[$scope.myRole].name;
 
-  angular.element($window).bind('orientationchange', function () {
-    $scope.$apply();
-  });
+  $scope.getRoleClass = function() {
+    return $scope.roles[$scope.myRole].colorClass;
+  }
 
-  // Stuff for Messages
+  $scope.checkPermissions = function(tab) {
+    var myPermissions = $scope.roles[$scope.myRole].permissions;
+    return myPermissions.indexOf(tab) !== -1;
+  }
+
+  // Tabs
+  $scope.focusedTab = 'news';
+
+  $scope.setTab = function(tab) {
+    $scope.focusedTab = tab;
+  }
+
+  // Messages
   $scope.messageIsActive = null;
   $scope.selectedMessage = null;
 

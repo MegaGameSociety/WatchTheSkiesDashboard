@@ -1,4 +1,4 @@
-<div ng-app="mobileApp" ng-controller="mobileCtrl" class="mobile_dashboard" ng-class="colorClasses[myRole]">
+<div ng-app="mobileApp" ng-controller="mobileCtrl" class="mobile_dashboard" ng-class="getRoleClass()">
   <div class="country-header">
     <div class="country-items">
       <%= render(:partial => "header", :controller => "mobile_dashboard") %>
@@ -22,7 +22,7 @@
 
     <!-- Spying -->
 
-    <div id="tab-income" class="tab income" ng-show="focusedTab === 'income'">
+    <div ng-if="checkPermissions('income')" id="tab-income" class="tab income" ng-show="focusedTab === 'income'">
       <%= render(:partial => "income", :controller => "mobile_dashboard") %>
     </div>
 
