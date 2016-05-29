@@ -11,6 +11,7 @@
     <% if current_user && current_user.super_admin? %>
     <li><%= link_to 'Super Administration', users_path %></li>
     <% end %>
+    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
   </ul>
 </nav>
 <% end %>

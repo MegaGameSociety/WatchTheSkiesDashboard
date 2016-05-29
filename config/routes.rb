@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   root 'games#dashboard'
 
-
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   # get '/users' => 'games#dashboard'
 
