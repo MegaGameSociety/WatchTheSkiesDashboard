@@ -147,27 +147,27 @@ angular.module('mobileApp', ['timer', 'truncate'])
     "military": {
       name: "Chief of Defense",
       colorClass: "role-military",
-      permissions: ["Operatives", "Espionage"]
+      permissions: ["operatives", "espionage"]
     },
     "scientist": {
       name: "Chief Scientist",
       colorClass: "role-scientist",
-      permissions: ["Research", "Trade", "Rumors"]
+      permissions: ["research", "trade", "rumors"]
     },
     "head": {
       name: "Head of State",
       colorClass: "role-head",
-      permissions: ["Income"]
+      permissions: ["income"]
     },
     "deputy": {
       name: "Deputy Head of State",
       colorClass: "role-deputy",
-      permissions: ['Espionage']
+      permissions: ['espionage']
     },
     "alien": {
       name: "Alien",
       colorClass: "role-alien",
-      permissions: ["Operatives"]
+      permissions: ["operatives"]
     }
   };
 
