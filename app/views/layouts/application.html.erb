@@ -8,9 +8,9 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body class="<%= 'dashboard' if current_page?('/') %>">
+  <body class="<%= 'dashboard' if current_page?('/dashboard') %>">
     <%= yield %>
 
-    <%= render "layouts/footer_navbar" %>
+    <%= render "layouts/footer_navbar" unless current_page?('/dashboard') %>
   </body>
 </html>

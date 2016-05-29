@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   # GET /user/new
   def new
-    @user = User.new
+    @user = User.new(role: "Player")
   end
 
   # GET /user/1/edit

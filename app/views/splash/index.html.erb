@@ -1,23 +1,28 @@
 <div id="splash">
   <h1 id="logo"><img src="/assets/logo_wts.png"></h1>
   <div id="games">
+    <% if current_user.nil? %>
+      <h2>Here for a game?</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-signin'}) do |f| %>
+          <%= f.email_field :email, placeholder: "Email address", autofocus: true, class: "form-control" %>
+          <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "form-control" %>
 
-    <!-- If Not Signed In -->
-    <h2>Here for a game?</h2>
-    <form class="form-signin">
-      <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" autocomplete="off">
-      <input type="password" class="form-control" placeholder="Password" required="">
-      <div class="checkbox">
-        <label><input type="checkbox" value="remember-me"> Remember me</label>
-      </div>
-      <button class="form-control button" type="submit">Sign in</button>
-      <a href="">Forgot your password?</a>
-    </form>
-
-    <!-- Else -->
-    <h2>Welcome back!</h2>
-    <div class="welcome">Now that you've signed in you can go to the <%= link_to 'Dashboard', root_path , method: :get %></div>
-
+        <% if devise_mapping.rememberable? -%>
+          <div class="checkbox">
+            <label>
+            <%= f.check_box :remember_me %> Remember Me
+            </label>
+          </div>
+        <% end %>
+        <div class="actions">
+          <%= f.submit "Sign in", :class => "form-control button"%>
+        </div>
+      <% end %>
+    <% else %>
+    <h2>Welcome back, <%= current_user.email %>!</h2>
+    <div class="welcome">Now that you've signed in you can go to the <%= link_to 'Dashboard', dashboard_path , method: :get %></div>
+    <div class="welcome">or <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+    <% end %>
   </div>
 
   <div id="footer-wrapper">

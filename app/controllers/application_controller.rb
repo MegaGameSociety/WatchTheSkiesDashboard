@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
       #Show the last game being run?
       @game = Game.last
     else
-      @game = current_user.game
+      @game = current_user.game || Game.last
     end
   end
 end

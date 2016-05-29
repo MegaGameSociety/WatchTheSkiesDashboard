@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
-  root 'games#dashboard'
+  root 'splash#index'
 
+  get 'dashboard' => 'games#dashboard', as: :dashboard
+  # get 'games#dashboard', as :dashboard
   devise_for :users, :controllers => { :registrations => "users/registrations" }
   # get '/users' => 'games#dashboard'
 

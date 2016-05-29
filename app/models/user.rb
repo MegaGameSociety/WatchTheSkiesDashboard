@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   CONTROL_ROLES = ["SuperAdmin","Admin","Control"]
-  PLAYER_ROLES = ["Head of State"]
+  PLAYER_ROLES = ["Head of State", "Player"]
   belongs_to :game
 
   # Include default devise modules. Others available are:
