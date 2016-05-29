@@ -2,15 +2,14 @@
 <html>
   <head>
     <title>WatchTheSkiesDashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <%= stylesheet_link_tag    'application', media: 'all'%>
 
     <%= javascript_include_tag 'application'%>
     <%= csrf_meta_tags %>
   </head>
 
-  <body class="mobile">
-    <main role="main" class="page-content">
-      <%= yield %>
-    </main>
+  <body id="mobile" class="mobile">
+    <%= yield %>
   </body>
 </html>

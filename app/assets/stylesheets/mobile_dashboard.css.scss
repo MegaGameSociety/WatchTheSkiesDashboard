@@ -1,13 +1,12 @@
 $darkblue: #003D6F;
 $headblue: #1077C3;
 
-
-
 .mobile_dashboard {
   color: #000;
   display: block;
   margin: 0 auto;
   padding: 0;
+  max-height: 999999px; // Overcome Mobile Chrome Font Boosting.
   width: 100%;
 
   // BASE
@@ -41,18 +40,11 @@ $headblue: #1077C3;
 
   .my-country {
     display: flex;
-    flex: 0 0 500px;
     justify-content: center;
 
-    .role,
-    .flag {
-      flex: 0 0 110px;
-    }
-
     .govt {
-      flex: 0 0 250px;
       font-weight: bold;
-      margin-top: 15px;
+      margin-top: 20px;
       text-align: center;
 
       h4 {
@@ -64,6 +56,7 @@ $headblue: #1077C3;
 
     .role img,
     .flag img {
+      margin: 10px 20px;
       width: 100px;
     }
   }
@@ -83,7 +76,7 @@ $headblue: #1077C3;
   }
 
   .tab-selection {
-    padding: 0 10px;
+    display: flex;
   }
 
   .tab-choice {
@@ -91,6 +84,7 @@ $headblue: #1077C3;
     color: #FFF;
     cursor: pointer;
     display: inline-block;
+    margin-left: 10px;
     padding: 5px 10px;
 
     &.focused {
@@ -105,7 +99,7 @@ $headblue: #1077C3;
   .tab {
     background: #FFF;
     border: 1px solid $darkblue;
-    padding: 10px;
+    padding: 20px;
   }
 }
 
@@ -159,4 +153,55 @@ $headblue: #1077C3;
     margin: 0;
     padding: 0;
   }
+}
+
+
+/* =====================================
+            MOBILE - PORTRAIT
+===================================== */
+@media only screen and (orientation: portrait) {
+  .mobile_dashboard {
+    font-size: 1.8rem;
+
+    .country-header h4 {
+      font-size: 2.0rem;
+      line-height: 2.6rem;
+      margin-bottom: 0;
+    }
+
+    .my-country {
+      .govt h4 {
+        margin-top: 0;
+      }
+
+      .role,
+      .flag {
+        img {
+          margin: 20px 10px;
+          width: 50px;
+        }
+      }
+    }
+
+    .my-country .govt h4 {
+      margin: 0;
+    }
+
+    .country-messages {
+      padding-top: 0;
+    }
+
+    .tab-choice {
+      font-size: 2.0rem;
+    }
+
+
+  }
+}
+
+/* =====================================
+            MOBILE - LANDSCAPE
+===================================== */
+@media only screen and (orientation: landscape) {
+
 }
