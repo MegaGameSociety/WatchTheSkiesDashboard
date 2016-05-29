@@ -17,12 +17,17 @@
     margin: 0;
     padding: 5px 5px 5px 10px;
 
-    &:first-child {
+    &.borderless {
+      border: 0;
+      padding: 0;
+    }
+
+    &.new-message {
       border-top: 1px solid #CCC;
+      margin-top: 20px;
     }
 
     &.active {
-      border-left: 6px solid #1e5799;
       padding-left: 5px;
     }
   }
@@ -105,7 +110,8 @@
   }
 }
 
-.portrait {
+
+@media only screen and (orientation: portrait) {
   .messages-sidebar {
     display: block;
     flex: 1;
@@ -136,9 +142,7 @@
       display: inline-block;
     }
   }
-}
 
-.portrait {
   .messages-sidebar {
     li {
       padding: 10px 10px 10px 15px;

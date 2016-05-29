@@ -1,11 +1,21 @@
 <ul class="messages-sidebar" ng-class="{'focused': selectedMessage !== null}">
-  <li ng-class="{'active': selectedMessage === 'new'}"
-      ng-click="createNewMessage()"
-      id="message_new">
-      <div>New Message</div>
+  <li class="borderless">
+    <select name="messageFilter"
+            id="messageFilter"
+            ng-model="messageFilter"
+            ng-change="resetMessages()"
+            ng-options="filter as filter.title for filter in filterOptions">
+    </select>
   </li>
 
-  <li ng-repeat="conversation in myMessages | orderBy: '-updated_at'"
+  <li ng-class="{'active': selectedMessage === 'new'}"
+      ng-click="createNewMessage()"
+      id="message_new"
+      class="new-message">
+      <div>Send New Message</div>
+  </li>
+
+  <li ng-repeat="conversation in myMessages | filter:filterFn | orderBy: '-updated_at'"
       ng-class="{'active': messageIsActive === conversation.id}"
       ng-click="selectConversation(conversation)"
       id="message_{{conversation.id}}">
