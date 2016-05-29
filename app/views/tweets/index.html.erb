@@ -3,13 +3,10 @@
 
   <section>
     <%= link_to "Import Tweets", import_tweets_path, method: :post, :class => "button-input" %>
-    <%= link_to "Publicize All", publicize_all_tweets_path, method: :post, :class => "button-input", data: { confirm: 'Have you destroyed all tweets you do not want public?'} %>
-    <%= link_to "Export Tweets", export_tweets_path, method: :post, :class => "button-input" %>
-
-    <!-- For testing only: <%= link_to 'New Tweet Entry', new_tweet_path, :class => "button-input" %> -->
+    <%= link_to 'News Messages', news_messages_path, :class => "button-input" %>
   </section>
 
-  <h3>Listing Unpublished Tweets</h3>
+  <h3>Listing Imported Tweets</h3>
   <section>
     <table class="unpr">
       <thead>
@@ -19,13 +16,11 @@
           <th>ID</th>
           <th>Text</th>
           <th>Media URL</th>
-          <th>Is Public?</th>
-          <th>Is Published?</th>
           <th>Tweet Time</th>
         </tr>
       </thead>
       <tbody>
-        <% @private_tweets.each do |tweet| %>
+        <% @tweets.each do |tweet| %>
           <tr>
             <td><%= link_to 'Edit', edit_tweet_path(tweet), :class => 'button-input' %></td>
             <td><%= link_to 'Destroy', tweet, method: :delete, :class => 'button-input', data: { confirm: 'Are you sure?' } %></td>
@@ -39,57 +34,10 @@
                 <% end %>
               <% end %>
             </td>
-            <td>
-              <%= link_to "Publicize", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
-            </td>
-            <td><%= tweet.is_published %></td>
             <td><%= tweet.tweet_time %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </section>
-
-  <h3>Listing Published Tweets</h3>
-  <section>
-    <table class="unpr">
-      <thead>
-        <tr>
-          <th colspan="2">Controls</th>
-          <th>Twitter Name</th>
-          <th>ID</th>
-          <th>Text</th>
-          <th>Media URL</th>
-          <th>Redact?</th>
-          <th>Is Published?</th>
-          <th>Tweet Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @public_tweets.each do |tweet| %>
-          <tr>
-            <td><%= link_to 'Edit', edit_tweet_path(tweet), :class => 'button-input' %></td>
-            <td><%= link_to 'Destroy', tweet, method: :delete, :class => 'button-input', data: { confirm: 'Are you sure?' } %></td>
-            <td><%= tweet.twitter_name %></td>
-            <td><%= tweet.tweet_id %></td>
-            <td><%= tweet.text %></td>
-            <td>
-              <% if !tweet.media_url.nil? %>
-                <% if tweet.media_url.length > 0 %>
-                  <%= image_tag tweet.media_url, size: '150' %>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to "Redact", tweet_toggle_public_path(tweet), method: :patch, :class => 'button-input' %>
-            </td>
-            <td><%= tweet.is_published %></td>
-            <td><%= tweet.tweet_time %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-
   </section>
 </div>

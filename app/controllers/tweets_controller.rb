@@ -6,8 +6,7 @@ class TweetsController < ApplicationController
   # GET /tweets.json
   def index
     @game = current_game
-    @private_tweets = Tweet.where(is_public: false, game: @game).order(tweet_time: :desc)
-    @public_tweets = Tweet.where(is_public: true, game: @game).order(tweet_time: :desc)
+    @tweets = Tweet.where(game: @game).order(tweet_time: :desc)
   end
 
   # GET /tweets/1
@@ -70,28 +69,6 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tweets_path, notice: "Imported #{count} tweets." }
     end
-  end
-
-  # Publish tweets
-  def export_tweets  
-    count = Tweet.export(current_game)
-    respond_to do |format|
-      format.html { redirect_to tweets_path, notice: "Published #{count} tweets." }
-    end
-  end
-
-  #post 
-  def toggle_public
-    @tweet = Tweet.find(params[:tweet_id])
-    @tweet.is_public = !@tweet.is_public
-    @tweet.save
-    redirect_to tweets_path, notice: "Made #{@tweet.text} #{@tweet.is_public}."
-  end
-
-  def publicize_all_tweets
-    @tweets = Tweet.where(is_public: false, game: current_game)
-    @tweets.update_all(is_public: true)
-    redirect_to tweets_path, notice: "Publicized #{@tweets.size} Tweet."
   end
 
   private

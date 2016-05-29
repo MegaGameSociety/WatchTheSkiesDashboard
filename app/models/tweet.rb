@@ -3,43 +3,6 @@ class Tweet < ActiveRecord::Base
   # https://github.com/sferik/twitter
   belongs_to :game
 
-  def publish(client)
-    require 'open-uri'
-    if self.is_public && !self.is_published
-    # Disable tweeting
-      # Need to add source + char, limit.
-      # GNN:
-      # DEN:
-      # SFT: 
-      short_name = ""
-      if self.twitter_name == "DailyEarthWTS"
-        short_name = "DEN:"
-      elsif self.twitter_name == "GNNWTS"
-        short_name = "GNN:"
-      elsif self.twitter_name == "SFTNews"
-        short_name = "SFT:"
-      else
-        short_name = "AP:"
-      end
-
-      if !self.media_url.nil?
-        if self.media_url.length > 0
-          url = URI.parse(self.media_url)
-          image = open(url)
-          # client.update_with_media("#{short_name} #{self.text}".slice(0,140-self.media_url.length), image)
-        else
-          # client.update("#{short_name} #{self.text}".slice(0,139))
-        end
-      else
-        # client.update("#{short_name} #{self.text}".slice(0,139))
-      end
-
-      self.is_published = true
-      self.save
-      # self.convert_to_article
-    end
-  end
-
   def convert_to_article
       a = NewsMessage.new
       if !self.media_url.nil?
@@ -49,11 +12,11 @@ class Tweet < ActiveRecord::Base
       end
 
       full_name = "AP"
-      if self.twitter_name == "DailyEarthWTS"
+      if self.twitter_name == self.game.den
         full_name = "DEN"
-      elsif self.twitter_name == "GNNWTS"
+      elsif self.twitter_name == self.game.gnn
         full_name = "GNN"
-      elsif self.twitter_name == "SFTNews"
+      elsif self.twitter_name == self.game.sft
         full_name = "S&FT"
       end
 
@@ -64,27 +27,35 @@ class Tweet < ActiveRecord::Base
       a.visible_content = true
       a.visible_image = true
       a.save
-
   end
 
 
   def self.import(game)
-  
   # Generate client
   client = Tweet.generate_client
     # Daily Earth News: @DailyEarthWTS
     # GNN: @GNNWTS
     # Science & Financial Times = SFTNews
-
     # Check if there aren't any tweets in database
-    if game.tweets.count()==0
-        tweets = client.list_timeline('WatchSkies', 'wts-list').take(3)
+    tweets = []
+    den = Tweet.where(twitter_name: game.den).order(tweet_time: :asc).last
+    gnn = Tweet.where(twitter_name: game.gnn).order(tweet_time: :asc).last
+    sft = Tweet.where(twitter_name: game.sft).order(tweet_time: :asc).last
+
+    if den.nil?
+      tweets += (client.user_timeline(game.den).take(1))
     else
-      # get the last timestamp of a tweet and create tweets
-      # imported since then
-      tweets = client.list_timeline('WatchSkies', 'wts-list', {
-        since_id: Tweet.order(tweet_time: :asc).last.tweet_id
-        })
+      tweets += client.user_timeline(game.den, options = {since_id: den.tweet_id})
+    end
+    if gnn.nil?
+      tweets += (client.user_timeline(game.gnn).take(1))
+    else
+      tweets += client.user_timeline(game.gnn, options = {since_id: gnn.tweet_id})
+    end
+    if sft.nil?
+      tweets += (client.user_timeline(game.sft).take(1))
+    else
+      tweets += client.user_timeline(game.sft, options = {since_id: sft.tweet_id})
     end
 
     # Save Tweets
@@ -107,6 +78,7 @@ class Tweet < ActiveRecord::Base
       t.save
       final_tweets << t
     end
+    # Create new articles for each tweet
     final_tweets.each{|t|t.convert_to_article}
     return final_tweets.length
   end
@@ -122,12 +94,4 @@ class Tweet < ActiveRecord::Base
     return client
   end
 
-  def self.export(current_game)
-    export_tweets = Tweet.where(game: current_game, is_public: true, is_published: false).order(tweet_time: :asc)
-    client = Tweet.generate_client
-    export_tweets.each do |tweet|
-      tweet.publish(client)
-    end
-    return export_tweets.count
-  end
 end
