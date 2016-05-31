@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   CONTROL_ROLES = ["SuperAdmin","Admin","Control"]
   PLAYER_ROLES = ["Head of State", "Player"]
   belongs_to :game
+  belongs_to :team
+  belongs_to :team_role
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

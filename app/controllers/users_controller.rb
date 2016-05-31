@@ -16,20 +16,28 @@ class UsersController < ApplicationController
   # GET /user/new
   def new
     @user = User.new(role: "Player")
+    @teams = Team.all
+    @team_roles = TeamRole.all
+    @games = Game.all
   end
 
   # GET /user/1/edit
   def edit
+    @teams = Team.all
+    @team_roles = TeamRole.all
   end
 
   # POST /user
   # POST /user.json
   def create
     @user = User.new(user_params)
+    puts "NEW USER"
+    puts @user
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        current_game.users.push(@user)
+        format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -70,7 +78,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params[:user].permit(:role, :email, :time_zone)
+    params[:user].permit(:role, :email, :time_zone, :game, :team, :team_role)
   end
 
 end
