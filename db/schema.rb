@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521194236) do
+ActiveRecord::Schema.define(version: 20160531095358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,21 @@ ActiveRecord::Schema.define(version: 20160521194236) do
 
   add_index "public_relations", ["game_id"], name: "index_public_relations_on_game_id", using: :btree
 
+  create_table "team_roles", force: :cascade do |t|
+    t.string   "role_name"
+    t.string   "role_color"
+    t.string   "role_permissions",  default: [], array: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "role_display_name"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "team_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "terror_trackers", force: :cascade do |t|
     t.string   "description"
     t.integer  "amount"
@@ -132,15 +147,21 @@ ActiveRecord::Schema.define(version: 20160521194236) do
     t.string   "role"
     t.string   "time_zone",              limit: 255, default: "Pacific Time (US & Canada)"
     t.integer  "game_id"
+    t.integer  "team_id"
+    t.integer  "team_role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["game_id"], name: "index_users_on_game_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
+  add_index "users", ["team_role_id"], name: "index_users_on_team_role_id", using: :btree
 
   add_foreign_key "incomes", "games"
   add_foreign_key "public_relations", "games"
   add_foreign_key "terror_trackers", "games"
   add_foreign_key "tweets", "games"
   add_foreign_key "users", "games"
+  add_foreign_key "users", "games"
+  add_foreign_key "users", "team_roles"
 end

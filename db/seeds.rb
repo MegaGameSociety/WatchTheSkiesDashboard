@@ -11,12 +11,12 @@ u = User.create(role: "SuperAdmin")
 u.email = "wts@wts.com"
 u.password='swordfish'
 u.password_confirmation='swordfish'
+u.role = 'SuperAdmin',
 u.save
 
 # Create the user's game
 u.game= Game.create(
   name: "Watch the Skies Test",
-  role: "SuperAdmin",
   round: 0,
   control_message: "Welcome",
   activity: "All is quiet around the world.",
@@ -75,7 +75,50 @@ game.news_messages.push(NewsMessage.create(
   visible_image: true
   ))
 
-# Income starts at 6
+
+# Insert Team Roles
+TeamRole.create(
+  role_name: "head",
+  role_display_name: "Head of State",
+  role_permissions: ['income']
+).save()
+
+TeamRole.create(
+  role_name: "deputy",
+  role_display_name: "Deputy Head of State",
+  role_permissions: ['espionage']
+).save()
+
+TeamRole.create(
+  role_name: "military",
+  role_display_name: "Chief of Defense",
+  role_permissions: ['espionage', 'operatives']
+).save()
+
+TeamRole.create(
+  role_name: "ambassador",
+  role_display_name: "UN Delegate",
+  role_permissions: []
+).save()
+
+TeamRole.create(
+  role_name: "alien",
+  role_display_name: "Alien",
+  role_permissions: ['operatives']
+).save()
+
+TeamRole.create(
+  role_name: "scientist",
+  role_display_name: "Chief Scientist",
+  role_permissions: ['research', 'trade', 'rumors']
+).save()
+
 Game::COUNTRIES.each do |country|
+  # Income starts at 6
   game.incomes.push(Income.create(round: game.round, team_name: country, amount: 6))
+
+  Team.create(team_name: country).save()
 end
+
+# Game::Countries doesn't include aliens
+Team.create(team_name: 'Aliens').save()
