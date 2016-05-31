@@ -1,20 +1,34 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div id="admin">
+  <h1>Edit Player</h1>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.label :email %> </br>
+      <%= f.text_field :email, :size => "50"%></br>
+
+      <%= f.label :role %> </br>
+       <%= f.select :role, options_for_select(current_user.managed_roles, selected = @user.role) %></br><br />
+
+      <% if @user.role === 'Player' %>
+        <%= f.label :team %> </br>
+          <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team.id]}, selected = @user.team.id) %></br><br />
+
+        <%= f.label :team_role %> </br>
+          <%= f.select :team_role, options_for_select(@team_roles.collect{ |role| [role.role_display_name, role.id]}, selected = @user.team_role.id) %></br><br />
+
       <% end %>
-      </ul>
+
+      <%= f.submit %>
     </div>
   <% end %>
-  <div class="actions">
-    <%= f.label :email %> </br>
-    <%= f.text_field :email, :size => "50"%></br>
-    <%= f.label :role %> </br>
-     <%= f.select :role, options_for_select(current_user.managed_roles, selected = @user.role) %></br><br />
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,24 +1,33 @@
-<h1>Listing Users</h1>
+<div id="admin">
+  <h1>Listing Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>E-mail</th>
-      <th>Role</th>
-      <th colspan="2">REST controls</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <section>
+    <%= link_to 'New Player', new_user_path, :class => 'button-input' %>
+  </section>
+  <table>
+    <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td><%= user.role %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>E-mail</th>
+        <th>Role</th>
+        <th>Team</th>
+        <th>Team Role</th>
+        <th colspan="2">REST controls</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td><% if user.role === 'Player' %><%= user.team.team_name %><% end %></td>
+          <td><% if user.role === 'Player' %><%= user.team_role.role_display_name %><% end %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

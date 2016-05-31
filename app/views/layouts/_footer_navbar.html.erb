@@ -9,7 +9,7 @@
     <li><%= link_to 'News', news_messages_path %></li>
     <li><%= link_to 'Administration', admin_control_path %></li>
     <% if current_user && current_user.super_admin? %>
-    <li><%= link_to 'Super Administration', users_path %></li>
+    <li><%= link_to 'User Administration', users_path %></li>
     <% end %>
     <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
   </ul>

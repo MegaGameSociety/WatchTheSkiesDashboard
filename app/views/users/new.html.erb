@@ -1,0 +1,32 @@
+<div id="admin">
+  <h1>Create New Player</h1>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.label :email %> </br>
+      <%= f.text_field :email, :size => "50"%></br>
+
+      <%= f.hidden_field :role, :value => @user.role %>
+
+      <%= f.label :team %> </br>
+        <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team.id]}) %></br><br />
+
+      <%= f.label :team_role %> </br>
+        <%= f.select :team_role, options_for_select(@team_roles.collect{ |role| [role.role_display_name, role.id]}) %></br><br />
+
+      <%= f.label :game %> </br>
+       <%= f.select :game, options_for_select(@games.collect{ |game| [game.name, game.id]}) %></br><br />
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
