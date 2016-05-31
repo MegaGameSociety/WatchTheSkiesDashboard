@@ -20,8 +20,8 @@ body.logged_out {
 
   #games {
     color: #FFFFFF;
-    margin: 40px 0 0 15%;
-    max-width: 275px;
+    margin: 40px 0 0 10%;
+    max-width: 350px;
   }
 
   h2 {
@@ -92,16 +92,9 @@ body.logged_out {
     line-height: 2.2rem;
   }
 
-  #footer-wrapper {
-    height: 100px;
-    margin-top: 20px;
-    text-align: right;
-  }
-
   #footer {
-    float: right;
+    margin-top: 20px;
     text-align: center;
-    width: 325px;
 
     .social {
       text-align: center;
