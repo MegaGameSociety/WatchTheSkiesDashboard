@@ -11,20 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531095358) do
+ActiveRecord::Schema.define(version: 20160601083728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bonus_credits", force: :cascade do |t|
-    t.string   "team_name"
     t.boolean  "recurring"
     t.integer  "round"
     t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "game_id"
+    t.integer  "team_id"
   end
+
+  add_index "bonus_credits", ["team_id"], name: "index_bonus_credits_on_team_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -43,15 +45,16 @@ ActiveRecord::Schema.define(version: 20160531095358) do
   end
 
   create_table "incomes", force: :cascade do |t|
-    t.string   "team_name"
     t.integer  "amount"
     t.integer  "round"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "game_id"
+    t.integer  "team_id"
   end
 
   add_index "incomes", ["game_id"], name: "index_incomes_on_game_id", using: :btree
+  add_index "incomes", ["team_id"], name: "index_incomes_on_team_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.string   "sender"
@@ -77,7 +80,6 @@ ActiveRecord::Schema.define(version: 20160531095358) do
   end
 
   create_table "public_relations", force: :cascade do |t|
-    t.string   "country"
     t.string   "description"
     t.integer  "pr_amount"
     t.integer  "round"
@@ -86,9 +88,11 @@ ActiveRecord::Schema.define(version: 20160531095358) do
     t.datetime "updated_at"
     t.string   "source"
     t.integer  "game_id"
+    t.integer  "team_id"
   end
 
   add_index "public_relations", ["game_id"], name: "index_public_relations_on_game_id", using: :btree
+  add_index "public_relations", ["team_id"], name: "index_public_relations_on_team_id", using: :btree
 
   create_table "team_roles", force: :cascade do |t|
     t.string   "role_name"
@@ -157,8 +161,11 @@ ActiveRecord::Schema.define(version: 20160531095358) do
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
   add_index "users", ["team_role_id"], name: "index_users_on_team_role_id", using: :btree
 
+  add_foreign_key "bonus_credits", "teams"
   add_foreign_key "incomes", "games"
+  add_foreign_key "incomes", "teams"
   add_foreign_key "public_relations", "games"
+  add_foreign_key "public_relations", "teams"
   add_foreign_key "terror_trackers", "games"
   add_foreign_key "tweets", "games"
   add_foreign_key "users", "games"

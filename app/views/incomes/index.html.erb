@@ -13,7 +13,7 @@
   <tbody>
     <% @incomes.each do |income| %>
       <tr>
-        <td><%= income.team_name %></td>
+        <td><%= income.team.team_name %></td>
         <td><%= income.round %></td>
         <td><%= income.amount %></td>
         <td><%= link_to 'Show', income %></td>

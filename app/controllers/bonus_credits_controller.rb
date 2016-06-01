@@ -3,17 +3,20 @@ class BonusCreditsController < ApplicationController
   before_action :authenticate_control!
 
   def index
-    @bonus_credits = BonusCredit.where(game: current_game).order(:round, :team_name, :amount)
+    @bonus_credits = BonusCredit.where(game: current_game).order(:round, :team_id, :amount)
   end
 
   def new
     @round = current_game.round
-    @countries = Game::COUNTRIES
     @bonus_credits = BonusCredit.new
+    @teams = Team.all
   end
 
   def create
-    @bonus_credits = BonusCredit.new(bonus_credit_params)
+    teamId = bonus_credit_params['team'].to_i
+    new_params = bonus_credit_params.except('team')
+    @bonus_credits = BonusCredit.new(new_params)
+    @bonus_credits.team = Team.find(teamId)
     @bonus_credits.game = current_game
 
     respond_to do |format|
@@ -40,6 +43,6 @@ class BonusCreditsController < ApplicationController
   private
 
   def bonus_credit_params
-    params.require(:bonus_credit).permit(:team_name, :round, :amount, :recurring)
+    params.require(:bonus_credit).permit(:team, :round, :amount, :recurring)
   end
 end

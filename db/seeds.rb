@@ -11,7 +11,7 @@ u = User.create(role: "SuperAdmin")
 u.email = "wts@wts.com"
 u.password='swordfish'
 u.password_confirmation='swordfish'
-u.role = 'SuperAdmin',
+u.role = 'SuperAdmin'
 u.save
 
 # Create the user's game
@@ -114,10 +114,12 @@ TeamRole.create(
 ).save()
 
 Game::COUNTRIES.each do |country|
-  # Income starts at 6
-  game.incomes.push(Income.create(round: game.round, team_name: country, amount: 6))
+  team = Team.create(team_name: country)
+  #Income starts at 6.
+  income = Income.create(round: game.round, amount: 6)
 
-  Team.create(team_name: country).save()
+  income.team_id = team.id
+  income.save
 end
 
 # Game::Countries doesn't include aliens

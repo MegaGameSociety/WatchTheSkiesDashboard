@@ -13,7 +13,7 @@
   <tbody>
     <% @bonus_credits.each do |bc| %>
       <tr>
-        <td><%= bc.team_name %></td>
+        <td><%= bc.team.team_name %></td>
         <td><%= bc.round %></td>
         <td><%= bc.recurring %></td>
         <td><%= bc.amount %></td>

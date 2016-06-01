@@ -1,6 +1,6 @@
 <h3>PR by Country</h3>
 <section>
-  <% @countries.each do |country|%>
-    <%= link_to country, country_pr_status_path(country), :class => "button-input" %>
+  <% @teams.each do |team|%>
+    <%= link_to team.team_name, country_pr_status_path(team.team_name), :class => "button-input" %>
   <% end %>
 </section>

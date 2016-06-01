@@ -17,24 +17,27 @@ class IncomesController < ApplicationController
   # GET /incomes/new
   def new
     @round = current_game.round
-    @countries = Game::COUNTRIES
+    @teams = Team.all
     @income = Income.new
   end
 
   # GET /incomes/1/edit
   def edit
     @round = @income.round
-    @countries = Game::COUNTRIES
+    @teams = Team.all
   end
 
   # POST /incomes
   # POST /incomes.json
   def create
-    @income = Income.new(income_params)
+    teamId = income_params['team'].to_i
+    new_params = income_params.except('team')
+    @income = Income.new(new_params)
+    @income.team = Team.find(teamId)
 
     respond_to do |format|
       if @income.save
-        current_game.push(@income)
+     #   current_game.push(@income)
         format.html { redirect_to @income, notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else
@@ -47,8 +50,12 @@ class IncomesController < ApplicationController
   # PATCH/PUT /incomes/1
   # PATCH/PUT /incomes/1.json
   def update
+    teamId = income_params['team'].to_i
+    new_params = income_params.except('team')
+    @income.team = Team.find(teamId)
+
     respond_to do |format|
-      if @income.update(income_params)
+      if @income.update(new_params)
         format.html { redirect_to @income, notice: 'Income was successfully updated.' }
         format.json { render :show, status: :ok, location: @income }
       else
@@ -76,6 +83,6 @@ class IncomesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
-      params[:income].permit(:amount, :team_name, :round)
+      params[:income].permit(:amount, :team, :round)
     end
 end

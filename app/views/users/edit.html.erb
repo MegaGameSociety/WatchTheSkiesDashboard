@@ -21,7 +21,7 @@
 
       <% if @user.role === 'Player' %>
         <%= f.label :team %> </br>
-          <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team.id]}, selected = @user.team.id) %></br><br />
+          <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team]}, selected = @user.team) %></br><br />
 
         <%= f.label :team_role %> </br>
           <%= f.select :team_role, options_for_select(@team_roles.collect{ |role| [role.role_display_name, role.id]}, selected = @user.team_role.id) %></br><br />

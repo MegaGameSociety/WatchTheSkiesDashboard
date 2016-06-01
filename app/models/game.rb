@@ -63,9 +63,10 @@ class Game < ActiveRecord::Base
     # PR > 4, change Income +1
     # PR < -1 and PR < -3, change Income -1
     # PR < -3, change Income -2
-    Game::COUNTRIES.each do |country|
-      pr = self.public_relations.where(round: round).where(country: country).sum(:pr_amount)
-      current_income = self.incomes.where(round: round, team_name: country).sum(:amount)
+    teams = Team.all
+    teams.each do |team|
+      pr = self.public_relations.where(round: round).where(team: team).sum(:pr_amount)
+      current_income = self.incomes.where(round: round, team: team).sum(:amount)
 
       if pr >= 4
         current_income += 1
@@ -74,7 +75,7 @@ class Game < ActiveRecord::Base
       elsif pr < -3
         current_income += -2
       end
-      next_income = Income.find_or_create_by(round: round + 1, team_name: country, game: self)
+      next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
       next_income.amount = current_income
       next_income.save()
     end

@@ -156,8 +156,10 @@ class GamesController < ApplicationController
 
     g.incomes.destroy_all
     g.bonus_credits.destroy_all
-    Game::COUNTRIES.each do |country|
-      g.incomes.push(Income.create(round: g.round, team_name: country, amount: 6))
+
+    teams = Team.all
+    teams.each do |team|
+      g.incomes.push(Income.create(round: g.round, team: team, amount: 6))
     end
 
     #CleanUp

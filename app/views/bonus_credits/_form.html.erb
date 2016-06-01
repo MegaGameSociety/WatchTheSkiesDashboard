@@ -11,8 +11,8 @@
     </div>
   <% end %>
   <div class="actions">
-    <%= f.label :team_name %>
-    <%= f.select :team_name, options_for_select(@countries, selected = @bonus_credits.team_name) %> <br />
+    <%= f.label :team %>
+    <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team.id]}) %> <br />
     <%= f.label :round %>
     <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @round %><br />
     <%= f.label :amount %>

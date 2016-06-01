@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="actions">
-    <%= f.label :country %> </br>
-    <%= f.select :country, options_for_select(@countries, selected = @public_relation.country) %> <br />
+    <%= f.label :team %> </br>
+    <%= f.select :team, options_for_select(@teams.collect{ |team| [team.team_name, team.id]}, selected = @public_relation.team_id) %> <br />
     <%= f.label :description %> </br>
     <%= f.text_area :description, :size => "60x5"%></br>
     <%= f.label :round %> </br>
