@@ -20,7 +20,11 @@
       <% end %>
     <% else %>
     <h2>Welcome back, <%= current_user.email %>!</h2>
-    <div class="welcome">Now that you've signed in you can go to the <%= link_to 'Dashboard', dashboard_path , method: :get %></div>
+    <div class="welcome">Now that you've signed in you can go to the <%= link_to 'Dashboard', dashboard_path , method: :get %>
+    <% if current_user.admin? %> and <%= link_to 'Administration', admin_control_path, method: :get %>
+    <% end %>
+    </div>
+    
     <div class="welcome">or <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
     <% end %>
   </div>
