@@ -1,7 +1,4 @@
 class MobileDashboardController < ApplicationController
-  #before_action :authenticate_user!
-  #before_action :authenticate_control!
-
   layout "mobile"
 
   def index
