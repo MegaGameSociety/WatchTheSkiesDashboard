@@ -66,10 +66,8 @@ Rails.application.routes.draw do
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
     get 'games' => 'api#games'
-    get 'dashboard_data' => 'api#dashboard'
-    get 'dashboard_data/:game_id' => 'api#dashboard'
-    get 'mobile_dashboard_data' => 'api#dashboard', mobile: true
-    get 'mobile_dashboard_data/:game_id' => 'api#dashboard', mobile: true
+    get 'dashboard_data' => 'api#dashboard', mobile: :mobile
+    get 'dashboard_data/:game_id' => 'api#dashboard', mobile: :mobile
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
