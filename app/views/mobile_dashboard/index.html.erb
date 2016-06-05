@@ -22,7 +22,7 @@
 
     <!-- Spying -->
 
-    <div ng-if="checkPermissions('income')" id="tab-income" class="tab income" ng-show="focusedTab === 'income'">
+    <div id="tab-income" class="tab income" ng-if="checkPermissions('income')" ng-show="focusedTab === 'income'" ng-controller="incomeCtrl">
       <%= render(:partial => "income", :controller => "mobile_dashboard") %>
     </div>
 

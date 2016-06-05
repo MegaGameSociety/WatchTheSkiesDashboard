@@ -179,6 +179,14 @@
     width: 100%;
   }
 
+  table {
+    tbody tr:nth-child(even) {background: #efefef}
+
+    .header {
+      font-weight: bold;
+    }
+  }
+
   .income-info {
     display: flex;
     flex-wrap: wrap;

@@ -123,6 +123,13 @@ class Api::ApiController < ApplicationController
     end
 
     begin
+      public_relations_list = PublicRelation.where(game: @game)
+    rescue
+      @status = 500
+      @message = "Failure to generate public relation results"
+    end
+
+    begin
       @messages = Message.all.order('created_at DESC')
       @newMessage = Message.new
     end
@@ -136,6 +143,7 @@ class Api::ApiController < ApplicationController
           "paused" => @data['paused'],
           "control_message" => @game.control_message
         },
+        "pr" => public_relations_list,
         "news" =>  @news,
         "messages" => @messages,
         "new_message" => @newMessage,

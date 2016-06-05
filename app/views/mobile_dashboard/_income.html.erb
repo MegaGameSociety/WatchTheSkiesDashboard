@@ -5,8 +5,8 @@
   <div class="half">
     <label for="incomeTurn">
       <span class="meta">Income for Turn</span>
-      <select id="incomeTurn">
-        <!-- Populate with Turns. Default to Current Turn -->
+      <select id="incomeTurn" ng-change="updateFilter()" ng-model="selectedRound">
+        <option ng-repeat="round in allRounds" value="{{round}}" selected="selectedRound('{{round}}')">{{round}}</option>
       </select>
     </label>
     Reserves: #<br>Total PR: #</div>
@@ -15,12 +15,18 @@
 <div class="pr-modifiers">
   <h4><span>PR</span> Modifiers</h4>
 
-  <div class="income-info">
-    <div class="amount header">Amount</div>
-    <div class="reason header">Reason</div>
-    <div class="amount">+2</div>
-    <div class="reason">Positive News</div>
-    <div class="amount">-2</div>
-    <div class="reason">UN Crisis Not Handled</div>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <td class="amount header">Amount</td>
+        <td class="reason header">Reason</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="relations in filtered_pr track by $index">
+        <td class="amount">{{relations.pr_amount}}</td>
+        <td class="reason">{{relations.description}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

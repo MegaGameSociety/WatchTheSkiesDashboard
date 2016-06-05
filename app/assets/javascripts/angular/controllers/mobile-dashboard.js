@@ -1,7 +1,6 @@
 var App = angular.module('mobileApp', ['timer', 'truncate', 'parseNews'])
 
-App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', function($scope, $http, $interval, $window) {
-
+App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', '$timeout', function($scope, $http, $interval, $window, $timeout) {
   $scope.initialize = function() {
     // Some stuff shouldn't change beyond a first query so we don't need to
     // check it again in the interval.
@@ -126,6 +125,11 @@ App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', functio
     },
   ];
 
+  $scope.$on('dataChanged', function() {
+    $scope.$broadcast('APISuccess');
+  });
+
+
   // API Call and Status Check Intervals.
   var apiCall = function() {
     $http.get('/api/mobile_dashboard_data').then(
@@ -134,11 +138,21 @@ App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', functio
         // See the Error callback for more information.
         $('#connection-error').hide();
 
+        $scope.myTeam = {
+          id: 4
+        }
+
         var result = response['data']['result'];
         $scope.terror = result['global_terror'];
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
         $scope.messages = result['messages'];
+        $scope.pr = result['pr'];
+
+        // Setting other things now that we have made an API request.
+        $timeout(function() {
+          $scope.$broadcast('dataChanged');
+        });
 
         // Set the News
         if (result['news'].length > 0){
@@ -254,4 +268,46 @@ App.controller('messagesCtrl', ['$scope', function($scope) {
   };
 
   $scope.initializeMessages();
+}]);
+
+App.controller('incomeCtrl', ['$scope', function($scope) {
+  $scope.selectedRound = 0;
+
+  // Essentially the initialize function, but we need to specifically wait for
+  // the API call on this, because the entire thing is based on retrieving both
+  // the round, as well as the PR data.
+  $scope.$on('APISuccess', function(event) {
+    $scope.allRounds = $scope.getRounds();
+    $scope.selectedRound = $scope.round;
+    $scope.filterPr($scope.round);
+  });
+
+  $scope.getRounds = function() {
+    var allRounds = [];
+
+    // This is for filtering by round.
+    for (var i = 0; i <= $scope.round; i++) {
+      allRounds.push(i);
+    }
+
+    return allRounds;
+  }
+
+  $scope.updateFilter = function() {
+    $scope.filterPr($scope.selectedRound);
+  }
+
+  $scope.filterPr = function(round) {
+    $scope.filtered_pr = $.map($scope.pr, function(relations) {
+      // These come back as strings from the template.
+      round = parseInt(round);
+
+      if ((relations.team_id === $scope.myTeam.id)
+      && (relations.round === round)) {
+        return relations;
+      }  else {
+        return null;
+      }
+    });
+  }
 }]);
