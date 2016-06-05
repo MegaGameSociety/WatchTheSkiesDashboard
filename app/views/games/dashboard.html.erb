@@ -1,4 +1,4 @@
-<div ng-app='dashboardApp' ng-controller="dashboardCtrl" id="dashboard">
+<div ng-app="wtsApp" ng-controller="apiCtrl" ng-init="setMobile(false)" id="dashboard">
   <div id="top-container">
 
     <!-- Connection Error -->
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Terror Tracker -->
-    <div id="terror-tracker">
+    <div id="terror-tracker" ng-controller="terrorCtrl">
       <h3>Global Terror: {{terror}} / 250</h3>
       <div class="terror-border">
         <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
@@ -31,7 +31,7 @@
   </div>
 
   <!-- News -->
-  <div id="news-block">
+  <div id="news-block" ng-controller="newsDesktopCtrl">
 
     <div id="breaking-block">
       <h3>Breaking News</h3>
