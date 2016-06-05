@@ -34,10 +34,10 @@ class IncomesController < ApplicationController
     new_params = income_params.except('team')
     @income = Income.new(new_params)
     @income.team = Team.find(teamId)
+    @income.game = current_game.id
 
     respond_to do |format|
       if @income.save
-     #   current_game.push(@income)
         format.html { redirect_to @income, notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else

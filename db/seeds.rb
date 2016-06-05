@@ -116,7 +116,7 @@ TeamRole.create(
 Game::COUNTRIES.each do |country|
   team = Team.create(team_name: country)
   #Income starts at 6.
-  income = Income.create(round: game.round, amount: 6)
+  income = Income.create(game: game, round: game.round, amount: 6)
 
   income.team_id = team.id
   income.save

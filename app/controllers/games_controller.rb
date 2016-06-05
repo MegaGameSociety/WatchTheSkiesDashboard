@@ -23,7 +23,7 @@ class GamesController < ApplicationController
                                                   round: :desc,
                                                   created_at: :desc
                                                 )
-    @countries = Game::COUNTRIES
+    @countries = Team.all
 
     #To Do: Move income values into stored structure somewhere
     @income_values = {}
