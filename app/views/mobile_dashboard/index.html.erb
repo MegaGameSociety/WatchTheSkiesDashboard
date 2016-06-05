@@ -3,7 +3,10 @@
     <div class="country-items">
       <%= render(:partial => "header", :controller => "mobile_dashboard") %>
     </div>
-    <div ng-if="controlMessage" class="country-messages">Important Messages: {{controlMessage}}</div>
+    <div class="country-messages">
+      <div ng-if="controlMessage">Important Messages: {{controlMessage}}</div>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => 'button logoff' %>
+    </div>
   </div>
 
   <div class="tabs" ng-controller="tabsCtrl">

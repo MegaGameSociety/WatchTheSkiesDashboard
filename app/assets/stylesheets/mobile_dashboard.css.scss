@@ -105,8 +105,21 @@
 
   .country-messages {
     padding: 10px;
+
+    div {
+      display: inline-block;
+      width: calc(100% - 75px);
+    }
   }
 
+  a.logoff {
+    border-radius: 2px;
+    float: right;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    margin: 0;
+    padding: 2px 5px;
+  }
 
   .my-country {
     display: flex;
