@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :splash
-  resources :team_incomes
   resources :mobile_dashboard
 
   resources :news_messages
