@@ -30,13 +30,16 @@ class UsersController < ApplicationController
   # POST /user
   # POST /user.json
   def create
-    @user = User.new(user_params)
-    puts "NEW USER"
-    puts @user
+    teamId = user_params['team'].to_i
+    teamRoleId = user_params['team_role'].to_i
+    new_params = user_params.except('team', 'team_role')
+    @user = User.new(new_params)
+    @user.team = Team.find(teamId)
+    @user.team_role = TeamRole.find(teamRoleId)
+    @user.game = current_game.id
 
     respond_to do |format|
       if @user.save
-        current_game.users.push(@user)
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
