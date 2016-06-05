@@ -1,0 +1,27 @@
+<div id="admin">
+  <h1>Listing Teams</h1>
+
+  <section>
+    <%= link_to 'New Team', new_team_path, :class => 'button-input' %>
+  </section>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Team Name</th>
+        <th colspan="2">REST controls</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= team.id %></td>
+          <td><%= team.team_name %></td>
+          <td><%= link_to 'Edit', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

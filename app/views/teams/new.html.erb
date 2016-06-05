@@ -1,0 +1,142 @@
+<div id="admin">
+  <h1>Create New Team</h1>
+  <%= form_for(@team) do |f| %>
+    <% if @team.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+        <ul>
+        <% @team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.label :team_name %> </br>
+      <%= f.text_field :team_name, :size => "50"%></br>
+
+      <div>We use flags for display on the player's app for things like Messaging.
+      We currently have flags for the following countries:</div>
+
+      <div class="list-of-countries">
+        <div>Afganistan</div>
+        <div>Albania</div>
+        <div>Algeria</div>
+        <div>Andorra</div>
+        <div>Argentina</div>
+        <div>Armenia</div>
+        <div>Australia</div>
+        <div>Austria</div>
+        <div>Azerbaijan</div>
+        <div>Bahrain</div>
+        <div>Bangladesh</div>
+        <div>Belarus</div>
+        <div>Belgium</div>
+        <div>Bosnia</div>
+        <div>Brazil</div>
+        <div>Brunei</div>
+        <div>Bulgaria</div>
+        <div>Buthan</div>
+        <div>Cameroon</div>
+        <div>Cambodia</div>
+        <div>Chile</div>
+        <div>China</div>
+        <div>CoteDlvoire</div>
+        <div>Croatia</div>
+        <div>Cyprus</div>
+        <div>CzechRepublic</div>
+        <div>Denmark</div>
+        <div>EastTimor</div>
+        <div>England</div>
+        <div>Estonia</div>
+        <div>Finland</div>
+        <div>France</div>
+        <div>Georgia</div>
+        <div>Germany</div>
+        <div>Ghana</div>
+        <div>Greece</div>
+        <div>Herzegowina</div>
+        <div>Honduras</div>
+        <div>HongKong</div>
+        <div>Hungaria</div>
+        <div>Iceland</div>
+        <div>India</div>
+        <div>Indonesia</div>
+        <div>Iran</div>
+        <div>Iraq</div>
+        <div>Ireland</div>
+        <div>Israel</div>
+        <div>Italy</div>
+        <div>Japan</div>
+        <div>Jordan</div>
+        <div>Kazakhstan</div>
+        <div>Kosovo</div>
+        <div>Kuwait</div>
+        <div>Kyrgyzstan</div>
+        <div>Laos</div>
+        <div>Latvia</div>
+        <div>Lebanon</div>
+        <div>Lichtenstein</div>
+        <div>Lithuania</div>
+        <div>Luxemburg</div>
+        <div>Macau</div>
+        <div>Malaysia</div>
+        <div>Maldives</div>
+        <div>Malta</div>
+        <div>Mexico</div>
+        <div>Mazedonia</div>
+        <div>Moldowa</div>
+        <div>Monaco</div>
+        <div>Mongolia</div>
+        <div>Montenegro</div>
+        <div>Myanmar</div>
+        <div>Nepal</div>
+        <div>Netherlands</div>
+        <div>NewZealand</div>
+        <div>Nigeria</div>
+        <div>NorthKorea</div>
+        <div>Norway</div>
+        <div>Oman</div>
+        <div>Pakistan</div>
+        <div>Palestine</div>
+        <div>Paraguay</div>
+        <div>Philippines</div>
+        <div>Poland</div>
+        <div>Portugal</div>
+        <div>Quatar</div>
+        <div>Romania</div>
+        <div>Russia</div>
+        <div>SanMarino</div>
+        <div>SaudiArabia</div>
+        <div>Serbia</div>
+        <div>Singapore</div>
+        <div>Slovakia</div>
+        <div>SouthAfrica</div>
+        <div>SouthKorea</div>
+        <div>Spain</div>
+        <div>SriLanka</div>
+        <div>Sweden</div>
+        <div>Switzerland</div>
+        <div>Syria</div>
+        <div>Taiwan</div>
+        <div>Tajikistan</div>
+        <div>Thailand</div>
+        <div>Turkey</div>
+        <div>Turkmenistan</div>
+        <div>UAE</div>
+        <div>Ukraine</div>
+        <div>UnitedKingdom</div>
+        <div>Uruguay</div>
+        <div>USA</div>
+        <div>Uzbekistan</div>
+        <div>VaticanCity</div>
+        <div>Vietnam</div>
+        <div>Yemen</div>
+      </div>
+
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
