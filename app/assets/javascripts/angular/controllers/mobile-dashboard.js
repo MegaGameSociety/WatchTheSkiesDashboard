@@ -143,7 +143,7 @@ App.controller('mobileCtrl', ['$scope', '$http', '$interval', '$window', '$timeo
         }
 
         var result = response['data']['result'];
-        $scope.terror = result['global_terror'];
+        $scope.terror = result['global_terror']['total'];
         $scope.controlMessage = result['timer']['control_message'];
         $scope.round = result['timer']['round'];
         $scope.messages = result['messages'];
