@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :games
   resources :users
+  resources :teams
   resources :splash
 
   resources :news_messages
