@@ -32,11 +32,15 @@ class UsersController < ApplicationController
   def create
     teamId = user_params['team'].to_i
     teamRoleId = user_params['team_role'].to_i
-    new_params = user_params.except('team', 'team_role')
+    new_params = user_params.except('team', 'team_role', 'game')
+
     @user = User.new(new_params)
     @user.team = Team.find(teamId)
     @user.team_role = TeamRole.find(teamRoleId)
-    @user.game = current_game.id
+    @user.game = current_game
+    @teams = Team.all
+    @team_roles = TeamRole.all
+    @games = Game.all
 
     respond_to do |format|
       if @user.save
@@ -81,7 +85,7 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params[:user].permit(:role, :email, :time_zone, :game, :team, :team_role)
+    params[:user].permit(:role, :password, :password_confirmation, :email, :time_zone, :game, :team, :team_role)
   end
 
 end

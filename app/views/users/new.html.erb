@@ -16,6 +16,13 @@
       <%= f.label :email %> </br>
       <%= f.text_field :email, :size => "50"%></br>
 
+      <%= f.label :password %> </br>
+      <%= f.password_field :password, :size => "50"%></br>
+
+      <%= f.label :password_confirmation %> </br>
+      <%= f.password_field :password_confirmation, :size => "50"%></br>
+
+
       <%= f.hidden_field :role, :value => @user.role %>
 
       <%= f.label :team %> </br>

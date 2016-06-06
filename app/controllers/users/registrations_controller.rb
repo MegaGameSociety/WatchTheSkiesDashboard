@@ -7,5 +7,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:sign_up).push(:time_zone)
     devise_parameter_sanitizer.for(:account_update).push(:time_zone)
   end
+
 end
 

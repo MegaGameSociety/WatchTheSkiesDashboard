@@ -16,6 +16,13 @@
       <%= f.label :email %> </br>
       <%= f.text_field :email, :size => "50"%></br>
 
+      <%= f.label :password %> </br>
+      <%= f.password_field :password, :size => "50"%></br>
+
+      <%= f.label :password_confirmation %> </br>
+      <%= f.password_field :password_confirmation, :size => "50"%></br>
+
+
       <%= f.label :role %> </br>
        <%= f.select :role, options_for_select(current_user.managed_roles, selected = @user.role) %></br><br />
 
