@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def edit
     @teams = Team.all
     @team_roles = TeamRole.all
+    @games = Game.all
   end
 
   # POST /user
@@ -56,8 +57,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /user/1
   # PATCH/PUT /user/1.json
   def update
+    teamId = user_params['team'].to_i
+    teamRoleId = user_params['team_role'].to_i
+    new_params = user_params.except('team', 'team_role', 'game')
+
+    @user.team = Team.find(teamId)
+    @user.team_role = TeamRole.find(teamRoleId)
+    @user.game = current_game
+    @teams = Team.all
+    @team_roles = TeamRole.all
+    @games = Game.all
+
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(new_params)
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
