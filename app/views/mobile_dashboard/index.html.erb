@@ -1,7 +1,8 @@
-<div ng-app="wtsApp" ng-controller="apiCtrl" ng-init="setMobile(true)" class="mobile_dashboard" ng-class="getRoleClass()">
   <div class="country-header">
     <div class="country-items">
       <%= render(:partial => "header", :controller => "mobile_dashboard") %>
+<div ng-app="wtsApp" ng-controller="apiCtrl" ng-init="setMobile(true)" class="mobile_dashboard">
+  <div ng-controller="baseMobileCtrl" ng-class="roleClass">
     </div>
     <div class="country-messages">
       <div ng-if="controlMessage">Important Messages: {{controlMessage}}</div>
@@ -16,8 +17,8 @@
       <%= render(:partial => "news", :controller => "mobile_dashboard") %>
     </div>
 
-    <div id="tab-messages" class="tab messages" ng-show="focusedTab === 'messages'" ng-controller="messagesCtrl">
       <%= render(:partial => "messages", :controller => "mobile_dashboard") %>
+    <div id="tab-messages" class="tab messages" ng-if="focusedTab === 'messages'" ng-controller="messagesCtrl">
     </div>
 
 
@@ -25,12 +26,13 @@
 
     <!-- Spying -->
 
-    <div id="tab-income" class="tab income" ng-if="checkPermissions('income')" ng-show="focusedTab === 'income'" ng-controller="incomeCtrl">
-      <%= render(:partial => "income", :controller => "mobile_dashboard") %>
+    <div id="tab-income" class="tab income" ng-if="checkPermissions('income') && focusedTab === 'income'" ng-controller="incomeCtrl">
+      <%= render(:partial => "income", :controller => "income") %>
     </div>
 
     <!-- Research -->
     <!-- Trades -->
     <!-- Rumours -->
+    </div>
   </div>
 </div>

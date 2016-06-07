@@ -67,6 +67,10 @@ Rails.application.routes.draw do
     get 'games' => 'api#games'
     get 'dashboard_data' => 'api#dashboard', mobile: :mobile
     get 'dashboard_data/:game_id' => 'api#dashboard', mobile: :mobile
+
+    get 'mobile_basic' => 'api#mobile_basic'
+    get 'mobile_basic/:game_id' => 'api#mobile_basic'
+
     get 'income_data' => 'api#income'
     get 'income_data/:game_id' => 'api#income'
 

@@ -1,61 +1,11 @@
 (function () {
   angular.module('wtsApp', ['timer', 'truncate', 'parseNews']).controller('apiCtrl', ['$scope', '$http', '$interval', '$timeout', function($scope, $http, $interval, $timeout) {
 
+    $scope.news = [];
     $scope.nextRound = new moment();
 
     $scope.setMobile = function(status) {
       $scope.mobile = status;
-    }
-
-    $scope.initialize = function() {
-      // Some stuff shouldn't change beyond a first query so we don't need to
-      // check it again in the interval.
-      $scope.myCountry = "Germany";
-      $scope.myRole = "head";
-
-      // Roles, Permissions, Colour Theming
-      $scope.roles = {
-        "ambassador": {
-          name: "UN Delegate",
-          colorClass: "role-ambassador",
-          permissions: []
-        },
-        "military": {
-          name: "Chief of Defense",
-          colorClass: "role-military",
-          permissions: ["operatives", "espionage"]
-        },
-        "scientist": {
-          name: "Chief Scientist",
-          colorClass: "role-scientist",
-          permissions: ["research", "trade", "rumors"]
-        },
-        "head": {
-          name: "Head of State",
-          colorClass: "role-head",
-          permissions: ["income"]
-        },
-        "deputy": {
-          name: "Deputy Head of State",
-          colorClass: "role-deputy",
-          permissions: ['espionage']
-        },
-        "alien": {
-          name: "Alien",
-          colorClass: "role-alien",
-          permissions: ["operatives"]
-        }
-      };
-
-      $scope.getRoleName = $scope.roles[$scope.myRole].name;
-
-      $scope.getRoleClass = function() {
-        return $scope.roles[$scope.myRole].colorClass;
-      }
-
-      // Initializations
-      $scope.nextRound = new moment();
-      $scope.news = [];
     }
 
     // API Call and Status Check Intervals.
@@ -119,7 +69,6 @@
       apiCall();
     };
 
-    $scope.initialize();
     $scope.getStatus();
 
     $interval(function() {

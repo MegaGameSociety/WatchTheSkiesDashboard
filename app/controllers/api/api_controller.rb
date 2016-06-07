@@ -101,6 +101,44 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  # Get Team & Team Role & Permissions info for the Mobile App.
+  def mobile_basic
+    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
+    @game.update
+
+    user_team = Team.find_by_id(current_user.team_id)
+    user_team_role = TeamRole.find_by_id(current_user.team_role_id)
+
+    begin
+      #generate overall embedded result
+      @result = {
+        'team' => user_team,
+        'team_role' => user_team_role
+      }
+    rescue
+      @status = 500
+      @message = "Failure to generate mobile basic results."
+    end
+
+
+    # if we haven't set a message, we sucessfully made stuff
+    unless @message
+      @status = 200
+      @message = "Success!"
+    end
+
+    @response = {
+      status: @status,
+      message: @message,
+      date:  Time.now,
+      result: @result
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+  end
+
   # Get Public Relations / Income info for the Mobile App - Income Tab.
   def income
     @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
