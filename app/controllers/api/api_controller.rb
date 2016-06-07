@@ -9,11 +9,7 @@ class Api::ApiController < ApplicationController
   end
 
   def dashboard
-    if params[:game_id].nil?
-      @game = current_game
-    else
-      @game = Game.find_by_id(params[:game_id])
-    end
+    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
     @game.update
 
     round = @game.round
