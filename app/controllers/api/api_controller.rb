@@ -64,25 +64,6 @@ class Api::ApiController < ApplicationController
       @message = "Failure to generate countries"
     end
 
-    # If we are on mobile we also need to retrieve the PR information and
-    # the messages that players have been sending to each other.
-    if params[:mobile]
-      begin
-      rescue
-        @status = 500
-        @message = "Failure to generate public relation results"
-      end
-
-      begin
-        messages = Message.all.order('created_at DESC')
-      rescue
-        @status = 500
-        @message = "Failure to generate message results"
-      end
-    else
-      messages = nil
-    end
-
     begin
       #generate overall embedded result
       @result = {
@@ -93,8 +74,6 @@ class Api::ApiController < ApplicationController
           "control_message" => @game.control_message
         },
         "news" =>  @news,
-        "messages" => messages,
-        "new_message" => Message.new,
         "global_terror" => @global_terror,
         "countries" => countries_data,
         "alien_comms" => @data["alien_comms"],
@@ -160,6 +139,44 @@ class Api::ApiController < ApplicationController
       format.json { render :json => @response }
     end
   end
+
+ # Get Message Data for the Mobile App - Messages Tab.
+  def messages
+    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
+    @game.update
+
+    round = @game.round
+    messages = Message.all.order('created_at DESC')
+
+    begin
+      #generate overall embedded result
+      @result = {
+        "messages" => messages,
+        "new_message" => Message.new
+      }
+    rescue
+      @status = 500
+      @message = "Failure to generate message results."
+    end
+
+    # if we haven't set a message, we sucessfully made stuff
+    unless @message
+      @status = 200
+      @message = "Success!"
+    end
+
+    @response = {
+      status: @status,
+      message: @message,
+      date:  Time.now,
+      result: @result
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+  end
+
   private
 
 end
