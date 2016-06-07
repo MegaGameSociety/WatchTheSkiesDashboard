@@ -160,7 +160,6 @@
         // These are only used for Mobile. Since it isn't an extra query for
         // them, I'm not bothering to filter these out.
         $scope.messages = result['messages'];
-        $scope.pr = result['pr'];
 
         // Note: The "Vatican" class does not actually exist anywhere yet.
         $('.body').toggleClass('alien', result['alien_comms']);

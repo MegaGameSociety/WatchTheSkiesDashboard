@@ -1,16 +1,5 @@
 (function() {
-  angular.module('wtsApp').controller('incomeCtrl', ['$scope', function($scope) {
-    $scope.selectedRound = 0;
-
-    // Essentially the initialize function, but we need to specifically wait for
-    // the API call on this, because the entire thing is based on retrieving both
-    // the round, as well as the PR data.
-    $scope.$on('APISuccess', function(event) {
-      $scope.allRounds = $scope.getRounds();
-      $scope.selectedRound = $scope.round;
-      $scope.filterPr($scope.round);
-    });
-
+  angular.module('wtsApp').controller('incomeCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     $scope.getRounds = function() {
       var allRounds = [];
 
@@ -39,6 +28,36 @@
         }
       });
     }
+
+    var apiCall = function() {
+      $http.get('/api/income_data').then(
+      function successCallback(response) {
+        $('#connection-error').hide();
+
+        var result = response['data']['result'];
+        $scope.round = result['timer']['round'];
+        $scope.pr = result['pr'];
+
+        // Set the round data for Filtering PR by Round
+        $scope.allRounds = $scope.getRounds();
+        $scope.selectedRound = $scope.round;
+        $scope.updateFilter();
+      },
+      function errorCallback(response) {
+        $('#connection-error').show();
+      });
+    }
+
+    $scope.getPR = function() {
+      apiCall();
+    };
+
+    $scope.getPR();
+
+    $interval(function() {
+      $scope.getPR();
+    }, 3000);
+
   }]);
 
 })();

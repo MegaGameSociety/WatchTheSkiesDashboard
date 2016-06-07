@@ -68,7 +68,6 @@ class Api::ApiController < ApplicationController
     # the messages that players have been sending to each other.
     if params[:mobile]
       begin
-        public_relations_list = PublicRelation.where(game: @game)
       rescue
         @status = 500
         @message = "Failure to generate public relation results"
@@ -81,7 +80,6 @@ class Api::ApiController < ApplicationController
         @message = "Failure to generate message results"
       end
     else
-      public_relations_list = nil
       messages = nil
     end
 
@@ -95,7 +93,6 @@ class Api::ApiController < ApplicationController
           "control_message" => @game.control_message
         },
         "news" =>  @news,
-        "pr" => public_relations_list,
         "messages" => messages,
         "new_message" => Message.new,
         "global_terror" => @global_terror,
@@ -125,6 +122,44 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  # Get Public Relations / Income info for the Mobile App - Income Tab.
+  def income
+    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
+    @game.update
+
+    round = @game.round
+    public_relations_list = PublicRelation.where(game: @game)
+
+    begin
+      #generate overall embedded result
+      @result = {
+        "timer" => {
+          "round"=>  round,
+        },
+        "pr" => public_relations_list
+      }
+    rescue
+      @status = 500
+      @message = "Failure to generate public relation results."
+    end
+
+    # if we haven't set a message, we sucessfully made stuff
+    unless @message
+      @status = 200
+      @message = "Success!"
+    end
+
+    @response = {
+      status: @status,
+      message: @message,
+      date:  Time.now,
+      result: @result
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+  end
   private
 
 end

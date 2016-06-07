@@ -67,6 +67,8 @@ Rails.application.routes.draw do
     get 'games' => 'api#games'
     get 'dashboard_data' => 'api#dashboard', mobile: :mobile
     get 'dashboard_data/:game_id' => 'api#dashboard', mobile: :mobile
+    get 'income_data' => 'api#income'
+    get 'income_data/:game_id' => 'api#income'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
