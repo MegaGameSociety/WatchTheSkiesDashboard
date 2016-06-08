@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601083728) do
+ActiveRecord::Schema.define(version: 20160607185824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,14 +57,17 @@ ActiveRecord::Schema.define(version: 20160601083728) do
   add_index "incomes", ["team_id"], name: "index_incomes_on_team_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
-    t.string   "sender"
-    t.string   "recipient"
     t.string   "content"
     t.integer  "round_number"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
   end
+
+  add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
+  add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "news_messages", force: :cascade do |t|
     t.string   "title"
@@ -164,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160601083728) do
   add_foreign_key "bonus_credits", "teams"
   add_foreign_key "incomes", "games"
   add_foreign_key "incomes", "teams"
+  add_foreign_key "messages", "teams", column: "recipient_id"
+  add_foreign_key "messages", "teams", column: "sender_id"
   add_foreign_key "public_relations", "games"
   add_foreign_key "public_relations", "teams"
   add_foreign_key "terror_trackers", "games"
