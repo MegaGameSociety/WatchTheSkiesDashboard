@@ -13,6 +13,8 @@
 //= require lib/angular.min.js
 //= require lib/angular-animate.min.js
 //= require lib/angular-timer.min.js
+//= require lib/underscore-min.js
+
 //= require jquery
 //= require jquery_ujs
 //= require lib/humanize-duration
