@@ -183,8 +183,8 @@ class Api::ApiController < ApplicationController
     @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
     @game.update
 
-    round = @game.round
-    messages = Message.all.order('created_at DESC')
+    user_team_id = current_user.team_id
+    messages = Message.where(game: @game).where("sender_id = ? OR recipient_id = ?", user_team_id, user_team_id)
 
     begin
       #generate overall embedded result
