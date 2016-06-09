@@ -1,37 +1,36 @@
-  <div ng-controller="apiCtrl" ng-init="setMobile(true)">
-    <div class="country-header">
-      <div class="country-items">
-        <%= render(:partial => "header", :controller => "dahsboard") %>
-      </div>
-      <div class="country-messages">
-        <div ng-if="controlMessage">Important Messages: {{controlMessage}}</div>
-        <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => 'button logoff' %>
-      </div>
+<div ng-controller="apiCtrl" ng-init="setMobile(true)">
+  <div class="country-header">
+    <div class="country-items">
+      <%= render(:partial => "header", :controller => "dahsboard") %>
+    </div>
+    <div class="country-messages">
+      <div ng-if="controlMessage">Important Messages: {{controlMessage}}</div>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => 'button logoff' %>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <%= render(:partial => "navigation", :controller => "dahsboard") %>
+
+    <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'" ng-controller="newsCtrl">
+      <%= render(:partial => "news", :controller => "dahsboard") %>
     </div>
 
-    <div class="tabs">
-      <%= render(:partial => "navigation", :controller => "dahsboard") %>
-
-      <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'" ng-controller="newsCtrl">
-        <%= render(:partial => "news", :controller => "dahsboard") %>
-      </div>
-
-      <div id="tab-messages" class="tab messages" ng-if="focusedTab === 'messages'" ng-controller="messagesCtrl">
-        <%= render(:partial => "messages", :controller => "dahsboard") %>
-      </div>
-
-
-      <!-- Operatives -->
-
-      <!-- Spying -->
-
-      <div id="tab-income" class="tab income" ng-if="checkPermissions('income') && focusedTab === 'income'" ng-controller="incomeCtrl">
-        <%= render(:partial => "income", :controller => "income") %>
-      </div>
-
-      <!-- Research -->
-      <!-- Trades -->
-      <!-- Rumours -->
+    <div id="tab-messages" class="tab messages" ng-if="focusedTab === 'messages'" ng-controller="messagesCtrl">
+      <%= render(:partial => "messages", :controller => "dahsboard") %>
     </div>
+
+
+    <!-- Operatives -->
+
+    <!-- Spying -->
+
+    <div id="tab-income" class="tab income" ng-if="checkPermissions('income') && focusedTab === 'income'" ng-controller="incomeCtrl">
+      <%= render(:partial => "income", :controller => "income") %>
+    </div>
+
+    <!-- Research -->
+    <!-- Trades -->
+    <!-- Rumours -->
   </div>
 </div>
