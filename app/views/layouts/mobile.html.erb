@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body id="mobile" class="mobile">
+  <body class="mobile mobile_dashboard" ng-app="wtsApp" ng-controller="baseMobileCtrl" ng-class="roleClass">
     <%= yield %>
   </body>
 </html>
