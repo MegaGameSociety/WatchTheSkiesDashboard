@@ -31,14 +31,20 @@ class MessagesController < ApplicationController
 
 	def create
 		@game = current_game
+
+		recipientId = message_params['recipient'].to_i
+		senderId = message_params['sender'].to_i
+
+    new_params = message_params.except('recipient', 'sender')
+    @message = Message.new(new_params)
+    @message.sender = Team.find(senderId)
+    @message.recipient = Team.find(recipientId)
+
 		@message.round_number = @game.round
 		@message.game_id = @game.id
 
-		if @message.save
-			redirect_to '/messages'
-		else
-			render 'new'
-		end
+		@message.save
+		render json: @message
 	end
 
 	private

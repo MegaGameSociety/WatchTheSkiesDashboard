@@ -35,6 +35,35 @@
       $scope.selectedMessage = null;
     };
 
+    // Fire the request to send a message.
+    $scope.sendMessage = function(message) {
+      // Set us as being the one who sent the message.
+      message.sender = $scope.myCountryId;
+
+      // Error handling
+      $scope.messageError = null;
+      if (message.content === '' || message.content === null) {
+        $scope.messageError = "You must enter a message";
+        return;
+      } else if (message.recipient === null) {
+        $scope.messageError = "You must choose a team";
+        return;
+      }
+
+      // Create the new Message object.
+      $scope.newMessage = { "message": {} }
+      $scope.newMessage.message = angular.copy(message);
+      $scope.newMessage.message.recipient = parseInt(message.recipient);
+
+      $http.post('/api/messages', $scope.newMessage).then(
+      function successCalback(response) {
+        $scope.pushNewMessage(response.data, message.recipient);
+        $scope.resetNewMessage();
+      },
+      function errorCallback(response) {
+
+      });
+    }
     // Message Filtering
     $scope.filterFn = function(conversation) {
       var filter = $scope.messageFilter.id;

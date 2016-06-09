@@ -77,6 +77,7 @@ Rails.application.routes.draw do
     get 'messages_data' => 'api#messages'
     get 'messages_data/:game_id' => 'api#messages'
 
+    post 'messages', to: 'messages#create', as: :message
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
