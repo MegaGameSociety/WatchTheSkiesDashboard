@@ -15,20 +15,18 @@
       <div>Send New Message</div>
   </li>
 
-  <li ng-repeat="conversation in myMessages | filter:filterFn | orderBy: '-updated_at'"
-      ng-class="{'active': messageIsActive === conversation.id}"
-      ng-click="selectConversation(conversation)"
-      id="message_{{conversation.id}}">
-    <img ng-src="assets/flags/{{conversation.conversation_partner}}.png" class="flag" />
+  <li ng-repeat="conversation in messages | filter:filterFn | orderBy: '-updated_at'"
+      ng-class="{'active': messageIsActive === conversation}"
+      ng-click="selectConversation(conversation)">
+    <img ng-src="assets/flags/{{conversation.conversation_partner.team_name}}.png" class="flag" />
     <div class="message-info">
-      <div class="message-sender">{{conversation.conversation_partner}}</div>
-      <div class="time">{{conversation.messages[conversation.messages.length - 1].created_at | date:'HH:mm a'}}</div>
+      <div class="message-sender">{{conversation.conversation_partner.team_name}}</div>
+      <div class="time">{{conversation.latest_message.updated_at | date:'HH:mm a'}}</div>
 
       <div class="message-preview-body">
-        <span ng-if="conversation.messages[conversation.messages.length - 1].sender === myCountry" class="preview-sender">You: </span>
-        <span ng-if="conversation.messages[conversation.messages.length - 1].sender !== myCountry" class="preview-sender">{{conversation.conversation_partner}}: </span>
-        <span class="preview-snippet">{{conversation.messages[conversation.messages.length - 1].content | characters: 20}}</span>
-        <span class="preview-full">{{conversation.messages[conversation.messages.length - 1].content}}</span>
+        <span ng-if="conversation.latest_message.sender_id === myCountryId" class="preview-sender">You: </span>
+        <span class="preview-snippet">{{conversation.latest_message.content | characters: 20}}</span>
+        <span class="preview-full">{{conversation.latest_message.content}}</span>
       </div>
     </div>
   </li>
