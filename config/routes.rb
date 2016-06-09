@@ -74,8 +74,9 @@ Rails.application.routes.draw do
     get 'income_data' => 'api#income'
     get 'income_data/:game_id' => 'api#income'
 
-    get 'message_data' => 'api#messages'
-    get 'message_data/:game_id' => 'api#messages'
+    get 'messages_data' => 'api#messages'
+    get 'messages_data/:game_id' => 'api#messages'
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

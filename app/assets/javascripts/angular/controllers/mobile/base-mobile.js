@@ -17,15 +17,17 @@
     var apiCall = function() {
       $http.get('/api/mobile_basic').then(
       function successCallback(response) {
-        console.log(response)
         $('#connection-error').hide();
 
         var result = response['data']['result'];
 
+        $scope.myCountryId = result['team']['id'];
         $scope.myCountryName = result['team']['team_name'];
         $scope.myRoleName = result['team_role']['role_display_name'];
         $scope.roleClass = `role-${result['team_role']['role_name']}`;
         $scope.myPermissions = result['team_role']['role_permissions'];
+
+        $scope.teams = result['teams'];
 
         $scope.focusedTab = 'news';
       },

@@ -8,6 +8,7 @@ class MobileDashboardController < ApplicationController
     @current_terror = @game.terror_trackers.totalTerror()
     @messages = Message.all.order('created_at DESC')
     @newMessage = Message.new
+    @teams = Team.all
 
     begin
       @news = @game.news_messages.round_news(@game.round).order(created_at: :desc)

@@ -1,4 +1,4 @@
-<%= render(:partial => "messages/messages_sidebar", :controller => "mobile_dashboard") %>
+<%= render(:partial => "messages/messages_sidebar") %>
 
 <div class="messages-focused" ng-class="{'focused': selectedMessage !== null}">
   <div ng-if="selectedMessage === null" class="message-content">No conversation selected</div>
@@ -6,14 +6,14 @@
     <div class="button back-button" ng-click="resetMessages()">Back to Messages</div>
     <div ng-if="selectedMessage !== 'new'">
       <div ng-repeat="message in selectedMessage.messages | orderBy: '+created_at'" class="message-content">
-        <%= render(:partial => "/messages/message_content", :controller => "mobile_dashboard") %>
+        <%= render(:partial => "/messages/message_content") %>
       </div>
       <div class="message-content">
-        <%= render(:partial => "/messages/new_message", :controller => "mobile_dashboard", :newMessage => @newMessage, :locals => { :reciever => 'set' }) %>
+        <%= render(:partial => "/messages/new_message") %>
       </div>
     </div>
     <div ng-if="selectedMessage === 'new'" class="message-content">
-      <%= render(:partial => "/messages/new_message", :controller => "mobile_dashboard", :newMessage => @newMessage, :locals => { :reciever => 'null' }) %>
+      <%= render(:partial => "/messages/new_message") %>
     </div>
   </div>
 </div>

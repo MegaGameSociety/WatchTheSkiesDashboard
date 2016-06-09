@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_control!
+
 	#Displays all messages, newest ones first
 
 	layout "mobile"
@@ -25,14 +25,11 @@ class MessagesController < ApplicationController
 		end
 	end
 
-
 	def new
 		@message = Message.new
 	end
 
-
 	def create
-		@message = Message.new(message_params)
 		@game = current_game
 		@message.round_number = @game.round
 		@message.game_id = @game.id
