@@ -8,6 +8,11 @@
       $scope.mobile = status;
     }
 
+     // This lets other modules know that the Round has changed.
+    $scope.$on('round_changed', function() {
+      $scope.$broadcast('base_data_changed');
+    });
+
     // API Call and Status Check Intervals.
     var apiCall = function() {
       $http.get('/api/dashboard_data', $scope.mobile).then(
@@ -16,14 +21,15 @@
         // See the Error callback for more information.
         $('#connection-error').hide();
 
-        $scope.myTeam = {
-          id: 4
-        }
-
         var result = response['data']['result'];
         $scope.terror = result['global_terror']['total'];
         $scope.controlMessage = result['timer']['control_message'];
-        $scope.round = result['timer']['round'];
+
+        // Only update the Round if it has changed.
+        if ($scope.round !== result['timer']['round']) {
+          $scope.round = result['timer']['round'];
+          $scope.$broadcast('round_changed');
+        }
 
         // These are only used for Desktop. Since it isn't an extra query for
         // them, I'm not bothering to filter these out.

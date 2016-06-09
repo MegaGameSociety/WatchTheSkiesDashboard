@@ -5,8 +5,10 @@
   <div class="half">
     <label for="incomeTurn">
       <span class="meta">Income for Turn</span>
-      <select id="incomeTurn" ng-change="updateFilter()" ng-model="selectedRound">
-        <option ng-repeat="round in allRounds" value="{{round}}" selected="selectedRound('{{round}}')">{{round}}</option>
+      <select id="incomeTurn"
+              ng-change="updateFilter()"
+              ng-model="selectedRound"
+              ng-options="round for round in allRounds track by round">
       </select>
     </label>
     Reserves: #<br>Total PR: #</div>

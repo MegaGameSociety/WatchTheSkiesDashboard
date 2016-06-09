@@ -1,6 +1,7 @@
 (function() {
   angular.module('wtsApp').controller('incomeCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
-    $scope.getRounds = function() {
+
+    var getRounds = function() {
       var allRounds = [];
 
       // This is for filtering by round.
@@ -11,16 +12,27 @@
       return allRounds;
     }
 
-    $scope.updateFilter = function() {
-      $scope.filterPr($scope.selectedRound);
+    var setRounds = function() {
+      $scope.allRounds = getRounds();
+      $scope.selectedRound = $scope.round;
     }
 
-    $scope.filterPr = function(round) {
+    setRounds();
+
+    $scope.$on('base_data_changed', function() {
+      setRounds();
+    })
+
+    $scope.updateFilter = function() {
+      filterPr($scope.selectedRound);
+    }
+
+    var filterPr = function(round) {
       $scope.filtered_pr = $.map($scope.pr, function(relations) {
         // These come back as strings from the template.
         round = parseInt(round);
 
-        if ((relations.team_id === $scope.myTeam.id)
+        if ((relations.team_id === $scope.myCountryId)
         && (relations.round === round)) {
           return relations;
         }  else {
@@ -33,15 +45,9 @@
       $http.get('/api/income_data').then(
       function successCallback(response) {
         $('#connection-error').hide();
-
-        var result = response['data']['result'];
-        $scope.round = result['timer']['round'];
-        $scope.pr = result['pr'];
-
-        // Set the round data for Filtering PR by Round
-        $scope.allRounds = $scope.getRounds();
-        $scope.selectedRound = $scope.round;
+        $scope.pr = response['data']['result']['pr'];
         $scope.updateFilter();
+
       },
       function errorCallback(response) {
         $('#connection-error').show();
