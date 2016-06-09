@@ -82,6 +82,36 @@
 
       });
     }
+
+    // After submitting a new Message, do some updating to the view.
+    $scope.pushNewMessage = function(savedMessage, conversationPartnerId) {
+      // If there is a conversation already with this partner, grab it.
+      var conversationToUpdate = _.filter($scope.messages, function(message) {
+        return message.conversation_partner.id === conversationPartnerId;
+      });
+
+      if (conversationToUpdate.length > 0) {
+        // Add the new message to the existing messages, update the latest.
+        conversationToUpdate[0].latest_message = savedMessage;
+        conversationToUpdate[0].messages.push(savedMessage);
+      } else {
+        // If this is a new conversation, add the new partner.
+        var conversationPartner = $.grep($scope.teams, function(team) {
+          return team.id == conversationPartnerId;
+        });
+        $scope.messages.push({
+          conversation_partner: conversationPartner[0],
+          latest_message: savedMessage,
+          messages: [savedMessage]
+        });
+      }
+
+      // Sort now that the dates have changed.
+      $scope.messages = _.sortBy($scope.messages, function(conversation) {
+        return conversation.latest_message.updated_at;
+      }).reverse();
+    }
+
     // Message Filtering
     $scope.filterFn = function(conversation) {
       var filter = $scope.messageFilter.id;
