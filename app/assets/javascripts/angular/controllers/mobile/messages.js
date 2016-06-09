@@ -20,6 +20,11 @@
       $scope.messageFilter = $scope.filterOptions[0];
     }
 
+    // A team should not be able to send messages to itself.
+    $scope.validTeams = _.reject($scope.teams, function(team) {
+      return team.id === $scope.myCountryId;
+    });
+
     // Reset the new message form.
     $scope.resetNewMessage = function() {
       $scope.newMessage = {};
