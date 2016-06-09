@@ -104,12 +104,14 @@ class Api::ApiController < ApplicationController
     @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
     @game.update
 
+    teams = Team.all
     user_team = Team.find_by_id(current_user.team_id)
     user_team_role = TeamRole.find_by_id(current_user.team_role_id)
 
     begin
       #generate overall embedded result
       @result = {
+        'teams' => teams,
         'team' => user_team,
         'team_role' => user_team_role
       }
