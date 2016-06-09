@@ -5,11 +5,11 @@
       $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     }
   ]);
+
   angular.module('wtsApp').controller('messagesCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
+    // Default state for Messages.
     $scope.initializeMessages = function() {
-      // Default Messages State
-      $scope.messageIsActive = null;
-      $scope.selectedMessage = null;
+      $scope.resetMessages();
 
       // Message Filtering
       $scope.filterOptions = [
@@ -20,17 +20,30 @@
       $scope.messageFilter = $scope.filterOptions[0];
     }
 
+    // Reset the new message form.
+    $scope.resetNewMessage = function() {
+      $scope.newMessage = {};
+      $scope.message = {
+        sender: null,
+        content: null
+      };
+    }
+
+    // Selecting conversations / new message form.
     $scope.selectConversation = function(conversation) {
-      $scope.messageIsActive = conversation.id;
+      $scope.resetNewMessage();
+      $scope.messageIsActive = conversation;
       $scope.selectedMessage = conversation;
     };
 
     $scope.createNewMessage = function() {
+      $scope.resetNewMessage();
       $scope.messageIsActive = null;
       $scope.selectedMessage = 'new';
     };
 
     $scope.resetMessages = function() {
+      $scope.resetNewMessage();
       $scope.messageIsActive = null;
       $scope.selectedMessage = null;
     };
