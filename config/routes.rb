@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :splash
   resources :mobile_dashboard
+  resources :bugs
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content

@@ -11,4 +11,8 @@ class Team < ActiveRecord::Base
   def self.all_minus_aliens
     self.all.where.not(team_name: "Aliens")
   end
+  
+  def to_s
+    team_name
+  end
 end

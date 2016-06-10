@@ -3,6 +3,7 @@
 
     // Set the default to be no permissions.
     $scope.myPermissions = [];
+    $scope.teams = [];
 
     $scope.checkPermissions = function(tab) {
       var myPermissions = $scope.myPermissions;

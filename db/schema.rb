@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160612200110) do
 
   # These are extensions that must be enabled in order to support this database
@@ -27,6 +28,16 @@ ActiveRecord::Schema.define(version: 20160612200110) do
   end
 
   add_index "bonus_credits", ["team_id"], name: "index_bonus_credits_on_team_id", using: :btree
+
+  create_table "bugs", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "target_id"
+    t.integer  "beneficiary_id"
+    t.string   "klass"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -96,6 +107,18 @@ ActiveRecord::Schema.define(version: 20160612200110) do
 
   add_index "public_relations", ["game_id"], name: "index_public_relations_on_game_id", using: :btree
   add_index "public_relations", ["team_id"], name: "index_public_relations_on_team_id", using: :btree
+
+  create_table "reserves", force: :cascade do |t|
+    t.boolean  "recurring"
+    t.integer  "round"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "game_id"
+    t.integer  "team_id"
+  end
+
+  add_index "reserves", ["team_id"], name: "index_reserves_on_team_id", using: :btree
 
   create_table "team_roles", force: :cascade do |t|
     t.string   "role_name"

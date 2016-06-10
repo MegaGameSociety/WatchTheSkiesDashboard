@@ -1,0 +1,21 @@
+<% team_select = @teams.collect{ |team| [team.team_name, team.id]} %>
+<%= form_for @bug do |bug| %>
+  <% if @bug.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bug_credits.errors.count, "error") %> prohibited this bug from being saved:</h2>
+
+      <ul>
+        <% @bug.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.label :target %>
+    <%= f.select :target, options_for_select(team_select) %><br />
+    <%= f.label :beneficiary %>
+    <%= f.select :beneficiary, options_for_select(team_select) %><br />
+    <%= f.submit %>
+  </div>
+<% end %>

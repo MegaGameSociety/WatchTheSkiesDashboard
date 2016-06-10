@@ -1,0 +1,32 @@
+<h1>Espionage</h1>
+
+<section>
+  <%= link_to 'New Bug', new_bug_path, class: 'button-input' %>
+</section>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spy</th>
+      <th>Target</th>
+      <th>Type</th>
+      <th>Start</th>
+      <th>Ended?</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bugs.each do |bug| %>
+      <tr>
+        <td><%= bug.beneficiary %></td>
+        <td><%= bug.target %></td>
+        <td><%= bug.klass %></td>
+        <td><%= bug.created_at.in_time_zone(bug.game.time_zone).strftime("%l:%M %p") %></td>
+        <td><%= bug.end_time.in_time_zone(bug.game.time_zone).strftime("%l:%M %p") if bug.end_time %></td>
+        <td><%= link_to_if !bug.end_time, 'End', bug_path(bug), method: :put %></td>
+        <td><%= link_to 'Destroy', bug, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
