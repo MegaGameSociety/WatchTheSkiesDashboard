@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   has_many :user
   has_many :income
-  has_many :bonus_credit
+  has_many :reserves, class_name: "Reserve"
   has_many :public_relation
 
   def self.countries
