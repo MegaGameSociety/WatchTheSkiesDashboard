@@ -164,19 +164,47 @@
       .value()
     }
 
+    function pushNewMessages(sortedMessages) {
+      var selectedMessage = $scope.selectedMessage;
+
+      $scope.messages = groupMessages(sortedMessages);
+
+      // If we were selected on a conversation, let's stay selected on it.
+      if (selectedMessage !== null && selectedMessage !== 'new') {
+        var selectedPartner = $scope.selectedMessage.conversation_partner.id;
+
+        var filteredConversations = _.filter($scope.messages, function(message) {
+          if (message.conversation_partner.id === selectedPartner) {
+            return message.conversation_partner;
+          }
+        });
+
+        // Select the existing conversation
+        $scope.selectConversation(filteredConversations[0]);
+      }
+    }
+
     var apiCall = function() {
       $http.get('/api/messages_data').then(
       function successCallback(response) {
         $('#connection-error').hide();
-        var messages = response['data']['result']['messages'];
-        var formattedMessages = groupMessages(messages);
+        var newMessages = response['data']['result']['messages'];
 
-        if ($scope.messages === formattedMessages) {
-          // If the messages did not change, do not update them.
-        } else {
-          // Spoiler alert: This is broken so they re always treated as
-          // having changed. I can fix it, though.
-          $scope.messages = formattedMessages;
+        // Get the latest message as a moment object.
+        var existingMessages = $scope.messages;
+        var latestTimestamps = _.map(existingMessages, function(conversations) {
+          return conversations.latest_message.updated_at;
+        }).sort();
+
+        // Compare existing latest with new latest.
+        var latestTime = latestTimestamps.length > 0 ? moment(latestTimestamps[latestTimestamps.length - 1]) : null;
+
+        var sortedMessages = _.sortBy(newMessages, 'updated_at')
+        var newestTimestamp = moment(sortedMessages[sortedMessages.length - 1].updated_at);
+
+        // Only update the view if there are actually new messages.
+        if (latestTimestamps.length === 0 || moment(newestTimestamp).isAfter(latestTime)) {
+          pushNewMessages(sortedMessages);
         }
       },
       function errorCallback(response) {
