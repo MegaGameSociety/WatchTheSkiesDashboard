@@ -109,4 +109,8 @@ class Game < ActiveRecord::Base
         "recurring_credits" => recurring_credits,
       }
   end
+
+  def next_round
+    super.in_time_zone(self.time_zone)
+  end
 end
