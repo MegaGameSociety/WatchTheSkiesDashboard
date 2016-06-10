@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # Human Control dashboard to quickly see PR's
   def human_control
     @game = current_game
-    @last_round = (@game.round) -1
+    @last_round = (@game.round) - 1
 
     @pr_amounts = PublicRelation.where(game: @game)
       .joins(:team)

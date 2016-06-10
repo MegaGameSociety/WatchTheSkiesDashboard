@@ -97,7 +97,7 @@ class Game < ActiveRecord::Base
     main_data = {
         "timer" => {
           "round"=>  round,
-          "next_round" =>  self.next_round.in_time_zone(Time.zone.name),
+          "next_round" =>  self.next_round.to_utc,
           "paused" => @data['paused'],
           "control_message" => self.control_message
         },
