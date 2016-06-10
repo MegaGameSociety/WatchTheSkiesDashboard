@@ -13,8 +13,8 @@ class ReservesController < ApplicationController
   end
 
   def create
-    teamId = bonus_credit_params['team'].to_i
-    new_params = bonus_credit_params.except('team')
+    teamId = reserve_params['team'].to_i
+    new_params = reserve_params.except('team')
     @reserves = Reserve.new(new_params)
     @reserves.team = Team.find(teamId)
     @reserves.game = current_game
@@ -26,14 +26,14 @@ class ReservesController < ApplicationController
         format.json { render nothing: true, status: :created }
       else
         format.html { render :new }
-        format.json { render json: @bonus_credit.errors, status: :unprocessable_entity }
+        format.json { render json: @reserves.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @bonus_credit = Reserve.find(params[:id])
-    @bonus_credit.destroy
+    @reserve = Reserve.find(params[:id])
+    @reserve.destroy
     respond_to do |format|
       format.html { redirect_to reserves_path, notice: 'Reserves Successfully Destroyed' }
       format.json { render nothing: true, status: :no_content }
@@ -42,7 +42,7 @@ class ReservesController < ApplicationController
 
   private
 
-  def bonus_credit_params
-    params.require(:bonus_credit).permit(:team, :round, :amount, :recurring)
+  def reserve_params
+    params.require(:reserve).permit(:team, :round, :amount, :recurring)
   end
 end
