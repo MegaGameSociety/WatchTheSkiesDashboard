@@ -50,7 +50,7 @@
         <div ng-repeat="news_item in news"
              class="slide slide-animation nonDraggableImage"
              ng-hide="!isCurrentSlideIndex($index)">
-          <h4>{{news_item.title}}</h4>
+          <h4>{{news_item.title}} reports:</h4>
           <p>{{news_item.content}}</p>
           <p class="news-time">Reported at {{news[newsIndex].created_at| date:'h:mma'}}</p>
         </div>

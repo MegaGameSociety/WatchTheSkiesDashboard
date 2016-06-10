@@ -23,7 +23,6 @@
 //= require lib/bootstrap.min
 //= require greensock
 //= require angular/modules/truncate.js
-//= require angular/modules/news-title-parse.js
 
 //= require angular/controllers/api.js
 

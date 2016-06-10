@@ -1,5 +1,5 @@
 (function () {
-  angular.module('wtsApp', ['timer', 'truncate', 'parseNews']).controller('apiCtrl', ['$scope', '$http', '$interval', '$timeout', function($scope, $http, $interval, $timeout) {
+  angular.module('wtsApp', ['timer', 'truncate']).controller('apiCtrl', ['$scope', '$http', '$interval', '$timeout', function($scope, $http, $interval, $timeout) {
 
     $scope.news = [];
     $scope.nextRound = new moment();
