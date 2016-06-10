@@ -6,6 +6,10 @@ class GamesController < ApplicationController
   def dashboard
     @game = current_game
     @data = @game.data
+
+    if current_user.role == 'Player'
+      redirect_to url_for(:controller => :mobile_dashboard, :action => :index)
+    end
   end
 
   # Human Control dashboard to quickly see PR's
