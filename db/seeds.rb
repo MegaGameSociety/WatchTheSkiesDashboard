@@ -21,7 +21,7 @@ u.game= Game.create(
   control_message: "Welcome",
   activity: "All is quiet around the world.",
   alien_comm: false,
-  next_round: (Time.now() + 30*60),
+  next_round: (Time.now() + 30*60).utc,
   data: {
     rioters: 0,
     paused: true,
