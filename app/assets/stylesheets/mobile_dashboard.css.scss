@@ -1,6 +1,6 @@
 @mixin role-colors($color, $background) {
   background-image: url('/assets/mobile-backgrounds/world-#{$background}.png');
-  .button { background: $color; }
+  .button { color: $color; }
   .country-header { border-bottom: 1px solid $color; }
   .tab-choice { background: $color; }
   .tab-choice.focused { border: 1px solid $color; }
@@ -33,6 +33,11 @@
   margin: 10px 0;
   padding: 10px;
   position: relative;
+
+  &:hover {
+    background-color: transparent;
+    color: #000;
+  }
 }
 
 .mobile {
