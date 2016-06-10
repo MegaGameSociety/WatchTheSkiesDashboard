@@ -1,6 +1,6 @@
 @mixin role-colors($color, $background) {
   background-image: url('/assets/mobile-backgrounds/world-#{$background}.png');
-  .button { color: $color; }
+  .button { background: $color; }
   .country-header { border-bottom: 1px solid $color; }
   .tab-choice { background: $color; }
   .tab-choice.focused { border: 1px solid $color; }
@@ -17,7 +17,7 @@
 .role-military    { @include role-colors(#7C100C, "red");    }
 .role-ambassador  { @include role-colors(#541B89, "purple"); }
 .role-media       { @include role-colors(#C87E09, "orange"); }
-.role-aliens      { @include role-colors(#541B89, "purple"); }
+.role-alien       { @include role-colors(#541B89, "purple"); }
 
 .button {
   border-radius: 5px;
@@ -33,11 +33,6 @@
   margin: 10px 0;
   padding: 10px;
   position: relative;
-
-  &:hover {
-    background-color: transparent;
-    color: #000;
-  }
 }
 
 .mobile {
@@ -119,6 +114,7 @@
 
   a.logoff {
     border-radius: 2px;
+    color: #FFF;
     float: right;
     font-size: 1.4rem;
     line-height: 2rem;
