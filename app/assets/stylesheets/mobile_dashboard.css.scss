@@ -189,11 +189,11 @@
 ===================================== */
 .tab.income {
   .pr-modifiers {
-    margin-top: 20px;
     width: 100%;
   }
 
   table {
+    margin: 0;
     tbody tr:nth-child(even) {background: #efefef}
 
     .header {
@@ -224,6 +224,10 @@
 
     .header {
       font-weight: bold;
+    }
+
+    &.middle {
+      margin-top: 20px;
     }
   }
 }

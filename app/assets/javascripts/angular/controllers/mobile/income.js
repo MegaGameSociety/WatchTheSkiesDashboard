@@ -45,7 +45,35 @@
       $http.get('/api/income_data').then(
       function successCallback(response) {
         $('#connection-error').hide();
-        $scope.pr = response['data']['result']['pr'];
+
+        var result = response['data']['result'];
+
+        // Reserves Array
+        var reserves = result['reserves'];
+        var total_reserves = _.reduce(reserves, function(total, reserve_item) {
+          if (reserve_item.round === $scope.round) {
+            return total += reserve_item.amount;
+          }
+          return total;
+        }, 0);
+
+        // PR Array
+        var pr = result['pr'];
+
+        // Total PR
+        var total_pr = _.reduce(pr, function(total, pr_item) {
+          if (pr_item.round === $scope.round) {
+            return total += pr_item.pr_amount;
+          }
+          return total;
+        }, 0);
+
+        $scope.pr = pr;
+        $scope.totalPr = total_pr;
+        $scope.reserves = total_reserves;
+        $scope.incomeLevel = result['income_level'];
+        $scope.incomeValue = result['income_value'];
+
         $scope.updateFilter();
 
       },

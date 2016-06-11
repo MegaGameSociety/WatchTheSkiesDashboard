@@ -145,7 +145,26 @@ class Api::ApiController < ApplicationController
     @game.update
 
     round = @game.round
-    public_relations_list = PublicRelation.where(game: @game)
+    user_team = Team.find_by_id(current_user.team_id)
+
+    public_relations_list = PublicRelation.where(game: @game, team: user_team)
+    income_level = Income.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
+    # TO DO: This is in progress of being renamed.
+    reserves = BonusCredit.where(game: @game, round: round, team: user_team)
+
+    # TO DO: This still needs to be moved.
+    @income_values = {}
+    @income_values['Brazil'] =[2,5,6,7,8,9,10,11,12]
+    @income_values['China']= [2,3,5,7,9,10,12,14,16]
+    @income_values['France']= [2,5,6,7,8,9,10,11,12]
+    @income_values['India']= [2,5,6,7,8,9,10,11,12]
+    @income_values['Japan']= [3,5,6,8,9,10,12,13,14]
+    @income_values['Russian Federation'] = [2,4,5,6,7,8,9,10,11]
+    @income_values['United Kingdom'] =[2,4,6,7,8,9,10,11,12]
+    @income_values['USA']= [1,3,5,7,9,11,13,15,17]
+    @income_values['Germany'] =[2,5,6,7,8,9,10,12,14]
+
+    income_value = @income_values[user_team.team_name][income_level[0] - 1]
 
     begin
       #generate overall embedded result
@@ -153,7 +172,10 @@ class Api::ApiController < ApplicationController
         "timer" => {
           "round"=>  round,
         },
-        "pr" => public_relations_list
+        "pr" => public_relations_list,
+        "income_level" => income_level[0],
+        "reserves" => reserves,
+        "income_value" => income_value,
       }
     rescue
       @status = 500
