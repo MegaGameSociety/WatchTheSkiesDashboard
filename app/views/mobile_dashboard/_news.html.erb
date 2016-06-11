@@ -8,6 +8,7 @@
   </div>
   <div class="news-content">
     <h4>{{news_item.title}}</h4>
+    <p class="news-time" ng-if="!news_item.media_url">Reported at {{news_item.created_at| date:'h:mma'}}</p>
     <p>{{news_item.content}}</p>
   </div>
 </div>

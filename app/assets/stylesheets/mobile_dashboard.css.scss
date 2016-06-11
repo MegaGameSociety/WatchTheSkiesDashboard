@@ -259,6 +259,16 @@
     position: absolute;
   }
 
+  .news-content {
+    padding: 10px;
+
+    .news-time {
+      bottom: 0px;
+      margin-top: 5px;
+      position: relative;
+    }
+  }
+
   .news-item {
     background: #EFEFEF;
     flex-basis: auto;
@@ -269,10 +279,6 @@
 
     .image {
       position: relative;
-    }
-
-    .news-content {
-      padding: 10px;
     }
 
     .news-image {
