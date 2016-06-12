@@ -59,7 +59,12 @@ class UsersController < ApplicationController
   def update
     teamId = user_params['team'].to_i
     teamRoleId = user_params['team_role'].to_i
-    new_params = user_params.except('team', 'team_role', 'game')
+    new_params = user_params.except('team', 'team_role', 'game', 'password', 'password_confirmation')
+
+    unless user_params['password'] == "" and user_params['password_confirmation'] ==""
+      @user.password = user_params['password']
+      @user.password_confirmation = user_params['password_confirmation']
+    end
 
     @user.team = Team.find(teamId)
     @user.team_role = TeamRole.find(teamRoleId)
