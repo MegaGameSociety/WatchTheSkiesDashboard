@@ -7,15 +7,6 @@
   </section>
   <%= link_to "Hide News Media", hide_all_media_path, method: :post, :class => "button-input" %>
 
-  <h3>Direct Twitter Posting</h3>
-  <section>
-    <p>Posts directly to twitter (be careful when using this).</p>
-    <%= form_tag direct_twitter_post_path, :method => 'post' do %>
-      <%= text_field_tag :text, '', size: 50, :placeholder => "ex. Held World Trade Conference" %>
-      <%= submit_tag "Post" %>
-    <% end %>
-  </section>
-
   <h3>Generated Newspapers</h3>
   <section>
     <% @papers.each do |paper| %>

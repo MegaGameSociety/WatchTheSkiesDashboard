@@ -17,9 +17,10 @@ class GamesController < ApplicationController
     @game = current_game
     @last_round = (@game.round) -1
 
-    @pr_amounts = @game.public_relations
-      .where(round: @last_round)
-      .group(:country)
+    @pr_amounts = PublicRelation.where(game: @game)
+      .joins(:team)
+      .select("teams.team_name as team_name")
+      .group(:team_name)
       .sum(:pr_amount)
 
     @current_round = @game.round
@@ -27,7 +28,8 @@ class GamesController < ApplicationController
                                                   round: :desc,
                                                   created_at: :desc
                                                 )
-    @countries = Team.all
+    @countries = Team.countries
+    @teams = Team.all_minus_aliens
 
     #To Do: Move income values into stored structure somewhere
     @income_values = {}
@@ -73,12 +75,13 @@ class GamesController < ApplicationController
     round = data['round']
     main_values_exist = (data['main_description'] != '' or data['main_pr_amount'] != '')
     results = []
+    team_hash = Hash[*Team.select(:id, :team_name).collect{|t| [t.team_name, t.id]}.flatten]
     data['countries'].each do|country_name, country_data|
       if (!main_values_exist and country_data['description'] == '' and country_data['pr_amount'] == '')
         next
       end
       pr = PublicRelation.new
-      pr.country = country_name
+      pr.team_id = team_hash[country_name]
       pr.round = round
       if country_data['description'] == ''
         pr.description = data['main_description']
@@ -161,7 +164,7 @@ class GamesController < ApplicationController
     g.incomes.destroy_all
     g.bonus_credits.destroy_all
 
-    teams = Team.all
+    teams = Team.all_minus_aliens
     teams.each do |team|
       g.incomes.push(Income.create(round: g.round, team: team, amount: 6))
     end

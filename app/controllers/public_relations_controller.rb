@@ -5,7 +5,8 @@ class PublicRelationsController < ApplicationController
   # Get
   def un_dashboard
     @public_relations = current_game.public_relations.all.order(round: :desc, created_at: :desc)
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
+    @countries = Team.countries
     @current_round = current_game.round
   end
 
@@ -16,12 +17,12 @@ class PublicRelationsController < ApplicationController
     round = data['round']
     main_values_exist = (data['main_description'] != '' or data['main_pr_amount'] != '')
     results = []
-    data['teams'].each do|team_name, country_data|
+    data['countries'].each do|team_name, country_data|
       if (!main_values_exist and country_data['description'] == '' and country_data['pr_amount'] == '')
         next
       end
       pr = PublicRelation.new
-      pr.team_name = team_name
+      pr.team = Team.find_by_team_name(team_name)
       pr.round = round
       if country_data['description'] == ''
         pr.description = data['main_description']
@@ -55,7 +56,7 @@ class PublicRelationsController < ApplicationController
     @country = params[:country]
     @team = Team.where(team_name: @country)
 
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
     @game = current_game
 
     if @teams.any?{|x| x.team_name == @country}
@@ -76,7 +77,7 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations.json
   def index
     @public_relations = current_game.public_relations.order(round: :desc, created_at: :desc)
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
   end
 
   # GET /public_relations/1
@@ -87,14 +88,14 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations/new
   def new
     @public_relation = PublicRelation.new
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
     @current_round = current_game.round
   end
 
   # GET /public_relations/1/edit
   def edit
     @current_round = @public_relation.round
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
   end
 
   # POST /public_relations

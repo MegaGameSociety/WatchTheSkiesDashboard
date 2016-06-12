@@ -30,13 +30,13 @@
     <thead>
       <tr>
         <td class="amount header">Amount</td>
-        <td class="reason header">Reason</td>
+        <td class="source header">Source</td>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="relations in filtered_pr track by $index">
         <td class="amount">{{relations.pr_amount}}</td>
-        <td class="reason">{{relations.description}}</td>
+        <td class="source">{{relations.source}}</td>
       </tr>
     </tbody>
   </table>
