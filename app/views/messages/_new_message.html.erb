@@ -1,0 +1,23 @@
+<form novalidate>
+  <div class="field">
+    <!-- If the message is new, the recipient can be chosen. If it's a reply, we auto-calculate it -->
+    <div ng-if="selectedMessage === 'new'">
+      <label>New Message</label>
+      <select ng-model="message.recipient" ng-init="message.recipient=null" required>
+        <option value="" disabled selected="true">Select the team</option>
+        <option ng-repeat="team in validTeams" value="{{team.id}}">{{team.team_name}}</option>
+      </select>
+    </div>
+
+    <div ng-if="selectedMessage !== 'new'">
+      <input type="hidden" ng-model="message.recipient" ng-init="message.recipient=selectedMessage.conversation_partner.id" value="{{selectedMessage.conversation_partner.id}}" />
+    </div>
+
+    <label for="message.content">{{selectedMessage === 'new' ? 'Message Content' : 'Reply'}}</label>
+    <textarea ng-model="message.content"></textarea>
+
+    <div class="error" ng-if="messageError">{{messageError}}</div>
+
+    <div class="button" ng-click="sendMessage(message)">Send Message</div>
+  </div>
+</form>

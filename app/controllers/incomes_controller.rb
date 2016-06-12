@@ -17,14 +17,14 @@ class IncomesController < ApplicationController
   # GET /incomes/new
   def new
     @round = current_game.round
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
     @income = Income.new
   end
 
   # GET /incomes/1/edit
   def edit
     @round = @income.round
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
   end
 
   # POST /incomes

@@ -1,0 +1,14 @@
+<div ng-if="news.length==0">
+  <h4>Reports are coming in. Stay tuned for more details.</h4>
+</div>
+<div ng-repeat="news_item in news" class="news-item" ng-class="hasPortraitImage(news_item)">
+  <div class="image" ng-show="news_item.media_url">
+    <p class="news-time">Reported at {{news_item.created_at| date:'h:mma'}}</p>
+    <div class="news-image" style="background-image: url({{news_item.media_url}})"></div>
+  </div>
+  <div class="news-content">
+    <h4>{{news_item.title}}</h4>
+    <p class="news-time" ng-if="!news_item.media_url">Reported at {{news_item.created_at| date:'h:mma'}}</p>
+    <p>{{news_item.content}}</p>
+  </div>
+</div>

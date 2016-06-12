@@ -20,7 +20,7 @@ class Tweet < ActiveRecord::Base
         full_name = "S&FT"
       end
 
-      a.title = "#{full_name} reports:"
+      a.title = "#{full_name}"
       a.content = self.text
       a.round = self.game.round
       a.game = self.game

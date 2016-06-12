@@ -13,6 +13,8 @@
 //= require lib/angular.min.js
 //= require lib/angular-animate.min.js
 //= require lib/angular-timer.min.js
+//= require lib/underscore-min.js
+
 //= require jquery
 //= require jquery_ujs
 //= require lib/humanize-duration
@@ -20,4 +22,14 @@
 //= require turbolinks
 //= require lib/bootstrap.min
 //= require greensock
-//= require angular/controllers/dashboard.js
+//= require angular/modules/truncate.js
+
+//= require angular/controllers/api.js
+
+//= require angular/controllers/mobile/base-mobile.js
+//= require angular/controllers/mobile/income.js
+//= require angular/controllers/mobile/messages.js
+//= require angular/controllers/mobile/news.js
+
+//= require angular/controllers/desktop/news.js
+//= require angular/controllers/desktop/terror.js

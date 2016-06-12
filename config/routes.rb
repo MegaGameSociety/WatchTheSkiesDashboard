@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'splash#index'
 
   get 'dashboard' => 'games#dashboard', as: :dashboard
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :incomes
 
-  resources :tweets do 
+  resources :tweets do
     patch 'toggle_public', to: 'tweets#toggle_public', as: :toggle_public
   end
   post 'import_tweets', to: 'tweets#import_tweets', as: :import_tweets
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :users
   resources :teams
   resources :splash
+  resources :mobile_dashboard
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
   get 'human_control' => 'games#human_control', as: :human_control
   post 'human_control' => 'games#create_human_pr'
   post 'messages/new' => 'messages#create'
-  
+
   patch '/activity_update' => 'terror_trackers#update_activity', as: :activity_update
 
   # Administrative Controls
@@ -64,8 +65,19 @@ Rails.application.routes.draw do
   # Api related routing
   namespace :api, :defaults => {:format => :json} do
     get 'games' => 'api#games'
-    get 'dashboard_data' => 'api#dashboard'
-    get 'dashboard_data/:game_id' => 'api#dashboard'
+    get 'dashboard_data' => 'api#dashboard', mobile: :mobile
+    get 'dashboard_data/:game_id' => 'api#dashboard', mobile: :mobile
+
+    get 'mobile_basic' => 'api#mobile_basic'
+    get 'mobile_basic/:game_id' => 'api#mobile_basic'
+
+    get 'income_data' => 'api#income'
+    get 'income_data/:game_id' => 'api#income'
+
+    get 'messages_data' => 'api#messages'
+    get 'messages_data/:game_id' => 'api#messages'
+
+    post 'messages', to: 'messages#create', as: :message
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

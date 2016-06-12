@@ -48,8 +48,8 @@
             <td><%= income.team_name %></td>
             <td><%= income.amount%></td>
             <td><%= @income_values[income.team_name][income.amount-1]%></td>
-            <td><%= @game.bonus_credits.where(team_name: income.team_name, round: @current_round, recurring: false).sum(:amount) %></td>
-            <td><%= @game.bonus_credits.where('team_name = ? AND round <= ? AND recurring = TRUE', income.team_name, @current_round).sum(:amount) %></td>
+            <td><%= @game.bonus_credits.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
+            <td><%= @game.bonus_credits.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
           </tr>
           <% end %>
       </table>
@@ -94,11 +94,11 @@
           </tr>
         </thead>
         <tbody>
-          <% @countries.each do |country| %>
-            <%= form.fields_for ('countries['+country+']') do |country_form| %>
-              <%= country_form.hidden_field :name, :value => country %>
+          <% @teams.each do |country| %>
+            <%= form.fields_for ('countries['+country.team_name+']') do |country_form| %>
+              <%= country_form.hidden_field :name, :value => country.team_name %>
               <tr>
-                <td><%= country_form.label country, country %> </td>
+                <td><%= country_form.label country, country.team_name %> </td>
                 <td><%= country_form.number_field :pr_amount, :in => -10..10, :step => '1' %></td>
                 <td><%= country_form.text_area :description, :size => "60x2", :placeholder => "ex. 'Mouthed off to the UN Secretary General' or 'Bribed the UN with candy'" %></td>
                 <td><%= country_form.select :source, options_for_select(PublicRelation::VALID_SOURCES) %></td>

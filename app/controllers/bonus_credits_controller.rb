@@ -9,7 +9,7 @@ class BonusCreditsController < ApplicationController
   def new
     @round = current_game.round
     @bonus_credits = BonusCredit.new
-    @teams = Team.all
+    @teams = Team.all_minus_aliens
   end
 
   def create

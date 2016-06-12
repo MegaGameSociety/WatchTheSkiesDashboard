@@ -37,12 +37,11 @@ $border-tan: #BEC2AD;
   }
 }
 
+  /* =====================================
+               BOTTOM NAVIGATION
+     ===================================== */
 
-/* =====================================
-             BOTTOM NAVIGATION
-   ===================================== */
-
-nav {
+#admin-nav {
   background: $background-seafoam;
   bottom: 0px;
   position: fixed;

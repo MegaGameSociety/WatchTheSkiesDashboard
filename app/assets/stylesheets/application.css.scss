@@ -10,11 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require bootstrap
- *= require games
  *= require_self
+ *= require games
+ *= require messages
  *= require admin
  *= require splash
+ *= require mobile_dashboard
  *= require print
  */
 
@@ -80,8 +81,6 @@ Some Previously Used Colours / Colour Ideas
    ===================================== */
 
 html {
-  font-size: 62.5%;
-  line-height: 1.4;
   height: 100%;
   min-height: 100%;
   -webkit-font-smoothing: antialiased;

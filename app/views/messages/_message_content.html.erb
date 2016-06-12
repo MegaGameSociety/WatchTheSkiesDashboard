@@ -1,0 +1,13 @@
+<div class="message-header">
+  <div class="message-flag">
+    <img ng-if="message.sender_id === myCountryId" ng-src="assets/flags/{{myCountryName}}.png" class="flag" />
+    <img ng-if="message.sender_id !== myCountryId" ng-src="assets/flags/{{selectedMessage.conversation_partner.team_name}}.png" class="flag" />
+  </div>
+
+  <div class="message-info">
+    <div class="from"><b>From:</b> {{message.sender_id === myCountryId ? myCountryName : selectedMessage.conversation_partner.team_name}}</div>
+    <div class="to"><b>To:</b> {{message.recipient_id === myCountryId ? myCountryName : selectedMessage.conversation_partner.team_name}}</div>
+  </div>
+  <div class="message-time">{{message.created_at | date:'HH:mm a'}}</div>
+</div>
+<div class="message-body">{{message.content}}</div>

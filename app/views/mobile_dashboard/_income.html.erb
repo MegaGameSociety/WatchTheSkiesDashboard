@@ -1,0 +1,43 @@
+<h4><span>Country</span> Income</h4>
+<div class="income-info">
+  <div class="half">
+    Credits: {{incomeValue}}<br>
+    Income Level: {{incomeLevel}}
+  </div>
+  <div class="half">
+    Reserves: {{reserves}}<br>
+    Total PR: {{totalPr}}
+  </div>
+</div>
+
+<div class="income-info middle">
+  <div class="half">
+    <h4><span>PR</span> Modifiers</h4>
+  </div>
+  <div class="half">
+    <label for="incomeTurn">
+      <span class="meta">PR for Turn</span>
+      <select id="incomeTurn"
+              ng-change="updateFilter()"
+              ng-model="selectedRound"
+              ng-options="round for round in allRounds track by round">
+      </select>
+    </label>
+  </div>
+
+<div class="pr-modifiers">
+  <table>
+    <thead>
+      <tr>
+        <td class="amount header">Amount</td>
+        <td class="source header">Source</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="relations in filtered_pr track by $index">
+        <td class="amount">{{relations.pr_amount}}</td>
+        <td class="source">{{relations.source}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
