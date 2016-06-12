@@ -18,8 +18,8 @@
         <tr>
           <td><%= team.id %></td>
           <td><%= team.team_name %></td>
-          <td><%= link_to 'Edit', edit_team_path(team) %></td>
-          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_team_path(team), :class => 'button-input' %></td>
+          <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button-input' %></td>
         </tr>
       <% end %>
     </tbody>

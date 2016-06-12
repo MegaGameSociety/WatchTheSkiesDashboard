@@ -93,10 +93,10 @@ body {
   background: $background;
   color: $black;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 2.5rem;
+  font-size: 1.4rem;
   height: 100%;
   min-height: 100%;
-  line-height: 3.3rem;
+  line-height: 2.1rem;
   margin: 0;
   padding: 0 0 50px 0;
 }
@@ -125,19 +125,19 @@ body {
 .DEN {
   color: black;
   font-family: "Comic Sans MS";
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .GNN {
   color: black;
   font-family: "Arial";
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .SFT {
   color: black;
   font-family: "Times New Roman";
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 
@@ -153,10 +153,11 @@ h1, h2, h3, h4, h5, h6 {
 
 // Let's avoid using less than an h4 - Our fonts will be larger since
 // we're taking a Tablet-First approach.
-h1 { font-size: 5.6rem; line-height: 6.4rem; }
-h2 { font-size: 3.6rem; line-height: 4.4rem; }
-h3 { font-size: 2.8rem; line-height: 3.6rem; }
-h4 { font-size: 2.5rem; line-height: 3.3rem; }
+h1 { font-size: 3.75rem; line-height: 4.25rem; }
+h2 { font-size: 3.5rem; line-height: 4rem; }
+h3 { font-size: 3.25rem; line-height: 3.75rem; }
+h4 { font-size: 2.25rem; line-height: 2.75rem; }
+
 
 h2, h3 {
   color: $green;
@@ -173,8 +174,8 @@ h4 {
 }
 
 p, ul {
-  font-size: 2.5rem;
-  line-height: 3.3rem;
+  font-size: 1.4rem;
+  line-height: 2rem;
   margin: 0;
 }
 
@@ -259,7 +260,7 @@ input {
   background-color: $white;
   border: 1px solid $border-grey;
   color: $black;
-  font-size: 2rem;
+  font-size: 1.4rem;
   height: 40px;
   padding: 0 20px;
 }
@@ -280,7 +281,7 @@ textarea {
   background-color: $white;
   border: 1px solid $border-grey;
   color: $black;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   padding: 5px;
   resize: vertical;
   width: 100%;
@@ -292,8 +293,7 @@ textarea {
   cursor: pointer;
   display: inline-block;
   font-style: italic;
-  font-size: 2rem;
-  height: 40px;
+  font-size: 1.4rem;
   line-height: 3.8rem;
   margin: 5px 0;
   padding: 0 20px;
@@ -332,7 +332,7 @@ textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 2.4rem;
   margin: 10px 0;
   width: 100%;
@@ -355,7 +355,7 @@ table {
   }
 
   td {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 2.4rem;
     padding: 10px;
     vertical-align: middle;
@@ -368,12 +368,12 @@ table {
   .controls {
     .button-input {
       margin: 5px 0;
-      width: 105px;
+      width: 130px;
     }
   }
 
   .button-input {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin: 0;
   }
 }
