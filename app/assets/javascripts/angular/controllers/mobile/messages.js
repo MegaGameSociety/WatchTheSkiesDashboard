@@ -13,9 +13,9 @@
 
       // Message Filtering
       $scope.filterOptions = [
-        {"id": 0, "title": "Show all messsages"},
-        {"id": 1, "title": "Show those waiting on me"},
-        {"id": 2, "title": "Show those I am waiting on"}
+        {"id": 0, "title": "Show all conversations"},
+        {"id": 1, "title": "Messages waiting for my reply"},
+        {"id": 2, "title": "Messages already replied to"}
       ];
       $scope.messageFilter = $scope.filterOptions[0];
     }
