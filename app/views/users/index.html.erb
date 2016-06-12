@@ -24,8 +24,8 @@
           <td><%= user.role %></td>
           <td><% if user.role === 'Player' %><%= user.team.team_name %><% end %></td>
           <td><% if user.role === 'Player' %><%= user.team_role.role_display_name %><% end %></td>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_user_path(user), :class => 'button-input' %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button-input' %></td>
         </tr>
       <% end %>
     </tbody>
