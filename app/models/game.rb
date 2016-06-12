@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
     # PR > 4, change Income +1
     # PR < -1 and PR < -3, change Income -1
     # PR < -3, change Income -2
-    teams = Team.all
+    teams = Team.all_minus_aliens
     teams.each do |team|
       pr = self.public_relations.where(round: round).where(team: team).sum(:pr_amount)
       current_income = self.incomes.where(round: round, team: team).sum(:amount)
