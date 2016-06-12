@@ -35,6 +35,10 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # JSON for data
 gem 'json'
 
