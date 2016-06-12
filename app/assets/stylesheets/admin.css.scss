@@ -35,36 +35,36 @@ $border-tan: #BEC2AD;
   ul li {
     margin-bottom: 20px;
   }
+}
 
   /* =====================================
                BOTTOM NAVIGATION
      ===================================== */
 
-  nav {
-    background: $background-seafoam;
-    bottom: 0px;
-    position: fixed;
-    width: 100%;
+#admin-nav {
+  background: $background-seafoam;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
 
-    ul {
-      padding: 0 20px;
-    }
+  ul {
+    padding: 0 20px;
+  }
 
-    li {
-      border-right: 1px solid $border-tan;
-      display: inline-block;
-      float: left;
-    }
+  li {
+    border-right: 1px solid $border-tan;
+    display: inline-block;
+    float: left;
+  }
 
-    li:last-child {
-      border-right: 0px;
-    }
+  li:last-child {
+    border-right: 0px;
+  }
 
-    a {
-      font-size: 2.0rem;
-      line-height: 2.8rem;
-      padding: 5px 8px;
-    }
+  a {
+    font-size: 2.0rem;
+    line-height: 2.8rem;
+    padding: 5px 8px;
   }
 }
 
