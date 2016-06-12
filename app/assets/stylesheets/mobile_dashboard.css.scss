@@ -21,7 +21,7 @@ $break-large: 1200px;
 .role-military    { @include role-colors(#7C100C, "red");    }
 .role-ambassador  { @include role-colors(#541B89, "purple"); }
 .role-media       { @include role-colors(#C87E09, "orange"); }
-.role-alien       { @include role-colors(#541B89, "purple"); }
+.role-alien       { @include role-colors(#2d2f46, "aliens"); }
 
 .button {
   border-radius: 5px;
