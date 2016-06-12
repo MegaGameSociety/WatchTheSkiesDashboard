@@ -85,6 +85,8 @@
 
     // After submitting a new Message, do some updating to the view.
     $scope.pushNewMessage = function(savedMessage, conversationPartnerId) {
+      var conversationPartnerId = parseInt(conversationPartnerId);
+
       // If there is a conversation already with this partner, grab it.
       var conversationToUpdate = _.filter($scope.messages, function(message) {
         return message.conversation_partner.id === conversationPartnerId;
