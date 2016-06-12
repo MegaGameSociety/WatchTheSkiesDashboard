@@ -1,62 +1,55 @@
 <div id="admin">
   <h1>Human Control</h1>
 
-  <h3 class="clearfix">
-    <div class="half-width">PR Changes From Round: <%= @last_round %></div>
-    <div class="half-width">PR By Country</div>
-  </h3>
-
-  <section class="clearfix">
-    <div class="half-width">
-      <p>
-        <em>
-          PR effects collected on turn <%= @current_round %> will be distributed to teams halfway
-          through turn <%= @current_round + 1 %> along with credits.  These credits will then be usable in turn <%= @current_round + 2%>.
-        </em>
-      </p>
-      <table class="unpr">
-        <thead>
-          <tr>
-            <th >Country</th>
-            <th >PR Change</th>
-            <th >Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @pr_amounts.each do |data, value| %>
-            <tr>
-              <td><%= data %></td>
-              <td><%= value %></td>
-              <td><%= link_to "Details", country_pr_status_path(data), :class => "button-input" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="half-width">
-      <%= render 'layouts/country_pr_menu' %>
-      <table class="unpr">
+  <h3>PR Changes from Round: <%= @last_round %></h3>
+  <section>
+    <p><em>PR effects collected on turn <%= @current_round %> will be
+    distributed to teams halfway through turn <%= @current_round + 1 %> along
+    with credits.  These credits will then be usable in turn
+    <%= @current_round + 2%>.</em></p>
+    <table class="unpr">
+      <thead>
         <tr>
-          <th>Country</th>
-          <th>Distributed Round <%= @current_round %> Income</th>
-          <th>Distributed Round <%= @current_round %> Credits</th>
-          <th>Bonus Reserves Distributed for Round <%= @current_round %></th>
-          <th>Distributed Recurring Reserves</th>
+          <th >Country</th>
+          <th >PR Change</th>
+          <th >Details</th>
         </tr>
-        <% @incomes.each do |income| %>
+      </thead>
+      <tbody>
+        <% @pr_amounts.each do |data, value| %>
           <tr>
-            <td><%= income.team_name %></td>
-            <td><%= income.amount%></td>
-            <td><%= @income_values[income.team_name][income.amount-1]%></td>
-            <td><%= @game.bonus_credits.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
-            <td><%= @game.bonus_credits.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
+            <td><%= data %></td>
+            <td><%= value %></td>
+            <td><%= link_to "Details", country_pr_status_path(data), :class => "button-input" %></td>
           </tr>
-          <% end %>
-      </table>
-      <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
-      <%= link_to "Add Bonus Reserves", new_bonus_credit_path, :class => 'button-input' %>
-      <%= link_to "Bonus Reserves Index", bonus_credits_path, :class => "button-input" %>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <%= render 'layouts/country_pr_menu' %>
+  <section>
+    <table class="unpr">
+      <tr>
+        <th>Country</th>
+        <th>Distributed Round <%= @current_round %> Income</th>
+        <th>Distributed Round <%= @current_round %> Credits</th>
+        <th>Bonus Reserves Distributed for Round <%= @current_round %></th>
+        <th>Distributed Recurring Reserves</th>
+      </tr>
+      <% @incomes.each do |income| %>
+        <tr>
+          <td><%= income.team_name %></td>
+          <td><%= income.amount%></td>
+          <td><%= @income_values[income.team_name][income.amount-1]%></td>
+          <td><%= @game.bonus_credits.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
+          <td><%= @game.bonus_credits.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
+        </tr>
+        <% end %>
+    </table>
+    <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
+    <%= link_to "Add Bonus Reserves", new_bonus_credit_path, :class => 'button-input' %>
+    <%= link_to "Bonus Reserves Index", bonus_credits_path, :class => "button-input" %>
   </section>
 
   <h3>Bulk Human PR Creation</h3>
