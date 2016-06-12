@@ -1,0 +1,2003 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+
+
+
+
+
+ */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url("glyphicons-halflings-regular.eot");
+  src: url("glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("glyphicons-halflings-regular.woff") format("woff"), url("glyphicons-halflings-regular.ttf") format("truetype"), url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
+}
+
+@font-face {
+  font-family: "Vorlon";
+  src: url("VORLON.eot") format("eot");
+  src: url("VORLON.woff") format("woff"), url("VORLON.ttf") format("truetype"), url(/fonts/VORLON.svg#Vorlon) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =====================================
+                VARIABLES
+   ===================================== */
+/*
+Some Previously Used Colours / Colour Ideas
+
+  $background-blue: #94b3c4;
+  $background-seafoam: #d3e3d8;
+  $background-darktan: #f0f5db;
+  $background-green: #dbe8db;
+
+  $red: #9f0d33;
+  $light-red: #FA3E3B;
+
+  #C4DAF7
+  C5DDFF
+  #C29E9A
+  #6D8491
+
+*/
+/* =====================================
+                BASE STYLES
+   ===================================== */
+/* line 84, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+html {
+  height: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* line 93, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+body {
+  background: #ffffe9;
+  color: black;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 2.5rem;
+  height: 100%;
+  min-height: 100%;
+  line-height: 3.3rem;
+  margin: 0;
+  padding: 0 0 50px 0;
+}
+
+/* line 105, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 112, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+
+/* line 117, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* =====================================
+                  FONTS
+   ===================================== */
+/* line 126, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.DEN {
+  color: black;
+  font-family: "Comic Sans MS";
+  font-size: 1.6rem;
+}
+
+/* line 132, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.GNN {
+  color: black;
+  font-family: "Arial";
+  font-size: 1.6rem;
+}
+
+/* line 138, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.SFT {
+  color: black;
+  font-family: "Times New Roman";
+  font-size: 1.6rem;
+}
+
+/* =====================================
+              GENERAL PAGE
+   ===================================== */
+/* line 149, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* line 157, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h1 {
+  font-size: 5.6rem;
+  line-height: 6.4rem;
+}
+
+/* line 158, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h2 {
+  font-size: 3.6rem;
+  line-height: 4.4rem;
+}
+
+/* line 159, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h3 {
+  font-size: 2.8rem;
+  line-height: 3.6rem;
+}
+
+/* line 160, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h4 {
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+}
+
+/* line 162, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h2, h3 {
+  color: #399499;
+  margin-bottom: 5px;
+}
+
+/* line 167, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h4 {
+  color: black;
+  margin-bottom: 0px;
+}
+
+/* line 172, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.center {
+  text-align: center;
+}
+
+/* line 176, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+p, ul {
+  font-size: 2.5rem;
+  line-height: 3.3rem;
+  margin: 0;
+}
+
+/* line 182, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+p {
+  margin: 15px 0;
+}
+
+/* line 186, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.alien {
+  font-family: Vorlon !important;
+}
+
+/* =====================================
+             ERROR HANDLING
+   ===================================== */
+/* line 195, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.error {
+  color: #bd2c00;
+}
+
+/* line 199, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+#notice {
+  color: #6cc644;
+}
+
+/* line 203, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: #bd2c00;
+  display: table;
+}
+
+/* line 209, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid #bd2c00;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #ebebeb;
+}
+/* line 217, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #bd2c00;
+  color: white;
+}
+/* line 228, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* =====================================
+          LINKS, BUTTONS, INPUTS
+   ===================================== */
+/* line 239, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+a, a:visited {
+  color: black;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* line 245, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+a:hover {
+  background: black;
+  color: white;
+  text-decoration: none;
+}
+
+/* line 251, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/* line 259, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+select,
+input {
+  background-color: white;
+  border: 1px solid #ebebeb;
+  color: black;
+  font-size: 2rem;
+  height: 40px;
+  padding: 0 20px;
+}
+
+/* line 268, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+input[type="submit"] {
+  cursor: pointer;
+  display: block;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* line 275, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+input[type="submit"]:hover {
+  background: black;
+  color: white;
+}
+
+/* line 280, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+textarea {
+  background-color: white;
+  border: 1px solid #ebebeb;
+  color: black;
+  font-size: 1.6rem;
+  padding: 5px;
+  resize: vertical;
+  width: 100%;
+}
+
+/* line 290, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.button-input {
+  background: white;
+  border: 1px solid #ebebeb;
+  cursor: pointer;
+  display: inline-block;
+  font-style: italic;
+  font-size: 2rem;
+  height: 40px;
+  line-height: 3.8rem;
+  margin: 5px 0;
+  padding: 0 20px;
+}
+
+/* =====================================
+            PAUSE / PLAY ICONS
+   ===================================== */
+/* line 308, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 321, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-play:before {
+  content: "\e072";
+}
+
+/* line 322, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-pause:before {
+  content: "\e073";
+}
+
+/* line 323, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-stop:before {
+  content: "\e074";
+}
+
+/* line 324, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-increase:before {
+  content: "\e133";
+}
+
+/* line 325, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-decrease:before {
+  content: "\e134";
+}
+
+/* line 326, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.glyphicon-stagnate:before {
+  content: "\e082";
+}
+
+/* =====================================
+              TABLE DEFAULTS
+   ===================================== */
+/* line 333, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin: 10px 0;
+  width: 100%;
+}
+/* line 341, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table th {
+  padding: 0 10px;
+  text-align: left;
+}
+/* line 346, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table thead td {
+  font-weight: bold;
+}
+/* line 350, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table tr {
+  border-bottom: 1px solid black;
+}
+/* line 353, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table tr:last-child {
+  border-bottom: 0;
+}
+/* line 358, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table td {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  padding: 10px;
+  vertical-align: middle;
+}
+/* line 364, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table td label {
+  margin: 0;
+}
+/* line 370, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table .controls .button-input {
+  margin: 5px 0;
+  width: 105px;
+}
+/* line 376, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+table .button-input {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+/* =====================================
+                 COLUMNS
+   ===================================== */
+/* line 387, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.columns {
+  display: table;
+  position: relative;
+  width: 100%;
+}
+
+/* line 393, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.column {
+  display: table-cell;
+  padding: 10px;
+  vertical-align: top;
+  width: calc(100% / 3);
+}
+/* line 399, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.column img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 100%;
+}
+/* line 405, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.column ul {
+  list-style-type: none;
+  padding: 0px;
+}
+/* line 410, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.column li:after {
+  border-bottom: 1px solid #2f2f2f;
+  content: '';
+  display: block;
+  height: 4px;
+  margin: 0 auto;
+  width: 100px;
+}
+/* line 419, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.column li:last-child:after {
+  border-bottom: 0;
+}
+
+/* line 424, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.half-width {
+  display: inline-block;
+  float: left;
+  margin: 0 20px;
+  width: calc(50% - 40px);
+}
+/* line 430, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+.half-width h3 {
+  display: none;
+}
+
+/* line 435, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/application.css.scss */
+h3 .half-width {
+  margin: 0;
+  width: 50%;
+}
+/* =====================================
+                VARIABLES
+   ===================================== */
+/* =====================================
+                MIXINS
+   ===================================== */
+/* =====================================
+           SIZING FOR PROJECTOR
+   ===================================== */
+/* line 71, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.dashboard {
+  background-color: #382b08;
+  background-image: url("/assets/empire.jpeg");
+  background-position: top center;
+  background-repeat: repeat-x;
+  background-size: contain;
+  font-size: 5rem;
+  line-height: 5.8rem;
+  padding-bottom: 0px;
+  padding-top: 20px;
+}
+/* line 82, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.dashboard h3 {
+  font-size: 6rem;
+  line-height: 6.8rem;
+}
+/* line 87, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.dashboard h4 {
+  font-size: 5.2rem;
+  line-height: 6rem;
+}
+
+/* =====================================
+             TOP MESSAGES AREA
+   ===================================== */
+/* line 97, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#top-container {
+  height: 130px;
+  margin: 0 20px;
+  position: relative;
+}
+
+/* line 103, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#connection-error {
+  background-image: url("/assets/connection-error.png");
+  height: 50px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 63px;
+}
+
+/* line 112, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#round-container {
+  background: #1e5799;
+  background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  background: -webkit-linear-gradient(top, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  background: linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$color1, endColorstr=$color3,GradientType=0 );
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.75);
+  display: inline-block;
+  height: 130px;
+  float: left;
+  text-align: center;
+  width: 320px;
+}
+/* line 121, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#round-container #timer {
+  background: #e2e2e2;
+  background: -moz-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #fefefe 100%);
+  background: -webkit-linear-gradient(top, #e2e2e2 0%, #dbdbdb 50%, #fefefe 100%);
+  background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #fefefe 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$color1, endColorstr=$color3,GradientType=0 );
+  height: 80px;
+  margin: 0;
+  padding-top: 5px;
+}
+/* line 128, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#round-container h2 {
+  color: white;
+}
+/* line 132, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#round-container h3 {
+  color: #bd2c00;
+}
+
+/* =====================================
+              TERROR TRACKER
+   ===================================== */
+/* line 142, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#terror-tracker {
+  display: inline-block;
+  height: 130px;
+  width: Calc(100% - 320px);
+}
+/* line 147, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#terror-tracker h3 {
+  color: black;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* line 154, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-border {
+  background: #000;
+  height: 30px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+/* line 161, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar {
+  height: 30px;
+  margin: 0 auto;
+}
+/* line 165, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.none {
+  background-color: white;
+}
+/* line 166, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.low {
+  background-color: #6cc644;
+}
+/* line 167, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.med {
+  background-color: #44a662;
+}
+/* line 168, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.high {
+  background-color: #d5d506;
+}
+/* line 169, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.crit {
+  background-color: #cb8f06;
+}
+/* line 170, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+.terror-bar.doom {
+  background-color: #bd2c00;
+}
+
+/* =====================================
+              CONTROL MESSAGES
+   ===================================== */
+/* line 178, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#control-messages {
+  background: rgba(176, 214, 255, 0.4);
+  display: inline-block;
+  padding: 0px 10px;
+  margin: 20px;
+  vertical-align: top;
+}
+/* line 185, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#control-messages p {
+  font-size: 5.8rem;
+  line-height: 6.6rem;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* =====================================
+                COUNTRIES
+   ===================================== */
+/* line 198, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker {
+  background: #000;
+  bottom: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+/* line 205, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .country {
+  border-right: 15px;
+  color: #FFF;
+  display: inline-block;
+  font-size: 6rem;
+  margin: 0;
+  padding: 0 15px;
+}
+/* line 213, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .country span {
+  display: inline-block;
+  padding-top: 5px;
+  vertical-align: top;
+}
+/* line 219, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .country .break {
+  display: inline-block;
+  padding-left: 15px;
+}
+/* line 225, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .country:last-child .break {
+  display: none;
+}
+/* line 230, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .glyphicon {
+  font-size: 6rem;
+  top: 7px;
+}
+/* line 235, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .glyphicon-decrease {
+  color: #bd2c00;
+}
+/* line 236, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .glyphicon-increase {
+  color: #6cc644;
+}
+/* line 237, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#countries-ticker .glyphicon-stagnate {
+  color: #d5d506;
+}
+
+/* =====================================
+                  NEWS
+   ===================================== */
+/* line 245, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-block {
+  background: rgba(176, 214, 255, 0.69);
+  bottom: 70px;
+  box-shadow: 3px -3px 15px -5px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  width: 100%;
+}
+
+/* line 253, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#breaking-block {
+  height: 70px;
+}
+/* line 256, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#breaking-block h3 {
+  background: #bd2c00;
+  color: white;
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  padding: 0 10px;
+  width: 605px;
+}
+/* line 266, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#breaking-block .triangle {
+  border-style: solid;
+  border-width: 68px 90px 0 0;
+  border-color: #bd2c00 transparent transparent transparent;
+  display: inline-block;
+  float: left;
+  height: 0;
+  width: 0;
+}
+/* line 276, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#breaking-block .news-time {
+  display: inline-block;
+  float: left;
+  font-size: 5.2rem;
+  font-style: italic;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  width: calc(100% - 700px);
+}
+
+/* line 288, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container {
+  min-height: 175px;
+  padding: 10px;
+}
+/* line 292, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container h4 {
+  display: inline-block;
+  font-size: 4.8rem;
+  line-height: 5.6rem;
+  font-weight: bold;
+}
+/* line 299, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container img {
+  display: block;
+  max-height: 250px;
+  width: 80%;
+}
+/* line 305, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container p {
+  display: inline;
+  font-size: 4.8rem;
+  line-height: 5.6rem;
+  margin: 5px auto;
+}
+/* line 312, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container .news-time {
+  font-style: italic;
+}
+/* line 316, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container a {
+  color: #6cc644;
+  display: inline-block;
+  font-size: 3.6rem;
+  line-height: 4.4rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+/* line 327, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container .slider {
+  height: 175px;
+  overflow: hidden;
+  position: relative;
+  width: calc(100% - 380px);
+}
+/* line 333, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container .slider.landscape {
+  width: 100%;
+}
+/* line 338, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-container .slide {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* line 345, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image {
+  background: black;
+  border: 20px solid #1e5799;
+  bottom: 0px;
+  box-shadow: -3px -3px 15px -5px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  position: absolute;
+  right: 0px;
+}
+/* line 354, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image .image {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: contain;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+}
+/* line 363, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.portrait {
+  max-height: 600px;
+  width: 380px;
+}
+/* line 367, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.portrait .image {
+  position: relative;
+}
+/* line 59, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.portrait .image:before {
+  display: block;
+  content: " ";
+  width: 100%;
+  padding-top: 150%;
+}
+/* line 373, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.landscape {
+  bottom: 200px;
+  max-height: 400px;
+  width: calc(100% - 720px);
+}
+/* line 378, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.landscape .image {
+  position: relative;
+}
+/* line 59, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/games.css.scss */
+#news-image.landscape .image:before {
+  display: block;
+  content: " ";
+  width: 100%;
+  padding-top: 66.66667%;
+}
+/* line 5, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages {
+  display: flex;
+  flex: 1 0 auto;
+  padding: 20px 0;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages select {
+  width: 100%;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages form select {
+  margin-bottom: 15px;
+}
+
+/* line 21, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar {
+  flex: 0 0 300px;
+  list-style-type: none;
+  padding-left: 0;
+}
+@media (max-width: 850px) {
+  /* line 21, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar {
+    flex: 0 0 200px;
+  }
+  /* line 29, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .message-info .time {
+    display: block;
+  }
+}
+/* line 36, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar li {
+  background: #FFF;
+  border: 1px solid #CCC;
+  border-top: 0px;
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+}
+/* line 44, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar li.borderless {
+  border: 0;
+  padding: 0;
+}
+/* line 49, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar li.new-message {
+  border-top: 1px solid #CCC;
+  margin-top: 20px;
+}
+/* line 54, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar li.active {
+  padding-left: 5px;
+}
+/* line 59, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .time {
+  display: inline-block;
+  width: 80px;
+}
+/* line 64, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .message-sender {
+  display: inline-block;
+  font-weight: bold;
+  width: calc(100% - 90px);
+}
+/* line 70, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .flag {
+  vertical-align: top;
+  width: 50px;
+}
+/* line 75, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .message-info {
+  display: inline-block;
+  width: calc(100% - 60px);
+}
+/* line 80, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .preview-full {
+  display: none;
+}
+/* line 84, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .preview-snippet {
+  display: inline;
+}
+/* line 88, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-sidebar .preview-sender {
+  font-style: italic;
+}
+
+/* line 93, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused {
+  flex: 1;
+  padding: 0;
+  padding-left: 20px;
+}
+/* line 98, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .back-button {
+  display: none;
+}
+/* line 102, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .flag {
+  height: 50px;
+  width: 50px;
+}
+/* line 108, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .message-header .message-flag {
+  display: inline-block;
+  width: 50px;
+}
+/* line 113, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .message-header .message-info {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 135px);
+}
+/* line 119, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .message-header .message-time {
+  display: inline-block;
+  font-size: 14px;
+  font-style: italic;
+  vertical-align: top;
+  width: 70px;
+}
+@media (max-width: 700px) {
+  /* line 128, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-focused .message-header .message-info {
+    width: calc(100% - 75px);
+  }
+  /* line 132, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-focused .message-header .message-time {
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+}
+/* line 142, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .message-content {
+  background: #FFF;
+  border: 1px solid #CCC;
+  border-bottom: 0;
+  padding: 10px;
+}
+/* line 148, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+.messages-focused .message-content:last-child {
+  border-bottom: 1px solid #CCC;
+}
+
+@media only screen and (orientation: portrait) {
+  /* line 156, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .mobile_dashboard {
+    width: 100%;
+  }
+
+  /* line 160, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar {
+    display: block;
+    flex: 1;
+    width: 100%;
+  }
+  /* line 165, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar.focused {
+    display: none;
+  }
+  /* line 169, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .preview-snippet {
+    display: none;
+  }
+  /* line 173, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .preview-full {
+    display: inline;
+  }
+
+  /* line 178, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-focused {
+    display: none;
+  }
+  /* line 181, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-focused.focused {
+    display: block;
+    flex: 1;
+  }
+  /* line 186, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-focused .back-button {
+    display: inline-block;
+  }
+
+  /* line 192, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar li {
+    padding: 5px 5px 5px 10px;
+  }
+  /* line 196, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .message-info {
+    width: calc(100% - 60px);
+  }
+  /* line 200, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .time {
+    width: 80px;
+  }
+  /* line 204, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/messages.css.scss */
+  .messages-sidebar .message-sender {
+    width: calc(100% - 90px);
+  }
+}
+/* =====================================
+                VARIABLES
+   ===================================== */
+/* =====================================
+         ADMIN CP SPECIFIC OVERRIDES
+   ===================================== */
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin {
+  padding: 30px 30px 90px 30px;
+}
+/* line 18, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin h1 {
+  margin-bottom: 30px;
+}
+/* line 22, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin h3 {
+  margin-top: 20px;
+}
+/* line 26, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin h4 {
+  margin-bottom: 15px;
+}
+/* line 30, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin section {
+  background-color: #f0f5db;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+/* line 36, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin ul li {
+  margin-bottom: 20px;
+}
+
+/* =====================================
+             BOTTOM NAVIGATION
+   ===================================== */
+/* line 45, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin-nav {
+  background: #d3e3d8;
+  bottom: 0px;
+  position: fixed;
+  width: 100%;
+}
+/* line 51, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin-nav ul {
+  padding: 0 20px;
+}
+/* line 55, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin-nav li {
+  border-right: 1px solid #bec2ad;
+  display: inline-block;
+  float: left;
+}
+/* line 61, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin-nav li:last-child {
+  border-right: 0px;
+}
+/* line 65, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+#admin-nav a {
+  font-size: 2.0rem;
+  line-height: 2.8rem;
+  padding: 5px 8px;
+}
+
+/* =====================================
+               TEAM CONTROLS
+   ===================================== */
+/* line 77, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+.list-of-countries {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 14px;
+  justify-content: flex-start;
+  line-height: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* line 88, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/admin.css.scss */
+.list-of-countries div {
+  flex: 0 0 125px;
+  margin: 5px 10px;
+}
+/* line 1, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+body.logged_out {
+  background-color: #000;
+  background-image: url("/assets/banner.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-bottom: 0;
+}
+
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash {
+  padding: 20px;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #logo {
+  max-width: 600px;
+}
+/* line 16, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #logo img {
+  width: 100%;
+}
+/* line 21, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #games {
+  color: #FFFFFF;
+  margin: 40px 0 0 10%;
+  max-width: 350px;
+}
+/* line 27, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash h2 {
+  color: #FFFFFF;
+  font-size: 2.0rem;
+  line-height: 2.6rem;
+}
+/* line 33, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .form-signin {
+  margin: 0;
+  padding: 0 35px 20px;
+}
+/* line 38, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .form-control {
+  border-radius: 5px;
+  position: relative;
+  height: auto;
+  margin: 10px 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 1.6rem;
+  width: 100%;
+}
+/* line 50, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .form-control.button {
+  background: linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  background: -moz-linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  background: -webkit-linear-gradient(to bottom, #1e5799 0%, #2989d8 50%, #7db9e8 100%);
+  border: 1px solid #000000;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* line 61, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .checkbox {
+  line-height: 2.2rem;
+  margin: 0;
+}
+/* line 65, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .checkbox label {
+  font-weight: normal;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  margin: 0;
+}
+/* line 72, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .checkbox input {
+  height: auto;
+  margin: 4px 0;
+  padding: 0;
+  vertical-align: top;
+}
+/* line 80, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash a {
+  color: #2989d8;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+}
+/* line 85, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash a:hover {
+  background-color: transparent;
+}
+/* line 90, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash .welcome {
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+}
+/* line 95, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer {
+  margin-top: 20px;
+  text-align: center;
+}
+/* line 99, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer .social {
+  text-align: center;
+}
+/* line 102, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer .social a {
+  background-image: url("/assets/social.png");
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+/* line 108, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer .social a.home {
+  background-position: 0   0;
+}
+/* line 109, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer .social a.twitter {
+  background-position: 0 125px;
+}
+/* line 110, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/splash.css.scss */
+#splash #footer .social a.facebook {
+  background-position: 0  50px;
+}
+/* line 18, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head {
+  background-image: url("/assets/mobile-backgrounds/world-green.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .button {
+  background: #0c7c33;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .country-header {
+  border-bottom: 1px solid #0c7c33;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .tab-choice {
+  background: #0c7c33;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .tab-choice.focused {
+  border: 1px solid #0c7c33;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .tab {
+  border: 1px solid #0c7c33;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .tab.news .news-time {
+  background: #0c7c33;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .messages-sidebar li.active {
+  border-left: 6px solid #0c7c33;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head .govt h4 {
+  color: #0c7c33;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-head h4 span {
+  color: #0c7c33;
+}
+
+/* line 19, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy {
+  background-image: url("/assets/mobile-backgrounds/world-yellow.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .button {
+  background: #c2b729;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .country-header {
+  border-bottom: 1px solid #c2b729;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .tab-choice {
+  background: #c2b729;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .tab-choice.focused {
+  border: 1px solid #c2b729;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .tab {
+  border: 1px solid #c2b729;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .tab.news .news-time {
+  background: #c2b729;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .messages-sidebar li.active {
+  border-left: 6px solid #c2b729;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy .govt h4 {
+  color: #c2b729;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-deputy h4 span {
+  color: #c2b729;
+}
+
+/* line 20, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist {
+  background-image: url("/assets/mobile-backgrounds/world-blue.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .button {
+  background: #003d6f;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .country-header {
+  border-bottom: 1px solid #003d6f;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .tab-choice {
+  background: #003d6f;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .tab-choice.focused {
+  border: 1px solid #003d6f;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .tab {
+  border: 1px solid #003d6f;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .tab.news .news-time {
+  background: #003d6f;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .messages-sidebar li.active {
+  border-left: 6px solid #003d6f;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist .govt h4 {
+  color: #003d6f;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-scientist h4 span {
+  color: #003d6f;
+}
+
+/* line 21, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military {
+  background-image: url("/assets/mobile-backgrounds/world-red.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .button {
+  background: #7c100c;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .country-header {
+  border-bottom: 1px solid #7c100c;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .tab-choice {
+  background: #7c100c;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .tab-choice.focused {
+  border: 1px solid #7c100c;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .tab {
+  border: 1px solid #7c100c;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .tab.news .news-time {
+  background: #7c100c;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .messages-sidebar li.active {
+  border-left: 6px solid #7c100c;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military .govt h4 {
+  color: #7c100c;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-military h4 span {
+  color: #7c100c;
+}
+
+/* line 22, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador {
+  background-image: url("/assets/mobile-backgrounds/world-purple.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .button {
+  background: #541b89;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .country-header {
+  border-bottom: 1px solid #541b89;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .tab-choice {
+  background: #541b89;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .tab-choice.focused {
+  border: 1px solid #541b89;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .tab {
+  border: 1px solid #541b89;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .tab.news .news-time {
+  background: #541b89;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .messages-sidebar li.active {
+  border-left: 6px solid #541b89;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador .govt h4 {
+  color: #541b89;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-ambassador h4 span {
+  color: #541b89;
+}
+
+/* line 23, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media {
+  background-image: url("/assets/mobile-backgrounds/world-orange.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .button {
+  background: #c87e09;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .country-header {
+  border-bottom: 1px solid #c87e09;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .tab-choice {
+  background: #c87e09;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .tab-choice.focused {
+  border: 1px solid #c87e09;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .tab {
+  border: 1px solid #c87e09;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .tab.news .news-time {
+  background: #c87e09;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .messages-sidebar li.active {
+  border-left: 6px solid #c87e09;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media .govt h4 {
+  color: #c87e09;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-media h4 span {
+  color: #c87e09;
+}
+
+/* line 24, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien {
+  background-image: url("/assets/mobile-backgrounds/world-purple.png");
+}
+/* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .button {
+  background: #541b89;
+}
+/* line 8, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .country-header {
+  border-bottom: 1px solid #541b89;
+}
+/* line 9, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .tab-choice {
+  background: #541b89;
+}
+/* line 10, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .tab-choice.focused {
+  border: 1px solid #541b89;
+}
+/* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .tab {
+  border: 1px solid #541b89;
+}
+/* line 12, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .tab.news .news-time {
+  background: #541b89;
+}
+/* line 13, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .messages-sidebar li.active {
+  border-left: 6px solid #541b89;
+}
+/* line 14, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien .govt h4 {
+  color: #541b89;
+}
+/* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.role-alien h4 span {
+  color: #541b89;
+}
+
+/* line 26, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.button {
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  height: auto;
+  font-style: normal;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 10px;
+  position: relative;
+}
+
+/* line 40, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile {
+  background-color: #000;
+  font-size: 100%;
+  line-height: 26px;
+  -webkit-text-size-adjust: 100%;
+  min-height: 100%;
+  padding: 0;
+}
+/* line 48, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h1 {
+  font-size: 36px;
+  line-height: 1.1;
+}
+/* line 49, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h2 {
+  font-size: 30px;
+  line-height: 1.1;
+}
+/* line 50, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h3 {
+  font-size: 24px;
+  line-height: 1.1;
+}
+/* line 51, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h4 {
+  font-size: 18px;
+  line-height: 1.1;
+}
+/* line 52, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h5 {
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: bold;
+}
+/* line 53, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile h6 {
+  font-size: 12px;
+  line-height: 1.1;
+}
+/* line 55, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile textarea, body.mobile select, body.mobile p, body.mobile ul {
+  font-size: 16px;
+  line-height: 26px;
+}
+/* line 60, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile label {
+  margin-top: 0px;
+}
+/* line 64, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile textarea {
+  min-height: 85px;
+}
+/* line 68, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile .page-title {
+  background: #FFF;
+  margin-bottom: 30px;
+  padding-left: 60px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+/* line 76, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+body.mobile .page-content {
+  color: #444;
+  flex: 1;
+  padding: 0;
+  transition: all .3s;
+}
+
+/* line 84, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard {
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: #000;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  max-height: 999999px;
+  width: 100%;
+  /* =====================================
+                HEADER
+  ===================================== */
+  /* =====================================
+                TABS
+  ===================================== */
+}
+/* line 96, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard h4 {
+  color: #000;
+  margin: 10px 0;
+}
+/* line 104, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .country-header {
+  background: #FFF;
+  margin: 0;
+  margin-bottom: 50px;
+}
+/* line 110, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .country-items {
+  display: flex;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  /* line 110, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .country-items {
+    display: block;
+  }
+}
+/* line 119, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .country-messages {
+  padding: 10px;
+  padding-top: 0;
+}
+/* line 123, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .country-messages div {
+  display: inline-block;
+  width: calc(100% - 80px);
+}
+@media (max-width: 600px) {
+  /* line 119, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .country-messages {
+    padding-top: 15px;
+  }
+}
+/* line 133, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard a.logoff {
+  border-radius: 2px;
+  color: #FFF;
+  margin: 0;
+  padding: 2px 5px;
+}
+/* line 140, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .my-country {
+  min-width: 375px;
+}
+@media (max-width: 600px) {
+  /* line 140, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .my-country {
+    text-align: center;
+  }
+}
+/* line 147, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .my-country .govt {
+  display: inline-block;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+  vertical-align: top;
+}
+/* line 155, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .my-country .govt h4 {
+  font-weight: bold;
+  margin-top: 5px;
+}
+/* line 161, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .my-country img {
+  height: 50px;
+  margin: 10px 5px 0 5px;
+  width: 50px;
+}
+/* line 169, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .terror-container,
+.mobile_dashboard .turns-container {
+  flex: 1;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  /* line 169, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .terror-container,
+  .mobile_dashboard .turns-container {
+    display: inline-block;
+    width: 45%;
+  }
+}
+/* line 179, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .my-country {
+  order: 2;
+}
+/* line 180, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .turns-container {
+  order: 1;
+}
+/* line 181, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .terror-container {
+  order: 3;
+}
+/* line 187, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .tabs {
+  margin: 0 auto;
+  width: 80%;
+}
+/* line 192, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .tab-selection {
+  display: flex;
+}
+/* line 196, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .tab-choice {
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 16px;
+  margin-left: 10px;
+  padding: 5px 8px;
+}
+/* line 204, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .tab-choice.focused {
+  background: #FFF;
+  border-bottom: 1px solid #FFF;
+  color: #000;
+  margin-bottom: -1px;
+}
+/* line 212, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.mobile_dashboard .tab {
+  background: #FFF;
+  padding: 20px;
+}
+
+/* =====================================
+            TAB - INCOME
+===================================== */
+/* line 223, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .pr-modifiers {
+  width: 100%;
+}
+/* line 227, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income table {
+  margin: 0;
+}
+/* line 230, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income table tbody tr:nth-child(even) {
+  background: #efefef;
+}
+/* line 232, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income table .header {
+  font-weight: bold;
+  padding: 0 10px;
+}
+/* line 237, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income table td {
+  font-size: 14px;
+  line-height: 20px;
+}
+/* line 243, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+/* line 247, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info label {
+  display: block;
+  margin-bottom: 8px;
+}
+/* line 252, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info .amount {
+  flex: 0 0 90px;
+}
+/* line 256, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info .source {
+  flex: 0 0 calc(100% - 100px);
+}
+/* line 260, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info .half {
+  flex: 1 0 50%;
+}
+/* line 264, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info .header {
+  font-weight: bold;
+}
+/* line 268, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.income .income-info.middle {
+  margin-top: 20px;
+}
+
+/* =====================================
+            TAB - NEWS
+===================================== */
+/* line 277, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px 0;
+  width: 100%;
+}
+/* line 284, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news h4 {
+  margin: 0;
+}
+/* line 288, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-time {
+  bottom: 10px;
+  color: #FFF;
+  font-style: italic;
+  left: 0px;
+  margin: 0;
+  padding: 2px 5px 2px 10px;
+  position: absolute;
+}
+/* line 298, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-content {
+  padding: 10px;
+}
+/* line 301, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-content .news-time {
+  bottom: 0px;
+  margin-top: 5px;
+  position: relative;
+}
+/* line 308, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-item {
+  background: #EFEFEF;
+  flex-basis: auto;
+  flex-grow: 1;
+  margin: 10px;
+  max-width: 300px;
+  min-width: 100px;
+}
+/* line 316, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-item .image {
+  position: relative;
+}
+/* line 320, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-item .news-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+/* line 327, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-item.landscape .news-image {
+  background-position: center center;
+  height: 200px;
+}
+/* line 334, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+.tab.news .news-item.portrait .news-image {
+  background-position: top center;
+  height: 400px;
+}
+
+/* =====================================
+            MOBILE - PORTRAIT
+===================================== */
+@media only screen and (orientation: portrait) {
+  /* line 347, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .tab-choice {
+    font-size: 14px;
+    height: 25px;
+    line-height: 18px;
+    margin-left: 0;
+    margin-right: 5px;
+    padding: 5px 5px 5px 5px;
+  }
+  /* line 356, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .tab-choice.focused {
+    border-bottom: 0px;
+    position: relative;
+  }
+  /* line 361, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .tab-choice.focused:after {
+    content: " ";
+    display: block;
+    height: 1px;
+    bottom: -2px;
+    border-top: 2px solid #FFF;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+  }
+  /* line 372, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .tab {
+    padding: 10px;
+  }
+  /* line 376, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/mobile_dashboard.css.scss */
+  .mobile_dashboard .tab.news .news-item {
+    margin: 5px;
+  }
+}
+/* =====================================
+            MOBILE - LANDSCAPE
+===================================== */
+@media print {
+  @page {
+    size: landscape;
+}
+
+  @import url(https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,900,400italic|Droid+Serif);
+  /* line 7, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  html, body {
+    background-color: #fff;
+  }
+
+  /* line 11, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  nav {
+    display: none;
+  }
+
+  /* line 15, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin {
+    background-color: #fff;
+    color: #2f2f2f;
+    font-family: 'Droid Serif', serif;
+    padding: 15px;
+  }
+  /* line 21, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin section {
+    background-color: #FFF;
+  }
+  /* line 25, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin p {
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+  /* line 30, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin h1 {
+    color: #2f2f2f;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 3.2rem;
+    line-height: 3.8rem;
+    margin: 0 0 10px 0;
+    padding: 0;
+    text-align: center;
+  }
+  /* line 40, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin h3 {
+    border-bottom: 2px solid #2f2f2f;
+    border-top: 2px solid #2f2f2f;
+    color: #2f2f2f;
+    display: block;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin: 0;
+    padding: 12px 0;
+    text-align: center;
+  }
+  /* line 52, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin h4 {
+    font-family: 'Playfair Display SC', serif;
+    font-style: italic;
+    text-align: center;
+  }
+  /* line 58, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin .column + .column {
+    border-left: 1px solid #2f2f2f;
+  }
+  /* line 62, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin .column {
+    padding: 0 20px;
+  }
+  /* line 65, /Users/kevinc/Desktop/Files/Coding/MegagameSociety/WatchTheSkiesDashboard/app/assets/stylesheets/print.css.scss */
+  #admin .column .banner {
+    width: 75%;
+  }
+}
