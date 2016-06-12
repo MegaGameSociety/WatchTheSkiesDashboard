@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607185824) do
+ActiveRecord::Schema.define(version: 20160612200110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,11 +99,10 @@ ActiveRecord::Schema.define(version: 20160607185824) do
 
   create_table "team_roles", force: :cascade do |t|
     t.string   "role_name"
-    t.string   "role_color"
+    t.string   "role_display_name"
     t.string   "role_permissions",  default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role_display_name"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -174,6 +173,6 @@ ActiveRecord::Schema.define(version: 20160607185824) do
   add_foreign_key "terror_trackers", "games"
   add_foreign_key "tweets", "games"
   add_foreign_key "users", "games"
-  add_foreign_key "users", "games"
   add_foreign_key "users", "team_roles"
+  add_foreign_key "users", "teams"
 end
