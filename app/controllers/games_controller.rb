@@ -43,6 +43,7 @@ class GamesController < ApplicationController
     @income_values['USA']= [1,3,5,7,9,11,13,15,17]
     @income_values['Germany'] =[2,5,6,7,8,9,10,12,14]
 
+    # Todo: Refactor this so that we get the team name with the income
     @incomes = @game.incomes.where(round: @current_round)
     if @last_round > 0
       @previous_income = @game.incomes.where(round: @last_round)

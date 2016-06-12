@@ -1,6 +1,6 @@
 class Api::ApiController < ApplicationController
 
-  # List o` all games
+  # List of all games
   def games
     # TODO: Limit this only to currently running games.
     respond_to do |format|
