@@ -1,3 +1,7 @@
+$break-small: 600px;
+$break-med: 600px;
+$break-large: 1200px;
+
 @mixin role-colors($color, $background) {
   background-image: url('/assets/mobile-backgrounds/world-#{$background}.png');
   .button { background: $color; }
@@ -26,26 +30,31 @@
   cursor: pointer;
   display: inline-block;
   height: auto;
-  font-size: 1.6rem;
   font-style: normal;
   font-weight: bold;
-  line-height: 2.2rem;
   margin: 10px 0;
   padding: 10px;
   position: relative;
 }
 
-.mobile {
+body.mobile {
   background-color: #000;
-  display: flex;
-  font-size: 1.5rem;
-  line-height: 1.6;
+  font-size: 100%;
+  line-height: 26px;
+  -webkit-text-size-adjust: 100%;
   min-height: 100%;
   padding: 0;
 
-  p, ul {
-    font-size: 1.6rem;
-    line-height: 2.2rem;
+  h1 { font-size: 36px; line-height: 1.1; }
+  h2 { font-size: 30px; line-height: 1.1; }
+  h3 { font-size: 24px; line-height: 1.1; }
+  h4 { font-size: 18px; line-height: 1.1; }
+  h5 { font-size: 14px; line-height: 1.1; font-weight: bold; }
+  h6 { font-size: 12px; line-height: 1.1; }
+
+  textarea, select, p, ul {
+    font-size: 16px;
+    line-height: 26px;
   }
 
   label {
@@ -84,7 +93,6 @@
   max-height: 999999px; // Overcome Mobile Chrome Font Boosting.
   width: 100%;
 
-  // BASE
   h4 {
     color: #000;
     margin: 10px 0;
@@ -101,35 +109,48 @@
 
   .country-items {
     display: flex;
+    text-align: center;
+
+    @media (max-width: $break-med) {
+      display: block;
+    }
   }
 
   .country-messages {
     padding: 10px;
+    padding-top: 0;
 
     div {
       display: inline-block;
-      width: calc(100% - 75px);
+      width: calc(100% - 80px);
+    }
+
+    @media (max-width: $break-med) {
+      padding-top: 15px;
     }
   }
 
   a.logoff {
     border-radius: 2px;
     color: #FFF;
-    float: right;
-    font-size: 1.4rem;
-    line-height: 2rem;
     margin: 0;
     padding: 2px 5px;
   }
 
   .my-country {
-    display: flex;
-    justify-content: center;
+    min-width: 375px;
+
+    @media (max-width: $break-med) {
+      text-align: center;
+    }
 
     .govt {
+      display: inline-block;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 15px;
+
       text-align: center;
+      vertical-align: top;
 
       h4 {
         font-weight: bold;
@@ -137,10 +158,10 @@
       }
     }
 
-    .role img,
-    .flag img {
-      margin: 10px 20px;
-      width: 100px;
+    img {
+      height: 50px;
+      margin: 10px 5px 0 5px;
+      width: 50px;
     }
   }
 
@@ -148,7 +169,17 @@
   .turns-container {
     flex: 1;
     text-align: center;
+
+    @media (max-width: $break-med) {
+      display: inline-block;
+      width: 45%;
+    }
   }
+
+  .my-country { order: 2; }
+  .turns-container { order: 1; }
+  .terror-container { order: 3; }
+
 
   /* =====================================
                 TABS
@@ -166,8 +197,9 @@
     color: #FFF;
     cursor: pointer;
     display: inline-block;
+    line-height: 16px;
     margin-left: 10px;
-    padding: 5px 10px;
+    padding: 5px 8px;
 
     &.focused {
       background: #FFF;
@@ -194,10 +226,17 @@
 
   table {
     margin: 0;
+
     tbody tr:nth-child(even) {background: #efefef}
 
     .header {
       font-weight: bold;
+      padding: 0 10px;
+    }
+
+    td {
+      font-size: 14px;
+      line-height: 20px;
     }
   }
 
@@ -238,14 +277,11 @@
 .tab.news {
   display: flex;
   flex-wrap: wrap;
-  font-size: 0;
   justify-content: space-around;
   padding: 10px 0;
   width: 100%;
 
   h4 {
-    font-size: 2.0rem;
-    line-height: 2.6rem;
     margin: 0;
   }
 
@@ -308,45 +344,37 @@
 ===================================== */
 @media only screen and (orientation: portrait) {
   .mobile_dashboard {
-    font-size: 1.8rem;
-
-    .country-header h4 {
-      font-size: 2.0rem;
-      line-height: 2.6rem;
-      margin-bottom: 0;
-    }
-
-    .my-country {
-      .govt h4 {
-        margin-top: 0;
-      }
-
-      .role,
-      .flag {
-        img {
-          margin: 20px 10px;
-          width: 50px;
-        }
-      }
-    }
-
-    .my-country .govt h4 {
-      margin: 0;
-    }
-
-    .country-messages {
-      padding-top: 0;
-    }
-
     .tab-choice {
-      font-size: 2.0rem;
+      font-size: 14px;
+      height: 25px;
+      line-height: 18px;
+      margin-left: 0;
+      margin-right: 5px;
+      padding: 5px 5px 5px 5px;
     }
-  }
 
-  .tab.news {
-    .news-item {
-      max-width: 250px;
-      min-width: 150px;
+    .tab-choice.focused {
+      border-bottom: 0px;
+      position: relative;
+    }
+
+    .tab-choice.focused:after {
+      content: " ";
+      display: block;
+      height: 1px;
+      bottom: -2px;
+      border-top: 2px solid #FFF;
+      position: absolute;
+      width: 100%;
+      left: 0px;
+    }
+
+    .tab {
+      padding: 10px;
+    }
+
+    .tab.news .news-item {
+      margin: 5px;
     }
   }
 }

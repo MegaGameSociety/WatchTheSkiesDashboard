@@ -5,12 +5,9 @@
   </div>
 
   <div class="message-info">
-    <div ng-if="message.sender_id === myCountryId" class="from"><b>From:</b> {{myCountryName}}</div>
-    <div ng-if="message.sender_id !== myCountryId" class="from"><b>From:</b> {{selectedMessage.conversation_partner.team_name}}</div>
-
-    <div ng-if="message.recipient_id === myCountryId" class="to"><b>To:</b> {{myCountryName}}</div>
-    <div ng-if="message.recipient_id !== myCountryId" class="to"><b>To:</b> {{selectedMessage.conversation_partner.team_name}}</div>
+    <div class="from"><b>From:</b> {{message.sender_id === myCountryId ? myCountryName : selectedMessage.conversation_partner.team_name}}</div>
+    <div class="to"><b>To:</b> {{message.recipient_id === myCountryId ? myCountryName : selectedMessage.conversation_partner.team_name}}</div>
   </div>
-  <div class="time">{{message.created_at | date:'HH:mm a'}}</div>
+  <div class="message-time">{{message.created_at | date:'HH:mm a'}}</div>
 </div>
 <div class="message-body">{{message.content}}</div>
