@@ -15,7 +15,6 @@ $break-large: 850px;
   form select {
     margin-bottom: 15px;
   }
-
 }
 
 .messages-sidebar {
@@ -29,8 +28,6 @@ $break-large: 850px;
     .message-info .time {
       display: block;
     }
-
-
   }
 
   li {
@@ -206,3 +203,13 @@ $break-large: 850px;
     }
   }
 }
+
+
+/* =====================================
+          ESPIONAGE OVERRIDES
+===================================== */
+
+.messages.espionage .messages-sidebar:first-child {
+  border-top: 1px solid #CCC;
+}
+
