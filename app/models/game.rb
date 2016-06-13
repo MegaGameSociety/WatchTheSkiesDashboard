@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
     
     teams = Team.all_without_incomes
     teams.each do |team|
-      amount = self.public_relations.where('round < ?', [round - 2, 0].max).where(team: team).group(:round).sum(:pr_amount).reduce(3) do |memo, arr|
+      amount = self.public_relations.where('round < ?', [round - 1, 0].max).where(team: team).group(:round).sum(:pr_amount).reduce(6) do |memo, arr|
         round, pr_diff = arr
         return [memo + calculate_income_level(pr_diff), 0].max
       end
@@ -106,8 +106,8 @@ class Game < ActiveRecord::Base
   private
 
   def calculate_income_level(pr)
-    # PR > 4, change Income +1
-    # PR < -1 and PR < -3, change Income -1
+    # PR >= 4, change Income +1
+    # PR <= -1 and PR >= -3, change Income -1
     # PR < -3, change Income -2
     if pr >= 4
       return 1
@@ -115,6 +115,8 @@ class Game < ActiveRecord::Base
       return -1
     elsif pr < -3
       return -2
+    else
+      return 0
     end
   end
 end
