@@ -1,19 +1,21 @@
 <ul class="messages-sidebar" ng-class="{'focused': selectedMessage !== null}">
-  <li class="borderless">
-    <select name="messageFilter"
-            id="messageFilter"
-            ng-model="messageFilter"
-            ng-change="resetMessages()"
-            ng-options="filter as filter.title for filter in filterOptions">
-    </select>
-  </li>
+  <% unless espionage === 'true' %>
+    <li class="borderless">
+      <select name="messageFilter"
+              id="messageFilter"
+              ng-model="messageFilter"
+              ng-change="resetMessages()"
+              ng-options="filter as filter.title for filter in filterOptions">
+      </select>
+    </li>
 
-  <li ng-class="{'active': selectedMessage === 'new'}"
-      ng-click="createNewMessage()"
-      id="message_new"
-      class="new-message">
-      <div>Send New Message</div>
-  </li>
+    <li ng-class="{'active': selectedMessage === 'new'}"
+        ng-click="createNewMessage()"
+        id="message_new"
+        class="new-message">
+        <div>Send New Message</div>
+    </li>
+  <% end %>
 
   <li ng-repeat="conversation in messages | filter:filterFn | orderBy: '-updated_at'"
       ng-class="{'active': messageIsActive === conversation}"
