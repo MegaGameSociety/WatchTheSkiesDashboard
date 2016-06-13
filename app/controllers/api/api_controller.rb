@@ -258,7 +258,7 @@ class Api::ApiController < ApplicationController
     }
 
     respond_to do |format|
-      format.json { render json: @response }
+      format.json { render :json => @response }
     end
 
   end
