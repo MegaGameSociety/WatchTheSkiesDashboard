@@ -20,6 +20,10 @@
       <%= render(:partial => "messages", :controller => "dahsboard") %>
     </div>
 
+    <div id="tab-espionage" class="tab messages espionage" ng-if="focusedTab === 'espionage'" ng-controller="espionageCtrl">
+      <%= render(:partial => "espionage") %>
+    </div>
+
 
     <!-- Operatives -->
 
