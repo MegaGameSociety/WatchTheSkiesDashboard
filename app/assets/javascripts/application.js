@@ -29,6 +29,7 @@
 //= require angular/controllers/mobile/base-mobile.js
 //= require angular/controllers/mobile/income.js
 //= require angular/controllers/mobile/messages.js
+//= require angular/controllers/mobile/espionage.js
 //= require angular/controllers/mobile/news.js
 
 //= require angular/controllers/desktop/news.js
