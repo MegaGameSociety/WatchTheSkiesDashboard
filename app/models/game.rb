@@ -34,8 +34,6 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-        #First update the income levels
-        update_income_levels()
 
         #Group Twitter activities together and dump cleanly into the error bucket on fail
         begin
@@ -53,6 +51,8 @@ class Game < ActiveRecord::Base
         self.round +=1
         self.next_round = self.next_round + (30*60)
         self.save
+        #First update the income levels
+        update_income_levels()
       end
     end
     return self
@@ -60,23 +60,16 @@ class Game < ActiveRecord::Base
 
   def update_income_levels()
     round = self.round
-    # PR > 4, change Income +1
-    # PR < -1 and PR < -3, change Income -1
-    # PR < -3, change Income -2
+    
     teams = Team.all_without_incomes
     teams.each do |team|
-      pr = self.public_relations.where(round: round).where(team: team).sum(:pr_amount)
-      current_income = self.incomes.where(round: round, team: team).sum(:amount)
-
-      if pr >= 4
-        current_income += 1
-      elsif pr <=-1 and pr >=-3
-        current_income += -1
-      elsif pr < -3
-        current_income += -2
+      amount = self.public_relations.where('round < ?', [round - 2, 0].max).where(team: team).group(:round).sum(:pr_amount).reduce(3) do |memo, arr|
+        round, pr_diff = arr
+        return [memo + calculate_income_level(pr_diff), 0].max
       end
+
       next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
-      next_income.amount = current_income
+      next_income.amount = amount
       next_income.save()
     end
   end
@@ -108,5 +101,20 @@ class Game < ActiveRecord::Base
         "bonus_credits" => bonus_credits,
         "recurring_credits" => recurring_credits,
       }
+  end
+
+  private
+
+  def calculate_income_level(pr)
+    # PR > 4, change Income +1
+    # PR < -1 and PR < -3, change Income -1
+    # PR < -3, change Income -2
+    if pr >= 4
+      return 1
+    elsif pr <=-1 and pr >=-3
+      return -1
+    elsif pr < -3
+      return -2
+    end
   end
 end
