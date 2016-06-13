@@ -8,7 +8,7 @@ class BugsController < ApplicationController
 
   def new
     @bug = Bug.new
-    @team = Team.all
+    @teams = Team.all
   end
 
   def create
