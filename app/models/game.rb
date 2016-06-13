@@ -110,7 +110,11 @@ class Game < ActiveRecord::Base
       }
   end
 
-  def next_round
-    super.in_time_zone(self.time_zone)
+  def next_round(loalized=true)
+    if localized
+      super.in_time_zone(self.time_zone)
+    else
+      super
+    end
   end
 end
