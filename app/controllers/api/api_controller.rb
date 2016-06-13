@@ -251,7 +251,7 @@ class Api::ApiController < ApplicationController
     @response = {
       status: 200,
       message: "Success!",
-      date: Time.now
+      date: Time.now,
       result: {
         messages: @messages
       }
