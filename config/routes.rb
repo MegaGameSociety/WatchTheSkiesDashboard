@@ -75,6 +75,7 @@ Rails.application.routes.draw do
     get 'income_data' => 'api#income'
     get 'income_data/:game_id' => 'api#income'
 
+    get 'espionage_data' => 'api#espionage'
     get 'messages_data' => 'api#messages'
     get 'messages_data/:game_id' => 'api#messages'
 
