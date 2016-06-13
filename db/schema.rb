@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 20160613014103) do
 
   create_table "team_roles", force: :cascade do |t|
     t.string   "role_name"
-    t.string   "role_color"
     t.string   "role_permissions",  default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
