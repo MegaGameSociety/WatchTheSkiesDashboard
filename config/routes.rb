@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :public_relations
   resources :messages
   resources :games
-  resources :users
+  resources :users do
+    collection { post :import }
+  end
   resources :teams
   resources :splash
   resources :mobile_dashboard

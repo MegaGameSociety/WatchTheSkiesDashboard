@@ -34,4 +34,42 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  def self.file_import(file, game)
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    users = []
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      next if row.values.all?{|x|x.nil?}
+      user = User.find_or_create_by(email: row["E-mail"])
+
+      if user.game.nil?
+        user.game = game
+      else
+        next unless user.game == game
+      end
+
+      if row['Password'].present? and row['Password'] != ''
+        user.password = row['Password']
+        user.password_confirmation = row['Password']
+      end
+
+      user.team = Team.find_by_team_name(row['Team']) || user.team
+      user.team_role = TeamRole.find_by_role_name(row['Role']) || user.team_role
+      user.role = "Player"
+      users << user
+    end
+    ActiveRecord::Base.transaction do
+      users.each{|x| x.save }
+    end
+  end
+
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+    when ".xls" then Roo::Excel.new(file.path)
+    when ".xlsx" then Roo::Excelx.new(file.path)
+    else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
 end

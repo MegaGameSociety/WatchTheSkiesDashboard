@@ -1,4 +1,9 @@
 <div id="admin">
+  <h1>Excel Upload</h1>
+  <%= form_tag import_users_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
   <h1>Listing Users</h1>
 
   <section>

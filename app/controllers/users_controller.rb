@@ -8,6 +8,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def import
+    if current_user.super_admin?
+      User.file_import(params[:file], current_game)
+      redirect_to users_path, notice: "Users imported."
+    else
+      redirect_to users_path, notice: "You do not have access to import."
+    end
+  end
+
   # GET /user/1
   # GET /user/1.json
   def show
@@ -89,7 +98,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to user_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

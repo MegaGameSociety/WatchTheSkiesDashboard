@@ -38,6 +38,7 @@ end
 group :production do
   gem 'rails_12factor'
 end
+gem 'roo'
 
 # JSON for data
 gem 'json'
@@ -47,9 +48,7 @@ gem 'pg'
 gem 'pluck_to_hash'
 
 gem 'devise', '~> 3.4.0'
-gem 'rails_12factor', group: :production
 gem 'twitter'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
