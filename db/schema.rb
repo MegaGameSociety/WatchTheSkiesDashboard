@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612200110) do
+ActiveRecord::Schema.define(version: 20160613014103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "bonus_credits", force: :cascade do |t|
-    t.boolean  "recurring"
-    t.integer  "round"
-    t.integer  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "game_id"
-    t.integer  "team_id"
-  end
-
-  add_index "bonus_credits", ["team_id"], name: "index_bonus_credits_on_team_id", using: :btree
 
   create_table "bugs", force: :cascade do |t|
     t.integer  "game_id"
@@ -186,7 +174,6 @@ ActiveRecord::Schema.define(version: 20160612200110) do
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
   add_index "users", ["team_role_id"], name: "index_users_on_team_role_id", using: :btree
 
-  add_foreign_key "bonus_credits", "teams"
   add_foreign_key "incomes", "games"
   add_foreign_key "incomes", "teams"
   add_foreign_key "messages", "teams", column: "recipient_id"

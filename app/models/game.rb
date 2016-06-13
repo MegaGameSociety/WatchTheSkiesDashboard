@@ -102,7 +102,7 @@ class Game < ActiveRecord::Base
         "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
         "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
         "incomes" => income_list,
-        "bonus_credits" => reserves,
+        "reserves" => reserves,
         "recurring_credits" => recurring_credits,
       }
   end
