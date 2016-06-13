@@ -63,9 +63,14 @@ class Game < ActiveRecord::Base
     
     teams = Team.all_without_incomes
     teams.each do |team|
-      amount = self.public_relations.where('round < ?', [round - 1, 0].max).where(team: team).group(:round).sum(:pr_amount).reduce(6) do |memo, arr|
-        round, pr_diff = arr
-        return [memo + calculate_income_level(pr_diff), 0].max
+      turn_0 = calculate_income_level(self.public_relations.where(round: 0).where(team: team).sum(:pr_amount) || 0)
+      if (round > 1)
+        amount = self.public_relations.where('round < ?', [round - 1, 1].max).where(team: team).group(:round).sum(:pr_amount).reduce(6 + turn_0) do |memo, arr|
+          round, pr_diff = arr
+          return [memo + calculate_income_level(pr_diff), 0].max
+        end
+      else
+        amount = 6 + turn_0
       end
 
       next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
