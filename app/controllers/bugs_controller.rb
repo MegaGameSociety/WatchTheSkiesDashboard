@@ -12,7 +12,12 @@ class BugsController < ApplicationController
   end
 
   def create
-    @bug = Bug.new(bug_params)
+    targetId = bug_params['target'].to_i
+    beneficiaryId = bug_params['beneficiary'].to_i
+    new_params = bug_params.except('target', 'beneficiary')
+    @bug = Bug.new(new_params)
+    @bug.target = Team.find(targetId)
+    @bug.beneficiary = Team.find(beneficiaryId)
     @bug.klass = Message
     @bug.game = current_game
     respond_to do |format|
