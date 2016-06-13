@@ -8,7 +8,9 @@ class Team < ActiveRecord::Base
     self.pluck(:team_name).delete_if {|x| x == "Aliens"}
   end
 
-  def self.all_minus_aliens
-    self.all.where.not(team_name: "Aliens")
+  # Access teams which don't accrue income/pr
+  # ToDo: Replace this with a check on a flag
+  def self.all_without_incomes
+    self.all.where.not(team_name: ["Aliens"])
   end
 end

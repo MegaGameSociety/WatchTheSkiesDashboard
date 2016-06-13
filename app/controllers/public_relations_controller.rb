@@ -5,7 +5,7 @@ class PublicRelationsController < ApplicationController
   # Get
   def un_dashboard
     @public_relations = current_game.public_relations.all.order(round: :desc, created_at: :desc)
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
     @countries = Team.countries
     @current_round = current_game.round
   end
@@ -56,7 +56,7 @@ class PublicRelationsController < ApplicationController
     @country = params[:country]
     @team = Team.where(team_name: @country)
 
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
     @game = current_game
 
     if @teams.any?{|x| x.team_name == @country}
@@ -77,7 +77,7 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations.json
   def index
     @public_relations = current_game.public_relations.order(round: :desc, created_at: :desc)
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
   end
 
   # GET /public_relations/1
@@ -88,14 +88,14 @@ class PublicRelationsController < ApplicationController
   # GET /public_relations/new
   def new
     @public_relation = PublicRelation.new
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
     @current_round = current_game.round
   end
 
   # GET /public_relations/1/edit
   def edit
     @current_round = @public_relation.round
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
   end
 
   # POST /public_relations

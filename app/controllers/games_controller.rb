@@ -29,7 +29,7 @@ class GamesController < ApplicationController
                                                   created_at: :desc
                                                 )
     @countries = Team.countries
-    @teams = Team.all_minus_aliens
+    @teams = Team.all_without_incomes
 
     #To Do: Move income values into stored structure somewhere
     @income_values = {}
@@ -165,7 +165,7 @@ class GamesController < ApplicationController
     g.incomes.destroy_all
     g.bonus_credits.destroy_all
 
-    teams = Team.all_minus_aliens
+    teams = Team.all_without_incomes
     teams.each do |team|
       g.incomes.push(Income.create(round: g.round, team: team, amount: 6))
     end
