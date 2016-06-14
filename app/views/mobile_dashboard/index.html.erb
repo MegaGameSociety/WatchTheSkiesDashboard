@@ -5,7 +5,6 @@
     </div>
     <div class="country-messages">
       <div ng-if="controlMessage">Important Messages: {{controlMessage}}</div>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, :class => 'button logoff' %>
     </div>
   </div>
 
@@ -27,6 +26,8 @@
 
     <div id="tab-income" class="tab income" ng-if="checkPermissions('income') && focusedTab === 'income'" ng-controller="incomeCtrl">
       <%= render(:partial => "income", :controller => "income") %>
+    <div id="tab-prefs" class="tab preferences" ng-show="focusedTab === 'preferences'">
+      <%= render(:partial => "preferences") %>
     </div>
 
     <!-- Research -->
