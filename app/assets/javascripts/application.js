@@ -33,3 +33,5 @@
 
 //= require angular/controllers/desktop/news.js
 //= require angular/controllers/desktop/terror.js
+
+//= require angular/controllers/admin/admin-messages.js

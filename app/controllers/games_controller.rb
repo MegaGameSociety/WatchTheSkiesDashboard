@@ -50,6 +50,9 @@ class GamesController < ApplicationController
     end
   end
 
+  def messages_control
+  end
+
   def update_den
     @game = current_game
     @game.den = params[:game][:den]
