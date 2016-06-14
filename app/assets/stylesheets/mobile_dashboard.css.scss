@@ -96,6 +96,10 @@ body.mobile {
   h4 {
     color: #000;
     margin: 10px 0;
+
+    @media (max-width: $break-med) {
+      margin: 5px 0;
+    }
   }
 
   /* =====================================
@@ -104,6 +108,7 @@ body.mobile {
   .country-header {
     background: #FFF;
     margin: 0;
+    padding-bottom: 10px;
     margin-bottom: 50px;
   }
 
@@ -117,17 +122,7 @@ body.mobile {
   }
 
   .country-messages {
-    padding: 10px;
-    padding-top: 0;
-
-    div {
-      display: inline-block;
-      width: calc(100% - 80px);
-    }
-
-    @media (max-width: $break-med) {
-      padding-top: 15px;
-    }
+    padding: 0 10px;
   }
 
   a.logoff {
@@ -171,8 +166,13 @@ body.mobile {
     text-align: center;
 
     @media (max-width: $break-med) {
+      h4 {
+        font-size: 16px;
+      }
+
       display: inline-block;
-      width: 45%;
+      margin: 0 5px;
+      width: calc(50% - 15px);
     }
   }
 
