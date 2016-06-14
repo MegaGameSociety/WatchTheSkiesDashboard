@@ -52,7 +52,7 @@
             $scope.news = result['news'];
           }
         }
-        var nextRound = moment(result['timer']['next_round']);
+        var nextRound = moment.unix(result['timer']['next_round']);
         if ($scope.nextRound.valueOf() != nextRound.valueOf()) {
           $scope.nextRound = moment(nextRound);
           $scope.roundDuration = $scope.nextRound.diff(moment(), 'seconds');

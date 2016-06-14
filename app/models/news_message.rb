@@ -5,4 +5,8 @@ class NewsMessage < ActiveRecord::Base
     NewsMessage.where(round: round)
   end
 
+  def created_at
+    super.in_time_zone(self.game.time_zone)
+  end
+
 end

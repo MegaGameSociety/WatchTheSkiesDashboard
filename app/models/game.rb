@@ -97,7 +97,7 @@ class Game < ActiveRecord::Base
     main_data = {
         "timer" => {
           "round"=>  round,
-          "next_round" =>  self.next_round.in_time_zone(Time.zone.name),
+          "next_round" =>  self.next_round.to_utc,
           "paused" => @data['paused'],
           "control_message" => self.control_message
         },
@@ -108,5 +108,13 @@ class Game < ActiveRecord::Base
         "bonus_credits" => bonus_credits,
         "recurring_credits" => recurring_credits,
       }
+  end
+
+  def next_round(localized=true)
+    if localized
+      super.in_time_zone(self.time_zone)
+    else
+      super
+    end
   end
 end
