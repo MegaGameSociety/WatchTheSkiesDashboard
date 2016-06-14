@@ -76,13 +76,14 @@
       $scope.newMessage.message.recipient = parseInt(message.recipient);
 
       $http.post('/api/messages', $scope.newMessage).then(
-      function successCalback(response) {
-        $scope.pushNewMessage(response.data, message.recipient);
-        $scope.resetNewMessage();
-      },
-      function errorCallback(response) {
+        function successCalback(response) {
+          $scope.pushNewMessage(response.data, message.recipient);
+          $scope.resetNewMessage();
+        },
+        function errorCallback(response) {
 
-      });
+        }
+      );
     }
 
     // After submitting a new Message, do some updating to the view.
@@ -188,6 +189,8 @@
     }
 
     $scope.changeTeam = function() {
+      $scope.myCountryId = $scope.teamId;
+      $scope.myCountryName = _.find($scope.teams, function(t) { return t.id === $scope.teamId }).team_name;
       $http.get('/api/admin/messages/' + $scope.teamId).then(
         function successCallback(response) {
           $('#connection-error').hide();
