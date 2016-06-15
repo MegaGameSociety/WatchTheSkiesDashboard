@@ -1,4 +1,4 @@
-<%= render(:partial => "messages/messages_sidebar", :locals => { :espionage => 'false' }) %>
+<%= render(:partial => "messages/messages_sidebar", :locals => { :espionage => 'true' }) %>
 
 <div class="messages-focused" ng-class="{'focused': selectedMessage !== null}">
   <div ng-if="selectedMessage === null" class="message-content">No conversation selected</div>
@@ -8,12 +8,6 @@
       <div ng-repeat="message in selectedMessage.messages | orderBy: '+created_at'" class="message-content">
         <%= render(:partial => "/messages/message_content") %>
       </div>
-      <div class="message-content">
-        <%= render(:partial => "/messages/new_message") %>
-      </div>
-    </div>
-    <div ng-if="selectedMessage === 'new'" class="message-content">
-      <%= render(:partial => "/messages/new_message") %>
     </div>
   </div>
 </div>

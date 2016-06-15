@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :teams
   resources :splash
   resources :mobile_dashboard
+  resources :bugs
 
   resources :news_messages
   patch 'toggle_paper_content/:news_id', to: 'news_messages#toggle_paper_content', as: :toggle_paper_content
@@ -79,6 +80,7 @@ Rails.application.routes.draw do
     get 'income_data' => 'api#income'
     get 'income_data/:game_id' => 'api#income'
 
+    get 'espionage_data' => 'api#espionage'
     get 'messages_data' => 'api#messages'
     get 'messages_data/:game_id' => 'api#messages'
 

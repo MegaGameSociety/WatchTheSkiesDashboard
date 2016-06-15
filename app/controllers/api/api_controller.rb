@@ -202,7 +202,7 @@ class Api::ApiController < ApplicationController
 
  # Get Message Data for the Mobile App - Messages Tab.
   def messages
-    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
+    find_game
     @game.update
 
     user_team_id = current_user.team_id
@@ -237,6 +237,36 @@ class Api::ApiController < ApplicationController
     end
   end
 
+  def espionage
+    find_game
+    @game.update
+
+    @bugs = Bug.where(game: @game, beneficiary_id: current_user.team_id)
+    @messages = @bugs.map do |bug|
+      Message.where(game: @game)
+        .where("sender_id = ? OR recipient_id = ?", bug.target_id, bug.target_id)
+        .where(created_at: bug.created_at..(bug.end_time || Time.now))
+    end.flatten
+
+    @response = {
+      status: 200,
+      message: "Success!",
+      date: Time.now,
+      result: {
+        messages: @messages
+      }
+    }
+
+    respond_to do |format|
+      format.json { render :json => @response }
+    end
+
+  end
+
   private
+
+  def find_game
+    @game = params[:game_id].nil? ? current_game : Game.find_by_id(params[:game_id])
+  end
 
 end

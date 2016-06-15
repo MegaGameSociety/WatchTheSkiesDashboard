@@ -8,7 +8,7 @@
 <!--   <div ng-if="checkPermissions('operatives')" class="tab-choice" ng-click="setTab('operatives')" ng-class="{'focused': focusedTab === 'operatives'}">Operatives</div> -->
 
   <!-- If role === 'Military || Deputy' -->
-  <!-- <div ng-if="checkPermissions('espionage')" class="tab-choice" ng-click="setTab('espionage')" ng-class="{'focused': focusedTab === 'espionage'}">Espionage</div> -->
+  <div ng-if="checkPermissions('espionage')" class="tab-choice" ng-click="setTab('espionage')" ng-class="{'focused': focusedTab === 'espionage'}">Espionage</div>
 
   <!-- If role === 'Head of State' -->
   <div ng-if="checkPermissions('income')" class="tab-choice" ng-click="setTab('income')" ng-class="{'focused': focusedTab === 'income'}">Income</div>

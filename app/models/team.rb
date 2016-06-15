@@ -13,4 +13,8 @@ class Team < ActiveRecord::Base
   def self.all_without_incomes
     self.all.where.not(team_name: ["Aliens"])
   end
+  
+  def to_s
+    team_name
+  end
 end
