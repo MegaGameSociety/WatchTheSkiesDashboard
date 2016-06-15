@@ -20,6 +20,8 @@
       $scope.messageFilter = $scope.filterOptions[0];
     }
 
+    $scope.messages = [];
+
     // A team should not be able to send messages to itself.
     $scope.validTeams = _.reject($scope.teams, function(team) {
       // A team should not be able to send messages to itself.
@@ -207,19 +209,22 @@
 
         // Get the latest message as a moment object.
         var existingMessages = $scope.messages;
-        var latestTimestamps = _.map(existingMessages, function(conversations) {
-          return conversations.latest_message.updated_at;
-        }).sort();
 
-        // Compare existing latest with new latest.
-        var latestTime = latestTimestamps.length > 0 ? moment(latestTimestamps[latestTimestamps.length - 1]) : null;
+        if (newMessages.length > 0) {
+          var latestTimestamps = _.map(existingMessages, function(conversations) {
+            return conversations.latest_message.updated_at;
+          }).sort();
 
-        var sortedMessages = _.sortBy(newMessages, 'updated_at')
-        var newestTimestamp = moment(sortedMessages[sortedMessages.length - 1].updated_at);
+          // Compare existing latest with new latest.
+          var latestTime = latestTimestamps.length > 0 ? moment(latestTimestamps[latestTimestamps.length - 1]) : null;
 
-        // Only update the view if there are actually new messages.
-        if (latestTimestamps.length === 0 || moment(newestTimestamp).isAfter(latestTime)) {
-          pushNewMessages(sortedMessages);
+          var sortedMessages = _.sortBy(newMessages, 'updated_at')
+          var newestTimestamp = moment(sortedMessages[sortedMessages.length - 1].updated_at);
+
+          // Only update the view if there are actually new messages.
+          if (latestTimestamps.length === 0 || moment(newestTimestamp).isAfter(latestTime)) {
+            pushNewMessages(sortedMessages);
+          }
         }
       },
       function errorCallback(response) {
