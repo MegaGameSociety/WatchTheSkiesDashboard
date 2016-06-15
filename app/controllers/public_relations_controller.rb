@@ -157,4 +157,5 @@ class PublicRelationsController < ApplicationController
       params[:public_relation].permit(:source, :country, :description, :round, :pr_amount, :team)
     end
 
+
 end
