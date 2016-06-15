@@ -21,6 +21,7 @@ class MessagesController < ApplicationController
 	end
 
 	def conversation
+		@teams = Team.all.pluck(:team_name).delete_if{|x| x == params['country']}
 		@country = params['country']
 		@country_name = params['country_name']
 		user_team_id = Team.find_by_team_name(params['country']).id

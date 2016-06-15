@@ -1,9 +1,11 @@
-<div id="admin">
-  <h1>Listing Messages</h1>
-  <h4>Messages between <%= @country %> and <%= @country_name %></h4>
-  <%= link_to 'Back', country_messages_path(@country), :class => 'button-input' %>
+<div id="admin" class="admin-messages">
+  <h3>Messages between <%= @country %> and <%= @country_name %></h3>
 
-  <section>
+  <div class="sidebar">
+    <%= render 'admin_sidebar', :country => @country %>
+  </div>
+
+  <section class="main">
      <table class="unpr">
       <thead>
         <tr>

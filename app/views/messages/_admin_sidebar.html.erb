@@ -1,0 +1,10 @@
+<section>
+  <%= link_to 'Back', messages_path, :class => 'button-input' %>
+
+  <p class="description">See Messages between <%= country %> and:</p>
+  <ul>
+    <% @teams.each do |team|%>
+      <li><%=  link_to team, country_conversation_path(country, team), :class => "button-input" %></li>
+    <% end %>
+  </ul>
+</section>
