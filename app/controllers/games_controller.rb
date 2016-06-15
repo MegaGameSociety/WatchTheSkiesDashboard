@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   # Human Control dashboard to quickly see PR's
   def human_control
     @game = current_game
-    @last_round = (@game.round) -1
+    @last_round = (@game.round) - 1
 
     @pr_amounts = PublicRelation.where(game: @game)
       .joins(:team)
@@ -201,11 +201,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     dateObj = params["game"]
     # Assumes local server time is the time and then converts to utc
-    datetime = Time.zone.local(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i,
+    zone = Time.find_zone(dateObj["time_zone"])
+    datetime = zone.local(dateObj["next_round(1i)"].to_i, dateObj["next_round(2i)"].to_i,
                                dateObj["next_round(3i)"].to_i, dateObj["next_round(4i)"].to_i,
-                               dateObj["next_round(5i)"].to_i).utc()
-    @game.next_round = datetime
+                               dateObj["next_round(5i)"].to_i, 0)
     @game.time_zone = dateObj["time_zone"]
+    @game.next_round = datetime
     @game.save
     redirect_to admin_control_path
   end
