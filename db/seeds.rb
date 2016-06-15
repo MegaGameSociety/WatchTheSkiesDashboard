@@ -114,6 +114,12 @@ TeamRole.create(
   role_permissions: ['research', 'trade', 'rumors']
 ).save()
 
+TeamRole.create(
+  role_name: "editor",
+  role_display_name: "Editor",
+  role_permissions: []
+).save()
+
 Game::COUNTRIES.each do |country|
   team = Team.create(team_name: country)
   #Income starts at 6.
@@ -123,5 +129,8 @@ Game::COUNTRIES.each do |country|
   income.save
 end
 
-# Game::Countries doesn't include aliens
+# Game::Countries doesn't include aliens or media.
 Team.create(team_name: 'Aliens').save()
+Team.create(team_name: 'GNN').save()
+Team.create(team_name: 'SF&T').save()
+Team.create(team_name: 'DEN').save()
