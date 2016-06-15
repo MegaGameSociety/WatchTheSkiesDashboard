@@ -22,7 +22,20 @@
 
     // A team should not be able to send messages to itself.
     $scope.validTeams = _.reject($scope.teams, function(team) {
-      return team.id === $scope.myCountryId;
+      // A team should not be able to send messages to itself.
+      if (team.id === $scope.myCountryId) {
+        return team.id;
+      }
+
+      // GNN & SFT cannot message the aliens.
+      if ($scope.myCountryName === 'SF&T' || $scope.myCountryName === 'GNN') {
+        return team.team_name === 'Aliens';
+      }
+
+      // Likewise Aliens cannot message them.
+      if ($scope.myCountryName === 'Aliens') {
+        return team.team_name === 'GNN' || team.team_name === 'SF&T';
+      }
     });
 
     // Reset the new message form.
