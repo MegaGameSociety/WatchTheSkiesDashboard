@@ -1,6 +1,8 @@
-<h3>Messages by Country</h3>
-<section>
-  <% @teams.each do |team|%>
-    <%= link_to team.team_name, country_messages_path(team.team_name), :class => "button-input" %>
-  <% end %>
-</section>
+<div id="admin">
+  <h3>Messages by Country</h3>
+  <section>
+    <% @teams.each do |team|%>
+      <%= link_to team.team_name, country_messages_path(team.team_name), :class => "button-input" %>
+    <% end %>
+  </section>
+</div>
