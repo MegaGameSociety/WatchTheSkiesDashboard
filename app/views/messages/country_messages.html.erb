@@ -1,0 +1,7 @@
+<h3>See Messages Between:</h3>
+<%= link_to 'Back', messages_path %>
+<section>
+  <% @teams.each do |team|%>
+    <%= @origin_name %> and <%=  link_to team, country_conversation_path(@origin_name, team), :class => "button-input" %> </br>
+  <% end %>
+</section>

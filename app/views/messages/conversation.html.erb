@@ -1,0 +1,34 @@
+<div id="admin">
+  <h1>Listing Messages Entry</h1>
+  <%= link_to 'Back', country_messages_path(@country) %>
+  <section>
+     <table class="unpr">
+      <thead>
+        <tr>
+          <th>ID #</th>
+          <th >Sender</th>
+          <th >Round #</th>
+          <th >Recipient</th>
+          <th >Content</th>
+          <th >Created At </th>
+<!--           <th >Controls</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each_with_index do |message, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= message.sender.team_name %></td>
+            <td><%= message.round_number %></td>
+            <td><%= message.recipient.team_name %></td>
+            <td><%= message.content %></td>
+            <td><%= message.created_at.strftime('%H:%M:%S') %></td>
+<!--             <td><%= link_to 'Details', message, :class => "button-input" %>
+            <%= link_to 'Edit', edit_message_path(message), :class => "button-input" %>
+            <%= link_to 'Destroy', message, method: :delete, :class => "button-input", data: { confirm: 'Are you sure?' } %></td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>

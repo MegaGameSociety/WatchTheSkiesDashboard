@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resources :terror_trackers
   resources :public_relations
   resources :messages
+  get 'country_messages/:country' => 'messages#country_messages', as: :country_messages
+  get 'country_messages/:country/conversation/:country_name' => 'messages#conversation', as: :country_conversation
+
   resources :games
   resources :users do
     collection { post :import }
