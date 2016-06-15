@@ -107,6 +107,10 @@ class Game < ActiveRecord::Base
       }
   end
 
+  def next_round
+    super.in_time_zone(self.time_zone)
+  end
+
   private
 
   def calculate_income_level(pr)
@@ -124,11 +128,4 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def next_round(localized=true)
-    if localized
-      super.in_time_zone(self.time_zone)
-    else
-      super
-    end
-  end
 end
