@@ -53,6 +53,7 @@ game.terror_trackers.push(TerrorTracker.create(
 game.news_messages.push(NewsMessage.create(
   title: "Daily Earth News reports:",
   content: "DEN reported some things",
+  game: game,
   round: game.round,
   visible_content:true,
   visible_image:true,
@@ -63,6 +64,7 @@ game.news_messages.push(NewsMessage.create(
 game.news_messages.push(NewsMessage.create(
   title: "Global News Network reports:",
   content: "GNN also reported some things.",
+  game: game,
   round: game.round,
   visible_content: true,
   visible_image: true
@@ -71,6 +73,7 @@ game.news_messages.push(NewsMessage.create(
 game.news_messages.push(NewsMessage.create(
   title: "Science & Financial Times reports:",
   content: "Science & Financial Times reported some stuff.",
+  game: game,
   round: game.round,
   visible_content:true,
   visible_image: true
