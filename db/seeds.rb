@@ -53,6 +53,7 @@ game.terror_trackers.push(TerrorTracker.create(
 game.news_messages.push(NewsMessage.create(
   title: "Daily Earth News reports:",
   content: "DEN reported some things",
+  game: game,
   round: game.round,
   visible_content:true,
   visible_image:true,
@@ -63,6 +64,7 @@ game.news_messages.push(NewsMessage.create(
 game.news_messages.push(NewsMessage.create(
   title: "Global News Network reports:",
   content: "GNN also reported some things.",
+  game: game,
   round: game.round,
   visible_content: true,
   visible_image: true
@@ -71,6 +73,7 @@ game.news_messages.push(NewsMessage.create(
 game.news_messages.push(NewsMessage.create(
   title: "Science & Financial Times reports:",
   content: "Science & Financial Times reported some stuff.",
+  game: game,
   round: game.round,
   visible_content:true,
   visible_image: true
@@ -114,6 +117,12 @@ TeamRole.create(
   role_permissions: ['research', 'trade', 'rumors']
 ).save()
 
+TeamRole.create(
+  role_name: "editor",
+  role_display_name: "Editor",
+  role_permissions: []
+).save()
+
 Game::COUNTRIES.each do |country|
   team = Team.create(team_name: country)
   #Income starts at 6.
@@ -123,5 +132,8 @@ Game::COUNTRIES.each do |country|
   income.save
 end
 
-# Game::Countries doesn't include aliens
+# Game::Countries doesn't include aliens or media.
 Team.create(team_name: 'Aliens').save()
+Team.create(team_name: 'GNN').save()
+Team.create(team_name: 'SF&T').save()
+Team.create(team_name: 'DEN').save()

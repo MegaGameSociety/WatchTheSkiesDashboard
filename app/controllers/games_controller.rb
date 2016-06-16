@@ -165,8 +165,8 @@ class GamesController < ApplicationController
       )
 
     g.incomes.destroy_all
-    g.bonus_credits.destroy_all
-
+    g.reserves.destroy_all
+    g.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all
     teams = Team.all_without_incomes
     teams.each do |team|
       g.incomes.push(Income.create(round: g.round, team: team, amount: 6))

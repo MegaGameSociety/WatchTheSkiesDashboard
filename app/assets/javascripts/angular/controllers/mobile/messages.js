@@ -20,9 +20,24 @@
       $scope.messageFilter = $scope.filterOptions[0];
     }
 
+    $scope.messages = [];
+
     // A team should not be able to send messages to itself.
     $scope.validTeams = _.reject($scope.teams, function(team) {
-      return team.id === $scope.myCountryId;
+      // A team should not be able to send messages to itself.
+      if (team.id === $scope.myCountryId) {
+        return team.id;
+      }
+
+      // GNN & SFT cannot message the aliens.
+      if ($scope.myCountryName === 'SF&T' || $scope.myCountryName === 'GNN') {
+        return team.team_name === 'Aliens';
+      }
+
+      // Likewise Aliens cannot message them.
+      if ($scope.myCountryName === 'Aliens') {
+        return team.team_name === 'GNN' || team.team_name === 'SF&T';
+      }
     });
 
     // Reset the new message form.
@@ -194,19 +209,22 @@
 
         // Get the latest message as a moment object.
         var existingMessages = $scope.messages;
-        var latestTimestamps = _.map(existingMessages, function(conversations) {
-          return conversations.latest_message.updated_at;
-        }).sort();
 
-        // Compare existing latest with new latest.
-        var latestTime = latestTimestamps.length > 0 ? moment(latestTimestamps[latestTimestamps.length - 1]) : null;
+        if (newMessages.length > 0) {
+          var latestTimestamps = _.map(existingMessages, function(conversations) {
+            return conversations.latest_message.updated_at;
+          }).sort();
 
-        var sortedMessages = _.sortBy(newMessages, 'updated_at')
-        var newestTimestamp = moment(sortedMessages[sortedMessages.length - 1].updated_at);
+          // Compare existing latest with new latest.
+          var latestTime = latestTimestamps.length > 0 ? moment(latestTimestamps[latestTimestamps.length - 1]) : null;
 
-        // Only update the view if there are actually new messages.
-        if (latestTimestamps.length === 0 || moment(newestTimestamp).isAfter(latestTime)) {
-          pushNewMessages(sortedMessages);
+          var sortedMessages = _.sortBy(newMessages, 'updated_at')
+          var newestTimestamp = moment(sortedMessages[sortedMessages.length - 1].updated_at);
+
+          // Only update the view if there are actually new messages.
+          if (latestTimestamps.length === 0 || moment(newestTimestamp).isAfter(latestTime)) {
+            pushNewMessages(sortedMessages);
+          }
         }
       },
       function errorCallback(response) {

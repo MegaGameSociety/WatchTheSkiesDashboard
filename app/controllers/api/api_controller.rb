@@ -147,10 +147,10 @@ class Api::ApiController < ApplicationController
     round = @game.round
     user_team = Team.find_by_id(current_user.team_id)
 
-    public_relations_list = PublicRelation.where(game: @game, team: user_team)
-    income_level = Income.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
+    public_relations_list = PublicRelation.where(game: @game, team: user_team, round: round - 1)
+    income_level = Income.where(game: @game, round: round + 1, team: user_team).limit(1).pluck(:amount)
     # TO DO: This is in progress of being renamed.
-    reserves = BonusCredit.where(game: @game, round: round, team: user_team)
+    reserves = BonusCredit.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
 
     # TO DO: This still needs to be moved.
     @income_values = {}
@@ -164,7 +164,13 @@ class Api::ApiController < ApplicationController
     @income_values['USA']= [1,3,5,7,9,11,13,15,17]
     @income_values['Germany'] =[2,5,6,7,8,9,10,12,14]
 
-    income_value = @income_values[user_team.team_name][income_level[0] - 1]
+    # Don't explode if there is no data yet.
+    if income_level[0]
+      income_value = @income_values[user_team.team_name][income_level[0] - 1]
+    else
+      income_level = 0
+      income_value = 0
+    end
 
     begin
       #generate overall embedded result
@@ -174,7 +180,7 @@ class Api::ApiController < ApplicationController
         },
         "pr" => public_relations_list,
         "income_level" => income_level[0],
-        "reserves" => reserves,
+        "reserves" => reserves[0],
         "income_value" => income_value,
       }
     rescue

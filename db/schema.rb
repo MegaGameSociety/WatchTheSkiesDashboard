@@ -11,22 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612200110) do
+ActiveRecord::Schema.define(version: 20160613014103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bonus_credits", force: :cascade do |t|
-    t.boolean  "recurring"
-    t.integer  "round"
-    t.integer  "amount"
+  create_table "bugs", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "target_id"
+    t.integer  "beneficiary_id"
+    t.string   "klass"
+    t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "game_id"
-    t.integer  "team_id"
   end
-
-  add_index "bonus_credits", ["team_id"], name: "index_bonus_credits_on_team_id", using: :btree
 
   create_table "games", force: :cascade do |t|
     t.string   "name"
@@ -97,12 +95,24 @@ ActiveRecord::Schema.define(version: 20160612200110) do
   add_index "public_relations", ["game_id"], name: "index_public_relations_on_game_id", using: :btree
   add_index "public_relations", ["team_id"], name: "index_public_relations_on_team_id", using: :btree
 
+  create_table "reserves", force: :cascade do |t|
+    t.boolean  "recurring"
+    t.integer  "round"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "game_id"
+    t.integer  "team_id"
+  end
+
+  add_index "reserves", ["team_id"], name: "index_reserves_on_team_id", using: :btree
+
   create_table "team_roles", force: :cascade do |t|
     t.string   "role_name"
-    t.string   "role_display_name"
     t.string   "role_permissions",  default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role_display_name"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -163,7 +173,6 @@ ActiveRecord::Schema.define(version: 20160612200110) do
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
   add_index "users", ["team_role_id"], name: "index_users_on_team_role_id", using: :btree
 
-  add_foreign_key "bonus_credits", "teams"
   add_foreign_key "incomes", "games"
   add_foreign_key "incomes", "teams"
   add_foreign_key "messages", "teams", column: "recipient_id"
@@ -173,6 +182,6 @@ ActiveRecord::Schema.define(version: 20160612200110) do
   add_foreign_key "terror_trackers", "games"
   add_foreign_key "tweets", "games"
   add_foreign_key "users", "games"
+  add_foreign_key "users", "games"
   add_foreign_key "users", "team_roles"
-  add_foreign_key "users", "teams"
 end

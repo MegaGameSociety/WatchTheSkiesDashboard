@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  has_many :bonus_credits
+  has_many :reserves, class_name: "Reserve"
   has_many :incomes
   has_many :messages
   has_many :news_messages
@@ -83,8 +83,8 @@ class Game < ActiveRecord::Base
     @data = self.data
 
     income_list = self.incomes.where(round: round).group(:team_name).sum(:amount)
-    bonus_credits = self.bonus_credits.where(round: round, recurring: false).group(:team_name).sum(:amount)
-    recurring_credits = self.bonus_credits.where(recurring: true).group(:team_name).sum(:amount)
+    reserves = self.reserves.where(round: round, recurring: false).group(:team_name).sum(:amount)
+    recurring_credits = self.reserves.where(recurring: true).group(:team_name).sum(:amount)
 
     @global_terror = {
         'activity' => self.activity,
@@ -102,9 +102,13 @@ class Game < ActiveRecord::Base
         "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
         "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
         "incomes" => income_list,
-        "bonus_credits" => bonus_credits,
+        "reserves" => reserves,
         "recurring_credits" => recurring_credits,
       }
+  end
+
+  def next_round
+    super.in_time_zone(self.time_zone)
   end
 
   private
@@ -124,11 +128,4 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def next_round(localized=true)
-    if localized
-      super.in_time_zone(self.time_zone)
-    else
-      super
-    end
-  end
 end

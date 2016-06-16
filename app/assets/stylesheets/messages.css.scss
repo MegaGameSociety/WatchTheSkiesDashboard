@@ -29,8 +29,6 @@ $break-large: 850px;
     .message-info .time {
       display: block;
     }
-
-
   }
 
   li {
@@ -58,6 +56,7 @@ $break-large: 850px;
 
   .time {
     display: inline-block;
+    vertical-align: top;
     width: 80px;
   }
 

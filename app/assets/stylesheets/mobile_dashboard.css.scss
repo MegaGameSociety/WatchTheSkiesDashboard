@@ -22,6 +22,7 @@ $break-large: 1200px;
 .role-ambassador  { @include role-colors(#541B89, "purple"); }
 .role-media       { @include role-colors(#C87E09, "orange"); }
 .role-alien       { @include role-colors(#2d2f46, "aliens"); }
+.role-editor      { @include role-colors(#003D6F, "blue");   }
 
 .button {
   border-radius: 5px;
@@ -96,6 +97,10 @@ body.mobile {
   h4 {
     color: #000;
     margin: 10px 0;
+
+    @media (max-width: $break-med) {
+      margin: 5px 0;
+    }
   }
 
   /* =====================================
@@ -104,6 +109,7 @@ body.mobile {
   .country-header {
     background: #FFF;
     margin: 0;
+    padding-bottom: 10px;
     margin-bottom: 50px;
   }
 
@@ -117,17 +123,7 @@ body.mobile {
   }
 
   .country-messages {
-    padding: 10px;
-    padding-top: 0;
-
-    div {
-      display: inline-block;
-      width: calc(100% - 80px);
-    }
-
-    @media (max-width: $break-med) {
-      padding-top: 15px;
-    }
+    padding: 0 10px;
   }
 
   a.logoff {
@@ -171,8 +167,13 @@ body.mobile {
     text-align: center;
 
     @media (max-width: $break-med) {
+      h4 {
+        font-size: 16px;
+      }
+
       display: inline-block;
-      width: 45%;
+      margin: 0 5px;
+      width: calc(50% - 15px);
     }
   }
 
@@ -240,6 +241,13 @@ body.mobile {
     }
   }
 
+  .description {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 20px;
+    margin-top: 0;
+  }
+
   .income-info {
     display: flex;
     flex-wrap: wrap;
@@ -263,10 +271,6 @@ body.mobile {
 
     .header {
       font-weight: bold;
-    }
-
-    &.middle {
-      margin-top: 20px;
     }
   }
 }

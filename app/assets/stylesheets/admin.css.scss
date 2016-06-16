@@ -88,3 +88,42 @@ $border-tan: #BEC2AD;
   flex: 0 0 125px;
   margin: 5px 10px;
 }
+
+  /* =====================================
+               ADMIN MESSAGES
+     ===================================== */
+
+#admin.admin-messages {
+  .sidebar {
+    display: inline-block;
+    width: 210px;
+
+    ul {
+      list-style-type: none;
+      padding: 0px;
+    }
+
+    li {
+      margin-bottom: 0px;
+    }
+
+    .button-input {
+      display: block;
+      line-height: 1.1;
+      padding: 10px;
+    }
+
+    .description {
+      font-size: 16px;
+      font-style: italic;
+      line-height: 22px;
+    }
+  }
+
+  .main {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 220px);
+  }
+}
+
