@@ -150,7 +150,7 @@ class Api::ApiController < ApplicationController
     public_relations_list = PublicRelation.where(game: @game, team: user_team)
     income_level = Income.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
     # TO DO: This is in progress of being renamed.
-    reserves = BonusCredit.where(game: @game, round: round, team: user_team)
+    reserves = BonusCredit.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
 
     # TO DO: This still needs to be moved.
     @income_values = {}
@@ -174,7 +174,7 @@ class Api::ApiController < ApplicationController
         },
         "pr" => public_relations_list,
         "income_level" => income_level[0],
-        "reserves" => reserves,
+        "reserves" => reserves[0],
         "income_value" => income_value,
       }
     rescue
