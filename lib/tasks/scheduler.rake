@@ -5,6 +5,12 @@ task :import_tweets => :environment do
   puts "done."
 end
 
+desc "Update messages"
+task :update_messages => :environment do
+  puts "Updating message visibility."
+  Message.update_all(visible: true)
+end
+
 # task :send_reminders => :environment do
 #   User.send_reminders
 # end

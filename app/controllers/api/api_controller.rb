@@ -212,7 +212,13 @@ class Api::ApiController < ApplicationController
     @game.update
 
     user_team_id = current_user.team_id
-    messages = Message.where(game: @game).where("sender_id = ? OR recipient_id = ?", user_team_id, user_team_id)
+    # @messages = Message.where(game: current_game).
+    #     where("(sender_id = ? AND recipient_id = ?) OR 
+    #       (sender_id = ? AND recipient_id = ? AND visible = true)",
+    #     user_team_id, other_team_id, other_team_id, user_team_id).order(:created_at)
+    messages = Message.where(game: @game).
+                where("sender_id = ? OR (recipient_id = ? and visible = true)",
+                  user_team_id, user_team_id)
 
     begin
       #generate overall embedded result
