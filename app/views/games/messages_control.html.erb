@@ -1,0 +1,19 @@
+<h1>
+  MESSAGES
+</h1>
+<div class="mobile mobile_dashboard">
+  <div ng-app="wtsApp" ng-controller="baseMobileCtrl" ng-class="roleClass">
+    <div class="tab messages" ng-controller="adminMessageCtrl">
+      <div>
+        <select name="currentNation"
+          ng-model="teamId"
+          ng-change="changeTeam()"
+          ng-options="team.id as team.team_name for team in teams"
+          style="display: block;"
+        >
+        </select>  
+      </div>
+      <%= render partial: "mobile_dashboard/messages" %>    
+    </div>
+  </div>
+</div>
