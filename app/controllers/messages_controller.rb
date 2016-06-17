@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
 		user_team_id = Team.find_by_team_name(params['country']).id
 		other_team_id = Team.find_by_team_name(params['country_name']).id
     @messages = Message.where(game: current_game).where("(sender_id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)",
-     user_team_id, other_team_id, other_team_id, user_team_id).order(:created_at)
+      user_team_id, other_team_id, other_team_id, user_team_id).order(:created_at)
 	end
 
 	#Displays all messages for a specific country
