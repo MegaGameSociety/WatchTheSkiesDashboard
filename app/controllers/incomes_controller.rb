@@ -6,7 +6,7 @@ class IncomesController < ApplicationController
   # GET /incomes
   # GET /incomes.json
   def index
-    @incomes = Income.all.order(created_at: :desc)
+    @incomes = Income.all.where(game: current_game).order(created_at: :desc)
   end
 
   # GET /incomes/1
@@ -34,7 +34,7 @@ class IncomesController < ApplicationController
     new_params = income_params.except('team')
     @income = Income.new(new_params)
     @income.team = Team.find(teamId)
-    @income.game = current_game.id
+    @income.game = current_game
 
     respond_to do |format|
       if @income.save

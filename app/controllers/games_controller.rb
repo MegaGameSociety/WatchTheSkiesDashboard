@@ -136,8 +136,8 @@ class GamesController < ApplicationController
   def update_round
     @game = current_game
     @game.round = params[:game][:round]
-    @game.update_income_levels
     @game.save
+    @game.update_income_levels
 
     redirect_to admin_control_path
   end
@@ -163,7 +163,7 @@ class GamesController < ApplicationController
         amount: 0,
         round: g.round
       )
-
+    g.messages.destroy_all
     g.incomes.destroy_all
     g.bonus_credits.destroy_all
     g.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all

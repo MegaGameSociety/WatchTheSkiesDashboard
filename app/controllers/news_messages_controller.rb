@@ -31,6 +31,7 @@ class NewsMessagesController < ApplicationController
   # POST /news_messages.json
   def create
     @news_message = NewsMessage.new(news_message_params)
+    @news_message.game = current_game
     if @news_message.title.nil?
       @news_message.title = "AP Reports:"
     end
@@ -79,13 +80,13 @@ class NewsMessagesController < ApplicationController
   def paper
     @round = params[:round]    
     den = NewsMessage.where(round: @round).
-            where(title: "DEN reports:").
+            where(title: "DEN").
             where(visible_content: true)
     gnn = NewsMessage.where(round: @round).
-            where(title: "GNN reports:").
+            where(title: "GNN").
             where(visible_content: true)
     sft = NewsMessage.where(round: @round).
-                      where(title: "S&FT reports:").
+                      where(title: "S&FT").
                       where(visible_content: true)
     @news = {
       :DEN => den,

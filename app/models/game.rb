@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
   has_many :users
 
   serialize :game_data, JSON
-  COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA', 'Germany']
+  COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA']
   def reset()
     self.name = ""
     self.round = 0
@@ -34,7 +34,7 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-
+        update_income_levels()
         #Group Twitter activities together and dump cleanly into the error bucket on fail
         begin
             Tweet.import(self)
