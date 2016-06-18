@@ -5,7 +5,7 @@ class Team < ActiveRecord::Base
   has_many :public_relation
 
   def self.countries
-    self.pluck(:team_name).delete_if {|x| x == "Aliens"}
+    all_without_incomes.pluck(:team_name).delete_if {|x| x == "Aliens"}
   end
 
   # Access teams which don't accrue income/pr
