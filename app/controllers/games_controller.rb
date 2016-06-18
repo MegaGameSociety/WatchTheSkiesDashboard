@@ -136,8 +136,8 @@ class GamesController < ApplicationController
   def update_round
     @game = current_game
     @game.round = params[:game][:round]
-    @game.update_income_levels
     @game.save
+    @game.update_income_levels
 
     redirect_to admin_control_path
   end
