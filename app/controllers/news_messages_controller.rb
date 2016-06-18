@@ -31,6 +31,7 @@ class NewsMessagesController < ApplicationController
   # POST /news_messages.json
   def create
     @news_message = NewsMessage.new(news_message_params)
+    @news_message.game = current_game
     if @news_message.title.nil?
       @news_message.title = "AP Reports:"
     end
