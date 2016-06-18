@@ -107,9 +107,9 @@ class Game < ActiveRecord::Base
       }
   end
 
-  def next_round
-    super.in_time_zone(self.time_zone)
-  end
+  # def next_round
+  #   super.in_time_zone(self.time_zone)
+  # end
 
   private
 
