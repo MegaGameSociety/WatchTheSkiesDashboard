@@ -34,7 +34,7 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-
+        update_income_levels()
         #Group Twitter activities together and dump cleanly into the error bucket on fail
         begin
             Tweet.import(self)
