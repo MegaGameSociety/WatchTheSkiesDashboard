@@ -80,13 +80,13 @@ class NewsMessagesController < ApplicationController
   def paper
     @round = params[:round]    
     den = NewsMessage.where(round: @round).
-            where(title: "DEN reports:").
+            where(title: "DEN").
             where(visible_content: true)
     gnn = NewsMessage.where(round: @round).
-            where(title: "GNN reports:").
+            where(title: "GNN").
             where(visible_content: true)
     sft = NewsMessage.where(round: @round).
-                      where(title: "S&FT reports:").
+                      where(title: "S&FT").
                       where(visible_content: true)
     @news = {
       :DEN => den,
