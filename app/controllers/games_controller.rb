@@ -163,7 +163,7 @@ class GamesController < ApplicationController
         amount: 0,
         round: g.round
       )
-
+    g.messages.destroy_all
     g.incomes.destroy_all
     g.bonus_credits.destroy_all
     g.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all
