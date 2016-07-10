@@ -27,8 +27,10 @@
         $scope.roleClass = `role-${result['team_role']['role_name']}`;
         $scope.myPermissions = result['team_role']['role_permissions'];
 
-        $scope.teams = result['teams'];
 
+        // Use Vorlon font if applicable.
+        $('.mobile_dashboard').toggleClass('alien', result['alien_comms']);
+        $scope.teams = result['teams'];
         $scope.focusedTab = 'news';
       },
       function errorCallback(response) {

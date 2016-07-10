@@ -95,9 +95,16 @@ body.mobile {
   max-height: 999999px; // Overcome Mobile Chrome Font Boosting.
   width: 100%;
 
-  &.vorlon {
+  &.alien {
     background-image: url('/assets/mobile-backgrounds/world-clear-animate.gif');
-    font-family: Vorlon !important;
+
+    .my-country .govt,
+    .turns-container .turns,
+    .turns-container .remaining,
+    .terror-container .terrors
+    {
+      font-family: Vorlon;
+    }
   }
 
   &:after {
