@@ -34,25 +34,29 @@ class Game < ActiveRecord::Base
     # Update round # and next round time if necessary
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
-        update_income_levels()
-        #Group Twitter activities together and dump cleanly into the error bucket on fail
-        begin
-            Tweet.import(self)
-            # Send out tweets
-            # Disabling tweets
-            # client = Tweet.generate_client
-            # client.update("Turn #{self.round} has started!")
-        rescue => ex
-            logger.error ex.message
-        end
+        unless self.locked
+          self.update_attribute(:locked, true)
+          update_income_levels()
+          #Group Twitter activities together and dump cleanly into the error bucket on fail
+          begin
+              Tweet.import(self)
+              # Send out tweets
+              # Disabling tweets
+              # client = Tweet.generate_client
+              # client.update("Turn #{self.round} has started!")
+          rescue => ex
+              logger.error ex.message
+          end
 
-        # Change the round
-        puts "Round is changing from #{self.round} to #{self.round+1}"
-        self.round +=1
-        self.next_round = self.next_round + (30*60)
-        self.save
-        #First update the income levels
-        update_income_levels()
+          # Change the round
+          puts "Round is changing from #{self.round} to #{self.round+1}"
+          self.round +=1
+          self.next_round = self.next_round + (30*60)
+          self.save
+          #First update the income levels
+          update_income_levels()
+          self.update_attribute(:locked, false)
+        end
       end
     end
     return self
@@ -72,9 +76,19 @@ class Game < ActiveRecord::Base
       else
         amount = 6 + turn_0
       end
-      next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
-      next_income.amount = amount
-      next_income.save()
+
+      begin
+        next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
+        next_income.amount = amount
+        next_income.save()
+      rescue ActiveRecord::RecordNotUnique => e
+        # If we hit a race condition on for creating new incomes, check before skipping
+        if Income.where(round: round + 1, team: team, game: self).count > 0
+          continue
+        else
+          raise
+        end
+      end
     end
   end
 
