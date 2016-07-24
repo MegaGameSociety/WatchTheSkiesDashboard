@@ -36,7 +36,7 @@ RSpec.describe Game, :type => :model do
     end
 
     it 'does not make PR updates in round 0' do
-      expect(game.update_income_levels(0)).to_not change{game.incomes.count}
+      expect{game.update_income_levels(0)}.to_not change{game.incomes.count}
     end
 
     it 'calculates income levels for next round from previous round pr' do
