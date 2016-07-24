@@ -4,7 +4,7 @@ FactoryGirl.define do
 
   factory :game do
     name "Watch the Skies Test"
-    round 0
+    round 1
     control_message "Welcome"
     activity "All is quiet around the world."
     alien_comm false
@@ -14,6 +14,13 @@ FactoryGirl.define do
       paused: true
         }
     }
+    after(:create) do |game|
+      game.terror_trackers.push(TerrorTracker.create(
+        description: "Initial Terror",
+        amount: 0,
+        round: game.round
+      ))
+    end
   end
 
    factory :admin do

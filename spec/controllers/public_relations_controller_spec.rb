@@ -37,7 +37,7 @@ RSpec.describe PublicRelationsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all public_relations as @public_relations" do
+    xit "assigns all public_relations as @public_relations" do
       public_relation = PublicRelation.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:public_relations)).to eq([public_relation])
@@ -45,7 +45,7 @@ RSpec.describe PublicRelationsController, :type => :controller do
   end
 
   describe "GET show" do
-    it "assigns the requested public_relation as @public_relation" do
+    xit "assigns the requested public_relation as @public_relation" do
       public_relation = PublicRelation.create! valid_attributes
       get :show, {:id => public_relation.to_param}, valid_session
       expect(assigns(:public_relation)).to eq(public_relation)
@@ -53,14 +53,14 @@ RSpec.describe PublicRelationsController, :type => :controller do
   end
 
   describe "GET new" do
-    it "assigns a new public_relation as @public_relation" do
+    xit "assigns a new public_relation as @public_relation" do
       get :new, {}, valid_session
       expect(assigns(:public_relation)).to be_a_new(PublicRelation)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested public_relation as @public_relation" do
+    xit "assigns the requested public_relation as @public_relation" do
       public_relation = PublicRelation.create! valid_attributes
       get :edit, {:id => public_relation.to_param}, valid_session
       expect(assigns(:public_relation)).to eq(public_relation)
@@ -69,31 +69,31 @@ RSpec.describe PublicRelationsController, :type => :controller do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new PublicRelation" do
+      xit "creates a new PublicRelation" do
         expect {
           post :create, {:public_relation => valid_attributes}, valid_session
         }.to change(PublicRelation, :count).by(1)
       end
 
-      it "assigns a newly created public_relation as @public_relation" do
+      xit "assigns a newly created public_relation as @public_relation" do
         post :create, {:public_relation => valid_attributes}, valid_session
         expect(assigns(:public_relation)).to be_a(PublicRelation)
         expect(assigns(:public_relation)).to be_persisted
       end
 
-      it "redirects to the created public_relation" do
+      xit "redirects to the created public_relation" do
         post :create, {:public_relation => valid_attributes}, valid_session
         expect(response).to redirect_to(PublicRelation.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved public_relation as @public_relation" do
+      xit "assigns a newly created but unsaved public_relation as @public_relation" do
         post :create, {:public_relation => invalid_attributes}, valid_session
         expect(assigns(:public_relation)).to be_a_new(PublicRelation)
       end
 
-      it "re-renders the 'new' template" do
+      xit "re-renders the 'new' template" do
         post :create, {:public_relation => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -106,20 +106,20 @@ RSpec.describe PublicRelationsController, :type => :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested public_relation" do
+      xit "updates the requested public_relation" do
         public_relation = PublicRelation.create! valid_attributes
         put :update, {:id => public_relation.to_param, :public_relation => new_attributes}, valid_session
         public_relation.reload
         skip("Add assertions for updated state")
       end
 
-      it "assigns the requested public_relation as @public_relation" do
+      xit "assigns the requested public_relation as @public_relation" do
         public_relation = PublicRelation.create! valid_attributes
         put :update, {:id => public_relation.to_param, :public_relation => valid_attributes}, valid_session
         expect(assigns(:public_relation)).to eq(public_relation)
       end
 
-      it "redirects to the public_relation" do
+      xit "redirects to the public_relation" do
         public_relation = PublicRelation.create! valid_attributes
         put :update, {:id => public_relation.to_param, :public_relation => valid_attributes}, valid_session
         expect(response).to redirect_to(public_relation)
@@ -127,13 +127,13 @@ RSpec.describe PublicRelationsController, :type => :controller do
     end
 
     describe "with invalid params" do
-      it "assigns the public_relation as @public_relation" do
+      xit "assigns the public_relation as @public_relation" do
         public_relation = PublicRelation.create! valid_attributes
         put :update, {:id => public_relation.to_param, :public_relation => invalid_attributes}, valid_session
         expect(assigns(:public_relation)).to eq(public_relation)
       end
 
-      it "re-renders the 'edit' template" do
+      xit "re-renders the 'edit' template" do
         public_relation = PublicRelation.create! valid_attributes
         put :update, {:id => public_relation.to_param, :public_relation => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
@@ -142,14 +142,14 @@ RSpec.describe PublicRelationsController, :type => :controller do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested public_relation" do
+    xit "destroys the requested public_relation" do
       public_relation = PublicRelation.create! valid_attributes
       expect {
         delete :destroy, {:id => public_relation.to_param}, valid_session
       }.to change(PublicRelation, :count).by(-1)
     end
 
-    it "redirects to the public_relations list" do
+    xit "redirects to the public_relations list" do
       public_relation = PublicRelation.create! valid_attributes
       delete :destroy, {:id => public_relation.to_param}, valid_session
       expect(response).to redirect_to(public_relations_url)

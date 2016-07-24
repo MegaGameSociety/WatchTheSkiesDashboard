@@ -37,7 +37,7 @@ RSpec.describe TerrorTrackersController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all terror_trackers as @terror_trackers" do
+    xit "assigns all terror_trackers as @terror_trackers" do
       terror_tracker = TerrorTracker.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:terror_trackers)).to eq([terror_tracker])
@@ -45,7 +45,7 @@ RSpec.describe TerrorTrackersController, :type => :controller do
   end
 
   describe "GET show" do
-    it "assigns the requested terror_tracker as @terror_tracker" do
+    xit "assigns the requested terror_tracker as @terror_tracker" do
       terror_tracker = TerrorTracker.create! valid_attributes
       get :show, {:id => terror_tracker.to_param}, valid_session
       expect(assigns(:terror_tracker)).to eq(terror_tracker)
@@ -53,14 +53,14 @@ RSpec.describe TerrorTrackersController, :type => :controller do
   end
 
   describe "GET new" do
-    it "assigns a new terror_tracker as @terror_tracker" do
+    xit "assigns a new terror_tracker as @terror_tracker" do
       get :new, {}, valid_session
       expect(assigns(:terror_tracker)).to be_a_new(TerrorTracker)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested terror_tracker as @terror_tracker" do
+    xit "assigns the requested terror_tracker as @terror_tracker" do
       terror_tracker = TerrorTracker.create! valid_attributes
       get :edit, {:id => terror_tracker.to_param}, valid_session
       expect(assigns(:terror_tracker)).to eq(terror_tracker)
@@ -69,31 +69,31 @@ RSpec.describe TerrorTrackersController, :type => :controller do
 
   describe "POST create" do
     describe "with valid params" do
-      it "creates a new TerrorTracker" do
+      xit "creates a new TerrorTracker" do
         expect {
           post :create, {:terror_tracker => valid_attributes}, valid_session
         }.to change(TerrorTracker, :count).by(1)
       end
 
-      it "assigns a newly created terror_tracker as @terror_tracker" do
+      xit "assigns a newly created terror_tracker as @terror_tracker" do
         post :create, {:terror_tracker => valid_attributes}, valid_session
         expect(assigns(:terror_tracker)).to be_a(TerrorTracker)
         expect(assigns(:terror_tracker)).to be_persisted
       end
 
-      it "redirects to the created terror_tracker" do
+      xit "redirects to the created terror_tracker" do
         post :create, {:terror_tracker => valid_attributes}, valid_session
         expect(response).to redirect_to(TerrorTracker.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved terror_tracker as @terror_tracker" do
+      xit "assigns a newly created but unsaved terror_tracker as @terror_tracker" do
         post :create, {:terror_tracker => invalid_attributes}, valid_session
         expect(assigns(:terror_tracker)).to be_a_new(TerrorTracker)
       end
 
-      it "re-renders the 'new' template" do
+      xit "re-renders the 'new' template" do
         post :create, {:terror_tracker => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
@@ -106,20 +106,20 @@ RSpec.describe TerrorTrackersController, :type => :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested terror_tracker" do
+      xit "updates the requested terror_tracker" do
         terror_tracker = TerrorTracker.create! valid_attributes
         put :update, {:id => terror_tracker.to_param, :terror_tracker => new_attributes}, valid_session
         terror_tracker.reload
         skip("Add assertions for updated state")
       end
 
-      it "assigns the requested terror_tracker as @terror_tracker" do
+      xit "assigns the requested terror_tracker as @terror_tracker" do
         terror_tracker = TerrorTracker.create! valid_attributes
         put :update, {:id => terror_tracker.to_param, :terror_tracker => valid_attributes}, valid_session
         expect(assigns(:terror_tracker)).to eq(terror_tracker)
       end
 
-      it "redirects to the terror_tracker" do
+      xit "redirects to the terror_tracker" do
         terror_tracker = TerrorTracker.create! valid_attributes
         put :update, {:id => terror_tracker.to_param, :terror_tracker => valid_attributes}, valid_session
         expect(response).to redirect_to(terror_tracker)
@@ -127,13 +127,13 @@ RSpec.describe TerrorTrackersController, :type => :controller do
     end
 
     describe "with invalid params" do
-      it "assigns the terror_tracker as @terror_tracker" do
+      xit "assigns the terror_tracker as @terror_tracker" do
         terror_tracker = TerrorTracker.create! valid_attributes
         put :update, {:id => terror_tracker.to_param, :terror_tracker => invalid_attributes}, valid_session
         expect(assigns(:terror_tracker)).to eq(terror_tracker)
       end
 
-      it "re-renders the 'edit' template" do
+      xit "re-renders the 'edit' template" do
         terror_tracker = TerrorTracker.create! valid_attributes
         put :update, {:id => terror_tracker.to_param, :terror_tracker => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
@@ -142,14 +142,14 @@ RSpec.describe TerrorTrackersController, :type => :controller do
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested terror_tracker" do
+    xit "destroys the requested terror_tracker" do
       terror_tracker = TerrorTracker.create! valid_attributes
       expect {
         delete :destroy, {:id => terror_tracker.to_param}, valid_session
       }.to change(TerrorTracker, :count).by(-1)
     end
 
-    it "redirects to the terror_trackers list" do
+    xit "redirects to the terror_trackers list" do
       terror_tracker = TerrorTracker.create! valid_attributes
       delete :destroy, {:id => terror_tracker.to_param}, valid_session
       expect(response).to redirect_to(terror_trackers_url)

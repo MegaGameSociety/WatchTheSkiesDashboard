@@ -36,16 +36,16 @@ class Game < ActiveRecord::Base
       if self.next_round.utc() < Time.now.utc()
         unless self.locked
           self.update_attribute(:locked, true)
-          update_income_levels()
+          update_income_levels(self.round)
           #Group Twitter activities together and dump cleanly into the error bucket on fail
           begin
-              Tweet.import(self)
-              # Send out tweets
-              # Disabling tweets
-              # client = Tweet.generate_client
-              # client.update("Turn #{self.round} has started!")
+            Tweet.import(self)
+            # Send out tweets
+            # Disabling tweets
+            # client = Tweet.generate_client
+            # client.update("Turn #{self.round} has started!")
           rescue => ex
-              logger.error ex.message
+            logger.error ex.message
           end
 
           # Change the round
@@ -54,7 +54,7 @@ class Game < ActiveRecord::Base
           self.next_round = self.next_round + (30*60)
           self.save
           #First update the income levels
-          update_income_levels()
+          update_income_levels(self.round)
           self.update_attribute(:locked, false)
         end
       end
@@ -62,38 +62,36 @@ class Game < ActiveRecord::Base
     return self
   end
 
-  def update_income_levels()
-    round = self.round
-    
+  # Update income levels based on previous round's pr
+  # TODO: Create a cascade update to update incomes from round 0 to current round
+  # Almost always, a pr change that needs to be accounted for will only be for the previous round.
+  def update_income_levels(round)
     teams = Team.all_without_incomes
-    teams.each do |team|
-
-      # Issue here is if we change round, we should recalculate all of the incomes based on PR.  But this has
-      # to cascade to the current round.
-
-      # Solution: Only calculate income based on pr for previous round unless round zero
-      # Have separate rake task to run a cascade when you change round.
-      turn_0 = calculate_income_level(self.public_relations.where(round: 0).where(team: team).sum(:pr_amount) || 0)
-      if (round > 1)
-        amount = self.public_relations.where('round < ? and round > 0', [round, 0].max)
-                .where(team: team).group(:round).sum(:pr_amount).reduce(6 + turn_0) do |memo, arr|
-                    _, pr_diff = arr
-                    [memo + calculate_income_level(pr_diff), 0].max
-                  end
-      else
-        amount = 6 + turn_0
+    if round == 0
+      # Create incomes if none exist for round 0
+      if self.incomes.where(round: 0).count == 0
+        teams.each do |team|
+          #Income starts at 6.
+          income = Income.find_or_create_by(game: self, round: round, amount: 6, team: team)
+        end
       end
+    else
+      previous_round = round - 1
+      teams.each do |team|
+        pr = self.public_relations.where(round: previous_round).where(team: team).sum(:pr_amount)
+        previous_income_value = self.incomes.where(round: previous_round, team: team).sum(:amount)
+        current_income_value = previous_income_value + self.calculate_income_level(pr)
 
-      begin
-        next_income = Income.find_or_create_by(round: round + 1, team: team, game: self)
-        next_income.amount = amount
-        next_income.save()
-      rescue ActiveRecord::RecordNotUnique => e
-        # If we hit a race condition on for creating new incomes, check before skipping
-        if Income.where(round: round + 1, team: team, game: self).count > 0
-          continue
-        else
-          raise
+        begin
+          current_income = Income.find_or_create_by(round: round, team: team, game: self)
+          current_income.update_attribute(:amount, current_income_value)
+        rescue ActiveRecord::RecordNotUnique => e
+          # If we hit a race condition on for creating new incomes, check before skipping
+          if Income.where(round: round, team: team, game: self).count > 0
+            continue
+          else
+            raise
+          end
         end
       end
     end
@@ -108,31 +106,31 @@ class Game < ActiveRecord::Base
     recurring_credits = self.bonus_credits.where(recurring: true).group(:team_name).sum(:amount)
 
     @global_terror = {
-        'activity' => self.activity,
-        'total'=> self.terror_trackers.totalTerror(),
-        'rioters'=> @data['rioters']
+      'activity' => self.activity,
+      'total'=> self.terror_trackers.totalTerror(),
+      'rioters'=> @data['rioters']
     }
     main_data = {
-        "timer" => {
-          "round"=>  round,
-          "next_round" =>  self.next_round.to_utc,
-          "paused" => @data['paused'],
-          "control_message" => self.control_message
-        },
-        "global_terror" => @global_terror,
-        "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
-        "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
-        "incomes" => income_list,
-        "bonus_credits" => bonus_credits,
-        "recurring_credits" => recurring_credits,
-      }
+      "timer" => {
+        "round"=>  round,
+        "next_round" =>  self.next_round.to_utc,
+        "paused" => @data['paused'],
+        "control_message" => self.control_message
+      },
+      "global_terror" => @global_terror,
+      "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
+      "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
+      "incomes" => income_list,
+      "bonus_credits" => bonus_credits,
+      "recurring_credits" => recurring_credits,
+    }
   end
 
   def next_round
     super.in_time_zone(self.time_zone)
   end
 
-  private
+  protected
 
   def calculate_income_level(pr)
     # PR >= 4, change Income +1
