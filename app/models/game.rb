@@ -67,12 +67,19 @@ class Game < ActiveRecord::Base
     
     teams = Team.all_without_incomes
     teams.each do |team|
+
+      # Issue here is if we change round, we should recalculate all of the incomes based on PR.  But this has
+      # to cascade to the current round.
+
+      # Solution: Only calculate income based on pr for previous round unless round zero
+      # Have separate rake task to run a cascade when you change round.
       turn_0 = calculate_income_level(self.public_relations.where(round: 0).where(team: team).sum(:pr_amount) || 0)
       if (round > 1)
-        amount = self.public_relations.where('round < ? and round > 0', [round, 0].max).where(team: team).group(:round).sum(:pr_amount).reduce(6 + turn_0) do |memo, arr|
-          _, pr_diff = arr
-          [memo + calculate_income_level(pr_diff), 0].max
-        end
+        amount = self.public_relations.where('round < ? and round > 0', [round, 0].max)
+                .where(team: team).group(:round).sum(:pr_amount).reduce(6 + turn_0) do |memo, arr|
+                    _, pr_diff = arr
+                    [memo + calculate_income_level(pr_diff), 0].max
+                  end
       else
         amount = 6 + turn_0
       end

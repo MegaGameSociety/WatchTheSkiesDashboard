@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617014529) do
+ActiveRecord::Schema.define(version: 20160722033705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160617014529) do
     t.string   "den",                         default: "DailyEarthWTS"
     t.string   "gnn",                         default: "GNNWTS"
     t.string   "sft",                         default: "SFTNews"
+    t.boolean  "locked",                      default: false
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160617014529) do
     t.integer  "team_id"
   end
 
+  add_index "incomes", ["game_id", "team_id", "round"], name: "game_incomes_index", unique: true, using: :btree
   add_index "incomes", ["game_id"], name: "index_incomes_on_game_id", using: :btree
   add_index "incomes", ["team_id"], name: "index_incomes_on_team_id", using: :btree
 
