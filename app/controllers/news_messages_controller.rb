@@ -6,8 +6,8 @@ class NewsMessagesController < ApplicationController
   # GET /news_messages.json
   def index
     @current_round = current_game.round
-    @news_messages = NewsMessage.all.order(round: :desc, created_at: :desc)
-    @papers = NewsMessage.uniq.pluck(:round).sort
+    @news_messages = NewsMessage.where(game: current_game).order(round: :desc, created_at: :desc)
+    @papers = NewsMessage.where(game: current_game).uniq.pluck(:round).sort
   end
 
   # GET /news_messages/1
