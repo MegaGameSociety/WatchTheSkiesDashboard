@@ -148,7 +148,7 @@ class Api::ApiController < ApplicationController
     user_team = Team.find_by_id(current_user.team_id)
 
     public_relations_list = PublicRelation.where(game: @game, team: user_team, round: round - 1)
-    income_level = Income.where(game: @game, round: round + 1, team: user_team).limit(1).pluck(:amount)
+    income_level = Income.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
     # TO DO: This is in progress of being renamed.
     reserves = BonusCredit.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
 

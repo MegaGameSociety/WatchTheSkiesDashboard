@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     authenticate_admin!
-    @users = User.all
+    @users = User.all.order(id: :desc)
   end
 
   def import
