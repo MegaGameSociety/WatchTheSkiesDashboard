@@ -82,7 +82,7 @@ class Tweet < ActiveRecord::Base
       # Create new articles for each tweet
       final_tweets.each{|t|t.convert_to_article}
 
-      game.update_attribute(:tweets_locked, true)
+      game.update_attribute(:tweets_locked, false)
       return final_tweets.length
     end
   end
