@@ -31,7 +31,7 @@ class Tweet < ActiveRecord::Base
 
 
   def self.import(game)
-    unless game.tweet_locked
+    unless game.tweets_locked
       # Generate client
       client = Tweet.generate_client
       # Daily Earth News: @DailyEarthWTS
@@ -82,7 +82,7 @@ class Tweet < ActiveRecord::Base
       # Create new articles for each tweet
       final_tweets.each{|t|t.convert_to_article}
 
-      game.update_attribute(:tweet_locked, true)
+      game.update_attribute(:tweets_locked, true)
       return final_tweets.length
     end
   end
