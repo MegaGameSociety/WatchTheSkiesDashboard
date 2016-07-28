@@ -39,9 +39,9 @@ class Tweet < ActiveRecord::Base
       # Science & Financial Times = SFTNews
       # Check if there aren't any tweets in database
       tweets = []
-      den = Tweet.where(twitter_name: game.den).order(tweet_time: :asc).last
-      gnn = Tweet.where(twitter_name: game.gnn).order(tweet_time: :asc).last
-      sft = Tweet.where(twitter_name: game.sft).order(tweet_time: :asc).last
+      den = Tweet.where(twitter_name: game.den).where(game: game).order(tweet_time: :asc).last
+      gnn = Tweet.where(twitter_name: game.gnn).where(game: game).order(tweet_time: :asc).last
+      sft = Tweet.where(twitter_name: game.sft).where(game: game).order(tweet_time: :asc).last
 
       if den.nil?
         tweets += (client.user_timeline(game.den).take(1))
