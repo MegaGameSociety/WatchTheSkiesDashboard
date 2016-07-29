@@ -32,57 +32,60 @@ class Tweet < ActiveRecord::Base
 
   def self.import(game)
     unless game.tweets_locked
-      # Generate client
-      client = Tweet.generate_client
-      # Daily Earth News: @DailyEarthWTS
-      # GNN: @GNNWTS
-      # Science & Financial Times = SFTNews
-      # Check if there aren't any tweets in database
-      tweets = []
-      den = Tweet.where(twitter_name: game.den).where(game: game).order(tweet_time: :asc).last
-      gnn = Tweet.where(twitter_name: game.gnn).where(game: game).order(tweet_time: :asc).last
-      sft = Tweet.where(twitter_name: game.sft).where(game: game).order(tweet_time: :asc).last
+      begin
+        # Generate client
+        client = Tweet.generate_client
+        # Daily Earth News: @DailyEarthWTS
+        # GNN: @GNNWTS
+        # Science & Financial Times = SFTNews
+        # Check if there aren't any tweets in database
+        tweets = []
+        den = Tweet.where(twitter_name: game.den).where(game: game).order(tweet_time: :asc).last
+        gnn = Tweet.where(twitter_name: game.gnn).where(game: game).order(tweet_time: :asc).last
+        sft = Tweet.where(twitter_name: game.sft).where(game: game).order(tweet_time: :asc).last
 
-      if den.nil?
-        tweets += (client.user_timeline(game.den).take(1))
-      else
-        tweets += client.user_timeline(game.den, options = {since_id: den.tweet_id})
-      end
-      if gnn.nil?
-        tweets += (client.user_timeline(game.gnn).take(1))
-      else
-        tweets += client.user_timeline(game.gnn, options = {since_id: gnn.tweet_id})
-      end
-      if sft.nil?
-        tweets += (client.user_timeline(game.sft).take(1))
-      else
-        tweets += client.user_timeline(game.sft, options = {since_id: sft.tweet_id})
-      end
-
-      # Save Tweets
-      final_tweets = []
-      tweets.each do |tweet|
-        #import tweet into system
-        t = Tweet.new
-        t.twitter_name = tweet.user.screen_name
-        t.tweet_id = tweet.id
-        t.text = tweet.text.gsub(/http:\/\/[\w\.:\/]+/, '')
-        t.is_public = false
-        t.is_published = false
-        t.tweet_time = tweet.created_at
-        t.game = game
-
-        #check if tweet has image
-        if tweet.media?
-          t.media_url = tweet.media[0].media_url
+        if den.nil?
+          tweets += (client.user_timeline(game.den).take(1))
+        else
+          tweets += client.user_timeline(game.den, options = {since_id: den.tweet_id})
         end
-        t.save
-        final_tweets << t
-      end
-      # Create new articles for each tweet
-      final_tweets.each{|t|t.convert_to_article}
+        if gnn.nil?
+          tweets += (client.user_timeline(game.gnn).take(1))
+        else
+          tweets += client.user_timeline(game.gnn, options = {since_id: gnn.tweet_id})
+        end
+        if sft.nil?
+          tweets += (client.user_timeline(game.sft).take(1))
+        else
+          tweets += client.user_timeline(game.sft, options = {since_id: sft.tweet_id})
+        end
 
-      game.update_attribute(:tweets_locked, false)
+        # Save Tweets
+        final_tweets = []
+        tweets.each do |tweet|
+          #import tweet into system
+          t = Tweet.new
+          t.twitter_name = tweet.user.screen_name
+          t.tweet_id = tweet.id
+          t.text = tweet.text.gsub(/http:\/\/[\w\.:\/]+/, '')
+          t.is_public = false
+          t.is_published = false
+          t.tweet_time = tweet.created_at
+          t.game = game
+
+          #check if tweet has image
+          if tweet.media?
+            t.media_url = tweet.media[0].media_url
+          end
+          t.save
+          final_tweets << t
+        end
+        # Create new articles for each tweet
+        final_tweets.each{|t|t.convert_to_article}
+
+      ensure
+        game.update_attribute(:tweets_locked, false)
+      end
       return final_tweets.length
     end
   end

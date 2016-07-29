@@ -35,27 +35,30 @@ class Game < ActiveRecord::Base
     unless self.data['paused']
       if self.next_round.utc() < Time.now.utc()
         unless self.locked
-          self.update_attribute(:locked, true)
-          update_income_levels(self.round)
-          #Group Twitter activities together and dump cleanly into the error bucket on fail
           begin
-            Tweet.import(self)
-            # Send out tweets
-            # Disabling tweets
-            # client = Tweet.generate_client
-            # client.update("Turn #{self.round} has started!")
-          rescue => ex
-            logger.error ex.message
-          end
+            self.update_attribute(:locked, true)
+            update_income_levels(self.round)
+            #Group Twitter activities together and dump cleanly into the error bucket on fail
+            begin
+              Tweet.import(self)
+              # Send out tweets
+              # Disabling tweets
+              # client = Tweet.generate_client
+              # client.update("Turn #{self.round} has started!")
+            rescue => ex
+              logger.error ex.message
+            end
 
-          # Change the round
-          puts "Round is changing from #{self.round} to #{self.round+1}"
-          self.round +=1
-          self.next_round = self.next_round + (30*60)
-          self.save
-          #First update the income levels
-          update_income_levels(self.round)
-          self.update_attribute(:locked, false)
+            # Change the round
+            puts "Round is changing from #{self.round} to #{self.round+1}"
+            self.round +=1
+            self.next_round = self.next_round + (30*60)
+            self.save
+            #First update the income levels
+            update_income_levels(self.round)
+          ensure
+            self.update_attribute(:locked, false)
+          end
         end
       end
     end
