@@ -78,16 +78,19 @@ class NewsMessagesController < ApplicationController
   end
 
   def paper
-    @round = params[:round]    
-    den = NewsMessage.where(round: @round).
-            where(title: "DEN").
-            where(visible_content: true)
-    gnn = NewsMessage.where(round: @round).
-            where(title: "GNN").
-            where(visible_content: true)
-    sft = NewsMessage.where(round: @round).
-                      where(title: "S&FT").
-                      where(visible_content: true)
+    @round = params[:round]
+    den = NewsMessage.where(game: current_game).
+      where(round: @round).
+      where(title: "DEN").
+      where(visible_content: true)
+    gnn = NewsMessage.where(game: current_game).
+      where(round: @round).
+      where(title: "GNN").
+      where(visible_content: true)
+    sft = NewsMessage.where(game: current_game).
+          where(round: @round).
+          where(title: "S&FT").
+          where(visible_content: true)
     @news = {
       :DEN => den,
       :GNN => gnn,
@@ -123,13 +126,13 @@ class NewsMessagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news_message
-      @news_message = NewsMessage.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news_message
+    @news_message = NewsMessage.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def news_message_params
-      params[:news_message].permit(:title, :content, :round, :media_url, :visible_content, :visible_image)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def news_message_params
+    params[:news_message].permit(:title, :content, :round, :media_url, :visible_content, :visible_image)
+  end
 end
