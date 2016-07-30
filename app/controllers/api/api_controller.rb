@@ -166,7 +166,7 @@ class Api::ApiController < ApplicationController
 
     # Don't explode if there is no data yet.
     if income_level[0]
-      if (income_level[0] - 1) >= @income_values[user_team.team_name].length
+      if income_level[0] >= @income_values[user_team.team_name].length
         income_value = @income_values[user_team.team_name][income_level[0] - 1]
       else
         income_value = @income_values[user_team.team_name][@income_values[user_team.team_name].length - 1]
