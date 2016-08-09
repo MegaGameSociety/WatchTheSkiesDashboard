@@ -30,16 +30,16 @@
      <% end %>
   </section>
 
-  <h3>Update Rioters</h3>
+<!--   <h3>Update Rioters</h3>
   <section>
     <%= form_for(@game, url: rioters_update_path) do |f|%>
       <%= f.label "Rioters:" %> </br>
       <%= f.number_field :rioters, value: @game.data['rioters'], :size => "60x5"%>
       <%= f.submit %>
     <% end %>
-  </section>
+  </section> -->
 
-  <h3>Enter Current Military Activity</h3>
+<!--   <h3>Enter Current Military Activity</h3>
   <section>
      <%= form_for(@game, url: activity_update_path) do |f|%>
       Next Round:
@@ -49,7 +49,7 @@
       <%= f.submit %>
     <% end %>
   </section>
-
+ -->
   <h3>Total Terror: <%= @count %></h3>
   <section>
      <table class="unpr">

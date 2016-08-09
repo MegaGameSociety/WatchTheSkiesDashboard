@@ -31,11 +31,11 @@
 
       // GNN & SFT cannot message the aliens.
       if ($scope.myCountryName === 'SF&T' || $scope.myCountryName === 'GNN') {
-        return team.team_name === 'Teresh' || team.team_name === 'Tyrrhenians';
+        return team.team_name === 'Aliens1' || team.team_name === 'Aliens2';
       }
 
       // Likewise Aliens cannot message them.
-      if ($scope.myCountryName === 'Teresh' || $scope.myCountryName === 'Tyrrhenians') {
+      if ($scope.myCountryName === 'Aliens1' || $scope.myCountryName === 'Aliens2') {
         return team.team_name === 'GNN' || team.team_name === 'SF&T';
       }
     });

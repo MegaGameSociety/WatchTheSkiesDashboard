@@ -133,8 +133,8 @@ Game::COUNTRIES.each do |country|
 end
 
 # Game::Countries doesn't include aliens or media.
-Team.create(team_name: 'Teresh').save()
-Team.create(team_name: 'Tyrrhenians').save()
+Team.create(team_name: 'Aliens1').save()
+Team.create(team_name: 'AliensA').save()
 
 Team.create(team_name: 'GNN').save()
 Team.create(team_name: 'SF&T').save()
