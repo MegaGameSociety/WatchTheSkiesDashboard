@@ -22,12 +22,6 @@
     <%= f.text_field :media_url %> </br>
 
     <table class="unpr">
-      <% if @news_message.id.nil? %>
-      <tr>
-        <td><%= label_tag "Post to Twitter?" %></td>
-        <td><%= check_box_tag :post_online %></td>
-      </tr>
-      <% end %>
       <tr>
         <td><%= f.label "Publish Content?" %></td>
         <td><%= f.check_box :visible_content %></td>
