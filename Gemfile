@@ -35,7 +35,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem "factory_girl_rails", "~> 4.5.0"
+  gem "factory_girl_rails", "~> 4.5.0", :require => false
 end
 
 group :production do
