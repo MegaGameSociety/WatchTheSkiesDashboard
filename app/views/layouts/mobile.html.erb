@@ -10,6 +10,35 @@
   </head>
 
   <body class="mobile mobile_dashboard" ng-app="wtsApp" ng-controller="baseMobileCtrl" ng-class="roleClass">
-    <%= yield %>
+
+    <div class="hamburger-label" role="button" aria-labelledby="menu" ng-click="toggleSidebar()" ng-class="{'sidebar-open': sidebar === true}">
+      <span></span>
+    </div>
+
+     <nav class="sidebar" ng-class="{'sidebar-open': sidebar === true}">
+      <ul class="menu">
+        <li ng-click="setTab('news')" ng-class="{'focused': focusedTab === 'news'}">News</li>
+        <li ng-click="setTab('messages')" ng-class="{'focused': focusedTab === 'messages'}">Messages</li>
+
+        <!--
+        <li ng-if="checkPermissions('operatives')" ng-click="setTab('operatives')" ng-class="{'focused': focusedTab === 'operatives'}">Operatives</li>
+        <li ng-if="checkPermissions('espionage')" ng-click="setTab('espionage')" ng-class="{'focused': focusedTab === 'espionage'}">Espionage</li>
+        -->
+
+        <li ng-if="checkPermissions('income')" ng-click="setTab('income')" ng-class="{'focused': focusedTab === 'income'}">Income</li>
+
+        <!--
+        <li ng-if="checkPermissions('research')" ng-click="setTab('research')" ng-class="{'focused': focusedTab === 'research'}">Research</li>
+        <li ng-if="checkPermissions('trades')" class="tab-choice" ng-click="setTab('trades')" ng-class="{'focused': focusedTab === 'trades'}">Trades</li>
+        <li ng-if="checkPermissions('rumors')" class="tab-choice" ng-click="setTab('rumours')" ng-class="{'focused': focusedTab === 'rumours'}">Rumours</li>
+        -->
+
+        <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+       </ul>
+     </nav>
+
+    <main role="main" class="page-content" ng-class="{'sidebar-open': sidebar === true}">
+      <%= yield %>
+    </main>
   </body>
 </html>

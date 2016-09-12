@@ -4,14 +4,34 @@
     // Set the default to be no permissions.
     $scope.myPermissions = [];
 
+    $scope.sidebar = false;
+
     $scope.checkPermissions = function(tab) {
       var myPermissions = $scope.myPermissions;
       return myPermissions.indexOf(tab) !== -1;
     }
 
+    $scope.toggleSidebar = function() {
+      if ($scope.sidebar) {
+        $scope.closeSidebar();
+      } else {
+        $scope.openSidebar();
+      }
+    }
+
+    $scope.openSidebar = function() {
+      $scope.sidebar = true;
+    }
+
+    $scope.closeSidebar = function() {
+      $scope.sidebar = false;
+    }
+
     // Tabs
     $scope.setTab = function(tab) {
       $scope.focusedTab = tab;
+      // Close the sidebar if it is open
+      $scope.closeSidebar();
     }
 
     var apiCall = function() {
