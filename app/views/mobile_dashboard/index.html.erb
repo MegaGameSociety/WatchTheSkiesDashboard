@@ -7,29 +7,21 @@
   </div>
 
   <div class="tabs">
-    <%= render(:partial => "navigation") %>
-
     <div id="tab-news" class="tab news" ng-show="focusedTab === 'news'" ng-controller="newsCtrl">
       <%= render(:partial => "news") %>
     </div>
-
 
     <div id="tab-messages" class="tab messages" ng-if="focusedTab === 'messages'" ng-controller="messagesCtrl">
       <%= render(:partial => "messages") %>
     </div>
 
-
     <!-- Operatives -->
-
     <!-- Spying -->
 
     <div id="tab-income" class="tab income" ng-if="checkPermissions('income') && focusedTab === 'income'" ng-controller="incomeCtrl">
       <%= render(:partial => "income") %>
     </div>
 
-    <div id="tab-prefs" class="tab preferences" ng-show="focusedTab === 'preferences'">
-      <%= render(:partial => "preferences") %>
-    </div>
 
     <!-- Research -->
     <!-- Trades -->
