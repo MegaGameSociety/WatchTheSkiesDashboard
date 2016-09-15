@@ -42,6 +42,7 @@ group :production do
   gem 'rails_12factor'
 end
 gem 'roo'
+gem 'roo-xls'
 
 # JSON for data
 gem 'json'
