@@ -1,5 +1,6 @@
 Watch the Skies Dashboard
-[![Build Status](https://travis-ci.org/travis-ci/travis-web.svg?branch=master)](https://travis-ci.org/travis-ci/travis-web)
+
+[![Build Status](https://travis-ci.org/MegaGameSociety/WatchTheSkiesDashboard.svg?branch=develop)](https://travis-ci.org/MegaGameSociety/WatchTheSkiesDashboard)
 
 For crappy old code see: https://github.com/FifthSurprise/WatchTheSkiesDashboard
 
