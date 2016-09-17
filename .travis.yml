@@ -6,6 +6,8 @@ rvm:
  - 2.2
  - jruby
  - rbx-2
+addons:
+  postgresql: "9.3"
 # uncomment and edit the following line if your project needs to run something other than `rake`:
 before_script:
   - cp config/database.travis.yml config/database.yml
