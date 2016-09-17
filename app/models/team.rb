@@ -11,6 +11,6 @@ class Team < ActiveRecord::Base
   # Access teams which don't accrue income/pr
   # ToDo: Replace this with a check on a flag
   def self.all_without_incomes
-    self.all.where.not(team_name: ["Aliens", "GNN", "DEN", "SF&T", "Aliens1", "AliensA"])
+    self.all.where.not(team_name: ["Aliens", "GNN", "DEN", "S&FT", "Aliens1", "AliensA"])
   end
 end
