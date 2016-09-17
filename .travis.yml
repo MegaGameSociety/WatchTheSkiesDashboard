@@ -3,7 +3,7 @@ cache: bundler
 services:
   - postgresql
 rvm:
- - 2.3
+ - 2.2.4
 addons:
   postgresql: "9.3"
 # uncomment and edit the following line if your project needs to run something other than `rake`:
