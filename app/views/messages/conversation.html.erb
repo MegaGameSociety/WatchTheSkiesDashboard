@@ -15,6 +15,7 @@
           <th >Recipient</th>
           <th >Content</th>
           <th >Created At </th>
+          <th >Delete?</th>
 <!--           <th >Controls</th> -->
         </tr>
       </thead>
@@ -27,6 +28,7 @@
             <td><%= message.recipient.team_name %></td>
             <td><%= message.content %></td>
             <td><%= message.created_at.strftime('%H:%M:%S') %></td>
+            <td><%= link_to 'Destroy', message, method: :delete, :class => "button-input", data: { confirm: 'Are you sure?' } %></td>
 <!--             <td><%= link_to 'Details', message, :class => "button-input" %>
             <%= link_to 'Edit', edit_message_path(message), :class => "button-input" %>
             <%= link_to 'Destroy', message, method: :delete, :class => "button-input", data: { confirm: 'Are you sure?' } %></td> -->

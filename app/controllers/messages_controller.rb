@@ -64,6 +64,13 @@ class MessagesController < ApplicationController
 		render json: @message
 	end
 
+	def destroy
+		message = Message.find(params['id'])
+		message.destroy
+    redirect_to messages_path
+
+	end
+
 	private
 		def message_params
 			params.require(:message).permit(:country, :sender, :recipient, :content)
