@@ -12,11 +12,11 @@ class Tweet < ActiveRecord::Base
     end
 
     full_name = "AP"
-    if self.twitter_name == self.game.den
+    if self.twitter_name.downcase == self.game.den.downcase
       full_name = "DEN"
-    elsif self.twitter_name == self.game.gnn
+    elsif self.twitter_name.downcase == self.game.gnn.downcase
       full_name = "GNN"
-    elsif self.twitter_name == self.game.sft
+    elsif self.twitter_name.downcase == self.game.sft.downcase
       full_name = "S&FT"
     end
 
