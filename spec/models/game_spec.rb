@@ -17,14 +17,27 @@ RSpec.describe Game, :type => :model do
   end
 
   it 'can reset its own data' do
+    initial_name = game.name
     game.reset
-    expect(game.name).to eq("")
+    expect(game.name).to eq(initial_name)
     expect(game.round).to eq(0)
+    expect(game.next_round).to be_between(Time.now() + 29*60, Time.now() + 30*60)
+    expect(game.control_message).to eq("Welcome to Watch the Skies")
+    expect(game.activity).to eq("All is quiet around the world.")
     expect(game.data).to eq({
                               "rioters" => 0,
                               "paused" => true,
                               "alien_comms" => false
     })
+    expect(game.bonus_credits).to match_array([])
+    expect(game.incomes).to match_array([])
+    expect(game.messages).to match_array([])
+    expect(game.news_messages).to match_array([])
+    expect(game.public_relations).to match_array([])
+    expect(game.terror_trackers).to match_array([])
+    expect(game.tweets).to match_array([])
+    # TODO: Need to move user deletion logic
+    # TODO: Need to validate an initial terror tracker created
   end
 
   describe 'income levels' do

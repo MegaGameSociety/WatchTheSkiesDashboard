@@ -11,7 +11,14 @@ class Game < ActiveRecord::Base
   serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA', 'Germany']
   def reset()
-    self.name = ""
+    self.bonus_credits.destroy_all
+    self.incomes.destroy_all
+    self.messages.destroy_all
+    self.news_messages.destroy_all
+    self.public_relations.destroy_all
+    self.terror_trackers.destroy_all
+    self.tweets.destroy_all
+    # self.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all
     self.round = 0
     self.next_round = Time.now() + 30*60
     self.control_message = "Welcome to Watch the Skies"
