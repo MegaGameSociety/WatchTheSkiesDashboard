@@ -59,7 +59,7 @@ class Game < ActiveRecord::Base
   def reset_news_and_media
     self.news_messages.destroy_all
     self.tweets.destroy_all
-    Tweet.import(self)
+    # Tweet.import(self)
   end
 
   def reset_users
