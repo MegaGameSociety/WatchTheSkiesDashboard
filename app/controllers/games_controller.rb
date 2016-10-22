@@ -152,27 +152,7 @@ class GamesController < ApplicationController
 
   # Post
   def reset
-    g = current_game
-    g.reset
-    g.tweets.destroy_all
-    g.news_messages.destroy_all
-    g.public_relations.destroy_all
-    g.terror_trackers.destroy_all
-    g.terror_trackers.create(
-        description: "Initial Terror",
-        amount: 0,
-        round: g.round
-      )
-    g.messages.destroy_all
-    g.incomes.destroy_all
-    g.bonus_credits.destroy_all
-    g.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all
-    teams = Team.all_without_incomes
-    teams.each do |team|
-      g.incomes.push(Income.create(round: g.round, team: team, amount: 6))
-    end
-
-    #CleanUp
+    current_game.reset
     redirect_to admin_control_path
   end
 

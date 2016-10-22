@@ -10,33 +10,68 @@ class Game < ActiveRecord::Base
 
   serialize :game_data, JSON
   COUNTRIES = ['Brazil', 'China', 'France', 'India', 'Japan', 'Russian Federation','United Kingdom', 'USA', 'Germany']
-  def reset()
-    self.bonus_credits.destroy_all
-    self.incomes.destroy_all
-    self.messages.destroy_all
-    self.news_messages.destroy_all
-    self.public_relations.destroy_all
-    self.terror_trackers.destroy_all
-    self.tweets.destroy_all
-    # self.users.where.not("role = ? or role = ?", "SuperAdmin", "Admin").destroy_all
+
+  def reset
+    reset_game_data
+    reset_terror_track
+    reset_countries
+    reset_news_and_media
+    reset_users
+  end
+
+  def reset_game_data
     self.round = 0
-    self.next_round = Time.now() + 30*60
-    self.control_message = "Welcome to Watch the Skies"
-    self.activity = "All is quiet around the world."
+    self.next_round = Time.now + 30*60
+    self.control_message = 'Welcome to Watch the Skies'
+    self.activity = 'All is quiet around the world.'
     game_data = {}
     game_data['rioters']=0
     game_data['paused']=true
     game_data['alien_comms']=false
     self.data = game_data
-    self.save()
+    self.save
   end
 
-  def update()
+  def reset_terror_track
+    self.terror_trackers.destroy_all
+    self.terror_trackers.create(
+        description: 'Initial Terror',
+        amount: 0,
+        round: self.round
+    )
+  end
+
+  def reset_countries
+    self.bonus_credits.destroy_all
+    self.incomes.destroy_all
+    self.messages.destroy_all
+    self.public_relations.destroy_all
+    teams = Team.all_without_incomes
+    teams.each do |team|
+      self.incomes.push(Income.create(
+          round: self.round,
+          team: team,
+          amount: 6
+      ))
+    end
+  end
+
+  def reset_news_and_media
+    self.news_messages.destroy_all
+    self.tweets.destroy_all
+    Tweet.import(self)
+  end
+
+  def reset_users
+    self.users.where.not(role: ['SuperAdmin', 'Admin']).destroy_all
+  end
+
+  def update
     # If the round isn't paused, check if it is time for the next round
     # Can't have more than 12 rounds.
     if self.round > 13
       self.data['paused'] = true
-      self.save()
+      self.save
     end
     # Update round # and next round time if necessary
     unless self.data['paused']

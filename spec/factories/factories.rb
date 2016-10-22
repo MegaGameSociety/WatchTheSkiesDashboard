@@ -63,11 +63,17 @@ FactoryGirl.define do
           User.create(
               game: game,
               team: first_team,
-              role: 'Player'
+              role: 'Player',
+              email: "wts_player@wts.com",
+              password: 'swordfish',
+              password_confirmation: 'swordfish'
           ),
           User.create(
               game: game,
-              role: 'SuperAdmin'
+              role: 'SuperAdmin',
+              email: "wts_admin@wts.com",
+              password: 'swordfish',
+              password_confirmation: 'swordfish'
           ))
     end
   end
