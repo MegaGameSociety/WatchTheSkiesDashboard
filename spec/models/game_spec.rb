@@ -18,6 +18,8 @@ RSpec.describe Game, :type => :model do
 
   it 'can reset its own data' do
     initial_game_name = game.name
+    allow(Tweet).to receive(:import)
+    expect(Tweet).to receive(:import).with(game)
 
     game.reset
 
@@ -38,8 +40,7 @@ RSpec.describe Game, :type => :model do
     expect(game.messages).to match_array([])
     expect(game.public_relations).to match_array([])
     expect(game.news_messages).to match_array([])
-    # Left to do: check imported tweets
-    # expect(game.tweets).to match_array([])
+    expect(game.tweets).to match_array([])
 
     # Verify reset users
     expect(game.users.count).to eq(1)
