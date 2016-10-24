@@ -8,11 +8,14 @@
 </div>
 
 <div class="turns-container">
-    <h4 class="turns">Turn {{round}}</h4>
-    <h4><timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer> Remaining</h4>
+  <h4 class="turns">Turn {{round}}</h4>
+  <h4>
+    <timer countdown="roundDuration" max-time-unit="'minute'" interval="1000">{{mminutes}}:{{sseconds}}</timer>
+    <span class="remaining">Remaining</span>
+  </h4>
 </div>
 
 <div class="terror-container">
-    <h4><span>Global</span> Terror</h4>
-    <h4>{{terror}} / 250</h4>
+  <h4 class="terrors"><span>Global</span> Terror</h4>
+  <h4>{{terror}} / 250</h4>
 </div>

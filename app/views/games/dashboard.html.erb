@@ -6,7 +6,7 @@
 
     <!-- Round Information -->
     <div id="round-container">
-      <h2>Turn {{round}}</h2>
+      <h2><span>Turn</span> {{round}}</h2>
 
       <div id="timer">
         <h3 ng-if="!paused">
@@ -18,7 +18,7 @@
 
     <!-- Terror Tracker -->
     <div id="terror-tracker" ng-controller="terrorCtrl">
-      <h3>Global Terror: {{terror}} / 250</h3>
+      <h3><span>Global Terror:</span> {{terror}} / 250</h3>
       <div class="terror-border">
         <div class="terror-bar" ng-class="getTerrorColour()" ng-style="getTerrorWidth()"></div>
       </div>

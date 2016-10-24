@@ -113,7 +113,8 @@ class Api::ApiController < ApplicationController
       @result = {
         'teams' => teams,
         'team' => user_team,
-        'team_role' => user_team_role
+        'team_role' => user_team_role,
+        "alien_comms" => @game.data["alien_comms"],
       }
     rescue
       @status = 500

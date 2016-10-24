@@ -5,8 +5,8 @@ $break-med: 600px;
 $break-md: 800px;
 $break-large: 1200px;
 
-@mixin role-colors($color, $background) {
-  background-image: url('/assets/mobile-backgrounds/world-#{$background}.png');
+@mixin role-colors($color) {
+  &:after { background: $color }
   .button { background: $color; }
   .country-header { border-bottom: 1px solid $color; }
   .tab-choice { background: $color; }
@@ -19,14 +19,14 @@ $break-large: 1200px;
   .sidebar .menu li.focused { background: $color; }
 }
 
-.role-head        { @include role-colors(#0C7C33, "green");  }
-.role-deputy      { @include role-colors(#C2B729, "yellow"); }
-.role-scientist   { @include role-colors(#003D6F, "blue");   }
-.role-military    { @include role-colors(#7C100C, "red");    }
-.role-ambassador  { @include role-colors(#541B89, "purple"); }
-.role-media       { @include role-colors(#C87E09, "orange"); }
-.role-alien       { @include role-colors(#2d2f46, "aliens"); }
-.role-editor      { @include role-colors(#003D6F, "blue");   }
+.role-head        { @include role-colors(#0C7C33); }
+.role-deputy      { @include role-colors(#C2B729); }
+.role-scientist   { @include role-colors(#003D6F); }
+.role-military    { @include role-colors(#7C100C); }
+.role-ambassador  { @include role-colors(#541B89); }
+.role-media       { @include role-colors(#C87E09); }
+.role-alien       { @include role-colors(#2d2f46); }
+.role-editor      { @include role-colors(#003D6F); }
 
 .button {
   border-radius: 5px;
@@ -87,6 +87,7 @@ body.mobile {
 }
 
 .mobile_dashboard {
+  background-image: url('/assets/mobile-backgrounds/world-clear.png');
   background-size: cover;
   background-position: top center;
   background-attachment: fixed;
@@ -97,6 +98,30 @@ body.mobile {
   padding: 0;
   max-height: 999999px; // Overcome Mobile Chrome Font Boosting.
   width: 100%;
+
+  &.alien {
+    background-image: url('/assets/mobile-backgrounds/world-clear-animate.gif');
+
+    .my-country .govt,
+    .turns-container .turns,
+    .turns-container .remaining,
+    .terror-container .terrors
+    {
+      font-family: Vorlon;
+    }
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+    z-index: -1;
+  }
 
   h4 {
     color: #000;

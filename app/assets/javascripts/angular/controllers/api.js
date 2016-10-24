@@ -37,7 +37,7 @@
         $scope.countries = result['countries'];
 
         // Note: The "Vatican" class does not actually exist anywhere yet.
-        $('.body').toggleClass('alien', result['alien_comms']);
+        $('.dashboard').toggleClass('alien', result['alien_comms']);
         $('.Vatican').toggleClass('alien', result['vatican_alien_comms']);
 
         // Set the News

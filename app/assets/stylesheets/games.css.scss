@@ -78,6 +78,14 @@ $terror-red: #BD2C00;
   padding-bottom: 0px;
   padding-top: 20px;
 
+  &.alien {
+    #round-container span,
+    #terror-tracker span,
+    #breaking-block h3 {
+      font-family: Vorlon;
+    }
+  }
+
   h2 {
     font-size: 2.25rem;
     line-height: 2.75rem;
