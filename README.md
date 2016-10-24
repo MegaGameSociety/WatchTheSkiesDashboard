@@ -11,9 +11,9 @@ If you do not have Bundler:
 
 Then run the following to start the application:
 
-- bundle install
-- rake db:setup
-- rails s
+    bundle install
+    bundle exec rake db:setup
+    bundle exec rails s
 
 This will start the server.
 
@@ -22,3 +22,7 @@ If you need to reset to seed after creating the database, run rake db:reset
 Other rake commands available via rake -T
 
 An important note: Game data is all linked up under the Game model.  Also, users can only belong to one game currently.
+
+To run the tests:
+
+    bundle exec rspec
