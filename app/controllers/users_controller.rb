@@ -5,11 +5,15 @@ class UsersController < ApplicationController
 
   def index
     authenticate_admin!
-    @users = User.all.order(id: :desc)
+    if current_user.super_admin?
+      @users = User.all.order(id: :desc)
+    else
+      @users = User.where(game: current_user.game).where("role != 'SuperAdmin'").order(id: :desc)
+    end
   end
 
   def import
-    if current_user.super_admin?
+    if current_user.admin?
       User.file_import(params[:file], current_game)
       redirect_to users_path, notice: "Users imported."
     else
@@ -52,6 +56,7 @@ class UsersController < ApplicationController
     @team_roles = TeamRole.all
     @games = Game.all
 
+    @super_admin = current_user.super_admin?
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
