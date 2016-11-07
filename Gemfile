@@ -31,6 +31,7 @@ gem 'angularjs-rails', '~> 1.4.3'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 group :development, :test do
+  gem 'faker'
   gem 'rspec-rails'
   gem 'spring'
   gem 'better_errors'
