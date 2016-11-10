@@ -78,12 +78,18 @@ FactoryGirl.define do
     end
   end
 
-  factory :admin do
+  factory :admin, :class => User do
     email { Faker::Internet.email }
     password "password"
-    password_confirmation "passsword"
-    confirmed_at Date.today
+    password_confirmation "password"
     role 'SuperAdmin'
     game FactoryGirl.build(:game)
+  end
+
+  factory :player, :class => User do
+    email { Faker::Internet.email }
+    password "password"
+    password_confirmation "password"
+    role 'Player'
   end
 end

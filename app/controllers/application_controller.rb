@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     user = current_user
     redirect_to root_path if user.nil?
     unless (user.admin?)
-      authenticate_control
+      authenticate_control!
     end
   end
 
