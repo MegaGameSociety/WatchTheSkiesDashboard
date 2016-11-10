@@ -26,7 +26,7 @@ RSpec.describe UsersController, :type => :controller do
       expect(controller.instance_variable_get(:@users)).not_to include(user2)
     end
 
-    it 'shows all users tied to your game if you are a super admin' do
+    it 'shows all users if you are a super admin' do
       unowned_game = create(:game)
 
       user1 = create(:player)

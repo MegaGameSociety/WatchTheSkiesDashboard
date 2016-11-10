@@ -31,9 +31,9 @@
         <%= f.select :team_role, options_for_select(@team_roles.collect{ |role| [role.role_display_name, role.id]}, selected = @user.team_role_id) %></br><br />
 
       <% if @super_admin %>
-      <%= f.label :game %> </br>
-       <%= f.select :game, options_for_select(@games.collect{ |game| [game.name, game.id]}) %></br><br />
-      <% end %>
+        <%= f.label :game %> </br>
+         <%= f.select :game, options_for_select(@games.collect{ |game| [game.name, game.id]}) %></br><br />
+        <% end %>
       <%= f.submit %>
     </div>
   <% end %>
