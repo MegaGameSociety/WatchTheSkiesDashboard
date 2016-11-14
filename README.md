@@ -7,7 +7,8 @@ This application uses Rails.
 
 Dependencies are managed using Bundler.
 If you do not have Bundler:
-  gem install bundler
+  
+    gem install bundler
 
 Then run the following to start the application:
 

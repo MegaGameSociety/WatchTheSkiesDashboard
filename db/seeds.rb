@@ -137,5 +137,5 @@ Team.create(team_name: 'Aliens1').save()
 Team.create(team_name: 'AliensA').save()
 
 Team.create(team_name: 'GNN').save()
-Team.create(team_name: 'SF&T').save()
+Team.create(team_name: 'S&FT').save()
 Team.create(team_name: 'DEN').save()
