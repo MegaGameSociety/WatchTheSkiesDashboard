@@ -23,13 +23,7 @@
           <tr>
             <td><%= income.team_name %></td>
             <td><%= income.amount%></td>
-            <td>
-              <% if @income_values[income.team_name].length <= income.amount %>
-                <%= @income_values[income.team_name][@income_values[income.team_name].length - 1] %>
-              <% else %>
-                <%= @income_values[income.team_name][income.amount-1]%>
-              <% end %>
-            </td>
+            <td><%= income.credits%></td>
             <td><%= @game.bonus_credits.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
             <td><%= @game.bonus_credits.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
           </tr>

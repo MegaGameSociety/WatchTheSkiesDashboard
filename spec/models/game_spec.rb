@@ -1,8 +1,9 @@
 require 'rails_helper'
 RSpec.describe Game, :type => :model do
-  let(:game){ FactoryGirl.create(:game)}
 
   Game::COUNTRIES.each{|country| Team.find_or_create_by(team_name: country)}
+
+  let(:game){ FactoryGirl.create(:game)}
 
   before(:each) do
     Game::COUNTRIES.each do |country|
