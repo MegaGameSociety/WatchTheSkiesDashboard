@@ -23190,13 +23190,13 @@ angular.module('truncate', []).filter('characters', function () {
       }
 
       // GNN & SFT cannot message the aliens.
-      if ($scope.myCountryName === 'SF&T' || $scope.myCountryName === 'GNN') {
+      if ($scope.myCountryName === 'S&FT' || $scope.myCountryName === 'GNN') {
         return team.team_name === 'Teresh' || team.team_name === 'Tyrrhenians';
       }
 
       // Likewise Aliens cannot message them.
       if ($scope.myCountryName === 'Teresh' || $scope.myCountryName === 'Tyrrhenians') {
-        return team.team_name === 'GNN' || team.team_name === 'SF&T';
+        return team.team_name === 'GNN' || team.team_name === 'S&FT';
       }
     });
 
