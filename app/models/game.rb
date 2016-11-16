@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  has_many :bonus_credits
+  has_many :bonus_reserves
   has_many :incomes
   has_many :messages
   has_many :news_messages
@@ -42,7 +42,7 @@ class Game < ActiveRecord::Base
   end
 
   def reset_countries
-    self.bonus_credits.destroy_all
+    self.bonus_reserves.destroy_all
     self.incomes.destroy_all
     self.messages.destroy_all
     self.public_relations.destroy_all
@@ -147,8 +147,8 @@ class Game < ActiveRecord::Base
     @data = self.data
 
     income_list = self.incomes.where(round: round).group(:team_name).sum(:amount)
-    bonus_credits = self.bonus_credits.where(round: round, recurring: false).group(:team_name).sum(:amount)
-    recurring_credits = self.bonus_credits.where(recurring: true).group(:team_name).sum(:amount)
+    bonus_credits = self.bonus_reserves.where(round: round, recurring: false).group(:team_name).sum(:amount)
+    recurring_credits = self.bonus_reserves.where(recurring: true).group(:team_name).sum(:amount)
 
     @global_terror = {
       'activity' => self.activity,

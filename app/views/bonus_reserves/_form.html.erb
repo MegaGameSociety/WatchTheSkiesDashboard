@@ -1,10 +1,10 @@
-<%= form_for @bonus_credits do |f| %>
-  <% if @bonus_credits.errors.any? %>
+<%= form_for @bonus_reserves do |f| %>
+  <% if @bonus_reserves.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@bonus_credits.errors.count, "error") %> prohibited these bonus reserves from being saved:</h2>
+      <h2><%= pluralize(@bonus_reserves.errors.count, "error") %> prohibited these bonus reserves from being saved:</h2>
 
       <ul>
-        <% @bonus_credits.errors.full_messages.each do |message| %>
+        <% @bonus_reserves.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -16,7 +16,7 @@
     <%= f.label :round %>
     <%= f.number_field :round, :in => 0..12, :step => '1', :value=> @round %><br />
     <%= f.label :amount %>
-    <%= f.number_field :amount, :in => -12..12, :step => '1', :value=> @bonus_credits.amount %><br />
+    <%= f.number_field :amount, :in => -12..12, :step => '1', :value=> @bonus_reserves.amount %><br />
     <%= f.label :recurring %>
     <%= f.check_box :recurring %><br />
     <%= f.submit %>

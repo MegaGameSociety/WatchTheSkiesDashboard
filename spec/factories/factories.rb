@@ -23,7 +23,7 @@ FactoryGirl.define do
           amount: 0,
           round: game.round
       ))
-      game.bonus_credits.push(BonusCredit.create(
+      game.bonus_reserves.push(BonusReserve.create(
           game: game,
           team: first_team,
           round: 0,

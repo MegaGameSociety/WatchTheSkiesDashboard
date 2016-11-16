@@ -30,14 +30,14 @@
                 <%= @income_values[income.team_name][income.amount-1]%>
               <% end %>
             </td>
-            <td><%= @game.bonus_credits.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
-            <td><%= @game.bonus_credits.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
+            <td><%= @game.bonus_reserves.where(team: income.team, round: @current_round, recurring: false).sum(:amount) %></td>
+            <td><%= @game.bonus_reserves.where('team_id = ? AND round <= ? AND recurring = TRUE', income.team_id, @current_round).sum(:amount) %></td>
           </tr>
           <% end %>
       </table>
       <%= link_to "Income Index" , incomes_path(),:class => "button-input" %>
-      <%= link_to "Add Bonus Reserves", new_bonus_credit_path, :class => 'button-input' %>
-      <%= link_to "Bonus Reserves Index", bonus_credits_path, :class => "button-input" %>
+      <%= link_to "Add Bonus Reserves", new_bonus_reserve_path, :class => 'button-input' %>
+      <%= link_to "Bonus Reserves Index", bonus_reserves_path, :class => "button-input" %>
     </div>
   </section>
 

@@ -151,7 +151,7 @@ class Api::ApiController < ApplicationController
     public_relations_list = PublicRelation.where(game: @game, team: user_team, round: round - 1)
     income_level = Income.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
     # TO DO: This is in progress of being renamed.
-    reserves = BonusCredit.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
+    reserves = BonusReserve.where(game: @game, round: round, team: user_team).limit(1).pluck(:amount)
 
     # TO DO: This still needs to be moved.
     @income_values = {}
@@ -253,7 +253,5 @@ class Api::ApiController < ApplicationController
       format.json { render :json => @response }
     end
   end
-
-  private
 
 end

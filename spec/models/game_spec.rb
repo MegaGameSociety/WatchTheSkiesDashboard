@@ -36,7 +36,7 @@ RSpec.describe Game, :type => :model do
     })
 
     # Verify reset relations
-    expect(game.bonus_credits).to match_array([])
+    expect(game.bonus_reserves).to match_array([])
     expect(game.messages).to match_array([])
     expect(game.public_relations).to match_array([])
     expect(game.news_messages).to match_array([])
