@@ -374,20 +374,17 @@ body.mobile {
       margin-right: -150px;
     }
   }
-}
-
-.sidebar {
+  .sidebar {
   background: #444;
-  color: #eee;
+  /*color: #eee;*/
   height: 100%;
   font-size: 1.6rem;
   line-height: 2.2rem;
-  margin-left: -150px;
+  /*margin-left: -150px;*/
   overflow: hidden;
   padding-top: 6.5rem;
   transition: all .3s;
   width: 150px;
-
   a {
     color: #EEE;
   }
@@ -396,6 +393,7 @@ body.mobile {
     background-color: transparent;
     color: #EEE;
   }
+
 
   .menu {
     list-style: none;
@@ -419,6 +417,9 @@ body.mobile {
     width: 150px;
   }
 }
+
+}
+
 
 
 .hamburger-label {
