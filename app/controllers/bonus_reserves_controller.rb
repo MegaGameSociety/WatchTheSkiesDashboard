@@ -43,6 +43,6 @@ class BonusReservesController < ApplicationController
   private
 
   def bonus_reserve_params
-    params.require(:bonus_reserves).permit(:team, :round, :amount, :recurring)
+    params.require(:bonus_reserve).permit(:team, :round, :amount, :recurring)
   end
 end

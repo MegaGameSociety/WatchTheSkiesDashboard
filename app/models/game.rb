@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  has_many :bonus_reserves, :class_name => 'BonusReserve'
+  has_many :bonus_reserves
   has_many :incomes
   has_many :messages
   has_many :news_messages
