@@ -68,6 +68,7 @@ class Api::ApiController < ApplicationController
         "timer" => {
           "round"=>  round,
           "next_round" =>  @game.next_round.in_time_zone(@game.time_zone).to_i,
+          "current_time" =>  Time.now.in_time_zone(@game.time_zone).to_i,
           "paused" => @data['paused'],
           "control_message" => @game.control_message
         },
