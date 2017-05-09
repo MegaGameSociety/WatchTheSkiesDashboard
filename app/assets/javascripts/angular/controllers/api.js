@@ -53,9 +53,11 @@
           }
         }
         var nextRound = moment.unix(result['timer']['next_round']);
+        var current_time = moment.unix(result['timer']['current_time']);
+
         if ($scope.nextRound.valueOf() != nextRound.valueOf()) {
           $scope.nextRound = moment(nextRound);
-          $scope.roundDuration = $scope.nextRound.diff(moment(), 'seconds');
+          $scope.roundDuration = $scope.nextRound.diff(moment(current_time), 'seconds');
           $scope.$broadcast('timer-set-countdown',  $scope.roundDuration);
           $scope.$broadcast('timer-start');
           $scope.$broadcast('timer-set-end-time',  $scope.roundDuration);

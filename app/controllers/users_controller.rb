@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @teams = Team.all
     @team_roles = TeamRole.all
     @games = Game.all
+    @super_admin = current_user.super_admin?
   end
 
   # GET /user/1/edit
