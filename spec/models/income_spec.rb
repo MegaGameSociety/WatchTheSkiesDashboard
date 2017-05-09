@@ -7,14 +7,12 @@ end
 
 RSpec.describe Income, :type => :model do
 
-  Game::COUNTRIES.each { |country| Team.find_or_create_by(team_name: country) }
-
   let(:game) { FactoryGirl.create(:game) }
 
   before(:each) do
     Game::COUNTRIES.each do |country|
       #Income starts at 6.
-      team = Team.find_by_team_name(country)
+      team = Team.find_or_create_by(team_name: country)
       income = Income.find_or_create_by(game: game, round: 0, amount: 6, team: team)
     end
   end
