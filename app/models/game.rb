@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  has_many :bonus_reserves
+  has_many :bonus_reserves, :class_name => 'BonusReserve'
   has_many :incomes
   has_many :messages
   has_many :news_messages
@@ -147,7 +147,7 @@ class Game < ActiveRecord::Base
     @data = self.data
 
     income_list = self.incomes.where(round: round).group(:team_name).sum(:amount)
-    bonus_credits = self.bonus_reserves.where(round: round, recurring: false).group(:team_name).sum(:amount)
+    bonus_reserves = self.bonus_reserves.where(round: round, recurring: false).group(:team_name).sum(:amount)
     recurring_credits = self.bonus_reserves.where(recurring: true).group(:team_name).sum(:amount)
 
     @global_terror = {
@@ -166,7 +166,7 @@ class Game < ActiveRecord::Base
       "pr" => self.public_relations.where(round: round).group(:country).sum(:pr_amount),
       "last_pr" => self.public_relations.where(round: (round - 1 )).group(:country).sum(:pr_amount),
       "incomes" => income_list,
-      "bonus_credits" => bonus_credits,
+      "bonus_reserves" => bonus_reserves,
       "recurring_credits" => recurring_credits,
     }
   end
