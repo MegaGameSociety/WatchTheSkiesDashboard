@@ -13,8 +13,8 @@ class BonusReservesController < ApplicationController
   end
 
   def create
-    teamId = bonus_credit_params['team'].to_i
-    new_params = bonus_credit_params.except('team')
+    teamId = bonus_reserve_params['team'].to_i
+    new_params = bonus_reserve_params.except('team')
     @bonus_reserves = BonusReserve.new(new_params)
     @bonus_reserves.team = Team.find(teamId)
     @bonus_reserves.game = current_game
@@ -42,7 +42,7 @@ class BonusReservesController < ApplicationController
 
   private
 
-  def bonus_credit_params
-    params.require(:bonus_reserve).permit(:team, :round, :amount, :recurring)
+  def bonus_reserve_params
+    params.require(:bonus_reserves).permit(:team, :round, :amount, :recurring)
   end
 end
