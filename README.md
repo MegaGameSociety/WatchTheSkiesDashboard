@@ -18,6 +18,8 @@ Then run the following to start the application:
 
 This will start the server.
 
+To start the server locally and setup the test database, you will need postgresql installed with a root/root user.
+
 If you need to reset to seed after creating the database, run rake db:reset
 
 Other rake commands available via rake -T
