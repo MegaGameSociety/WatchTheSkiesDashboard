@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe Game, :type => :model do
-  let(:game){ FactoryGirl.create(:game)}
+  let(:game){ FactoryBot.create(:game)}
 
   Game::COUNTRIES.each{|country| Team.find_or_create_by(team_name: country)}
 

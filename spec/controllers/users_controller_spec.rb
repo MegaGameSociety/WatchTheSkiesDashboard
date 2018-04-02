@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
-  let(:control){ FactoryGirl.create(:admin)}
+  let(:control){ FactoryBot.create(:admin)}
 
   before do
     allow(controller).to receive(:authenticate_user!).and_return(true)
