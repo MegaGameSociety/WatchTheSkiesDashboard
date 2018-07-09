@@ -1,4 +1,4 @@
-class AddGameReferences < ActiveRecord::Migration
+class AddGameReferences < ActiveRecord::Migration[4.2]
   def change
     add_reference :public_relations, :game, index: true
     add_foreign_key :public_relations, :games

@@ -1,4 +1,4 @@
-class AddTeamToIncome < ActiveRecord::Migration
+class AddTeamToIncome < ActiveRecord::Migration[4.2]
   def change
     remove_column :incomes, :team_name
     add_reference :incomes, :team, index: true
