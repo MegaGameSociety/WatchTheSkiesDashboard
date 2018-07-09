@@ -1,6 +1,6 @@
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :game do
     name "Watch the Skies Test"
@@ -83,7 +83,7 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     role 'SuperAdmin'
-    game FactoryGirl.build(:game)
+    # game FactoryBot.build(:game)
   end
 
   factory :player, :class => User do

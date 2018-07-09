@@ -1,4 +1,4 @@
-class CreateBonusCredits < ActiveRecord::Migration
+class CreateBonusCredits < ActiveRecord::Migration[4.2]
   def change
     create_table :bonus_credits do |t|
       t.string :team_name
