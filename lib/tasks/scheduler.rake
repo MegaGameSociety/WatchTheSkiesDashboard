@@ -15,6 +15,8 @@ end
 #   User.send_reminders
 # end
 
-desc 'Stub do-nothing jobs:work task to eliminate Heroku log complaints'
-task 'jobs:work' do
+namespace :jobs do
+  desc 'Stub do-nothing jobs:work task to eliminate Heroku log complaints'
+  task :work do
+  end
 end
