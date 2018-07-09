@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129040232) do
+ActiveRecord::Schema.define(version: 20160728032244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20161129040232) do
     t.string "sft", default: "SFTNews"
     t.boolean "locked", default: false
     t.boolean "tweets_locked", default: false
-    t.text "word_bank"
   end
 
   create_table "incomes", id: :serial, force: :cascade do |t|

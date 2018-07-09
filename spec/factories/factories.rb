@@ -83,7 +83,7 @@ FactoryBot.define do
     password "password"
     password_confirmation "password"
     role 'SuperAdmin'
-    game FactoryBot.build(:game)
+    # game FactoryBot.build(:game)
   end
 
   factory :player, :class => User do

@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, :type => :controller do
-  let(:control){ FactoryBot.create(:admin)}
 
-  before do
+  before :each do
     allow(controller).to receive(:authenticate_user!).and_return(true)
-
   end
 
   describe 'index' do
     it 'shows only users tied to your game if you are not an admin' do
+      game = FactoryBot.create(:game)
+      control = FactoryBot.create(:admin, game: game)
       control.update_attribute(:role, "Control")
       unowned_game = create(:game)
 
@@ -27,6 +27,8 @@ RSpec.describe UsersController, :type => :controller do
     end
 
     it 'shows all users if you are a super admin' do
+      game = FactoryBot.create(:game)
+      control = FactoryBot.create(:admin, game: game)
       unowned_game = create(:game)
 
       user1 = create(:player)
